@@ -20,7 +20,7 @@ export function P5Background() {
   const { theme } = useTheme()
 
   useEffect(() => {
-    if (!containerRef.current) return
+    if (!containerRef.current || typeof window === "undefined") return
 
     const sketch = (p: p5) => {
       const particles: Particle[] = []
