@@ -15,10 +15,16 @@ const ContactSection = dynamic(() =>
   { ssr: false }
 )
 
+const P5Background = dynamic(() =>
+  import("@/components/p5-background").then((mod) => mod.P5Background),
+  { ssr: false }
+)
+
 export default function Home() {
   return (
     <div>
       <Navbar />
+      <P5Background />
       <main>
         <HeroSection />
         <SkillsSection />
