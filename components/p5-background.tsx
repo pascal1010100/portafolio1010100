@@ -156,7 +156,13 @@ export function P5Background() {
 
             if (distance < 100) {
               const opacity = p.map(distance, 0, 100, colors.connectionOpacity, 0)
-              p.stroke(...colors.connectionColor, opacity)
+              const strokeColor = p.color(
+                colors.connectionColor[0],
+                colors.connectionColor[1],
+                colors.connectionColor[2],
+                opacity
+              )
+              p.stroke(strokeColor)
               p.line(particles[i].x, particles[i].y, particles[j].x, particles[j].y)
             }
           }
