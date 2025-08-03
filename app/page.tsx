@@ -3,17 +3,21 @@ import dynamic from "next/dynamic"
 import { SkillsSection } from "@/components/skills-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
 
-// 👇 carga dinámica de HeroSection sin SSR
-const ContactSection = dynamic(() => import("@/components/contact-section").then(mod => mod.ContactSection), {
-  ssr: false,
-});
+// Dynamic imports con SSR desactivado
+const HeroSection = dynamic(() =>
+  import("@/components/hero-section").then((mod) => mod.HeroSection),
+  { ssr: false }
+)
 
+const ContactSection = dynamic(() =>
+  import("@/components/contact-section").then((mod) => mod.ContactSection),
+  { ssr: false }
+)
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div>
       <Navbar />
       <main>
         <HeroSection />
