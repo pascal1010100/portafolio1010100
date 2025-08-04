@@ -3,11 +3,9 @@ import type { Config } from "tailwindcss"
 const config: Config = {
   darkMode: ["class"],
   content: [
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -45,11 +43,13 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Agregar estos colores personalizados
-        "accent-purple": "#b300ff",
-        "accent-cyan": "#00ccff",
-        "background-secondary": "#111111",
-        "foreground-muted": "#888888",
+        // Colores personalizados agrupados
+        custom: {
+          "accent-purple": "#b300ff",
+          "accent-cyan": "#00ccff",
+          "background-secondary": "#111111",
+          "foreground-muted": "#888888",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -60,9 +60,9 @@ const config: Config = {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "cyber-gradient": "linear-gradient(135deg, rgba(179, 0, 255, 0.1) 0%, rgba(0, 204, 255, 0.1) 100%)",
+        radial: "radial-gradient(var(--tw-gradient-stops))",
+        conic: "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        cyber: "linear-gradient(135deg, rgba(179, 0, 255, 0.1) 0%, rgba(0, 204, 255, 0.1) 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
@@ -82,15 +82,18 @@ const config: Config = {
           "0%": { boxShadow: "0 0 20px rgba(179, 0, 255, 0.3)" },
           "100%": { boxShadow: "0 0 30px rgba(179, 0, 255, 0.5)" },
         },
-        // En la sección de extend, agregar:
       },
       spacing: {
-        "18": "4.5rem",
-        "88": "22rem",
+        18: "4.5rem",
+        88: "22rem",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+  ],
 }
 
 export default config

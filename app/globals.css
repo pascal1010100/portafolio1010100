@@ -2,14 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Utilidad personalizada para mejor equilibrio de texto */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+/* Variables y estilos base */
 @layer base {
   :root {
+    /* Colores base para tema claro */
     --background: 0 0% 97%;
     --foreground: 0 0% 10%;
     --card: 0 0% 98%;
@@ -29,12 +32,14 @@
     --border: 0 0% 85%;
     --input: 0 0% 85%;
     --ring: 0 0% 15%;
+    --radius: 0.5rem;
+
+    /* Paleta para gráficos */
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
 
     /* Sidebar tonos suaves */
     --sidebar-background: 0 0% 98%;
@@ -46,13 +51,13 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Colores metálicos retrofuturistas */
+    /* Estilo retrofuturista metálico claro */
     --accent-purple: #6b46c1;
     --accent-cyan: #0891b2;
     --background-secondary: #f8fafc;
     --foreground-muted: #64748b;
 
-    /* Warm gray palette */
+    /* Paleta Warm Gray */
     --warm-gray-50: #fafaf9;
     --warm-gray-100: #f5f5f4;
     --warm-gray-200: #e7e5e4;
@@ -72,6 +77,7 @@
   }
 
   .dark {
+    /* Colores base para modo oscuro */
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -91,11 +97,13 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
+
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -105,14 +113,13 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
+    /* Estilo retrofuturista metálico oscuro */
     --accent-purple: #b300ff;
     --accent-cyan: #00ccff;
     --background-secondary: #111111;
     --foreground-muted: #888888;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
