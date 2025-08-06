@@ -6,7 +6,6 @@ import Link from "next/link"
 import { SectionContainer } from "./ui/section-container"
 import { SubtleP5Background } from "./p5-background"
 
-
 export function HeroSection() {
   return (
     <SectionContainer
@@ -15,7 +14,6 @@ export function HeroSection() {
     >
       {/* Fondo animado con p5.js */}
       <SubtleP5Background />
-
 
       {/* Overlay translúcido y fondo degradado más suave */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/30 to-transparent pointer-events-none z-0" />
@@ -39,8 +37,11 @@ export function HeroSection() {
         {/* Título principal */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 animate-slide-up leading-tight">
           <span className="text-white dark:text-white">Hola, soy </span>
-          <span className="bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text text-transparent drop-shadow-[0_0_8px_#00ccff] font-black animate-pulse">
+          <span className="relative inline-block text-transparent bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text drop-shadow-[0_0_8px_#00ccff] font-black animate-pulse glitch">
             Pascal
+            <span className="absolute top-0 left-0 w-full h-full text-transparent bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text drop-shadow-[0_0_8px_#00ccff] glitch-layer" aria-hidden="true">
+              Pascal
+            </span>
           </span>
         </h1>
 
