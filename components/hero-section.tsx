@@ -59,7 +59,7 @@ export function HeroSection() {
             Ver proyectos
           </Link>
           <a
-            href="https://pascal.dev"
+            href="https://pascal-dev-0101.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2.5 text-sm md:text-base border border-accent-cyan text-accent-cyan hover:bg-accent-cyan hover:text-black font-medium rounded-lg transition-all duration-300 backdrop-blur-sm flex items-center justify-center space-x-2"
@@ -80,7 +80,7 @@ export function HeroSection() {
             <Github className="w-5 h-5 text-white group-hover:text-accent-cyan transition-colors" />
           </a>
           <a
-            href="https://linkedin.com/in/pascal1010100"
+            href="https://www.linkedin.com/in/josema-aguilar-dev/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full border border-accent-cyan hover:bg-accent-cyan/10 transition-all duration-300 backdrop-blur-sm group"

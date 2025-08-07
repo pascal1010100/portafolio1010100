@@ -57,7 +57,7 @@ export function Navbar() {
           href="#home"
           className="text-cyan-400 text-xl font-bold font-mono tracking-widest"
         >
-          {"{🧊} Pascal"}
+          {"Pascal"}
         </Link>
 
         <button
