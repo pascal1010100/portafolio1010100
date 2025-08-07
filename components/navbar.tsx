@@ -47,19 +47,54 @@ export function Navbar() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" })
     }
-    setIsMobileMenuOpen(false) // Cierra el menú al hacer clic en un ítem
+    setIsMobileMenuOpen(false)
   }
 
   return (
     <header className="fixed top-0 left-0 w-full z-40 bg-black/80 backdrop-blur-md px-4 py-3 border-b border-zinc-800">
-      <div className="flex items-center justify-between max-w-5xl mx-auto">
+      <div className="flex items-center justify-between w-full">
+        {/* Logo con cubo SVG minimalista y efecto neón */}
         <Link
           href="#home"
-          className="text-cyan-400 text-xl font-bold font-mono tracking-widest"
+          className="flex items-center gap-2 text-cyan-400 text-xl font-bold font-mono tracking-widest"
         >
-          {"Pascal"}
+          <span className="text-white">{`{`}</span>
+          <svg
+            className="w-5 h-5 text-cyan-400 neon-glow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+          <span className="text-white">{`}`}</span>
+          <span className="text-cyan-400">Pascal</span>
         </Link>
 
+        {/* Menú de escritorio */}
+        <nav className="hidden md:flex gap-6 ml-auto">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1)
+            return (
+              <button
+                key={item.name}
+                onClick={() => handleNavClick(item.href)}
+                className={`text-sm font-mono transition-colors duration-300 ${
+                  isActive ? "text-cyan-400" : "text-zinc-300 hover:text-cyan-300"
+                }`}
+              >
+                {item.name}
+              </button>
+            )
+          })}
+        </nav>
+
+        {/* Botón menú móvil */}
         <button
           className="md:hidden text-cyan-300 text-3xl"
           onClick={() => setIsMobileMenuOpen(true)}

@@ -37,17 +37,18 @@ const projects = [
 export function ProjectsSection() {
   return (
     <SectionContainer id="projects" className="bg-background py-16">
-      <div className="text-center mb-14">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-          Proyectos{" "}
-          <span className="bg-gradient-to-r from-accent-purple to-accent-cyan bg-clip-text text-transparent">
-            Destacados
-          </span>
-        </h2>
-        <p className="text-muted-foreground text-base max-w-2xl mx-auto mt-4">
-          Una selección de desarrollos reales que combinan tecnología, diseño y funcionalidad.
-        </p>
-      </div>
+     <div className="text-center mb-14 px-4">
+  <h2 className="text-4xl font-bold text-foreground leading-tight mx-auto max-w-xl">
+    <span className="block">Proyectos</span>
+    <span className="block bg-gradient-to-r from-accent-purple to-accent-cyan bg-clip-text text-transparent">
+      Destacados
+    </span>
+  </h2>
+  <p className="text-muted-foreground text-base max-w-2xl mx-auto mt-4">
+    Una selección de desarrollos reales que combinan tecnología, diseño y funcionalidad.
+  </p>
+</div>
+
 
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
