@@ -1,286 +1,405 @@
 "use client";
 
-import type React from "react";
 import { useState } from "react";
-import {
-  Send,
-  Upload,
-  Briefcase,
-  User,
-  Mail,
-  MessageSquare,
-  CheckCircle,
-  Clock,
-  Star,
-  Github,
-  ExternalLink,
-} from "lucide-react";
+import { Mail, Send, CheckCircle2, AlertCircle, Github, Linkedin } from "lucide-react";
 import { SectionContainer } from "./ui/section-container";
 
-interface FormData {
+type FormState = {
   name: string;
   email: string;
-  company: string;
-  phone: string;
-  projectType: string;
-  budget: string;
-  timeline: string;
-  description: string;
-  goals: string;
-  files: File[];
-  references: string;
-}
+  project: string;
+  budget: number; // 0..3
+  message: string;
+  website: string; // honeypot
+};
 
-interface FormErrors {
-  [key: string]: string;
-}
+type Errors = Partial<Record<keyof FormState, string>>;
 
-const projectTypes = [
-  { id: "web-app", name: "Aplicación Web", icon: "💻", description: "Aplicaciones web modernas" },
-  { id: "ecommerce", name: "E-commerce", icon: "🛒", description: "Tiendas online" },
-  { id: "landing", name: "Landing Page", icon: "🎯", description: "Páginas optimizadas" },
-  { id: "blog", name: "Blog/CMS", icon: "📝", description: "Sistemas de contenido" },
-  { id: "api", name: "API/Backend", icon: "⚙️", description: "Servicios y APIs" },
-  { id: "mobile", name: "App Móvil", icon: "📱", description: "Aplicaciones móviles" },
-];
-
-const budgetRanges = [
-  { id: "small", range: "$1,000 - $5,000", icon: "💡", description: "Proyectos pequeños" },
-  { id: "medium", range: "$5,000 - $15,000", icon: "🚀", description: "Proyectos medianos" },
-  { id: "large", range: "$15,000 - $50,000", icon: "⭐", description: "Proyectos grandes" },
-  { id: "enterprise", range: "$50,000+", icon: "🏢", description: "Proyectos empresariales" },
-];
-
-const timelineOptions = [
-  { id: "urgent", time: "1-2 semanas", icon: "⚡", description: "Urgente" },
-  { id: "fast", time: "1 mes", icon: "🏃", description: "Rápido" },
-  { id: "normal", time: "2-3 meses", icon: "📅", description: "Normal" },
-  { id: "flexible", time: "3+ meses", icon: "🎯", description: "Flexible" },
-];
+const budgetLabels = ["$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+"];
 
 export function ContactSection() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
-    company: "",
-    phone: "",
-    projectType: "",
-    budget: "",
-    timeline: "",
-    description: "",
-    goals: "",
-    files: [],
-    references: "",
+    project: "",
+    budget: 0,
+    message: "",
+    website: "",
   });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const totalSteps = 4;
+  const [errors, setErrors] = useState<Errors>({});
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
-  const validateStep = (step: number): boolean => {
-    const newErrors: FormErrors = {};
-    switch (step) {
-      case 1:
-        if (!formData.name.trim()) newErrors.name = "El nombre es requerido";
-        if (!formData.email.trim()) newErrors.email = "El email es requerido";
-        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email inválido";
-        break;
-      case 2:
-        if (!formData.projectType) newErrors.projectType = "Selecciona un tipo de proyecto";
-        break;
-      case 3:
-        if (!formData.budget) newErrors.budget = "Selecciona un rango de presupuesto";
-        if (!formData.timeline) newErrors.timeline = "Selecciona un timeline";
-        break;
-      case 4:
-        if (!formData.description.trim()) newErrors.description = "La descripción es requerida";
-        break;
+  const setField = <K extends keyof FormState>(key: K, value: FormState[K]) =>
+    setForm((prev) => ({ ...prev, [key]: value }));
+
+  const validate = (): boolean => {
+    const e: Errors = {};
+    if (!form.name.trim()) e.name = "Ingresa tu nombre.";
+    if (!form.email.trim()) e.email = "Ingresa tu email.";
+    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Email inválido.";
+    if (!form.project.trim()) e.project = "Describe brevemente el proyecto.";
+    if (!form.message.trim()) e.message = "Agrega contexto para una propuesta precisa.";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleSubmit = async (ev: React.FormEvent) => {
+    ev.preventDefault();
+    setApiError(null);
+    if (!validate()) return;
+    if (form.website) return; // honeypot
+
+    setSubmitting(true);
+    try {
+      // TODO: integra tu API/Resend/Supabase aquí
+      await new Promise((r) => setTimeout(r, 900));
+      setSuccess(true);
+      setForm({ name: "", email: "", project: "", budget: 0, message: "", website: "" });
+    } catch {
+      setApiError("No pude enviar el mensaje. Intenta nuevamente.");
+    } finally {
+      setSubmitting(false);
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
-    if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
-    }
-  };
-
-  const handlePrev = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
-  };
-
-  const handleSubmit = async () => {
-    if (!validateStep(currentStep)) return;
-    setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-  };
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    setFormData((prev) => ({ ...prev, files: [...prev.files, ...files] }));
-  };
-
-  const removeFile = (index: number) => {
-    setFormData((prev) => ({
-      ...prev,
-      files: prev.files.filter((_, i) => i !== index),
-    }));
-  };
-
-  if (isSubmitted) {
-    return (
-      <SectionContainer id="contact" className="bg-black dark:bg-background">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-background to-background/80 dark:from-background dark:to-background/80 rounded-2xl p-12 border border-accent-purple/30 shadow-[0_0_10px_rgba(139,92,246,0.3)]">
-            <div className="w-20 h-20 bg-gradient-to-br from-accent-purple to-accent-cyan rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(139,92,246,0.5)]">
-              <CheckCircle className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-3xl font-bold text-foreground mb-4">¡Propuesta Enviada!</h2>
-            <p className="text-foreground-muted text-lg mb-8">
-              Gracias por confiar en mí. Me pondré en contacto contigo en las próximas 24 horas.
-            </p>
-          </div>
-        </div>
-      </SectionContainer>
-    );
-  }
+  const percent = (form.budget / (budgetLabels.length - 1)) * 100;
 
   return (
-    <SectionContainer id="contact" className="bg-black dark:bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Trabajemos{" "}
-            <span className="bg-gradient-to-r from-accent-purple to-accent-cyan bg-clip-text text-transparent">
-              Juntos
-            </span>
+    <SectionContainer id="contact" className="py-20">
+      <div className="mx-auto max-w-6xl">
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+            Iniciemos una conversación
           </h2>
-          <p className="text-foreground-muted text-base max-w-2xl mx-auto">
-            Cuéntame sobre tu proyecto y hagamos algo épico.
+          <p className="mt-3 text-sm text-foreground-muted">
+            Respondo en ~24h con un plan claro (alcance, tiempos y estimación).
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-10">
-          {/* Columna izquierda */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="bg-background/60 rounded-2xl p-6 border border-accent-purple/20 shadow-[0_0_12px_rgba(139,92,246,0.15)]">
-              <h3 className="text-lg font-semibold text-foreground mb-3">¿Por qué elegirme?</h3>
-              <ul className="space-y-3 text-sm text-foreground-muted">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-accent-purple" />
-                  Experiencia en proyectos reales
-                </li>
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-accent-cyan" />
-                  Entregas puntuales
-                </li>
-                <li className="flex items-center gap-2">
-                  <Star className="w-4 h-4 text-accent-purple" />
-                  Código limpio y optimizado
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="grid gap-8 md:grid-cols-[1.05fr,1.45fr]">
+          {/* Info lateral */}
+          <aside className="relative overflow-hidden rounded-2xl border border-border bg-background/70 p-7">
+            <div className="pointer-events-none absolute -inset-1 rounded-2xl opacity-20 [background:radial-gradient(60%_60%_at_50%_0%,theme(colors.cyan.400/.18),transparent_70%)]" />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 text-cyan-400 font-mono font-semibold tracking-widest">
+                <span className="text-white">{`{`}</span>
+                <svg
+                  className="w-5 h-5 text-cyan-400"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ filter: "drop-shadow(0 0 2px rgba(34,211,238,.35))" }}
+                >
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+                <span className="text-white">{`}`}</span>
+                <span className="text-cyan-400">Pascal</span>
+              </div>
 
-          {/* Formulario principal */}
-          <div className="lg:col-span-2">
-            <div className="bg-background/60 rounded-2xl p-8 border border-accent-cyan/20 shadow-[0_0_12px_rgba(6,182,212,0.15)]">
-              {/* Barra de progreso */}
-              <div className="mb-6">
-                <div className="flex justify-between text-xs text-foreground-muted mb-1">
-                  <span>Paso {currentStep} de {totalSteps}</span>
-                  <span>{Math.round((currentStep / totalSteps) * 100)}%</span>
-                </div>
-                <div className="w-full h-2 bg-border rounded-full overflow-hidden">
-                  <div
-                    className="h-2 bg-gradient-to-r from-accent-purple to-accent-cyan transition-all duration-500"
-                    style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+              <h3 className="mt-6 text-lg font-semibold text-foreground">Diseño claro. Código sólido.</h3>
+              <ul className="mt-4 space-y-2 text-sm text-foreground-muted">
+                <li>• Interfaz moderna, limpia y consistente con tu marca.</li>
+                <li>• Código accesible, escalable y mantenible.</li>
+                <li>• Puesta en producción con buenas prácticas.</li>
+              </ul>
+
+              <div className="mt-8 grid grid-cols-3 gap-3 text-sm">
+                <a
+                  href="mailto:pascal@pascal.dev"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2 hover:border-cyan-400/60 hover:bg-background/70 transition"
+                >
+                  <Mail className="w-4 h-4" />
+                  Email
+                </a>
+                <a
+                  href="https://github.com/pascal1010100"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2 hover:border-cyan-400/60 hover:bg-background/70 transition"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/josema-aguilar-dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-3 py-2 hover:border-cyan-400/60 hover:bg-background/70 transition"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
+                </a>
+              </div>
+
+              <p className="mt-4 text-xs text-foreground-muted">
+                ¿Prefieres agenda directa? Escríbeme por email y coordinamos una llamada breve.
+              </p>
+            </div>
+          </aside>
+
+          {/* Formulario */}
+          <main className="rounded-2xl border border-border bg-background/70 p-6 md:p-8">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              <div className="grid gap-5 md:grid-cols-2">
+                <Field
+                  id="name"
+                  label="Nombre *"
+                  error={errors.name}
+                  input={
+                    <input
+                      id="name"
+                      value={form.name}
+                      onChange={(e) => setField("name", e.target.value)}
+                      placeholder="Tu nombre"
+                      className={inputClass(errors.name)}
+                      required
+                    />
+                  }
+                />
+                <Field
+                  id="email"
+                  label="Email *"
+                  error={errors.email}
+                  input={
+                    <input
+                      id="email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => setField("email", e.target.value)}
+                      placeholder="tu@email.com"
+                      className={inputClass(errors.email)}
+                      required
+                    />
+                  }
+                />
+              </div>
+
+              <Field
+                id="project"
+                label="Proyecto *"
+                hint="Ej: catálogo con checkout y panel admin; o landing con captación."
+                error={errors.project}
+                input={
+                  <input
+                    id="project"
+                    value={form.project}
+                    onChange={(e) => setField("project", e.target.value)}
+                    placeholder="¿Qué quieres construir?"
+                    className={inputClass(errors.project)}
+                    required
                   />
+                }
+              />
+
+              {/* Presupuesto — Slider sutil y elegante */}
+              <div>
+                <label className="block text-sm mb-2 text-foreground">Presupuesto estimado</label>
+                <div
+                  className="relative"
+                  style={
+                    {
+                      // % para el gradiente del track
+                      ["--p" as any]: `${percent}%`,
+                    } as React.CSSProperties
+                  }
+                >
+                  <input
+                    type="range"
+                    min={0}
+                    max={budgetLabels.length - 1}
+                    value={form.budget}
+                    onChange={(e) => setField("budget", Number(e.target.value))}
+                    className="range-neon w-full"
+                    aria-label="Presupuesto"
+                  />
+                  <div className="mt-2 text-sm text-foreground-muted text-center">
+                    <span className="px-2 py-0.5 rounded-md border border-border bg-background/60">
+                      {budgetLabels[form.budget]}
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              {/* Step 1 */}
-              {currentStep === 1 && (
-                <div className="space-y-5">
-                  <h3 className="text-xl font-semibold text-foreground">Información Personal</h3>
-                  <div className="grid md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm mb-1 text-foreground-muted">Nombre *</label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-3 w-4 h-4 text-accent-cyan/70" />
-                        <input
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                          className={`w-full pl-9 pr-3 py-2 rounded-lg bg-background border text-foreground placeholder-foreground-muted focus:ring-2 focus:ring-accent-purple focus:outline-none ${
-                            errors.name ? "border-red-500" : "border-border"
-                          }`}
-                          placeholder="Tu nombre"
-                        />
-                      </div>
-                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-                    </div>
+              <Field
+                id="message"
+                label="Mensaje *"
+                hint="Objetivo, funcionalidades clave, integraciones, fechas aproximadas."
+                error={errors.message}
+                input={
+                  <textarea
+                    id="message"
+                    rows={5}
+                    value={form.message}
+                    onChange={(e) => setField("message", e.target.value)}
+                    placeholder="Dame el contexto para responder con una propuesta concreta."
+                    className={textareaClass(errors.message)}
+                    required
+                  />
+                }
+              />
 
-                    <div>
-                      <label className="block text-sm mb-1 text-foreground-muted">Email *</label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-3 w-4 h-4 text-accent-cyan/70" />
-                        <input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                          className={`w-full pl-9 pr-3 py-2 rounded-lg bg-background border text-foreground placeholder-foreground-muted focus:ring-2 focus:ring-accent-purple focus:outline-none ${
-                            errors.email ? "border-red-500" : "border-border"
-                          }`}
-                          placeholder="tu@email.com"
-                        />
-                      </div>
-                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-                    </div>
-                  </div>
+              {/* Honeypot */}
+              <div className="hidden">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  value={form.website}
+                  onChange={(e) => setField("website", e.target.value)}
+                  autoComplete="off"
+                  tabIndex={-1}
+                />
+              </div>
+
+              {apiError && (
+                <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+                  <AlertCircle className="h-4 w-4" />
+                  {apiError}
                 </div>
               )}
 
-              {/* Botones de navegación */}
-              <div className="flex justify-between mt-8 pt-4 border-t border-border">
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-xs text-foreground-muted">
+                  Respuesta estimada en 24 horas. Tu información queda entre nosotros.
+                </p>
                 <button
-                  onClick={handlePrev}
-                  disabled={currentStep === 1}
-                  className="px-5 py-2 border border-border text-foreground rounded-lg hover:bg-accent-purple/10 transition disabled:opacity-40"
+                  type="submit"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-purple to-accent-cyan px-6 py-2.5 text-white transition hover:shadow-[0_0_10px_rgba(34,211,238,0.25)] disabled:opacity-50"
                 >
-                  Anterior
+                  {submitting ? (
+                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/80 border-t-transparent" />
+                  ) : (
+                    <Send className="h-4 w-4" />
+                  )}
+                  {submitting ? "Enviando..." : "Solicitar propuesta"}
                 </button>
-
-                {currentStep < totalSteps ? (
-                  <button
-                    onClick={handleNext}
-                    className="px-7 py-2 bg-gradient-to-r from-accent-purple to-accent-cyan text-white rounded-lg hover:shadow-[0_0_12px_rgba(6,182,212,0.4)] transition-all"
-                  >
-                    Siguiente
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleSubmit}
-                    disabled={isSubmitting}
-                    className="px-7 py-2 bg-gradient-to-r from-accent-purple to-accent-cyan text-white rounded-lg hover:shadow-[0_0_12px_rgba(6,182,212,0.4)] transition-all disabled:opacity-40 flex items-center gap-2"
-                  >
-                    {isSubmitting ? (
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    ) : (
-                      <Send className="w-4 h-4" />
-                    )}
-                    <span>{isSubmitting ? "Enviando..." : "Enviar"}</span>
-                  </button>
-                )}
               </div>
-            </div>
-          </div>
+
+              {success && (
+                <div
+                  role="status"
+                  className="mt-6 flex items-start gap-3 rounded-xl border border-accent-purple/25 bg-background/80 p-4"
+                >
+                  <CheckCircle2 className="h-5 w-5 text-cyan-400 mt-0.5" />
+                  <div className="text-sm">
+                    <p className="text-foreground font-medium">¡Mensaje enviado!</p>
+                    <p className="text-foreground-muted">
+                      Te envié un correo con los próximos pasos. Revisa spam si no lo ves.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </form>
+          </main>
         </div>
       </div>
+
+      {/* Slider styles (súper sutiles y modernos) */}
+      <style jsx global>{`
+        .range-neon {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 6px;
+          border-radius: 9999px;
+          background:
+            linear-gradient(90deg, rgba(34, 211, 238, 0.35) 0%, rgba(34, 211, 238, 0.35) var(--p), rgba(255,255,255,0.06) var(--p), rgba(255,255,255,0.06) 100%);
+          border: 1px solid rgba(148, 163, 184, 0.25); /* slate-400/25 */
+          transition: background 180ms ease;
+        }
+        .range-neon:focus {
+          outline: none;
+        }
+        /* Thumb webkit */
+        .range-neon::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 9999px;
+          background: #0b1220; /* fondo sutil */
+          border: 2px solid rgba(34, 211, 238, 0.75); /* cyan-400 */
+          box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+          transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+        .range-neon:hover::-webkit-slider-thumb {
+          transform: scale(1.04);
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.10);
+        }
+        .range-neon:focus::-webkit-slider-thumb {
+          box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.12);
+          border-color: rgba(34, 211, 238, 0.9);
+        }
+        /* Thumb Firefox */
+        .range-neon::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 9999px;
+          background: #0b1220;
+          border: 2px solid rgba(34, 211, 238, 0.75);
+          box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
+          transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+        .range-neon:hover::-moz-range-thumb {
+          transform: scale(1.04);
+          box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.10);
+        }
+        .range-neon:focus::-moz-range-thumb {
+          box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.12);
+          border-color: rgba(34, 211, 238, 0.9);
+        }
+      `}</style>
     </SectionContainer>
+  );
+}
+
+/* ===== Helpers ===== */
+function inputClass(hasError?: string) {
+  return [
+    "w-full rounded-lg bg-background border text-foreground placeholder-foreground-muted",
+    "px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400/40",
+    hasError ? "border-red-500" : "border-border",
+  ].join(" ");
+}
+function textareaClass(hasError?: string) {
+  return [
+    "w-full rounded-lg bg-background border text-foreground placeholder-foreground-muted",
+    "px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400/40",
+    hasError ? "border-red-500" : "border-border",
+  ].join(" ");
+}
+function Field({
+  id,
+  label,
+  hint,
+  error,
+  input,
+}: {
+  id: string;
+  label: string;
+  hint?: string;
+  error?: string;
+  input: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="mb-1 block text-sm text-foreground">
+        {label}
+      </label>
+      {hint && <p className="mb-2 text-xs text-foreground-muted">{hint}</p>}
+      {input}
+      {error && (
+        <p className="mt-1 text-xs text-red-500" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
