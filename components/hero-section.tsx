@@ -36,10 +36,13 @@ export function HeroSection() {
 
         {/* Título principal */}
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 animate-slide-up leading-tight">
-          <span className="text-white dark:text-white">Hola, soy </span>
-          <span className="relative inline-block text-transparent bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text drop-shadow-[0_0_8px_#00ccff] font-black animate-pulse glitch">
+          <span className="text-white">Hola, soy </span>
+          <span className="relative inline-block text-white bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text font-black animate-pulse glitch drop-shadow-[0_0_8px_#00ccff]">
             Pascal
-            <span className="absolute top-0 left-0 w-full h-full text-transparent bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text drop-shadow-[0_0_8px_#00ccff] glitch-layer" aria-hidden="true">
+            <span
+              className="absolute top-0 left-0 w-full h-full text-white bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text drop-shadow-[0_0_8px_#00ccff] glitch-layer"
+              aria-hidden="true"
+            >
               Pascal
             </span>
           </span>
