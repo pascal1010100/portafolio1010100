@@ -5,24 +5,16 @@ import { z } from "zod";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Rótulos para compatibilidad con tu UI anterior (budget como índice) y actual (string)
 const BUDGET_LABELS = ["$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+"];
 
-// Esquema flexible: acepta tu formulario "grande" y también el "simple" (project/message).
 const ContactSchema = z
   .object({
-    // Básicos
     name: z.string().min(2, "Nombre requerido"),
     email: z.string().email("Email inválido"),
-
-    // Conjunto A (UI antigua)
     project: z.string().optional().default(""),
     budget: z.union([z.string(), z.number()]).optional().default(""),
     message: z.string().optional().default(""),
-
-    // Conjunto B (UI nueva)
     company: z.string().optional().default(""),
     phone: z.string().optional().default(""),
     projectType: z.string().optional().default(""),
@@ -67,10 +59,8 @@ export async function POST(req: Request) {
       budgetLabel = data.budget;
     }
 
-    // Construcción de contenido: usa “description” si existe; si no, “message”
+    // Contenido principal
     const mainMessage = data.description?.trim() || data.message?.trim() || "";
-
-    // Validación mínima de contenido para evitar correos vacíos
     if (!mainMessage) {
       return NextResponse.json({ ok: false, error: "Mensaje/Descripción requerido" }, { status: 400 });
     }
@@ -119,13 +109,16 @@ export async function POST(req: Request) {
 
     const FROM = process.env.FROM_EMAIL || "onboarding@resend.dev";
     const TO = process.env.CONTACT_TO || "josemanu0885@gmail.com";
+    const API_KEY = process.env.RESEND_API_KEY;
 
-    if (!process.env.RESEND_API_KEY || !FROM || !TO) {
+    if (!API_KEY || !FROM || !TO) {
       console.error("Faltan variables de entorno para email");
       return NextResponse.json({ ok: false, error: "Servidor no configurado" }, { status: 500 });
     }
 
-    // Resend: el SDK devuelve { data, error } (no lanza)
+    // 👇 Instanciar Resend *aquí*, no en top-level
+    const resend = new Resend(API_KEY);
+
     const { data: sent, error } = await resend.emails.send({
       from: `Contacto Portafolio <${FROM}>`,
       to: [TO],
@@ -137,7 +130,7 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error("Resend error:", error);
-      return NextResponse.json({ ok: false, error: error.message || "Email provider error" }, { status: 502 });
+      return NextResponse.json({ ok: false, error: (error as any).message || "Email provider error" }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, id: sent?.id ?? null });
