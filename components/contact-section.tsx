@@ -17,6 +17,38 @@ type Errors = Partial<Record<keyof FormState, string>>;
 
 const budgetLabels = ["$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+"];
 
+const CONTACT_TOKEN = process.env.NEXT_PUBLIC_CONTACT_TOKEN || "";
+
+// Función para enviar el formulario a la API
+async function sendContact(payload: {
+  name: string;
+  email: string;
+  project: string;
+  budget: number;
+  message: string;
+}) {
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(CONTACT_TOKEN ? { "x-contact-token": CONTACT_TOKEN } : {}),
+    },
+    body: JSON.stringify(payload),
+  });
+
+  let data: any = {};
+  try {
+    data = await res.json();
+  } catch {}
+
+  if (!res.ok || !data?.ok) {
+    const msg = data?.error || `Error ${res.status}`;
+    throw new Error(msg);
+  }
+
+  return data;
+}
+
 export function ContactSection() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -48,17 +80,25 @@ export function ContactSection() {
   const handleSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     setApiError(null);
+    setSuccess(false);
+
     if (!validate()) return;
     if (form.website) return; // honeypot
 
     setSubmitting(true);
     try {
-      // TODO: integra tu API/Resend/Supabase aquí
-      await new Promise((r) => setTimeout(r, 900));
+      await sendContact({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        project: form.project.trim(),
+        budget: form.budget,
+        message: form.message.trim(),
+      });
+
       setSuccess(true);
       setForm({ name: "", email: "", project: "", budget: 0, message: "", website: "" });
-    } catch {
-      setApiError("No pude enviar el mensaje. Intenta nuevamente.");
+    } catch (err: any) {
+      setApiError(err?.message || "No pude enviar el mensaje. Intenta nuevamente.");
     } finally {
       setSubmitting(false);
     }
@@ -199,14 +239,13 @@ export function ContactSection() {
                 }
               />
 
-              {/* Presupuesto — Slider sutil y elegante */}
+              {/* Presupuesto */}
               <div>
                 <label className="block text-sm mb-2 text-foreground">Presupuesto estimado</label>
                 <div
                   className="relative"
                   style={
                     {
-                      // % para el gradiente del track
                       ["--p" as any]: `${percent}%`,
                     } as React.CSSProperties
                   }
@@ -302,7 +341,7 @@ export function ContactSection() {
         </div>
       </div>
 
-      {/* Slider styles (súper sutiles y modernos) */}
+      {/* Slider styles */}
       <style jsx global>{`
         .range-neon {
           -webkit-appearance: none;
@@ -311,21 +350,20 @@ export function ContactSection() {
           border-radius: 9999px;
           background:
             linear-gradient(90deg, rgba(34, 211, 238, 0.35) 0%, rgba(34, 211, 238, 0.35) var(--p), rgba(255,255,255,0.06) var(--p), rgba(255,255,255,0.06) 100%);
-          border: 1px solid rgba(148, 163, 184, 0.25); /* slate-400/25 */
+          border: 1px solid rgba(148, 163, 184, 0.25);
           transition: background 180ms ease;
         }
         .range-neon:focus {
           outline: none;
         }
-        /* Thumb webkit */
         .range-neon::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
           width: 18px;
           height: 18px;
           border-radius: 9999px;
-          background: #0b1220; /* fondo sutil */
-          border: 2px solid rgba(34, 211, 238, 0.75); /* cyan-400 */
+          background: #0b1220;
+          border: 2px solid rgba(34, 211, 238, 0.75);
           box-shadow: 0 0 0 0 rgba(34, 211, 238, 0);
           transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
         }
@@ -337,7 +375,6 @@ export function ContactSection() {
           box-shadow: 0 0 0 8px rgba(34, 211, 238, 0.12);
           border-color: rgba(34, 211, 238, 0.9);
         }
-        /* Thumb Firefox */
         .range-neon::-moz-range-thumb {
           width: 18px;
           height: 18px;
