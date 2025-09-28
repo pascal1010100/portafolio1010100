@@ -147,39 +147,11 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ 
               opacity: 1, 
-              y: 0,
             }}
           >
             Desarrollador Full Stack especializado en crear experiencias digitales excepcionales con tecnologías modernas.
           </motion.p>
 
-        {/* Botones de acción */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-4 mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: 1, 
-            y: 0,
-            transition: { delay: 0.5 }
-          }}
-        >
-          <motion.a
-            href="#proyectos"
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-medium shadow-lg hover:shadow-xl hover:shadow-blue-500/20 transition-all duration-300 flex items-center gap-2"
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.4)' }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Rocket className="w-5 h-5" />
-            Ver Proyectos
-          </motion.a>
-          <motion.a
-            href="#contacto"
-            className="px-8 py-3 bg-white/10 text-white border border-white/20 rounded-full font-medium backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Contactar
-          </motion.a>
         </motion.div>
 
         {/* Descripción */}
@@ -196,34 +168,27 @@ export function HeroSection() {
         >
           Creo experiencias digitales excepcionales con un enfoque en diseño limpio, código eficiente y experiencia de usuario intuitiva.
         </motion.p>
-      </motion.div>
 
-        {/* Botones CTA mejorados */}
+        {/* Botones de acción */}
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          className="flex flex-wrap justify-center gap-4 mb-12"
           variants={item}
           initial="hidden"
           animate="visible"
         >
           <Link
             href="#projects"
-            className="group relative px-8 py-3.5 bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(0,204,255,0.3)]"
+            className="group relative px-8 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.4)] flex items-center gap-2"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              <Code className="w-5 h-5" />
-              Ver Proyectos
-            </span>
-            <span className="absolute inset-0 bg-gradient-to-r from-accent-cyan to-accent-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            <Code className="w-5 h-5" />
+            Ver Proyectos
           </Link>
-          
           <Link
             href="#contact"
-            className="group relative px-8 py-3.5 bg-transparent border-2 border-accent-cyan text-accent-cyan font-semibold rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 hover:bg-accent-cyan/10"
+            className="px-8 py-3.5 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
           >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              <Rocket className="w-5 h-5" />
-              Trabajemos Juntos
-            </span>
+            <Mail className="w-5 h-5" />
+            Contactar
           </Link>
         </motion.div>
 
