@@ -85,51 +85,45 @@ export function HeroSection() {
           animate="visible"
           variants={container}
         >
-        {/* Avatar con animación mejorada */}
-        <motion.div 
-          className="mb-8 flex justify-center"
-          variants={item}
-          initial="hidden"
-          animate="visible"
-        >
+          {/* Avatar con animación mejorada */}
           <motion.div 
-            className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-accent-purple via-accent-cyan to-accent-purple p-1"
-            animate={{
-              scale: [1, 1.05, 1],
-              boxShadow: [
-                '0 0 10px rgba(59, 130, 246, 0.5)',
-                '0 0 20px rgba(59, 130, 246, 0.8)',
-                '0 0 10px rgba(59, 130, 246, 0.5)'
-              ]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: 'reverse' as const,
-            }}
+            className="mb-8 flex justify-center"
+            variants={item}
+            initial="hidden"
+            animate="visible"
           >
-            <div className="w-full h-full rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center overflow-hidden border-2 border-white/10">
-              <Image
-                src="/avatar.png"
-                alt="Avatar de Pascal"
-                width={176}
-                height={176}
-                className="rounded-full object-cover hover:scale-105 transition-transform duration-500"
-                priority
-              />
-            </div>
+            <motion.div 
+              className="w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-accent-purple via-accent-cyan to-accent-purple p-1"
+              animate={{
+                scale: [1, 1.05, 1],
+                boxShadow: [
+                  '0 0 10px rgba(59, 130, 246, 0.5)',
+                  '0 0 20px rgba(59, 130, 246, 0.8)',
+                  '0 0 10px rgba(59, 130, 246, 0.5)'
+                ]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: 'reverse' as const,
+              }}
+            >
+              <div className="w-full h-full rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center overflow-hidden border-2 border-white/10">
+                <Image
+                  src="/avatar.png"
+                  alt="Avatar de Pascal"
+                  width={176}
+                  height={176}
+                  className="rounded-full object-cover hover:scale-105 transition-transform duration-500"
+                  priority
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        {/* Título principal con animación mejorada */}
-        <motion.div 
-          className="text-center max-w-4xl mx-auto px-4"
-          variants={item}
-          initial="hidden"
-          animate="visible"
-        >
           <motion.h1 
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight"
+            variants={item}
           >
             <span className="text-white/90 font-light">Hola, soy</span>
             <div className="relative inline-block mt-2">
@@ -141,111 +135,92 @@ export function HeroSection() {
             </div>
           </motion.h1>
           
-          {/* Subtítulo con efecto de máquina de escribir */}
+          {/* Subtítulo principal */}
           <motion.p 
-            className="text-lg md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ 
-              opacity: 1, 
+            className="text-lg md:text-xl text-gray-300 mt-6 mb-10 max-w-2xl mx-auto leading-relaxed"
+            style={{ 
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: '500',
+              letterSpacing: '0.02em'
             }}
+            variants={item}
           >
             Desarrollador Full Stack especializado en crear experiencias digitales excepcionales con tecnologías modernas.
           </motion.p>
 
-        </motion.div>
-
-        {/* Descripción */}
-        <motion.p 
-          className="text-base md:text-lg text-white/80 dark:text-foreground-muted mb-10 max-w-2xl mx-auto leading-relaxed"
-          style={{ 
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: '500',
-            letterSpacing: '0.02em'
-          }}
-          variants={item}
-          initial="hidden"
-          animate="visible"
-        >
-          Creo experiencias digitales excepcionales con un enfoque en diseño limpio, código eficiente y experiencia de usuario intuitiva.
-        </motion.p>
-
-        {/* Botones de acción */}
-        <motion.div 
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          variants={item}
-          initial="hidden"
-          animate="visible"
-        >
-          <Link
-            href="#projects"
-            className="group relative px-8 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.4)] flex items-center gap-2"
+          {/* Botones de acción */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4 mb-12"
+            variants={item}
           >
-            <Code className="w-5 h-5" />
-            Ver Proyectos
-          </Link>
-          <Link
-            href="#contact"
-            className="px-8 py-3.5 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
-          >
-            <Mail className="w-5 h-5" />
-            Contactar
-          </Link>
-        </motion.div>
-
-        {/* Enlaces sociales con animación */}
-        <motion.div 
-          className="flex justify-center space-x-6 mb-12"
-          variants={item}
-          initial="hidden"
-          animate="visible"
-        >
-          {[
-            { icon: Github, href: "https://github.com/pascal1010100", label: "GitHub" },
-            { icon: Linkedin, href: "https://www.linkedin.com/in/josema-aguilar-dev/", label: "LinkedIn" },
-            { icon: Mail, href: "mailto:pascal@pascal.dev", label: "Correo" },
-          ].map((social, index) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-16 h-16 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border-2 border-primary/20 shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:border-primary/40"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + index * 0.1 }}
-              aria-label={social.label}
+            <Link
+              href="#projects"
+              className="group relative px-8 py-3.5 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_-5px_RGBA(59,130,246,0.4)] flex items-center gap-2"
             >
-              <social.icon className="w-6 h-6 text-foreground/80 hover:text-primary transition-colors" />
-            </motion.a>
-          ))}
-        </motion.div>
+              <Code className="w-5 h-5" />
+              Ver Proyectos
+            </Link>
+            <Link
+              href="#contact"
+              className="px-8 py-3.5 bg-transparent border-2 border-white/20 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+            >
+              <Mail className="w-5 h-5" />
+              Contactar
+            </Link>
+          </motion.div>
 
-        {/* Flecha de scroll con animación mejorada */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <motion.div
-            animate={{ opacity: [0.6, 1, 0.6] }}
+          {/* Enlaces sociales con animación */}
+          <motion.div 
+            className="flex justify-center space-x-6 mb-12"
+            variants={item}
+          >
+            {[
+              { icon: Github, href: "https://github.com/pascal1010100", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/josema-aguilar-dev/", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:pascal@pascal.dev", label: "Correo" },
+            ].map((social, index) => (
+              <motion.a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 flex items-center justify-center rounded-full bg-background/80 backdrop-blur-sm border-2 border-primary/20 shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:border-primary/40"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
+                aria-label={social.label}
+              >
+                <social.icon className="w-6 h-6 text-foreground/80 hover:text-primary transition-colors" />
+              </motion.a>
+            ))}
+          </motion.div>
+
+          {/* Flecha de scroll con animación mejorada */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            animate={{
+              y: [0, 10, 0],
+            }}
             transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut",
             }}
           >
-            <ArrowDown className="w-6 h-6 text-accent-cyan drop-shadow-lg" />
+            <motion.div
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              <ArrowDown className="w-6 h-6 text-accent-cyan drop-shadow-lg" />
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
       </div>
     </section>
   )
