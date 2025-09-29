@@ -121,19 +121,21 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight"
+          <motion.div 
+            className="flex flex-col items-center"
             variants={item}
           >
-            <span className="text-white/90 font-light">Hola, soy</span>
-            <div className="relative inline-block mt-2">
-              <span className="relative z-10 font-space-grotesk font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight">
+              <span className="text-white/90 font-light">Hola, soy</span>
+            </h1>
+            <div className="relative mt-2">
+              <h1 className="relative z-10 font-space-grotesk font-bold text-6xl md:text-8xl lg:text-9xl bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500">
                 PASCAL
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-purple-500/20 blur-xl rounded-full opacity-70"></span>
-              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-blue-500/30 to-purple-500/30 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+              </h1>
+              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-purple-500/20 blur-xl rounded-full opacity-70 -z-10"></span>
+              <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-blue-500/30 to-purple-500/30 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></span>
             </div>
-          </motion.h1>
+          </motion.div>
           
           {/* Subtítulo principal */}
           <motion.p 
