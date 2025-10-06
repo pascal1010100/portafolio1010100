@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Send, CheckCircle2, AlertCircle, Github, Linkedin } from "lucide-react";
+import { Mail, Send, CheckCircle2, AlertCircle, Github, Linkedin, MapPin, Phone, Code, Globe, MessageSquare } from "lucide-react";
 import { SectionContainer } from "@/components/ui/section-container";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 type FormState = {
   name: string;
@@ -107,17 +110,38 @@ export function ContactSection() {
   const percent = (form.budget / (budgetLabels.length - 1)) * 100;
 
   return (
-    <SectionContainer id="contact" className="py-20">
-      <div className="mx-auto max-w-6xl">
+    <SectionContainer 
+      id="contact" 
+      className={cn(
+        "relative py-16 md:py-24",
+        "bg-gradient-to-b from-background to-muted/5",
+        "overflow-hidden"
+      )}
+    >
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+      
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            Iniciemos una conversación
+        <motion.div 
+          className="mb-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-primary uppercase mb-3">
+            <MessageSquare className="w-4 h-4" />
+            Contacto
+          </span>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+            Trabajemos juntos
           </h2>
-          <p className="mt-3 text-sm text-foreground-muted">
-            Respondo en ~24h con un plan claro (alcance, tiempos y estimación).
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
+            ¿Listo para llevar tu proyecto al siguiente nivel? Hablemos sobre cómo puedo ayudarte a hacerlo realidad.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-8 md:grid-cols-[1.05fr,1.45fr]">
           {/* Info lateral */}
@@ -186,8 +210,16 @@ export function ContactSection() {
           </aside>
 
           {/* Formulario */}
-          <main className="rounded-2xl border border-border bg-background/70 p-6 md:p-8">
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <motion.main 
+            className="lg:col-span-7 rounded-2xl bg-background p-6 md:p-8 shadow-lg border border-border/30 relative overflow-hidden"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-30 pointer-events-none" />
+            <div className="relative z-10">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div className="grid gap-5 md:grid-cols-2">
                 <Field
                   id="name"
@@ -308,18 +340,23 @@ export function ContactSection() {
                 <p className="text-xs text-foreground-muted">
                   Respuesta estimada en 24 horas. Tu información queda entre nosotros.
                 </p>
-                <button
+                <Button
                   type="submit"
-                  disabled={submitting}
-                  className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-accent-purple to-accent-cyan px-6 py-2.5 text-white transition hover:shadow-[0_0_10px_rgba(34,211,238,0.25)] disabled:opacity-50"
+                  disabled={submitting || success}
+                  className="group relative overflow-hidden px-6 py-6 text-base font-medium text-white bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary transition-all duration-300 rounded-xl shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
                 >
-                  {submitting ? (
-                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/80 border-t-transparent" />
-                  ) : (
-                    <Send className="h-4 w-4" />
-                  )}
-                  {submitting ? "Enviando..." : "Solicitar propuesta"}
-                </button>
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {submitting ? (
+                      <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white/80 border-t-transparent" />
+                    ) : success ? (
+                      <CheckCircle2 className="w-5 h-5" />
+                    ) : (
+                      <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    )}
+                    {submitting ? "Enviando..." : success ? "¡Mensaje enviado!" : "Enviar mensaje"}
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/10 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                </Button>
               </div>
 
               {success && (
@@ -336,8 +373,9 @@ export function ContactSection() {
                   </div>
                 </div>
               )}
-            </form>
-          </main>
+              </form>
+            </div>
+          </motion.main>
         </div>
       </div>
 
