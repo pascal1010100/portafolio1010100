@@ -84,9 +84,9 @@ export default function RootLayout({
         <NeoParticles />
         <LazyMotion features={domAnimation}>
           <ClientWrapper>
-            <div className="relative">
-              <div className="fixed inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a33,transparent)] dark:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a66,transparent)]" />
-              <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-5 bg-[length:100px_100px] -z-10" />
+            <div className="relative z-10">
+              <div className="fixed inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a33,transparent)] dark:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a66,transparent)] pointer-events-none" />
+              <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-5 bg-[length:100px_100px] -z-10 pointer-events-none" />
               {children}
             </div>
           </ClientWrapper>
