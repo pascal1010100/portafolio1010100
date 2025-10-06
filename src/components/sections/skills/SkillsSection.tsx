@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { SectionContainer } from "./ui/section-container"
+import { SectionContainer } from "@/components/ui/section-container"
 import {
   FaReact,
   FaNodeJs,

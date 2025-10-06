@@ -3,6 +3,13 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import ClientWrapper from "@/components/client-wrapper"
 import "./globals.css"
 import { LazyMotion, domAnimation } from "framer-motion"
+import dynamic from "next/dynamic"
+
+// Importar dinámicamente el componente de partículas con SSR deshabilitado
+const NeoParticles = dynamic(
+  () => import("@/components/backgrounds/neo-particles").then((mod) => mod.NeoParticles),
+  { ssr: false }
+)
 
 // Configuración de fuentes
 const inter = Inter({ 
@@ -72,19 +79,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
-      <body className={`${inter.className} ${spaceGrotesk.className} antialiased bg-background text-foreground min-h-screen font-sans`}>
-        <ClientWrapper>
-          <LazyMotion features={domAnimation}>
-            <div className="relative
-              before:fixed before:inset-0 before:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a33,transparent)]
-              dark:before:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a66,transparent)]
-              after:fixed after:inset-0 after:bg-[url('/grid.svg')] after:opacity-5 after:bg-[length:100px_100px] after:z-[-1]
-            ">
+    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+        <NeoParticles />
+        <LazyMotion features={domAnimation}>
+          <ClientWrapper>
+            <div className="relative">
+              <div className="fixed inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a33,transparent)] dark:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a66,transparent)]" />
+              <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-5 bg-[length:100px_100px] -z-10" />
               {children}
             </div>
-          </LazyMotion>
-        </ClientWrapper>
+          </ClientWrapper>
+        </LazyMotion>
       </body>
     </html>
   )
