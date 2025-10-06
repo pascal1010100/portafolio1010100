@@ -30,21 +30,21 @@ export function Footer() {
   const socialLinks = [
     {
       icon: <Github className="w-4 h-4" aria-hidden="true" />,
-      href: "https://github.com/tuusuario",
+      href: "https://github.com/pascal1010100",
       label: "GitHub",
       srText: "Visita mi perfil de GitHub (se abre en una nueva pestaña)",
     },
     {
       icon: <Linkedin className="w-4 h-4" aria-hidden="true" />,
-      href: "https://linkedin.com/in/tu-perfil",
+      href: "https://www.linkedin.com/in/josema-aguilar-dev",
       label: "LinkedIn",
       srText: "Visita mi perfil de LinkedIn (se abre en una nueva pestaña)",
     },
     {
       icon: <Mail className="w-4 h-4" aria-hidden="true" />,
-      href: "mailto:contacto@tudominio.com",
+      href: "mailto:josemanu0885@gmail.com",
       label: "Email",
-      srText: "Enviar correo electrónico a contacto@tudominio.com",
+      srText: "Enviar correo electrónico a josemanu0885@gmail.com",
     },
   ]
 
@@ -157,16 +157,16 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-foreground mb-4">Contacto</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4" aria-hidden="true" />
-                <a href="mailto:contacto@tudominio.com" className="hover:text-foreground transition-colors">contacto@tudominio.com</a>
+                <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <a href="mailto:josemanu0885@gmail.com" className="hover:text-foreground transition-colors">josemanu0885@gmail.com</a>
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4" aria-hidden="true" />
-                <span>+1 234 567 890</span>
+                <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <a href="tel:50242900009" className="hover:text-foreground transition-colors">(502) 4290-0009</a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <span>Ciudad, País</span>
+                <span>Guatemala</span>
               </li>
             </ul>
           </motion.div>
@@ -174,15 +174,15 @@ export function Footer() {
 
         <div className="pt-8 mt-12 border-t border-border/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Tu Nombre. Todos los derechos reservados.
+            © {currentYear} José Manuel. Todos los derechos reservados.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <span>Hecho con</span>
               <Coffee className="w-3 h-3 text-amber-600" aria-hidden="true" />
               <span>y</span>
-              <Code2 className="w-3 h-3 text-primary" aria-hidden="true" />
-              <span>por ti</span>
+              
+              <span> NEXT.JS</span>
             </p>
           </div>
         </div>
