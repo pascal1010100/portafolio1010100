@@ -29,19 +29,22 @@ export function Footer() {
 
   const socialLinks = [
     {
-      icon: <Github className="w-4 h-4" />,
+      icon: <Github className="w-4 h-4" aria-hidden="true" />,
       href: "https://github.com/tuusuario",
       label: "GitHub",
+      srText: "Visita mi perfil de GitHub (se abre en una nueva pestaña)",
     },
     {
-      icon: <Linkedin className="w-4 h-4" />,
+      icon: <Linkedin className="w-4 h-4" aria-hidden="true" />,
       href: "https://linkedin.com/in/tu-perfil",
       label: "LinkedIn",
+      srText: "Visita mi perfil de LinkedIn (se abre en una nueva pestaña)",
     },
     {
-      icon: <Mail className="w-4 h-4" />,
+      icon: <Mail className="w-4 h-4" aria-hidden="true" />,
       href: "mailto:contacto@tudominio.com",
       label: "Email",
+      srText: "Enviar correo electrónico a contacto@tudominio.com",
     },
   ]
 
@@ -70,12 +73,19 @@ export function Footer() {
   };
 
   return (
-    <footer className={cn(
-      "relative border-t border-border/30 bg-background/90 backdrop-blur-lg py-16 md:py-20 text-foreground overflow-hidden",
-      "bg-gradient-to-b from-background to-background/80"
-    )}>
-      {/* Decorative elements */}
-      <div className="absolute inset-0 -z-10">
+    <footer 
+      className={cn(
+        "relative border-t border-border/30 bg-background/90 backdrop-blur-lg py-16 md:py-20 text-foreground overflow-hidden",
+        "bg-gradient-to-b from-background to-background/80"
+      )}
+      role="contentinfo"
+      aria-label="Pie de página"
+    >
+      {/* Elementos decorativos - ocultos para lectores de pantalla */}
+      <div 
+        className="absolute inset-0 -z-10" 
+        aria-hidden="true"
+      >
         <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
       </div>
@@ -94,156 +104,111 @@ export function Footer() {
             variants={itemVariants}
           >
             <div className="inline-flex items-center gap-2 text-primary font-mono font-medium text-sm mb-4">
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-4 h-4" aria-hidden="true" />
               <span>CONÉCTATE</span>
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Trabajemos juntos</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-4" id="trabajemos-juntos">Trabajemos juntos</h2>
             <p className="text-muted-foreground mb-6 max-w-md">
               Estoy abierto a nuevas oportunidades y proyectos interesantes. ¡Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas!
             </p>
             <div className="flex flex-wrap gap-3">
-              {socialLinks.map((link, index) => (
+              {socialLinks.map((link) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={link.srText}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 text-sm rounded-lg",
-                    "bg-background/50 hover:bg-background/80 transition-all duration-300",
-                    "border border-border/30 hover:border-primary/30 hover:shadow-sm"
+                    "flex items-center justify-center w-10 h-10 rounded-full border border-border",
+                    "hover:bg-accent/50 transition-colors focus:outline-none",
+                    "focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                   )}
-                  aria-label={link.label}
-                  whileHover={{ y: -2 }}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {React.cloneElement(link.icon, {
-                    className: "w-4 h-4"
-                  })}
-                  <span>{link.label}</span>
+                  {link.icon}
+                  <span className="sr-only">{link.srText}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Columna 2: Navegación */}
+          {/* Columna 2: Enlaces rápidos */}
           <motion.div 
-            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
+            className="md:col-span-2 md:col-start-7"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Enlaces rápidos</h3>
-            <nav className="space-y-3">
-              {[
-                { label: 'Inicio', href: '#home' },
-                { label: 'Habilidades', href: '#skills' },
-                { label: 'Proyectos', href: '#projects' },
-                { label: 'Contacto', href: '#contact' },
-              ].map((item) => (
-                <a 
-                  key={item.href}
-                  href={item.href} 
-                  className="block text-muted-foreground hover:text-primary transition-colors group"
-                >
-                  <span className="relative group-hover:after:scale-x-100 group-hover:after:opacity-100 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary after:transition-transform after:duration-300 after:opacity-0 after:scale-x-0">
-                    {item.label}
-                  </span>
-                </a>
-              ))}
-            </nav>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Enlaces</h3>
+            <ul className="space-y-3">
+              <li><a href="#inicio" className="text-muted-foreground hover:text-foreground transition-colors">Inicio</a></li>
+              <li><a href="#proyectos" className="text-muted-foreground hover:text-foreground transition-colors">Proyectos</a></li>
+              <li><a href="#sobre-mi" className="text-muted-foreground hover:text-foreground transition-colors">Sobre mí</a></li>
+              <li><a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</a></li>
+            </ul>
           </motion.div>
 
           {/* Columna 3: Contacto */}
           <motion.div 
-            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
+            className="md:col-span-3"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Información de contacto</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
-                  <Mail className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">Correo electrónico</h4>
-                  <a href="mailto:contacto@tudominio.com" className="text-foreground hover:text-primary transition-colors">
-                    contacto@tudominio.com
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
-                  <Phone className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">Teléfono</h4>
-                  <a href="tel:+1234567890" className="text-foreground hover:text-primary transition-colors">
-                    +1 (234) 567-890
-                  </a>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
-                  <MapPin className="w-4 h-4 text-primary" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">Ubicación</h4>
-                  <p className="text-foreground">Ciudad, País</p>
-                </div>
-              </div>
-            </div>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Contacto</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Mail className="w-4 h-4" aria-hidden="true" />
+                <a href="mailto:contacto@tudominio.com" className="hover:text-foreground transition-colors">contacto@tudominio.com</a>
+              </li>
+              <li className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="w-4 h-4" aria-hidden="true" />
+                <span>+1 234 567 890</span>
+              </li>
+              <li className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <span>Ciudad, País</span>
+              </li>
+            </ul>
           </motion.div>
         </motion.div>
 
-        {/* Línea divisoria */}
-        <motion.div 
-          className="border-t border-border/20 my-8"
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        />
-
-        {/* Copyright y derechos */}
-        <motion.div 
-          className="flex flex-col md:flex-row justify-between items-center gap-4 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
+        <div className="pt-8 mt-12 border-t border-border/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Pascal. Todos los derechos reservados.
+            © {currentYear} Tu Nombre. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            <span>Hecho con</span>
-            <Coffee className="w-4 h-4 text-amber-600 mx-1" />
-            <span>y NEXT.JS</span>
+          <div className="mt-4 md:mt-0">
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              <span>Hecho con</span>
+              <Coffee className="w-3 h-3 text-amber-600" aria-hidden="true" />
+              <span>y</span>
+              <Code2 className="w-3 h-3 text-primary" aria-hidden="true" />
+              <span>por ti</span>
+            </p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Botón flotante para volver arriba */}
+      {/* Botón de scroll to top */}
       <motion.button
         onClick={scrollToTop}
         className={cn(
-          "fixed bottom-8 right-8 p-3 rounded-full",
-          "bg-background/80 backdrop-blur-lg border border-border/30 shadow-lg",
-          "hover:border-primary/50 hover:bg-primary/5 transition-all duration-300",
-          showScrollButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          "fixed bottom-6 right-6 p-3 rounded-full bg-primary text-primary-foreground shadow-lg",
+          "hover:bg-primary/90 transition-all focus:outline-none",
+          "focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
+          "transform transition-transform hover:scale-105 active:scale-95",
+          !showScrollButton && "opacity-0 pointer-events-none"
         )}
-        aria-label="Volver arriba"
-        whileHover={{ y: -5, scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        initial={{ opacity: 0, y: 20 }}
+        aria-label="Volver al inicio de la página"
+        aria-expanded={showScrollButton}
+        variants={itemVariants}
+        initial={false}
         animate={{ 
           opacity: showScrollButton ? 1 : 0,
           y: showScrollButton ? 0 : 20
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        <ArrowUp className="w-5 h-5 text-primary" />
+        <ArrowUp className="w-5 h-5" aria-hidden="true" />
       </motion.button>
     </footer>
   )
