@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Send, CheckCircle2, AlertCircle, Github, Linkedin } from "lucide-react";
-import { SectionContainer } from "./ui/section-container";
+import { SectionContainer } from "@/components/ui/section-container";
 
 type FormState = {
   name: string;

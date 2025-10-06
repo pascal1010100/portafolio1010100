@@ -1,5 +1,5 @@
 import { ExternalLink, Github, ArrowUpRight, Code2 } from "lucide-react"
-import { SectionContainer } from "./ui/section-container"
+import { SectionContainer } from "@/components/ui/section-container"
 import { motion } from "framer-motion"
 
 const projects = [
