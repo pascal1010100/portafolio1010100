@@ -1,6 +1,9 @@
-import { ExternalLink, Github, ArrowUpRight, Code2 } from "lucide-react"
+"use client"
+
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react"
 import { SectionContainer } from "@/components/ui/section-container"
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 const projects = [
   {
@@ -55,154 +58,218 @@ const projects = [
   },
 ]
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.1,
+      delayChildren: 0.2
     }
   }
 }
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { 
     opacity: 1, 
     y: 0,
     transition: {
-      duration: 0.5
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  hover: {
+    y: -5,
+    transition: { 
+      duration: 0.2,
+      ease: "easeOut"
     }
   }
 }
 
 export function ProjectsSection() {
   return (
-    <SectionContainer id="projects" className="relative py-20 overflow-hidden">
-      {/* Fondo con gradiente sutil */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background to-background/80" />
+    <SectionContainer id="projects" className="relative py-20 overflow-hidden bg-gradient-to-b from-background to-muted/5">
+      {/* Efecto de partículas en el fondo */}
+      <div className="absolute inset-0 -z-10 opacity-5">
+        <div className="absolute inset-0 bg-[url('/images/grid.svg')] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      </div>
+      
+      {/* Efecto de gradiente sutil */}
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/10 via-background to-background"></div>
       
       {/* Contenido principal */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
-            <span className="block mb-2">Proyectos</span>
-            <span className="block bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple bg-clip-text text-transparent">
-              Destacados
-            </span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
-            Una selección de desarrollos que combinan tecnología, diseño y funcionalidad para crear experiencias excepcionales.
-          </p>
+          <motion.div
+            initial={{ scale: 0.95 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-block"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
+              <span className="block mb-3">Proyectos</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-purple animate-gradient">
+                Destacados
+              </span>
+            </h2>
+          </motion.div>
+          <motion.p 
+            className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mt-6 leading-relaxed"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            Explora mis proyectos más recientes. Cada uno representa un desafío único y una solución creativa.
+          </motion.p>
         </motion.div>
 
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
               variants={item}
-              className={`group relative h-full ${!project.featured && 'opacity-80 hover:opacity-100'}`}
+              whileHover="hover"
+              className="group relative h-full flex flex-col"
             >
-              <div className="h-full flex flex-col bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-accent-purple/10 hover:border-accent-purple/30">
-                <div className="relative overflow-hidden">
-                  <div className="aspect-video bg-gradient-to-br from-muted/20 to-muted/30 flex items-center justify-center">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <div className="absolute -inset-1 bg-gradient-to-r from-accent-purple/20 via-accent-cyan/20 to-accent-purple/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-all duration-300" />
+              <div className="h-full flex flex-col bg-background/80 backdrop-blur-sm border border-border/20 rounded-2xl overflow-hidden transition-all duration-300 group-hover:border-accent/30 group-hover:shadow-xl group-hover:shadow-accent/5">
+                <div className="relative overflow-hidden aspect-video">
+                  <div className="absolute inset-0 bg-gradient-to-br from-muted/20 to-muted/30" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <motion.div 
+                      className="translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                    >
                       <h3 className="text-xl font-bold text-foreground mb-2 flex items-center">
                         {project.title}
-                        <ArrowUpRight className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <ArrowUpRight className="ml-2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1" />
                       </h3>
-                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                        {project.description}
-                      </p>
-                    </div>
+                      <p className="text-muted-foreground text-sm">{project.description}</p>
+                    </motion.div>
                   </div>
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-foreground mb-3">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 text-xs font-medium bg-muted/50 text-foreground/80 rounded-full border border-border/50"
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex-1">
+                      <motion.h3 
+                        className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors"
+                        whileHover={{ x: 2 }}
+                      >
+                        {project.title}
+                      </motion.h3>
+                      <p className="text-muted-foreground text-sm line-clamp-2">{project.description}</p>
+                    </div>
+                    <motion.div 
+                      className="flex space-x-1"
+                      initial={{ opacity: 0, x: 10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      {project.github && (
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-lg hover:bg-foreground/5 transition-all duration-200 group-hover:bg-foreground/5 flex items-center justify-center"
+                          aria-label={`Ver código de ${project.title}`}
+                          onClick={(e) => e.stopPropagation()}
+                          whileHover={{ scale: 1.1, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 3 && (
-                        <span className="px-2.5 py-1 text-xs font-medium bg-muted/20 text-foreground/60 rounded-full">
-                          +{project.technologies.length - 3}
-                        </span>
+                          <Github className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" />
+                        </motion.a>
                       )}
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-border/30">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                        Código
-                      </a>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-sm text-accent-foreground bg-accent/10 hover:bg-accent/20 px-3 py-1.5 rounded-full transition-colors group"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Ver demo
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </a>
-                    </div>
+                      {project.demo && project.demo !== project.github && (
+                        <motion.a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 rounded-lg hover:bg-foreground/5 transition-all duration-200 group-hover:bg-foreground/5 flex items-center justify-center"
+                          aria-label={`Ver demo de ${project.title}`}
+                          onClick={(e) => e.stopPropagation()}
+                          whileHover={{ scale: 1.1, backgroundColor: 'rgba(0,0,0,0.05)' }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <ExternalLink className="w-4 h-4 text-foreground/70 group-hover:text-accent transition-colors" />
+                        </motion.a>
+                      )}
+                    </motion.div>
                   </div>
+                  
+                  <motion.div 
+                    className="mt-4 flex flex-wrap gap-2"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {project.technologies.map((tech, idx) => (
+                      <motion.span
+                        key={tech}
+                        className={cn(
+                          "inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium",
+                          "bg-foreground/5 text-foreground/70 border border-border/20",
+                          "group-hover:bg-accent/10 group-hover:border-accent/30 group-hover:text-accent-foreground/90",
+                          "transition-all duration-200"
+                        )}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 * idx }}
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
-      </div>
 
-      <div className="text-center mt-12">
-        <a
-          href="https://github.com/pascal1010100"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-accent-purple to-accent-cyan text-white hover:scale-105 transition-all"
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          <Github className="w-4 h-4" />
-          Ver todos los proyectos
-          <ExternalLink className="w-4 h-4" />
-        </a>
+          <motion.a
+            href="https://github.com/pascal1010100"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-accent-purple to-accent-cyan text-white transition-all"
+            whileHover={{ 
+              scale: 1.03,
+              boxShadow: '0 10px 25px -5px rgba(99, 102, 241, 0.3), 0 8px 10px -6px rgba(99, 102, 241, 0.3)'
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Github className="w-5 h-5 transition-transform group-hover:scale-110" />
+            <span className="font-medium">Ver todos los proyectos</span>
+            <ArrowUpRight className="ml-1 w-4 h-4 opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
+          </motion.a>
+        </motion.div>
       </div>
     </SectionContainer>
   )
