@@ -1,13 +1,13 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Image from "next/image"
 import { Github, Linkedin, Mail, ArrowDown, Rocket } from "lucide-react"
 import { NeoParticles } from "@/components/backgrounds/neo-particles"
 import Link from "next/link"
 import { motion, Variants } from "framer-motion"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 
-// Animaciones
+// Animations
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -54,7 +54,7 @@ export function HeroSection() {
     },
     { 
       icon: Mail, 
-      href: "mailto:pascal@pascal.dev", 
+      href: "mailto:josemanu0885@gmail.com", 
       label: "Correo" 
     }
   ]
@@ -98,19 +98,16 @@ export function HeroSection() {
           >
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-slate-500/30 to-slate-400/30 rounded-full opacity-50 group-hover:opacity-70 blur transition duration-300 group-hover:duration-500 animate-tilt"></div>
-              <div className="relative w-44 h-44 rounded-full bg-slate-900/60 backdrop-blur-sm flex items-center justify-center overflow-hidden border-2 border-slate-600/20 group-hover:border-slate-500/30 transition-all duration-300">
-                <Image
-                  src="/avatar.png"
-                  alt="Avatar de Pascal"
-                  width={176}
-                  height={176}
-                  className="rounded-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-110 contrast-110"
-                  style={{
-                    filter: 'grayscale(20%) contrast(1.1)'
-                  }}
-                  priority
+              <Avatar className="h-[10rem] w-[10rem] border-4 border-primary/20 shadow-lg group-hover:scale-105 transition-transform duration-500">
+                <AvatarImage 
+                  src="/avatar.png" 
+                  alt="José Manuel Aguilar" 
+                  className="object-cover"
                 />
-              </div>
+                <AvatarFallback className="bg-primary/10 text-2xl font-bold">
+                  JA
+                </AvatarFallback>
+              </Avatar>
             </div>
           </motion.div>
           
