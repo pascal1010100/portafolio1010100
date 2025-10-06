@@ -1,9 +1,10 @@
 "use client"
 
 import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp, Code2 } from "lucide-react"
+import { Github, Linkedin, Mail, ArrowUp, Code2, MessageSquare, Phone, MapPin, Coffee } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -28,19 +29,19 @@ export function Footer() {
 
   const socialLinks = [
     {
-      icon: <Github className="w-5 h-5" />,
-      href: "https://github.com/pascal1010100",
+      icon: <Github className="w-4 h-4" />,
+      href: "https://github.com/tuusuario",
       label: "GitHub",
     },
     {
-      icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/pascal1010100",
+      icon: <Linkedin className="w-4 h-4" />,
+      href: "https://linkedin.com/in/tu-perfil",
       label: "LinkedIn",
     },
     {
-      icon: <Mail className="w-5 h-5" />,
-      href: "mailto:pascal@pascal.dev",
-      label: "Correo electrónico",
+      icon: <Mail className="w-4 h-4" />,
+      href: "mailto:contacto@tudominio.com",
+      label: "Email",
     },
   ]
 
@@ -69,16 +70,19 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-border/50 bg-background/80 backdrop-blur-lg py-12 text-foreground overflow-hidden">
-      {/* Efecto de partículas decorativas */}
-      <div className="absolute inset-0 -z-10 opacity-10">
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/3 w-40 h-40 rounded-full bg-purple-400/20 blur-3xl" />
+    <footer className={cn(
+      "relative border-t border-border/30 bg-background/90 backdrop-blur-lg py-16 md:py-20 text-foreground overflow-hidden",
+      "bg-gradient-to-b from-background to-background/80"
+    )}>
+      {/* Decorative elements */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -86,35 +90,37 @@ export function Footer() {
         >
           {/* Columna 1: Logo y descripción */}
           <motion.div 
-            className="flex flex-col items-center md:items-start text-center md:text-left"
+            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
             variants={itemVariants}
           >
-            <div className="flex items-center gap-2 text-cyan-400 text-2xl font-bold font-mono tracking-wider mb-3">
-              <span className="text-white">{"{"}</span>
-              <Code2 className="w-6 h-6 text-cyan-400" />
-              <span className="text-white">{"}"}</span>
-              <span className="text-cyan-400 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-cyan-600">
-                Pascal
-              </span>
+            <div className="inline-flex items-center gap-2 text-primary font-mono font-medium text-sm mb-4">
+              <MessageSquare className="w-4 h-4" />
+              <span>CONÉCTATE</span>
             </div>
-            <p className="text-sm text-muted-foreground mb-4 max-w-xs">
-              Transformando ideas en experiencias digitales excepcionales con código limpio y diseño atemporal.
+            <h2 className="text-2xl font-bold text-foreground mb-4">Trabajemos juntos</h2>
+            <p className="text-muted-foreground mb-6 max-w-md">
+              Estoy abierto a nuevas oportunidades y proyectos interesantes. ¡Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas!
             </p>
-            <div className="flex items-center gap-4 mt-2">
+            <div className="flex flex-wrap gap-3">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg border border-border/50 hover:border-cyan-400/50 hover:bg-cyan-400/10 transition-all duration-300 group"
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-2 text-sm rounded-lg",
+                    "bg-background/50 hover:bg-background/80 transition-all duration-300",
+                    "border border-border/30 hover:border-primary/30 hover:shadow-sm"
+                  )}
                   aria-label={link.label}
-                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {React.cloneElement(link.icon, {
-                    className: "w-5 h-5 text-muted-foreground group-hover:text-cyan-400 transition-colors"
+                    className: "w-4 h-4"
                   })}
+                  <span>{link.label}</span>
                 </motion.a>
               ))}
             </div>
@@ -122,55 +128,69 @@ export function Footer() {
 
           {/* Columna 2: Navegación */}
           <motion.div 
-            className="flex flex-col items-center md:items-start text-center md:text-left"
+            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Navegación</h3>
-            <nav className="space-y-2">
-              <a 
-                href="#home" 
-                className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors block"
-              >
-                Inicio
-              </a>
-              <a 
-                href="#skills" 
-                className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors block"
-              >
-                Habilidades
-              </a>
-              <a 
-                href="#projects" 
-                className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors block"
-              >
-                Proyectos
-              </a>
-              <a 
-                href="#contact" 
-                className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors block"
-              >
-                Contacto
-              </a>
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Enlaces rápidos</h3>
+            <nav className="space-y-3">
+              {[
+                { label: 'Inicio', href: '#home' },
+                { label: 'Habilidades', href: '#skills' },
+                { label: 'Proyectos', href: '#projects' },
+                { label: 'Contacto', href: '#contact' },
+              ].map((item) => (
+                <a 
+                  key={item.href}
+                  href={item.href} 
+                  className="block text-muted-foreground hover:text-primary transition-colors group"
+                >
+                  <span className="relative group-hover:after:scale-x-100 group-hover:after:opacity-100 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary after:transition-transform after:duration-300 after:opacity-0 after:scale-x-0">
+                    {item.label}
+                  </span>
+                </a>
+              ))}
             </nav>
           </motion.div>
 
           {/* Columna 3: Contacto */}
           <motion.div 
-            className="flex flex-col items-center md:items-start text-center md:text-left"
+            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Contacto</h3>
-            <div className="space-y-3">
-              <a 
-                href="mailto:pascal@pascal.dev" 
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-cyan-400 transition-colors"
-              >
-                <Mail className="w-4 h-4" />
-                pascal@pascal.dev
-              </a>
-              <div className="text-sm text-muted-foreground">
-                <p>Disponible para proyectos</p>
-                <p>y colaboraciones interesantes</p>
+            <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Información de contacto</h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
+                  <Mail className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-muted-foreground">Correo electrónico</h4>
+                  <a href="mailto:contacto@tudominio.com" className="text-foreground hover:text-primary transition-colors">
+                    contacto@tudominio.com
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
+                  <Phone className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-muted-foreground">Teléfono</h4>
+                  <a href="tel:+1234567890" className="text-foreground hover:text-primary transition-colors">
+                    +1 (234) 567-890
+                  </a>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 bg-primary/10 p-2 rounded-lg">
+                  <MapPin className="w-4 h-4 text-primary" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-muted-foreground">Ubicación</h4>
+                  <p className="text-foreground">Ciudad, País</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -178,11 +198,11 @@ export function Footer() {
 
         {/* Línea divisoria */}
         <motion.div 
-          className="border-t border-border/30 my-8"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
+          className="border-t border-border/20 my-8"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         />
 
         {/* Copyright y derechos */}
@@ -191,23 +211,28 @@ export function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             © {currentYear} Pascal. Todos los derechos reservados.
           </p>
-          <p className="text-xs text-muted-foreground">
-            Hecho con <span className="text-rose-500">♥</span> y Next.js
-          </p>
+          <div className="flex items-center gap-1 text-sm text-muted-foreground">
+            <span>Hecho con</span>
+            <Coffee className="w-4 h-4 text-amber-600 mx-1" />
+            <span>y muchas horas de código</span>
+          </div>
         </motion.div>
       </div>
 
       {/* Botón flotante para volver arriba */}
       <motion.button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 p-3 rounded-full bg-background/80 backdrop-blur-lg border border-border/50 shadow-lg hover:border-cyan-400/50 hover:bg-cyan-400/10 transition-all duration-300 ${
+        className={cn(
+          "fixed bottom-8 right-8 p-3 rounded-full",
+          "bg-background/80 backdrop-blur-lg border border-border/30 shadow-lg",
+          "hover:border-primary/50 hover:bg-primary/5 transition-all duration-300",
           showScrollButton ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        )}
         aria-label="Volver arriba"
         whileHover={{ y: -5, scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -218,17 +243,8 @@ export function Footer() {
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        <ArrowUp className="w-5 h-5 text-cyan-400" />
+        <ArrowUp className="w-5 h-5 text-primary" />
       </motion.button>
-      <motion.div
-        className="absolute top-0 right-0 p-3 text-xs text-muted-foreground"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-      >
-        <span className="font-bold">{"}"}</span>
-      </motion.div>
     </footer>
   )
 }
