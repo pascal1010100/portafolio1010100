@@ -5,32 +5,32 @@
 
 @layer base {
   :root {
-    /* Colores base - Tema Cyberpunk Kawaii */
+    /* Colores base - Tema Morado Neón Sutil */
     --background: 260 50% 5%;
-    --foreground: 300 90% 90%;
+    --foreground: 280 60% 90%;
     --card: 260 50% 8%;
-    --card-foreground: 300 90% 95%;
+    --card-foreground: 280 60% 95%;
     --popover: 260 50% 8%;
-    --popover-foreground: 300 90% 95%;
-    --primary: 320 100% 60%;
+    --popover-foreground: 280 60% 95%;
+    --primary: 270 80% 60%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 190 90% 50%;
-    --secondary-foreground: 260 50% 8%;
+    --secondary: 260 60% 50%;
+    --secondary-foreground: 0 0% 100%;
     --muted: 260 30% 15%;
-    --muted-foreground: 300 20% 70%;
-    --accent: 320 100% 60%;
+    --muted-foreground: 270 20% 70%;
+    --accent: 270 80% 60%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 260 30% 20%;
-    --input: 260 30% 20%;
-    --ring: 320 100% 60%;
+    --border: 270 30% 20%;
+    --input: 270 30% 20%;
+    --ring: 270 80% 60%;
     --radius: 1rem;
     
     /* Efectos de neón */
-    --neon-pink: 320 100% 60%;
-    --neon-blue: 190 100% 60%;
-    --neon-purple: 270 100% 60%;
+    --neon-purple: 270 80% 60%;
+    --neon-cyan: 190 80% 60%;
+    --neon-pink: 300 80% 60%;
     
     /* Colores de gráficos */
     --chart-1: 220 70% 50%;
@@ -50,14 +50,15 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
     
     /* Colores personalizados */
-    --accent-purple: #b300ff;
-    --accent-cyan: #00ccff;
-    --background-secondary: #f8fafc;
-    --foreground-muted: #64748b;
+    --accent-purple: #8a2be2;
+    --accent-cyan: #00e5ff;
+    --accent-pink: #ff00ff;
+    --background-secondary: #0f0c29;
+    --foreground-muted: #a78bfa;
     
     /* Gradientes */
-    --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-    --gradient-2: linear-gradient(135deg, #3b82f6 0%, #6366f1 50%, #8b5cf6 100%);
+    --gradient-1: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 50%, #c084fc 100%);
+    --gradient-2: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #8b5cf6 100%);
     
     /* Sombras */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -153,8 +154,20 @@
 /* Utilidades personalizadas */
 /* Efectos de neón */
 @keyframes neon-pulse {
-  0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px hsl(var(--neon-pink)), 0 0 30px hsl(var(--neon-pink)); }
-  50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px hsl(var(--neon-blue)), 0 0 40px hsl(var(--neon-blue)); }
+  0%, 100% { 
+    text-shadow: 
+      0 0 5px #fff, 
+      0 0 10px #fff, 
+      0 0 20px hsl(var(--neon-purple) / 0.7), 
+      0 0 30px hsl(var(--neon-purple) / 0.5); 
+  }
+  50% { 
+    text-shadow: 
+      0 0 10px #fff, 
+      0 0 20px #fff, 
+      0 0 30px hsl(var(--neon-cyan) / 0.5), 
+      0 0 40px hsl(var(--neon-cyan) / 0.3); 
+  }
 }
 
 @keyframes float {
