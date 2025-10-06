@@ -219,7 +219,7 @@ export function Footer() {
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <span>Hecho con</span>
             <Coffee className="w-4 h-4 text-amber-600 mx-1" />
-            <span>y muchas horas de código</span>
+            <span>y NEXT.JS</span>
           </div>
         </motion.div>
       </div>
