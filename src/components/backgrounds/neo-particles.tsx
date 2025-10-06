@@ -141,8 +141,8 @@ export const NeoParticles = React.memo(() => {
   }, [initParticles, updateParticles]);
 
   return (
-    <div ref={canvasRef} className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <canvas />
+    <div ref={canvasRef} className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+      <canvas className="pointer-events-none" />
     </div>
   );
 });

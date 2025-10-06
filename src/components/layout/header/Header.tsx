@@ -21,32 +21,79 @@ export function Navbar() {
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    const handleScroll = () => {
-      const sections = ["home", "skills", "projects", "contact"]
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
+    const getActiveSection = () => {
+      const scrollPosition = window.scrollY + 100 // Ajuste para activar antes de llegar a la sección
+      let currentSection = ""
+      
+      // Encontrar la sección más cercana al viewport
+      const sectionOffsets = navItems.map(item => {
+        const section = item.href.substring(1)
         const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section)
-            break
-          }
+        return {
+          id: section,
+          offsetTop: element ? element.offsetTop : Infinity,
+          offsetHeight: element ? element.offsetHeight : 0
+        }
+      }).filter(section => !isNaN(section.offsetTop))
+      
+      // Ordenar por proximidad al scroll actual
+      sectionOffsets.sort((a, b) => {
+        const aDistance = Math.abs(scrollPosition - a.offsetTop)
+        const bDistance = Math.abs(scrollPosition - b.offsetTop)
+        return aDistance - bDistance
+      })
+      
+      // Tomar la sección más cercana que esté dentro del rango
+      for (const section of sectionOffsets) {
+        if (
+          scrollPosition >= section.offsetTop - 100 && 
+          scrollPosition < section.offsetTop + section.offsetHeight - 100
+        ) {
+          currentSection = section.id
+          break
         }
       }
+      
+      // Si no encontramos ninguna sección, usar la más cercana
+      if (!currentSection && sectionOffsets.length > 0) {
+        currentSection = sectionOffsets[0].id
+      }
+      
+      return currentSection
     }
-
-    window.addEventListener("scroll", handleScroll)
+    
+    const handleScroll = () => {
+      const newSection = getActiveSection()
+      
+      if (newSection && newSection !== activeSection) {
+        setActiveSection(newSection)
+      }
+      
+      // Efecto de transparencia al hacer scroll
+      setScrolled(window.scrollY > 10)
+    }
+    
+    // Usar un throttle para mejorar el rendimiento
+    let ticking = false
+    const throttledScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    
+    window.addEventListener('scroll', throttledScroll, { passive: true })
+    
     // Llamar una vez al cargar para establecer el estado inicial
     handleScroll()
     
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    return () => {
+      window.removeEventListener('scroll', throttledScroll)
+    }
+  }, [activeSection]) // Añadimos activeSection como dependencia
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href)
@@ -105,17 +152,17 @@ export function Navbar() {
                   onClick={() => handleNavClick(item.href)}
                 >
                   {item.name}
-                  {activeSection === item.href.substring(1) && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute left-1/2 -bottom-1 w-3/4 h-0.5 bg-primary rounded-full -translate-x-1/2"
-                      transition={{
-                        type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
-                      }}
-                    />
-                  )}
+                  <motion.span
+                    className={cn(
+                      "absolute left-1/2 -bottom-1 h-0.5 bg-primary rounded-full -translate-x-1/2 transition-all duration-300",
+                      activeSection === item.href.substring(1) ? "w-3/4" : "w-0"
+                    )}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.2,
+                      duration: 0.3,
+                    }}
+                  />
                 </Link>
               </motion.div>
             ))}
