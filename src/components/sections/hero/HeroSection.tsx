@@ -97,7 +97,7 @@ export function HeroSection() {
             variants={itemVariants}
           >
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/40 via-purple-500/40 to-blue-400/40 rounded-full opacity-60 group-hover:opacity-80 blur transition duration-300 group-hover:duration-500 animate-tilt"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-slate-500/30 to-slate-400/30 rounded-full opacity-50 group-hover:opacity-70 blur transition duration-300 group-hover:duration-500 animate-tilt"></div>
               <div className="relative w-44 h-44 rounded-full bg-slate-900/60 backdrop-blur-sm flex items-center justify-center overflow-hidden border-2 border-slate-600/20 group-hover:border-slate-500/30 transition-all duration-300">
                 <Image
                   src="/avatar.png"
@@ -126,16 +126,16 @@ export function HeroSection() {
               <motion.span 
                 className="block mt-2 text-5xl sm:text-6xl md:text-7xl font-bold"
                 style={{
-                  background: 'linear-gradient(90deg, #60a5fa, #818cf8, #c084fc, #60a5fa)',
+                  background: 'linear-gradient(90deg, #e2e8f0, #94a3b8, #475569)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  backgroundSize: '300% 300%',
+                  backgroundSize: '200% 200%',
                 }}
                 animate={{
-                  backgroundPosition: ['0% 50%', '100% 50%'],
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 }}
                 transition={{
-                  duration: 8,
+                  duration: 15,
                   repeat: Infinity,
                   ease: 'linear',
                 }}
@@ -207,7 +207,7 @@ export function HeroSection() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-slate-800/40 backdrop-blur-md border border-slate-700/30 hover:border-blue-400/50 hover:bg-slate-700/20 transition-all duration-300 group-hover:shadow-[0_0_10px_rgba(96,165,250,0.3)]"
+                  className="p-2.5 rounded-xl bg-slate-800/50 backdrop-blur-md border border-slate-700/50 hover:border-slate-500/50 hover:bg-slate-700/30 transition-all duration-300"
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
