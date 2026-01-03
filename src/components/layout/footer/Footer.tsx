@@ -73,7 +73,7 @@ export function Footer() {
   };
 
   return (
-    <footer 
+    <footer
       className={cn(
         "relative border-t border-border/30 bg-background/90 backdrop-blur-lg py-16 md:py-20 text-foreground overflow-hidden",
         "bg-gradient-to-b from-background to-background/80"
@@ -82,8 +82,8 @@ export function Footer() {
       aria-label="Pie de página"
     >
       {/* Elementos decorativos - ocultos para lectores de pantalla */}
-      <div 
-        className="absolute inset-0 -z-10" 
+      <div
+        className="absolute inset-0 -z-10"
         aria-hidden="true"
       >
         <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
@@ -91,7 +91,7 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12"
           initial="hidden"
           whileInView="visible"
@@ -99,17 +99,17 @@ export function Footer() {
           variants={containerVariants}
         >
           {/* Columna 1: Logo y descripción */}
-          <motion.div 
+          <motion.div
             className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
             variants={itemVariants}
           >
             <div className="inline-flex items-center gap-2 text-primary font-mono font-medium text-sm mb-4">
               <MessageSquare className="w-4 h-4" aria-hidden="true" />
-              <span>CONÉCTATE</span>
+              <span>CONNECT</span>
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-4" id="trabajemos-juntos">Trabajemos juntos</h2>
+            <h2 className="text-3xl font-display font-bold text-foreground mb-4" id="trabajemos-juntos">Let's Collaborate</h2>
             <p className="text-muted-foreground mb-6 max-w-md">
-              Estoy abierto a nuevas oportunidades y proyectos interesantes. ¡Hablemos sobre cómo puedo ayudarte a hacer realidad tus ideas!
+              Open to new opportunities and challenging projects. Let's discuss how I can help bring your ideas to life with high-performance code.
             </p>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((link) => (
@@ -136,25 +136,25 @@ export function Footer() {
           </motion.div>
 
           {/* Columna 2: Enlaces rápidos */}
-          <motion.div 
+          <motion.div
             className="md:col-span-2 md:col-start-7"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground mb-4">Enlaces</h3>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Links</h3>
             <ul className="space-y-3">
-              <li><a href="#inicio" className="text-muted-foreground hover:text-foreground transition-colors">Inicio</a></li>
-              <li><a href="#proyectos" className="text-muted-foreground hover:text-foreground transition-colors">Proyectos</a></li>
-              <li><a href="#sobre-mi" className="text-muted-foreground hover:text-foreground transition-colors">Sobre mí</a></li>
-              <li><a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</a></li>
+              <li><a href="#home" className="text-muted-foreground hover:text-foreground transition-colors">Home</a></li>
+              <li><a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
+              <li><a href="#skills" className="text-muted-foreground hover:text-foreground transition-colors">Skills</a></li>
+              <li><a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a></li>
             </ul>
           </motion.div>
 
           {/* Columna 3: Contacto */}
-          <motion.div 
+          <motion.div
             className="md:col-span-3"
             variants={itemVariants}
           >
-            <h3 className="text-sm font-semibold text-foreground mb-4">Contacto</h3>
+            <h3 className="text-sm font-semibold text-foreground mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
@@ -162,11 +162,11 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                <a href="tel:50242900009" className="hover:text-foreground transition-colors">(502) 4290-0009</a>
+                <a href="tel:50242900009" className="hover:text-foreground transition-colors">(+502) 4290-0009</a>
               </li>
               <li className="flex items-start gap-2 text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <span>Guatemala</span>
+                <span>Remote / Worldwide</span>
               </li>
             </ul>
           </motion.div>
@@ -174,14 +174,14 @@ export function Footer() {
 
         <div className="pt-8 mt-12 border-t border-border/30 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} José Manuel. Todos los derechos reservados.
+            © {currentYear} Pascal. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
             <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <span>Hecho con</span>
+              <span>Built with</span>
               <Coffee className="w-3 h-3 text-amber-600" aria-hidden="true" />
-              <span>y</span>
-              
+              <span>and</span>
+
               <span> NEXT.JS</span>
             </p>
           </div>
@@ -198,11 +198,11 @@ export function Footer() {
           "transform transition-transform hover:scale-105 active:scale-95",
           !showScrollButton && "opacity-0 pointer-events-none"
         )}
-        aria-label="Volver al inicio de la página"
+        aria-label="Back to top"
         aria-expanded={showScrollButton}
         variants={itemVariants}
         initial={false}
-        animate={{ 
+        animate={{
           opacity: showScrollButton ? 1 : 0,
           y: showScrollButton ? 0 : 20
         }}

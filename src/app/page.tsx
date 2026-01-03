@@ -14,24 +14,21 @@ const Footer = dynamic(
 )
 
 // Section Components
+
 const HeroSection = dynamic(
-  () => import("@/components/sections/hero/HeroSection").then((mod) => mod.HeroSection),
-  { ssr: false }
+  () => import("@/components/sections/hero/HeroSection").then((mod) => mod.HeroSection)
 )
 
 const SkillsSection = dynamic(
-  () => import("@/components/sections/skills/SkillsSection").then((mod) => mod.SkillsSection),
-  { ssr: false }
+  () => import("@/components/sections/skills/SkillsSection").then((mod) => mod.SkillsSection)
 )
 
 const ProjectsSection = dynamic(
-  () => import("@/components/sections/projects/ProjectsSection").then((mod) => mod.ProjectsSection),
-  { ssr: false }
+  () => import("@/components/sections/projects/ProjectsSection").then((mod) => mod.ProjectsSection)
 )
 
 const ContactSection = dynamic(
-  () => import("@/components/sections/contact/ContactSection").then((mod) => mod.ContactSection),
-  { ssr: false }
+  () => import("@/components/sections/contact/ContactSection").then((mod) => mod.ContactSection)
 )
 
 export default function Home() {

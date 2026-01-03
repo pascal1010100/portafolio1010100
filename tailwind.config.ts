@@ -44,12 +44,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Colores personalizados agrupados
+        // Elite Cyberpunk Palette
         custom: {
-          "accent-purple": "#b300ff",
-          "accent-cyan": "#00ccff",
-          "background-secondary": "#111111",
-          "foreground-muted": "#888888",
+          "void": "#0a0a0f",
+          "void-light": "#1a1a23",
+          "cyan": "#00f0ff",
+          "matrix": "#00ff9d",
         },
       },
       borderRadius: {
@@ -58,12 +58,15 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        mono: ["var(--font-space-grotesk)", "monospace"],
       },
       backgroundImage: {
         radial: "radial-gradient(var(--tw-gradient-stops))",
         conic: "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        cyber: "linear-gradient(135deg, rgba(179, 0, 255, 0.1) 0%, rgba(0, 204, 255, 0.1) 100%)",
+        // Modernized gradient
+        cyber: "linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(10, 10, 15, 0.9) 100%)",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
@@ -80,8 +83,8 @@ const config: Config = {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         glow: {
-          "0%": { boxShadow: "0 0 20px rgba(179, 0, 255, 0.3)" },
-          "100%": { boxShadow: "0 0 30px rgba(179, 0, 255, 0.5)" },
+          "0%": { boxShadow: "0 0 20px rgba(0, 240, 255, 0.3)" },
+          "100%": { boxShadow: "0 0 30px rgba(0, 240, 255, 0.5)" },
         },
       },
       spacing: {

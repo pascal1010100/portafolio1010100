@@ -12,7 +12,7 @@ const NeoParticles = dynamic(
 )
 
 // Configuración de fuentes
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   variable: '--font-inter',
@@ -29,34 +29,35 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "Pascal - Desarrollador Web Full Stack | pascal.dev",
+  title: "Pascal - Senior Full-Stack Engineer | pascal.dev",
   description:
-    "Portfolio profesional de Pascal, desarrollador web full-stack especializado en React, Next.js, TypeScript y tecnologías modernas. Creando experiencias digitales excepcionales.",
+    "Professional portfolio of Pascal, a Senior Full-Stack Engineer specializing in React, Next.js, TypeScript, and AI-driven solutions. Building scalable, high-performance digital products.",
   keywords: [
     "Pascal",
     "pascal.dev",
-    "desarrollador web",
-    "full stack",
+    "Full-Stack Engineer",
+    "Senior Developer",
     "React",
     "Next.js",
     "TypeScript",
-    "portfolio",
-    "desarrollo web",
+    "AI",
+    "SaaS",
+    "Software Engineer",
   ],
   authors: [{ name: "Pascal", url: "https://pascal.dev" }],
   creator: "Pascal",
   openGraph: {
     type: "website",
-    locale: "es_ES",
+    locale: "en_US",
     url: "https://pascal.dev",
-    title: "Pascal - Desarrollador Web Full Stack",
-    description: "Creando experiencias digitales excepcionales con tecnologías modernas",
+    title: "Pascal - Senior Full-Stack Engineer",
+    description: "Building scalable, high-performance digital products with modern technologies.",
     siteName: "pascal.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal - Desarrollador Web Full Stack",
-    description: "Creando experiencias digitales excepcionales con tecnologías modernas",
+    title: "Pascal - Senior Full-Stack Engineer",
+    description: "Building scalable, high-performance digital products with modern technologies.",
     creator: "@pascal1010100",
   },
   robots: {
@@ -70,7 +71,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  generator: "v0.dev",
 }
 
 export default function RootLayout({
@@ -79,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <NeoParticles />
         <LazyMotion features={domAnimation}>

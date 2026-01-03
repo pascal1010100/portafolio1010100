@@ -7,10 +7,9 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { name: "Inicio", href: "#home" },
-  { name: "Habilidades", href: "#skills" },
-  { name: "Proyectos", href: "#projects" },
-  // Eliminado el ítem de Contacto del menú principal
+  { name: "Home", href: "#home" },
+  { name: "Skills", href: "#skills" },
+  { name: "Work", href: "#projects" },
 ]
 
 export function Navbar() {
@@ -24,7 +23,7 @@ export function Navbar() {
     const getActiveSection = () => {
       const scrollPosition = window.scrollY + 100 // Ajuste para activar antes de llegar a la sección
       let currentSection = ""
-      
+
       // Encontrar la sección más cercana al viewport
       const sectionOffsets = navItems.map(item => {
         const section = item.href.substring(1)
@@ -35,44 +34,44 @@ export function Navbar() {
           offsetHeight: element ? element.offsetHeight : 0
         }
       }).filter(section => !isNaN(section.offsetTop))
-      
+
       // Ordenar por proximidad al scroll actual
       sectionOffsets.sort((a, b) => {
         const aDistance = Math.abs(scrollPosition - a.offsetTop)
         const bDistance = Math.abs(scrollPosition - b.offsetTop)
         return aDistance - bDistance
       })
-      
+
       // Tomar la sección más cercana que esté dentro del rango
       for (const section of sectionOffsets) {
         if (
-          scrollPosition >= section.offsetTop - 100 && 
+          scrollPosition >= section.offsetTop - 100 &&
           scrollPosition < section.offsetTop + section.offsetHeight - 100
         ) {
           currentSection = section.id
           break
         }
       }
-      
+
       // Si no encontramos ninguna sección, usar la más cercana
       if (!currentSection && sectionOffsets.length > 0) {
         currentSection = sectionOffsets[0].id
       }
-      
+
       return currentSection
     }
-    
+
     const handleScroll = () => {
       const newSection = getActiveSection()
-      
+
       if (newSection && newSection !== activeSection) {
         setActiveSection(newSection)
       }
-      
+
       // Efecto de transparencia al hacer scroll
       setScrolled(window.scrollY > 10)
     }
-    
+
     // Usar un throttle para mejorar el rendimiento
     let ticking = false
     const throttledScroll = () => {
@@ -84,12 +83,12 @@ export function Navbar() {
         ticking = true
       }
     }
-    
+
     window.addEventListener('scroll', throttledScroll, { passive: true })
-    
+
     // Llamar una vez al cargar para establecer el estado inicial
     handleScroll()
-    
+
     return () => {
       window.removeEventListener('scroll', throttledScroll)
     }
@@ -104,11 +103,11 @@ export function Navbar() {
   }
 
   return (
-    <motion.header 
+    <motion.header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-background/80 backdrop-blur-md border-b border-border/20 shadow-lg" 
+        scrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-border/20 shadow-lg"
           : "bg-transparent"
       )}
       initial={{ y: -100 }}
@@ -118,14 +117,14 @@ export function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex-shrink-0"
           >
             <Link
               href="#home"
-              className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent"
+              className="text-2xl font-display font-bold bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent uppercase tracking-wider"
               onClick={() => handleNavClick("#home")}
             >
               Pascal.dev
@@ -135,7 +134,7 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <motion.div 
+              <motion.div
                 key={item.href}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -166,7 +165,7 @@ export function Navbar() {
                 </Link>
               </motion.div>
             ))}
-            
+
             {/* Botón de contacto destacado */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -178,7 +177,7 @@ export function Navbar() {
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors"
                 onClick={() => handleNavClick("#contact")}
               >
-                Contáctame
+                Contact Me
               </Link>
             </motion.div>
           </nav>
@@ -213,7 +212,7 @@ export function Navbar() {
               className="fixed inset-0 bg-black/50 backdrop-blur-sm"
               onClick={() => setIsMobileMenuOpen(false)}
             />
-            
+
             {/* Menú lateral derecho */}
             <motion.div
               initial={{ x: '100%' }}
@@ -231,30 +230,29 @@ export function Navbar() {
                   <X className="h-6 w-6" />
                 </button>
               </div>
-              
+
               <nav className="space-y-4">
                 {navItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                      activeSection === item.href.substring(1)
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-foreground hover:bg-muted'
-                    }`}
+                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeSection === item.href.substring(1)
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-foreground hover:bg-muted'
+                      }`}
                     onClick={() => handleNavClick(item.href)}
                   >
                     {item.name}
                   </Link>
                 ))}
-                
+
                 <div className="pt-4 mt-4 border-t border-border/20">
                   <Link
                     href="#contact"
                     className="block w-full px-4 py-3 text-center font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors"
                     onClick={() => handleNavClick("#contact")}
                   >
-                    Contáctame
+                    Contact Me
                   </Link>
                 </div>
               </nav>
