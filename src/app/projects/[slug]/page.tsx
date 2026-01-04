@@ -11,8 +11,45 @@ export function generateStaticParams() {
     }))
 }
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+    const project = projects.find((p) => p.slug === params.slug)
+
+    if (!project) {
+        return {
+            title: "Project Not Found",
+        }
+    }
+
+    return {
+        title: `${project.title} | Pascal`,
+        description: project.description,
+        openGraph: {
+            title: project.title,
+            description: project.description,
+            type: "article",
+            url: `https://pascal.dev/projects/${project.slug}`,
+            images: [
+                {
+                    url: project.image,
+                    width: 1200,
+                    height: 630,
+                    alt: project.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: project.title,
+            description: project.description,
+            images: [project.image],
+        },
+    }
+}
+
 export default function ProjectPage({ params }: { params: { slug: string } }) {
     const project = projects.find((p) => p.slug === params.slug)
+    const currentIndex = projects.findIndex((p) => p.slug === params.slug)
+    const nextProject = projects[(currentIndex + 1) % projects.length]
 
     if (!project) {
         notFound()
@@ -23,6 +60,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {/* Background Elements */}
             <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.03] pointer-events-none" />
             <div className="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-background to-transparent z-10" />
+
+            {/* Dynamic Atmosphere */}
+            <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none opacity-50 mix-blend-screen" />
 
             <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 relative z-20">
 
@@ -86,7 +126,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                     {/* Sidebar: Tech Stack */}
                     <div className="md:col-span-4 space-y-8">
-                        <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5">
+                        <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 top-32 sticky">
                             <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
                                 <Layers className="w-4 h-4" /> Tech_Stack
                             </h3>
@@ -103,7 +143,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     {/* Main Content: The Case Study */}
                     <div className="md:col-span-8 space-y-16">
 
-                        {/* Introduction / Context */}
+                        {/* Context */}
                         {project.longDescription && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
@@ -163,6 +203,27 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 </div>
                             </section>
                         )}
+
+                        {/* Next Project Navigation */}
+                        <div className="pt-20 border-t border-white/5">
+                            <p className="text-sm font-mono text-zinc-500 mb-4">Next_Case_Study</p>
+                            <Link
+                                href={`/projects/${nextProject.slug}`}
+                                className="group block p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all"
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                                            {nextProject.title}
+                                        </h3>
+                                        <p className="text-muted-foreground">{nextProject.description}</p>
+                                    </div>
+                                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
+                                        <ArrowLeft className="w-5 h-5 text-white rotate-180" />
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
 
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowUpRight, Github, ExternalLink, Calendar, Code, Database, Search } from "lucide-react"
 import { projects } from "@/data/projects"
@@ -12,6 +12,19 @@ export function ProjectArchive() {
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
+    })
+
+    const [searchQuery, setSearchQuery] = useState("")
+
+    // Filter projects based on search query
+    const filteredProjects = projects.filter(project => {
+        const query = searchQuery.toLowerCase()
+        return (
+            project.title.toLowerCase().includes(query) ||
+            project.description.toLowerCase().includes(query) ||
+            project.technologies.some(tech => tech.toLowerCase().includes(query)) ||
+            project.category.toLowerCase().includes(query)
+        )
     })
 
     return (
@@ -40,94 +53,110 @@ export function ProjectArchive() {
                             </p>
                         </div>
 
-                        <div className="relative group">
+                        <div className="relative group w-full md:w-auto">
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-primary transition-colors" />
                             <input
                                 type="text"
                                 placeholder="Search projects..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                                 className="bg-zinc-900/50 border border-white/10 rounded-full py-3 pl-10 pr-6 text-sm outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all w-full md:w-64 placeholder:text-zinc-600"
-                                disabled
                             />
                         </div>
                     </div>
                 </div>
 
-                {/* Project List */}
-                <div className="grid grid-cols-1 gap-4">
-                    {projects.map((project, index) => (
+                {/* Project Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredProjects.map((project, index) => (
                         <motion.div
                             key={project.title}
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
-                            className="group relative flex flex-col md:flex-row items-center gap-6 p-4 rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-colors"
+                            className="group relative flex flex-col rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-colors overflow-hidden h-full"
                         >
                             {/* Image */}
-                            <Link href={`/projects/${project.slug}`} className="w-full md:w-48 h-32 rounded-xl overflow-hidden bg-zinc-800 shrink-0 border border-white/5 block">
+                            <Link href={`/projects/${project.slug}`} className="w-full aspect-video overflow-hidden bg-zinc-800 border-b border-white/5 block relative">
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
                                 <img
                                     src={project.image}
                                     alt={project.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                 />
                             </Link>
 
                             {/* Content */}
-                            <div className="flex-1 min-w-0 grid grid-cols-1 md:grid-cols-12 gap-6 items-center w-full">
-
-                                {/* Title & Category */}
-                                <div className="md:col-span-4">
-                                    <Link href={`/projects/${project.slug}`}>
-                                        <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
-                                            {project.title}
-                                        </h3>
-                                    </Link>
-                                    <span className="text-sm text-zinc-500 font-medium">
-                                        {project.category}
-                                    </span>
+                            <div className="flex flex-col flex-1 p-6">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <span className="text-xs font-mono text-primary/80 mb-2 block uppercase tracking-wider">
+                                            {project.category}
+                                        </span>
+                                        <Link href={`/projects/${project.slug}`}>
+                                            <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
+                                                {project.title}
+                                            </h3>
+                                        </Link>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        {project.github && (
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-zinc-500 hover:text-white transition-colors"
+                                            >
+                                                <Github className="w-4 h-4" />
+                                            </a>
+                                        )}
+                                        {project.demo && (
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-zinc-500 hover:text-white transition-colors"
+                                            >
+                                                <ExternalLink className="w-4 h-4" />
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
 
+                                <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">
+                                    {project.description}
+                                </p>
+
                                 {/* Tech Stack */}
-                                <div className="md:col-span-6 flex flex-wrap gap-2">
-                                    {project.technologies.slice(0, 4).map(tech => (
-                                        <span key={tech} className="px-2.5 py-1 rounded-full bg-white/5 text-xs text-zinc-400 border border-white/5">
+                                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                                    {project.technologies.slice(0, 3).map(tech => (
+                                        <span key={tech} className="px-2 py-1 rounded-md bg-white/5 text-[10px] text-zinc-400 border border-white/5 font-mono uppercase">
                                             {tech}
                                         </span>
                                     ))}
-                                    {project.technologies.length > 4 && (
-                                        <span className="px-2.5 py-1 text-xs text-zinc-500">+</span>
-                                    )}
-                                </div>
-
-                                {/* Actions */}
-                                <div className="md:col-span-2 flex justify-end gap-2">
-                                    {project.demo && (
-                                        <a
-                                            href={project.demo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="p-2.5 rounded-full bg-white/5 text-zinc-400 hover:text-white hover:bg-primary/20 hover:text-primary transition-all"
-                                            title="Visit Website"
-                                        >
-                                            <ExternalLink className="w-4 h-4" />
-                                        </a>
-                                    )}
-                                    {project.github && (
-                                        <a
-                                            href={project.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="p-2.5 rounded-full bg-white/5 text-zinc-400 hover:text-white hover:bg-primary/20 hover:text-primary transition-all"
-                                            title="View Source"
-                                        >
-                                            <Github className="w-4 h-4" />
-                                        </a>
+                                    {project.technologies.length > 3 && (
+                                        <span className="px-2 py-1 text-[10px] text-zinc-500 font-mono">
+                                            +{project.technologies.length - 3}
+                                        </span>
                                     )}
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
+
+                {filteredProjects.length === 0 && (
+                    <div className="text-center py-20">
+                        <p className="text-muted-foreground text-lg">No projects match your search.</p>
+                        <button
+                            onClick={() => setSearchQuery("")}
+                            className="mt-4 text-primary hover:underline"
+                        >
+                            Clear search
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )

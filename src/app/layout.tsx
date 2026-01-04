@@ -29,6 +29,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pascal.dev"),
   title: "Pascal - Senior Full-Stack Engineer | pascal.dev",
   description:
     "Professional portfolio of Pascal, a Senior Full-Stack Engineer specializing in React, Next.js, TypeScript, and AI-driven solutions. Building scalable, high-performance digital products.",
