@@ -178,6 +178,33 @@
       #000;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 28px 90px rgba(0, 0, 0, 0.25);
   }
+
+  @media (min-width: 1280px) and (max-height: 860px) {
+    .hero-shell {
+      min-height: calc(100vh - 5.5rem);
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.75rem, 5.25vw, 4.15rem);
+      line-height: 0.96;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+    }
+
+    .hero-proof {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+
+    .hero-scene {
+      height: 35rem;
+      margin-top: -5.5rem;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
