@@ -31,6 +31,28 @@ La experiencia debe transmitir precisión, calma y confianza. El 3D forma parte 
 
 No se permiten rediseños radicales, estética gamer, ruido visual ni animaciones sin propósito.
 
+## Experience Engineering
+
+Pascal.dev no diseña componentes aislados: diseña percepción. Cada decisión visual, técnica y de producto debe reforzar la identidad de una empresa moderna de ingeniería de software.
+
+La experiencia pública debe transmitir cinco sensaciones en los primeros segundos:
+
+1. Claridad: el visitante entiende rápidamente qué construimos.
+2. Confianza: se perciben criterio técnico, procesos sólidos y profesionalismo.
+3. Elegancia: la interfaz se siente premium, minimalista y precisa.
+4. Ingeniería: el producto sugiere que detrás existe un sistema serio de desarrollo.
+5. Conversión: cada sección acerca al visitante a iniciar una conversación calificada.
+
+Antes de implementar una mejora, debe pasar por este filtro:
+
+- ¿Hace que Pascal.dev se parezca más a una empresa tecnológica de clase mundial?
+- ¿Hace que el visitante confíe más?
+- ¿Reduce ruido visual?
+- ¿Explica mejor qué construimos?
+- ¿Mantiene la estética boutique tecnológica?
+
+Si una mejora solo hace el sitio más bonito pero no mejora la percepción profesional, no es prioritaria.
+
 ## Pipeline objetivo
 
 1. Analizar un repositorio autorizado.
