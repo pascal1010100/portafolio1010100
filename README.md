@@ -1,4 +1,4 @@
-# Pascal.dev — Portafolio profesional
+# Pascal.dev — Plataforma profesional y portafolio
 
 Este repositorio contiene el portafolio profesional de Pascal. Su objetivo principal es ayudarle a conseguir empleo, clientes, proyectos y oportunidades de colaboración mostrando con claridad su experiencia, criterio y capacidad para construir productos digitales. También funciona como una plataforma comercial: debe transformar visitas calificadas en conversaciones, propuestas y proyectos sostenibles.
 
@@ -49,11 +49,29 @@ El sitio está construido con:
 
 La aplicación usa App Router, genera páginas estáticas para los proyectos y expone un endpoint de contacto en `src/app/api/contact/route.ts`.
 
+## Baseline arquitectónico
+
+- El repositorio se mantiene inicialmente como monolito modular.
+- pnpm 10 y Node.js 20 forman el toolchain oficial.
+- TypeScript, ESLint y build son checks obligatorios de CI.
+- Scripts, workflows, agentes futuros y aprobación humana tienen responsabilidades separadas.
+- La evolución se registra mediante ADRs y una auditoría técnica versionada.
+
+Documentación principal:
+
+- [Project Charter](./docs/product/PROJECT_CHARTER.md)
+- [Arquitectura](./docs/architecture/README.md)
+- [ADRs](./docs/architecture/adr/)
+- [Auditoría inicial](./docs/architecture/AUDIT-2026-06-28.md)
+- [Runbook de CI](./docs/operations/ci.md)
+- [Instrucciones operativas](./AGENTS.md)
+- [Arquitectura futura de agentes](./AGENTES.md)
+
 ## Ejecución local
 
 Requisitos:
 
-- Node.js 18 o superior.
+- Node.js 20.
 - pnpm 10, según la versión declarada en `package.json`.
 
 ```bash
@@ -70,7 +88,8 @@ pnpm dev
 pnpm build
 pnpm start
 pnpm lint
-pnpm exec tsc --noEmit
+pnpm typecheck
+pnpm check
 ```
 
 ESLint y TypeScript forman parte obligatoria del build y del workflow de CI.
@@ -123,7 +142,7 @@ No deben almacenarse secretos reales en el repositorio. Las variables se configu
 - Exigir aprobación humana para publicar contenido, abrir cambios sensibles o realizar operaciones externas.
 - Incorporar un agente UI/UX que proteja el objetivo profesional y revise coherencia, claridad, accesibilidad y presentación visual.
 
-Los agentes propuestos, sus límites y la arquitectura necesaria se describen en [AGENTES.md](./AGENTES.md).
+Los agentes propuestos, sus límites y la arquitectura necesaria se describen en [AGENTES.md](./AGENTES.md). Es un diseño futuro; no existen agentes funcionales en la aplicación actual.
 
 ## Principios de evolución
 
@@ -142,7 +161,8 @@ src/components/          Componentes y secciones visuales
 src/data/                Perfil, habilidades y proyectos
 src/lib/                 Utilidades compartidas
 public/                  Imágenes y activos públicos
-.github/workflows/       Automatizaciones de GitHub (planeado)
+.github/workflows/       CI reproducible
+docs/                    Charter, arquitectura, ADRs y runbooks
 ```
 
 ## Referencias para la evolución
