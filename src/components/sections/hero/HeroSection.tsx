@@ -1,230 +1,127 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Github, Linkedin, Mail, ArrowDown, Terminal, Cpu, Globe } from "lucide-react"
-import { NeoParticles } from "@/components/backgrounds/neo-particles"
+import dynamic from "next/dynamic"
 import Link from "next/link"
-import { motion, Variants } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { ArrowUpRight, Github, Linkedin } from "lucide-react"
 import { profile } from "@/data/profile"
-import { cn } from "@/lib/utils"
 
-// HUD Animations
-const hudContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  }
-}
-
-const hudItemVariants: Variants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: "circOut" }
-  }
-}
-
-const glitchVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.98 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.2 } // Fast snap-in for cyber feel
-  }
-}
+const SpatialScene = dynamic(
+  () => import("@/components/visuals/SpatialScene").then((module) => module.SpatialScene),
+  { ssr: false, loading: () => <div className="h-full w-full" /> },
+)
 
 export function HeroSection() {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-
-
-  // Removed early return to allow SSR
-
-
-  const socialLinks = [
-    { icon: Github, href: profile.social.github, label: "GitHub Hq" },
-    { icon: Linkedin, href: profile.social.linkedin, label: "LinkedIn Net" },
-    { icon: Mail, href: profile.social.email, label: "Encrypted Mail" }
-  ]
-
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-background">
-      {/* Background Layer - Void Grid */}
-      <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background pointer-events-none" />
+    <section id="home" className="relative isolate overflow-hidden border-b border-white/10 pt-20">
+      <div className="pointer-events-none absolute inset-0 -z-30 bg-[#030506]" />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_76%_42%,rgba(112,170,255,0.16),transparent_27%),radial-gradient(circle_at_67%_72%,rgba(255,193,124,0.08),transparent_20%)]" />
+      <div className="pointer-events-none absolute left-[38%] top-[6%] -z-10 h-[115%] w-[1px] rotate-[55deg] bg-gradient-to-b from-transparent via-cyan-100/30 to-transparent shadow-[0_0_36px_rgba(190,225,255,0.25)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:120px_120px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
 
-      {/* Interactive Particles - Low opacity for subtlety */}
-      <div className="absolute inset-0 opacity-20">
-        <NeoParticles />
-      </div>
-
-      <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12">
-
-        {/* Left Column: Semantic Info (The "Terminal") */}
+      <div className="relative mx-auto grid max-w-7xl items-center px-4 py-12 sm:px-6 sm:py-16 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[1fr_1fr] lg:px-8 lg:py-10">
         <motion.div
-          className="flex-1 text-left"
-          initial="hidden"
-          animate="visible"
-          variants={hudContainerVariants}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 max-w-3xl"
         >
-          {/* System Status HUD */}
-          <motion.div variants={hudItemVariants} className="flex items-center gap-2 mb-6">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+          <div className="mb-6 flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.18em] text-white/42 sm:mb-8 sm:text-xs sm:tracking-[0.2em]">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-200 opacity-50" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-100" />
             </span>
-            <span className="font-mono text-xs text-primary/80 tracking-widest uppercase">
-              System Online // V.2.5.0
-            </span>
-          </motion.div>
-
-          {/* Main Title Block */}
-          <div className="relative mb-8">
-            <motion.div variants={hudItemVariants} className="overflow-hidden">
-              <span className="font-mono text-muted-foreground text-sm sm:text-base mb-2 block border-l-2 border-primary/50 pl-4">
-                &gt; Subject: {profile.name}
-              </span>
-            </motion.div>
-
-            <motion.h1
-              variants={glitchVariants}
-              className="glitch-text text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tighter text-foreground leading-[0.9]"
-            >
-              PASCAL
-              <span className="text-primary">.DEV</span>
-            </motion.h1>
-
-            <motion.div variants={hudItemVariants} className="mt-4 flex flex-wrap gap-3">
-              <Badge icon={Terminal} text="Senior Full-Stack" />
-              <Badge icon={Cpu} text="AI Systems Arch" />
-              <Badge icon={Globe} text="Remote Capable" />
-            </motion.div>
+            Disponible para proyectos seleccionados
           </div>
 
-          {/* Description Block with "Glass" Card backing */}
-          <motion.div
-            variants={hudItemVariants}
-            className="elite-glass p-6 md:p-8 rounded-sm max-w-2xl border-l-4 border-l-primary mb-10"
-          >
-            <p className="text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
-              Engineering high-performance SaaS solutions.
-              <br />
-              <span className="text-foreground font-medium">Clear Design. Solid Code. Scalable Architecture.</span>
-            </p>
-          </motion.div>
+          <h1 className="max-w-4xl text-[2.6rem] font-medium leading-[0.98] tracking-[-0.055em] text-white min-[380px]:text-5xl sm:text-6xl lg:text-[5.15rem]">
+            Diseño productos digitales que se sienten inevitables.
+          </h1>
 
-          {/* Action Module */}
-          <motion.div variants={hudItemVariants} className="flex flex-col sm:flex-row gap-5">
-            <Link
-              href="#contact"
-              className="group relative px-8 py-4 bg-primary text-background font-bold font-mono uppercase tracking-wider overflow-hidden hover:bg-primary/90 transition-all"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Init_Procedure <ArrowDown className="w-4 h-4" />
-              </span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          <p className="mt-6 max-w-xl text-base leading-7 text-white/50 sm:mt-8 sm:text-lg sm:leading-8">
+            Estrategia, UI/UX e ingeniería full-stack para convertir una idea ambiciosa en una experiencia clara, memorable y lista para crecer.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row">
+            <Link href="#projects" className="liquid-sheen group inline-flex items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-[0_0_36px_rgba(207,239,255,0.08)] transition hover:bg-white">
+              Explorar proyectos
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
-
-            <Link
-              href="#projects"
-              className="cyber-border px-8 py-4 text-primary font-mono uppercase tracking-wider hover:bg-primary/10 transition-all flex items-center gap-2"
-            >
-              View_Database
+            <Link href="#contact" className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-3.5 text-sm font-medium text-white/75 transition hover:border-white/30 hover:text-white">
+              Cuéntame tu idea
             </Link>
+          </div>
 
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 text-muted-foreground font-mono uppercase tracking-wider hover:text-white transition-all flex items-center gap-2 border border-transparent hover:border-white/10 rounded-sm"
-            >
-              Download_CV
+          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-t border-white/10 pt-5 text-xs text-white/35 sm:mt-12 sm:gap-x-5 sm:pt-6 sm:text-sm">
+            <span>Respuesta en 24–48 h</span>
+            <span>Proyectos desde $5k</span>
+            <a href={profile.social.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 transition hover:text-white">
+              <Github className="h-3.5 w-3.5" aria-hidden="true" /> GitHub
             </a>
-          </motion.div>
+            <a href={profile.social.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 transition hover:text-white">
+              <Linkedin className="h-3.5 w-3.5" aria-hidden="true" /> LinkedIn
+            </a>
+            <a href={`${profile.social.email}?subject=Solicitud%20de%20CV`} className="transition hover:text-white">
+              Solicitar CV
+            </a>
+          </div>
         </motion.div>
 
-        {/* Right Column: Identity Core (Avatar + Aura) */}
         <motion.div
-          className="hidden md:flex flex-1 justify-center items-center relative"
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={false}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 1.1, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          className="relative -mx-2 -mt-3 h-[20rem] sm:mx-0 sm:mt-0 sm:h-[32rem] lg:-ml-16 lg:mr-[-8rem] lg:h-[47rem]"
+          aria-label="Cubo conceptual interactivo con núcleo cambiante"
         >
-          {/* Soul Nebula Effect behind Avatar */}
-          <div className="absolute inset-0 bg-soul-gradient blur-3xl opacity-60 scale-150 animate-pulse" style={{ animationDuration: '4s' }} />
-
-          <div className="relative group">
-            {/* Tech Rings */}
-            <div className="absolute -inset-1 rounded-full border border-primary/20 scale-110 animate-spin [animation-duration:20s]" />
-            <div className="absolute -inset-4 rounded-full border border-dashed border-primary/10 scale-105 animate-spin [animation-duration:30s] [animation-direction:reverse]" />
-
-            {/* Glitch/Ghost Effect Layer */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 opacity-20 blur-md group-hover:opacity-40 transition-opacity duration-500" />
-
-            {/* Actual Avatar */}
-            <div className="relative h-64 w-64 lg:h-80 lg:w-80 rounded-full p-2 border border-white/10 bg-black/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-primary/20">
-              <img
-                src={profile.avatar}
-                alt={profile.name}
-                className="w-full h-full object-cover rounded-full filter contrast-125 hover:scale-105 transition-transform duration-700 ease-out"
-              />
-
-              {/* HUD Overlay on Avatar */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-6 left-0 right-0 text-center">
-                <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-mono tracking-widest text-white/80 uppercase">
-                  Operator
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating Social Nodes - Connected feeling */}
-          <div className="absolute -right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-            {socialLinks.map((social, i) => (
-              <a
-                key={i}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 p-2 pl-3 bg-black/40 backdrop-blur-md border-l-2 border-primary/50 text-muted-foreground hover:text-white hover:bg-primary/10 transition-all hover:translate-x-1"
-                aria-label={social.label}
-              >
-                <social.icon className="w-5 h-5 group-hover:text-primary transition-colors" />
-              </a>
-            ))}
+          <div className="pointer-events-none absolute inset-[14%] rounded-full bg-sky-300/[0.07] blur-[90px]" />
+          <LazySpatialScene />
+          <div className="pointer-events-none absolute bottom-[15%] right-[12%] hidden items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/30 lg:flex">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-cyan-100/50" />
+            Hover · Núcleo reactivo
           </div>
         </motion.div>
       </div>
 
-      {/* Bottom Scroll Indicator - Tech Style */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
-        animate={{ y: [0, 5, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-muted-foreground">Scroll_Down</span>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-primary to-transparent" />
-      </motion.div>
-
+      <div className="relative mx-auto grid max-w-7xl grid-cols-2 border-t border-white/10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+        {["Product strategy", "Advanced UI/UX", "Full-stack systems", "Applied AI"].map((item, index) => (
+          <div key={item} className="group flex items-center gap-2 border-white/10 py-4 text-[10px] uppercase tracking-[0.13em] text-white/30 transition hover:text-white/60 odd:border-r lg:border-r lg:last:border-r-0 lg:gap-3 lg:px-6 lg:py-5 lg:text-xs lg:tracking-[0.16em] lg:first:pl-0">
+            <span className="text-cyan-100/55">0{index + 1}</span>
+            {item}
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
 
-function Badge({ icon: Icon, text }: { icon: any, text: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-none border border-border bg-secondary/30 text-xs font-mono text-primary/80 uppercase">
-      <Icon className="w-3 h-3" />
-      {text}
-    </span>
-  )
+function LazySpatialScene() {
+  const container = useRef<HTMLDivElement>(null)
+  const [shouldRender, setShouldRender] = useState(false)
+
+  useEffect(() => {
+    const element = container.current
+    if (!element) return
+
+    if (!("IntersectionObserver" in window)) {
+      setShouldRender(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "240px" },
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return <div ref={container} className="h-full w-full">{shouldRender && <SpatialScene />}</div>
 }

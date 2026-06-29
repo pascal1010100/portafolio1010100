@@ -3,13 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import ClientWrapper from "@/components/client-wrapper"
 import "./globals.css"
 import { LazyMotion, domAnimation } from "framer-motion"
-import dynamic from "next/dynamic"
-
-// Importar dinámicamente el componente de partículas con SSR deshabilitado
-const NeoParticles = dynamic(
-  () => import("@/components/backgrounds/neo-particles").then((mod) => mod.NeoParticles),
-  { ssr: false }
-)
 
 // Configuración de fuentes
 const inter = Inter({
@@ -30,9 +23,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pascal.dev"),
-  title: "Pascal - Senior Full-Stack Engineer | pascal.dev",
+  title: "Pascal — Product Engineer & Advanced UI/UX",
   description:
-    "Professional portfolio of Pascal, a Senior Full-Stack Engineer specializing in React, Next.js, TypeScript, and AI-driven solutions. Building scalable, high-performance digital products.",
+    "Diseño y desarrollo de productos digitales, SaaS y experiencias con AI: estrategia, UI/UX avanzada e ingeniería full-stack.",
   keywords: [
     "Pascal",
     "pascal.dev",
@@ -49,16 +42,16 @@ export const metadata: Metadata = {
   creator: "Pascal",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "es_GT",
     url: "https://pascal.dev",
-    title: "Pascal - Senior Full-Stack Engineer",
-    description: "Building scalable, high-performance digital products with modern technologies.",
+    title: "Pascal — Product Engineer & Advanced UI/UX",
+    description: "Productos digitales memorables, escalables y listos para crecer.",
     siteName: "pascal.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal - Senior Full-Stack Engineer",
-    description: "Building scalable, high-performance digital products with modern technologies.",
+    title: "Pascal — Product Engineer & Advanced UI/UX",
+    description: "Productos digitales memorables, escalables y listos para crecer.",
     creator: "@pascal1010100",
   },
   robots: {
@@ -80,14 +73,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
-        <NeoParticles />
         <LazyMotion features={domAnimation}>
           <ClientWrapper>
             <div className="relative z-10">
-              <div className="fixed inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a33,transparent)] dark:bg-[radial-gradient(circle_800px_at_100%_200px,#3a1a5a66,transparent)] pointer-events-none" />
-              <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-5 bg-[length:100px_100px] -z-10 pointer-events-none" />
               {children}
             </div>
           </ClientWrapper>

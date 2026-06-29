@@ -8,20 +8,35 @@ export const dynamic = "force-dynamic";
 // Rótulos para compatibilidad con tu UI anterior (budget como índice) y actual (string)
 const BUDGET_LABELS = ["$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+"];
 
+const MAX_BODY_BYTES = 16_000;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+
+type RateLimitEntry = {
+  count: number;
+  resetAt: number;
+};
+
+const rateLimitStore = new Map<string, RateLimitEntry>();
+
 const ContactSchema = z
   .object({
-    name: z.string().min(2, "Nombre requerido"),
-    email: z.string().email("Email inválido"),
-    project: z.string().optional().default(""),
-    budget: z.union([z.string(), z.number()]).optional().default(""),
-    message: z.string().optional().default(""),
-    company: z.string().optional().default(""),
-    phone: z.string().optional().default(""),
-    projectType: z.string().optional().default(""),
-    timeline: z.string().optional().default(""),
-    description: z.string().optional().default(""),
-    goals: z.string().optional().default(""),
-    references: z.string().optional().default(""),
+    name: z.string().trim().min(2, "Nombre requerido").max(100, "Nombre demasiado largo"),
+    email: z.string().trim().email("Email inválido").max(254, "Email demasiado largo"),
+    project: z.string().trim().max(160, "Proyecto demasiado largo").optional().default(""),
+    budget: z
+      .union([z.string().trim().max(40), z.number().int().min(0).max(BUDGET_LABELS.length - 1)])
+      .optional()
+      .default(""),
+    message: z.string().trim().max(4_000, "Mensaje demasiado largo").optional().default(""),
+    company: z.string().trim().max(120).optional().default(""),
+    phone: z.string().trim().max(40).optional().default(""),
+    projectType: z.string().trim().max(80).optional().default(""),
+    timeline: z.string().trim().max(80).optional().default(""),
+    description: z.string().trim().max(4_000, "Descripción demasiado larga").optional().default(""),
+    goals: z.string().trim().max(1_000).optional().default(""),
+    references: z.string().trim().max(1_000).optional().default(""),
+    website: z.string().max(200).optional().default(""),
   })
   .strict();
 
@@ -29,27 +44,72 @@ function esc(s: string) {
   return String(s).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]!));
 }
 
+function isAllowedOrigin(origin: string, allowedSite: string) {
+  try {
+    return new URL(origin).origin === new URL(allowedSite).origin;
+  } catch {
+    return false;
+  }
+}
+
+function getClientKey(req: Request) {
+  const forwardedFor = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwardedFor || req.headers.get("x-real-ip") || "unknown";
+}
+
+function consumeRateLimit(key: string) {
+  const now = Date.now();
+  const current = rateLimitStore.get(key);
+
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, retryAfter: 0 };
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { allowed: false, retryAfter: Math.ceil((current.resetAt - now) / 1_000) };
+  }
+
+  current.count += 1;
+  return { allowed: true, retryAfter: 0 };
+}
+
 export async function POST(req: Request) {
   try {
-    // (Opcional) Validación de origen
     const origin = req.headers.get("origin") || "";
     const allowedSite = process.env.NEXT_PUBLIC_SITE_URL;
-    if (allowedSite && !origin.startsWith(allowedSite)) {
+    if (allowedSite && !isAllowedOrigin(origin, allowedSite)) {
       return NextResponse.json({ ok: false, error: "Origen no permitido" }, { status: 403 });
     }
 
-    // (Opcional) Token anti POSTs desde consola
-    const serverToken = process.env.CONTACT_TOKEN || "";
-    if (serverToken) {
-      const clientToken = req.headers.get("x-contact-token");
-      if (clientToken !== serverToken) {
-        return NextResponse.json({ ok: false, error: "Token inválido" }, { status: 401 });
-      }
+    if (!req.headers.get("content-type")?.toLowerCase().startsWith("application/json")) {
+      return NextResponse.json({ ok: false, error: "Tipo de contenido no permitido" }, { status: 415 });
     }
 
-    // Datos
+    const contentLength = Number(req.headers.get("content-length") || "0");
+    if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ ok: false, error: "Solicitud demasiado grande" }, { status: 413 });
+    }
+
+    // Protección de mejor esfuerzo por instancia. En producción distribuida debe
+    // reemplazarse o complementarse con un rate limiter compartido en el edge/proveedor.
+    const rateLimit = consumeRateLimit(getClientKey(req));
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Demasiados intentos. Intenta de nuevo más tarde." },
+        { status: 429, headers: { "Retry-After": String(rateLimit.retryAfter) } },
+      );
+    }
+
     const raw = await req.json();
+    if (JSON.stringify(raw).length > MAX_BODY_BYTES) {
+      return NextResponse.json({ ok: false, error: "Solicitud demasiado grande" }, { status: 413 });
+    }
     const data = ContactSchema.parse(raw);
+
+    if (data.website) {
+      return NextResponse.json({ ok: true });
+    }
 
     // Normalización de budget
     let budgetLabel = "No indicado";
@@ -130,13 +190,13 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error("Resend error:", error);
-      return NextResponse.json({ ok: false, error: (error as any).message || "Email provider error" }, { status: 502 });
+      return NextResponse.json({ ok: false, error: "El servicio de correo no está disponible" }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true, id: sent?.id ?? null });
-  } catch (err: any) {
-    console.error("Contact API error:", err?.message || err);
-    if (err?.name === "ZodError") {
+  } catch (err: unknown) {
+    console.error("Contact API error:", err instanceof Error ? err.message : err);
+    if (err instanceof z.ZodError) {
       return NextResponse.json({ ok: false, error: "Datos inválidos", issues: err.issues }, { status: 400 });
     }
     return NextResponse.json({ ok: false, error: "No se pudo enviar el correo." }, { status: 500 });

@@ -1,7 +1,7 @@
 "use client"
 
-import React from 'react';
-import { Github, Linkedin, Mail, ArrowUp, Code2, MessageSquare, Phone, MapPin, Coffee } from "lucide-react"
+import React from 'react'
+import { Github, Linkedin, Mail, ArrowUp, MapPin } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
@@ -16,11 +16,7 @@ export function Footer() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowScrollButton(true)
-      } else {
-        setShowScrollButton(false)
-      }
+      setShowScrollButton(window.scrollY > 300)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -32,19 +28,19 @@ export function Footer() {
       icon: <Github className="w-4 h-4" aria-hidden="true" />,
       href: "https://github.com/pascal1010100",
       label: "GitHub",
-      srText: "Visita mi perfil de GitHub (se abre en una nueva pestaña)",
+      srText: "Visita mi perfil de GitHub",
     },
     {
       icon: <Linkedin className="w-4 h-4" aria-hidden="true" />,
       href: "https://www.linkedin.com/in/josema-aguilar-dev",
       label: "LinkedIn",
-      srText: "Visita mi perfil de LinkedIn (se abre en una nueva pestaña)",
+      srText: "Visita mi perfil de LinkedIn",
     },
     {
       icon: <Mail className="w-4 h-4" aria-hidden="true" />,
       href: "mailto:josemanu0885@gmail.com",
       label: "Email",
-      srText: "Enviar correo electrónico a josemanu0885@gmail.com",
+      srText: "Enviar correo electrónico",
     },
   ]
 
@@ -54,10 +50,10 @@ export function Footer() {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
+        delayChildren: 0.2,
+      },
+    },
+  }
 
   const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
@@ -65,53 +61,36 @@ export function Footer() {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring" as const,
+        type: "spring",
         stiffness: 100,
-        damping: 12
-      }
-    }
-  };
+        damping: 12,
+      },
+    },
+  }
 
   return (
     <footer
       className={cn(
-        "relative border-t border-border/30 bg-background/90 backdrop-blur-lg py-16 md:py-20 text-foreground overflow-hidden",
-        "bg-gradient-to-b from-background to-background/80"
+        "border-t border-border/70 bg-background py-16 text-foreground md:py-20",
       )}
       role="contentinfo"
       aria-label="Pie de página"
     >
-      {/* Elementos decorativos - ocultos para lectores de pantalla */}
-      <div
-        className="absolute inset-0 -z-10"
-        aria-hidden="true"
-      >
-        <div className="absolute top-0 right-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-secondary/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12"
-          initial="hidden"
+          className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.8fr_0.8fr] mb-12"
+          initial={false}
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {/* Columna 1: Logo y descripción */}
-          <motion.div
-            className="md:col-span-4 flex flex-col items-center md:items-start text-center md:text-left"
-            variants={itemVariants}
-          >
-            <div className="inline-flex items-center gap-2 text-primary font-mono font-medium text-sm mb-4">
-              <MessageSquare className="w-4 h-4" aria-hidden="true" />
-              <span>CONNECT</span>
-            </div>
-            <h2 className="text-3xl font-display font-bold text-foreground mb-4" id="trabajemos-juntos">Let's Collaborate</h2>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Open to new opportunities and challenging projects. Let's discuss how I can help bring your ideas to life with high-performance code.
+          <motion.div className="space-y-4" variants={itemVariants}>
+            <p className="text-sm font-semibold text-cyan-100/75">Construyamos algo valioso</p>
+            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Ideas claras. Experiencias memorables. Sistemas sólidos.</h2>
+            <p className="max-w-xl text-muted-foreground leading-7">
+              Soy Pascal, y trabajo con equipos que necesitan un producto digital con experiencia refinada, rendimiento y un backend confiable.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex gap-3">
               {socialLinks.map((link) => (
                 <motion.a
                   key={link.label}
@@ -119,96 +98,54 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.srText}
-                  className={cn(
-                    "flex items-center justify-center w-10 h-10 rounded-full border border-border",
-                    "hover:bg-accent/50 transition-colors focus:outline-none",
-                    "focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-                  )}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-foreground transition hover:bg-primary/10"
                   variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {link.icon}
-                  <span className="sr-only">{link.srText}</span>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Columna 2: Enlaces rápidos */}
-          <motion.div
-            className="md:col-span-2 md:col-start-7"
-            variants={itemVariants}
-          >
-            <h3 className="text-sm font-semibold text-foreground mb-4">Links</h3>
-            <ul className="space-y-3">
-              <li><a href="#home" className="text-muted-foreground hover:text-foreground transition-colors">Home</a></li>
-              <li><a href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Work</a></li>
-              <li><a href="#skills" className="text-muted-foreground hover:text-foreground transition-colors">Skills</a></li>
-              <li><a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a></li>
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-semibold text-foreground">Navegación</h3>
+            <ul className="mt-4 space-y-3">
+              <li><a href="#home" className="text-muted-foreground transition hover:text-foreground">Inicio</a></li>
+              <li><a href="#services" className="text-muted-foreground transition hover:text-foreground">Servicios</a></li>
+              <li><a href="#projects" className="text-muted-foreground transition hover:text-foreground">Proyectos</a></li>
+              <li><a href="#contact" className="text-muted-foreground transition hover:text-foreground">Contacto</a></li>
             </ul>
           </motion.div>
 
-          {/* Columna 3: Contacto */}
-          <motion.div
-            className="md:col-span-3"
-            variants={itemVariants}
-          >
-            <h3 className="text-sm font-semibold text-foreground mb-4">Contact Info</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Mail className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                <a href="mailto:josemanu0885@gmail.com" className="hover:text-foreground transition-colors">josemanu0885@gmail.com</a>
-              </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
-                <a href="tel:50242900009" className="hover:text-foreground transition-colors">(+502) 4290-0009</a>
-              </li>
-              <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                <span>Remote / Worldwide</span>
-              </li>
+          <motion.div variants={itemVariants}>
+            <h3 className="text-sm font-semibold text-foreground">Contacto</h3>
+            <ul className="mt-4 space-y-3 text-muted-foreground">
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" aria-hidden="true" /> <a href="mailto:josemanu0885@gmail.com" className="transition hover:text-foreground">josemanu0885@gmail.com</a></li>
+              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden="true" /> <span>Guatemala · Remoto</span></li>
             </ul>
           </motion.div>
         </motion.div>
 
-        <div className="pt-8 mt-12 border-t border-border/30 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground">
-            © {currentYear} Pascal. All rights reserved.
-          </p>
-          <div className="mt-4 md:mt-0">
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              <span>Built with</span>
-              <Coffee className="w-3 h-3 text-amber-600" aria-hidden="true" />
-              <span>and</span>
-
-              <span> NEXT.JS</span>
-            </p>
-          </div>
+        <div className="flex flex-col gap-4 border-t border-border/30 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <p>© {currentYear} Pascal. Todos los derechos reservados.</p>
+          <p>Diseño, producto e ingeniería con atención al detalle.</p>
         </div>
       </div>
 
-      {/* Botón de scroll to top */}
       <motion.button
         onClick={scrollToTop}
         className={cn(
-          "fixed bottom-6 right-6 p-3 rounded-full bg-primary text-primary-foreground shadow-lg",
-          "hover:bg-primary/90 transition-all focus:outline-none",
-          "focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background",
-          "transform transition-transform hover:scale-105 active:scale-95",
+          "fixed bottom-6 right-6 z-50 rounded-full bg-primary p-3 text-primary-foreground shadow-lg shadow-primary/20 transition hover:bg-primary/90 focus:outline-none",
           !showScrollButton && "opacity-0 pointer-events-none"
         )}
-        aria-label="Back to top"
-        aria-expanded={showScrollButton}
-        variants={itemVariants}
+        aria-label="Volver al inicio"
         initial={false}
-        animate={{
-          opacity: showScrollButton ? 1 : 0,
-          y: showScrollButton ? 0 : 20
-        }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        animate={{ opacity: showScrollButton ? 1 : 0, y: showScrollButton ? 0 : 20 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
-        <ArrowUp className="w-5 h-5" aria-hidden="true" />
+        <ArrowUp className="h-5 w-5" aria-hidden="true" />
       </motion.button>
     </footer>
   )

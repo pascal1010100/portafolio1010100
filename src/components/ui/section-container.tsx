@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { forwardRef } from "react";
+import { forwardRef } from "react"
 
 interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
-  className?: string;
-  children: React.ReactNode;
-  id?: string;
+  as?: React.ElementType
+  className?: string
+  children: React.ReactNode
+  id?: string
 }
 
 export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
@@ -15,13 +15,13 @@ export const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
       <Component
         ref={ref}
         id={id}
-        className={`py-20 px-4 sm:px-6 lg:px-8 ${className}`}
+        className={`scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8 ${className}`}
         {...props}
       >
-        <div className="max-w-7xl mx-auto w-full">{children}</div>
+        <div className="mx-auto w-full max-w-7xl">{children}</div>
       </Component>
-    );
-  }
-);
+    )
+  },
+)
 
-SectionContainer.displayName = "SectionContainer";
+SectionContainer.displayName = "SectionContainer"

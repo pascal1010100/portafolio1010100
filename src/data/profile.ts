@@ -1,9 +1,9 @@
 export const profile = {
     name: "Pascal",
     role: "Senior Frontend & Full-Stack Engineer",
-    headline: "Senior Full-Stack Engineer | Building High-Performance SaaS & AI Products.",
-    subheadline: "Specializing in Next.js, scalable architecture, and AI integration for production-ready solutions.",
-    about: "I bridge the gap between complex engineering and user-centric products. As a Senior Full-Stack Engineer, I specialize in building high-performance SaaS platforms and AI-driven applications that solve real business problems. My background in technical support taught me to anticipate user friction before it happens; my engineering expertise allows me to solve it at the architectural level. Whether architecting a RAG pipeline or a real-time booking engine, I focus on scalable, maintainable code that delivers impact.",
+    headline: "Senior Full-Stack Engineer | Productos SaaS y AI de alto rendimiento.",
+    subheadline: "Especializado en Next.js, arquitectura escalable e integración de AI para soluciones listas para producción.",
+    about: "Conecto ingeniería compleja con productos centrados en las personas. Como Senior Full-Stack Engineer, construyo plataformas SaaS de alto rendimiento y aplicaciones con AI que resuelven problemas reales de negocio. Mi experiencia en soporte técnico me enseñó a detectar fricción antes de que llegue al usuario; mi trabajo como ingeniero me permite resolverla desde la arquitectura. Ya sea diseñando una pipeline RAG o un motor de reservas en tiempo real, mi foco está en código escalable, mantenible y orientado a impacto.",
     social: {
         github: "https://github.com/pascal1010100",
         linkedin: "https://www.linkedin.com/in/josema-aguilar-dev/",

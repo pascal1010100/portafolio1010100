@@ -1,9 +1,9 @@
 
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { ArrowLeft, Github, ExternalLink, Calendar, Layers, CheckCircle2 } from "lucide-react"
+import Image from "next/image"
+import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2 } from "lucide-react"
 import { projects } from "@/data/projects"
-import { Button } from "@/components/ui/button"
 
 export function generateStaticParams() {
     return projects.map((project) => ({
@@ -64,7 +64,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {/* Dynamic Atmosphere */}
             <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none opacity-50 mix-blend-screen" />
 
-            <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 relative z-20">
+            <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 relative z-20">
 
                 {/* Navigation */}
                 <Link
@@ -72,11 +72,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-12 group"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    Back_To_Archive
+                    Volver al archivo
                 </Link>
 
                 {/* Header Section */}
-                <div className="grid md:grid-cols-2 gap-12 mb-20 items-center">
+                <div className="grid md:grid-cols-2 gap-10 md:gap-12 mb-16 md:mb-20 items-center">
                     <div>
                         <div className="flex items-center gap-3 mb-6">
                             <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-wider">
@@ -84,7 +84,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             </span>
                             {project.featured && (
                                 <span className="px-3 py-1 rounded-full border border-yellow-500/20 bg-yellow-500/5 text-yellow-500 text-xs font-mono uppercase tracking-wider">
-                                    Featured_Case
+                                    Caso destacado
                                 </span>
                             )}
                         </div>
@@ -97,15 +97,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             {project.description}
                         </p>
 
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                             {project.demo && (
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all">
-                                    Live Demo <ExternalLink className="w-4 h-4" />
+                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all">
+                                    Ver demo <ExternalLink className="w-4 h-4" />
                                 </a>
                             )}
                             {project.github && (
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
-                                    Source Code <Github className="w-4 h-4" />
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
+                                    Ver código <Github className="w-4 h-4" />
                                 </a>
                             )}
                         </div>
@@ -113,9 +113,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                     <div className="relative group rounded-2xl overflow-hidden border border-white/10 bg-zinc-900 shadow-2xl shadow-black/50 aspect-video">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
-                        <img
+                        <Image
                             src={project.image}
                             alt={project.title}
+                            fill
+                            sizes="(min-width: 768px) 50vw, 100vw"
+                            priority
                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
                     </div>
@@ -128,7 +131,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <div className="md:col-span-4 space-y-8">
                         <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 top-32 sticky">
                             <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
-                                <Layers className="w-4 h-4" /> Tech_Stack
+                                <Layers className="w-4 h-4" /> Stack técnico
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {project.technologies.map(tech => (
@@ -147,7 +150,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.longDescription && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">01.</span> Context
+                                    <span className="text-primary font-mono text-sm">01.</span> Contexto
                                 </h2>
                                 <div className="prose prose-invert prose-lg text-zinc-400">
                                     <p>{project.longDescription}</p>
@@ -159,7 +162,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.challenges && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">02.</span> key_Challenges
+                                    <span className="text-primary font-mono text-sm">02.</span> Retos clave
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.challenges.map((challenge: string, i: number) => (
@@ -176,7 +179,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.solutions && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">03.</span> Technical_Solutions
+                                    <span className="text-primary font-mono text-sm">03.</span> Soluciones técnicas
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.solutions.map((solution: string, i: number) => (
@@ -193,7 +196,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.results && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">04.</span> Impact_&_Results
+                                    <span className="text-primary font-mono text-sm">04.</span> Impacto y resultados
                                 </h2>
                                 <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-green-500/20">
                                     <div className="flex items-start gap-4">
@@ -206,19 +209,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                         {/* Next Project Navigation */}
                         <div className="pt-20 border-t border-white/5">
-                            <p className="text-sm font-mono text-zinc-500 mb-4">Next_Case_Study</p>
+                            <p className="text-sm font-mono text-zinc-500 mb-4">Siguiente caso</p>
                             <Link
                                 href={`/projects/${nextProject.slug}`}
-                                className="group block p-8 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all"
+                                className="group block p-6 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all sm:p-8"
                             >
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
                                         <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
                                             {nextProject.title}
                                         </h3>
                                         <p className="text-muted-foreground">{nextProject.description}</p>
                                     </div>
-                                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
+                                    <div className="w-12 h-12 shrink-0 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">
                                         <ArrowLeft className="w-5 h-5 text-white rotate-180" />
                                     </div>
                                 </div>

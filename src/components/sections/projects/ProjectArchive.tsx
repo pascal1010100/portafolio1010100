@@ -1,19 +1,13 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, Github, ExternalLink, Calendar, Code, Database, Search } from "lucide-react"
+import { useState } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
+import { Github, ExternalLink, Search } from "lucide-react"
 import { projects } from "@/data/projects"
-import { cn } from "@/lib/utils"
 import Link from "next/link"
 
 export function ProjectArchive() {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    })
-
     const [searchQuery, setSearchQuery] = useState("")
 
     // Filter projects based on search query
@@ -28,28 +22,27 @@ export function ProjectArchive() {
     })
 
     return (
-        <div ref={containerRef} className="relative min-h-screen bg-background pt-32 pb-20">
+        <div className="relative min-h-screen bg-background pt-32 pb-20">
             {/* Background Grid */}
             <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-[0.03] pointer-events-none" />
             <div className="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-background to-transparent z-10" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-                {/* Header */}
                 <div className="mb-16">
                     <Link
                         href="/"
                         className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8 group"
                     >
-                        <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to Home
+                        <span className="group-hover:-translate-x-1 transition-transform">←</span> Volver al inicio
                     </Link>
 
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/5">
                         <div>
                             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">
-                                All Projects
+                                Todos los proyectos
                             </h1>
                             <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-                                A curated collection of web applications, experiments, and open-source contributions.
+                                Una selección curada de aplicaciones web, productos digitales y experimentos técnicos.
                             </p>
                         </div>
 
@@ -57,7 +50,7 @@ export function ProjectArchive() {
                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-primary transition-colors" />
                             <input
                                 type="text"
-                                placeholder="Search projects..."
+                                placeholder="Buscar proyectos..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="bg-zinc-900/50 border border-white/10 rounded-full py-3 pl-10 pr-6 text-sm outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all w-full md:w-64 placeholder:text-zinc-600"
@@ -71,18 +64,19 @@ export function ProjectArchive() {
                     {filteredProjects.map((project, index) => (
                         <motion.div
                             key={project.title}
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={false}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.05 }}
                             className="group relative flex flex-col rounded-2xl bg-zinc-900/20 border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-colors overflow-hidden h-full"
                         >
-                            {/* Image */}
                             <Link href={`/projects/${project.slug}`} className="w-full aspect-video overflow-hidden bg-zinc-800 border-b border-white/5 block relative">
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
-                                <img
+                                <Image
                                     src={project.image}
                                     alt={project.title}
+                                    fill
+                                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                                 />
                             </Link>
@@ -148,12 +142,12 @@ export function ProjectArchive() {
 
                 {filteredProjects.length === 0 && (
                     <div className="text-center py-20">
-                        <p className="text-muted-foreground text-lg">No projects match your search.</p>
+                        <p className="text-muted-foreground text-lg">No hay proyectos que coincidan con tu búsqueda.</p>
                         <button
                             onClick={() => setSearchQuery("")}
                             className="mt-4 text-primary hover:underline"
                         >
-                            Clear search
+                            Limpiar búsqueda
                         </button>
                     </div>
                 )}
