@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, CheckCircle2 } from "lucide-react"
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
@@ -33,6 +33,12 @@ const services = [
   },
 ]
 
+const processSignals = [
+  "Diagnóstico antes de cotizar",
+  "Alcance claro por fases",
+  "Diseño e ingeniería conectados",
+]
+
 export function ServicesSection() {
   return (
     <SectionContainer id="services" className="relative overflow-hidden border-y border-white/10 py-20 sm:py-28 lg:py-36">
@@ -43,6 +49,15 @@ export function ServicesSection() {
           title="Del concepto al producto, sin ruido entre capas"
           description="Tres formatos concretos para avanzar con velocidad, criterio y una inversión visible desde el inicio."
         />
+
+        <div className="mb-10 grid gap-3 sm:grid-cols-3">
+          {processSignals.map((signal) => (
+            <div key={signal} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.018] px-4 py-3 text-sm text-white/55">
+              <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
+              <span>{signal}</span>
+            </div>
+          ))}
+        </div>
 
         <div className="border-t border-white/12">
           {services.map((service, index) => (
@@ -64,12 +79,16 @@ export function ServicesSection() {
                 <p className="text-white/28">{service.timing}</p>
               </div>
               <div className="flex items-center justify-between gap-6 lg:justify-end">
-                <span className="whitespace-nowrap text-sm font-medium text-cyan-100/75">{service.price}</span>
+                <div className="space-y-1 lg:text-right">
+                  <span className="block whitespace-nowrap text-sm font-medium text-cyan-100/75">{service.price}</span>
+                  <span className="block text-xs text-white/30">Diagnóstico previo</span>
+                </div>
                 <Link
                   href="#contact"
                   aria-label={`Consultar ${service.title}`}
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/60 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
+                  className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white/65 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
                 >
+                  Consultar
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>

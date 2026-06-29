@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail } from "lucide-react"
+import { Mail, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
@@ -18,6 +18,12 @@ type FormState = {
 }
 
 const budgetLabels = ["< $5k", "$5k - $15k", "$15k - $50k", "> $50k"]
+
+const responseExpectations = [
+  "Lectura inicial del reto",
+  "Siguiente paso recomendado",
+  "Rango de alcance si hay fit",
+]
 
 export function ContactSection() {
   const [form, setForm] = useState<FormState>({
@@ -86,6 +92,20 @@ export function ContactSection() {
               Trabajo mejor con fundadores y equipos que valoran una idea clara, una interfaz excepcional y una ejecución técnica responsable.
             </p>
           </div>
+          <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white/75">
+              <Sparkles className="h-4 w-4 text-cyan-100/70" aria-hidden="true" />
+              Qué recibirás primero
+            </div>
+            <ul className="space-y-3 text-sm text-white/48">
+              {responseExpectations.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-100/65" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
           <div className="space-y-5 border-t border-white/10 pt-6">
             <div>
               <p className="text-sm text-muted-foreground">Email</p>
@@ -133,7 +153,7 @@ export function ContactSection() {
               />
             </div>
             <InputField
-              label="¿Qué quieres construir?"
+              label="Producto o reto"
               id="contact-project"
               name="project"
               autoComplete="off"
@@ -142,7 +162,7 @@ export function ContactSection() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, project: e.target.value })}
             />
             <fieldset>
-              <legend className="mb-3 block text-sm font-medium text-muted-foreground">Presupuesto aproximado</legend>
+              <legend className="mb-3 block text-sm font-medium text-muted-foreground">Inversión aproximada</legend>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {budgetLabels.map((label) => (
                   <button
@@ -163,7 +183,7 @@ export function ContactSection() {
               </div>
             </fieldset>
             <div>
-              <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">Contexto del proyecto</label>
+              <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">Contexto para el diagnóstico</label>
               <textarea
                 id="contact-message"
                 name="message"
@@ -172,7 +192,7 @@ export function ContactSection() {
                 minLength={10}
                 maxLength={4000}
                 className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/25 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
-                placeholder="Objetivo, problema actual, plazo y cualquier enlace que ayude a entender la idea."
+                placeholder="Objetivo, problema actual, plazo, usuarios y cualquier enlace que ayude a entender la oportunidad."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
