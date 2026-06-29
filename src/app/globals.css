@@ -36,12 +36,14 @@
   }
 
   html {
+    overflow-x: clip;
     scroll-behavior: smooth;
     background: #050505;
   }
 
   body {
     @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    overflow-x: hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
     background-image:
       radial-gradient(circle at 70% -12%, rgba(112, 170, 255, 0.09), transparent 30%),
