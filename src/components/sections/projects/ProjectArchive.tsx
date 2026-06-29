@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Github, ExternalLink, Search } from "lucide-react"
+import { CheckCircle2, Github, ExternalLink, Search } from "lucide-react"
 import { projects } from "@/data/projects"
 import Link from "next/link"
 
@@ -121,6 +121,21 @@ export function ProjectArchive() {
                                 <p className="text-muted-foreground text-sm line-clamp-3 mb-6 flex-1">
                                     {project.description}
                                 </p>
+
+                                <div className="mb-5 grid gap-2 text-xs text-zinc-500">
+                                    <div className="rounded-xl border border-white/5 bg-black/20 px-3 py-2">
+                                        <span className="block text-zinc-600">Rol</span>
+                                        <span className="mt-1 block text-zinc-300">{project.role}</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.evidence.slice(0, 2).map((item) => (
+                                            <span key={item} className="inline-flex items-center gap-1.5 text-zinc-400">
+                                                <CheckCircle2 className="h-3 w-3 text-cyan-100/55" aria-hidden="true" />
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
 
                                 {/* Tech Stack */}
                                 <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">

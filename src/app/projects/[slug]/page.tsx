@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2 } from "lucide-react"
+import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2, ShieldCheck } from "lucide-react"
 import { projects } from "@/data/projects"
 
 export function generateStaticParams() {
@@ -82,6 +82,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-wider">
                                 {project.category}
                             </span>
+                            <span className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-white/55 text-xs font-mono uppercase tracking-wider">
+                                {project.status}
+                            </span>
                             {project.featured && (
                                 <span className="px-3 py-1 rounded-full border border-yellow-500/20 bg-yellow-500/5 text-yellow-500 text-xs font-mono uppercase tracking-wider">
                                     Caso destacado
@@ -96,6 +99,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         <p className="text-lg text-muted-foreground leading-relaxed mb-8 border-l-2 border-white/10 pl-6">
                             {project.description}
                         </p>
+
+                        <div className="mb-8 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
+                            <p className="text-xs font-mono uppercase tracking-wider text-zinc-500">Rol principal</p>
+                            <p className="mt-2 text-sm text-zinc-300">{project.role}</p>
+                        </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                             {project.demo && (
@@ -140,6 +148,20 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                     </span>
                                 ))}
                             </div>
+
+                            <div className="mt-8 border-t border-white/10 pt-6">
+                                <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
+                                    <ShieldCheck className="w-4 h-4" /> Evidencia
+                                </h3>
+                                <ul className="space-y-3">
+                                    {project.evidence.map((item) => (
+                                        <li key={item} className="flex items-start gap-3 text-sm text-zinc-300">
+                                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -166,8 +188,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.challenges.map((challenge: string, i: number) => (
-                                        <li key={i} className="flex gap-4 items-start p-4 rounded-xl bg-red-500/5 border border-red-500/10">
-                                            <span className="mt-1 w-2 h-2 rounded-full bg-red-500/50 shrink-0" />
+                                        <li key={i} className="flex gap-4 items-start p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                                            <span className="mt-1 w-2 h-2 rounded-full bg-cyan-100/50 shrink-0" />
                                             <span className="text-zinc-300">{challenge}</span>
                                         </li>
                                     ))}
@@ -183,8 +205,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.solutions.map((solution: string, i: number) => (
-                                        <li key={i} className="flex gap-4 items-start p-4 rounded-xl bg-blue-500/5 border border-blue-500/10">
-                                            <span className="mt-1 w-2 h-2 rounded-full bg-blue-500/50 shrink-0" />
+                                        <li key={i} className="flex gap-4 items-start p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                                            <span className="mt-1 w-2 h-2 rounded-full bg-cyan-100/50 shrink-0" />
                                             <span className="text-zinc-300">{solution}</span>
                                         </li>
                                     ))}
@@ -198,9 +220,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                                     <span className="text-primary font-mono text-sm">04.</span> Impacto y resultados
                                 </h2>
-                                <div className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/5 border border-green-500/20">
+                                <div className="p-6 rounded-2xl bg-gradient-to-br from-cyan-100/[0.08] to-white/[0.02] border border-cyan-100/15">
                                     <div className="flex items-start gap-4">
-                                        <CheckCircle2 className="w-6 h-6 text-green-500 mt-1" />
+                                        <CheckCircle2 className="w-6 h-6 text-cyan-100/75 mt-1" />
                                         <p className="text-lg text-zinc-200">{project.results}</p>
                                     </div>
                                 </div>

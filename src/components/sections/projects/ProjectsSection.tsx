@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight, ExternalLink, Github } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, ExternalLink, Github } from "lucide-react"
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
@@ -69,6 +69,17 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 
           <p className="mt-4 max-w-2xl text-sm leading-6 text-white/55">{project.description}</p>
 
+          <div className="mt-5 grid gap-2 text-xs text-white/42 sm:grid-cols-2">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.018] px-3 py-2">
+              <span className="block text-white/28">Rol</span>
+              <span className="mt-1 block text-white/58">{project.role}</span>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.018] px-3 py-2">
+              <span className="block text-white/28">Estado</span>
+              <span className="mt-1 block text-white/58">{project.status}</span>
+            </div>
+          </div>
+
           <div className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
             <div className="flex flex-wrap gap-2">
               {project.technologies.slice(0, 4).map((technology) => (
@@ -92,6 +103,14 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
                 </a>
               )}
             </div>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-white/38">
+            {project.evidence.slice(0, 3).map((item) => (
+              <span key={item} className="inline-flex items-center gap-1.5">
+                <CheckCircle2 className="h-3 w-3 text-cyan-100/55" aria-hidden="true" />
+                {item}
+              </span>
+            ))}
           </div>
         </div>
       </div>
