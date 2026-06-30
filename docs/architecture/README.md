@@ -2,6 +2,8 @@
 
 Pascal.dev adopta inicialmente un monolito modular. Next.js contiene la interfaz pública y los casos de uso actuales; los límites internos deben permitir extraer paquetes o workers solamente cuando aparezca un segundo consumidor real.
 
+La arquitectura distingue tres conceptos sin implementarlos como productos simultáneos: Pascal.dev es el producto activo, el Pascal Development System es la metodología interna y Pascal Engineering es la empresa futura. Esta separación se formaliza en [ADR-0005](./adr/0005-three-system-operating-model.md) y en el [Pascal Operating Model](../product/PASCAL_OPERATING_MODEL.md).
+
 ## Capas objetivo
 
 ```text

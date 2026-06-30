@@ -1,8 +1,8 @@
-# Pascal.dev — Plataforma profesional y portafolio
+# Pascal.dev — Engineering Studio y plataforma profesional
 
-Este repositorio contiene el portafolio profesional de Pascal. Su objetivo principal es ayudarle a conseguir empleo, clientes, proyectos y oportunidades de colaboración mostrando con claridad su experiencia, criterio y capacidad para construir productos digitales. También funciona como una plataforma comercial: debe transformar visitas calificadas en conversaciones, propuestas y proyectos sostenibles.
+Este repositorio contiene Pascal.dev, el producto público. Su función es generar confianza, demostrar capacidad técnica y convertir visitantes en clientes, colaboraciones u oportunidades profesionales mediante evidencia real.
 
-El sitio debe sentirse profesional, elegante, moderno y confiable. Cada decisión de contenido, interfaz o automatización debe reforzar esa percepción ante reclutadores, responsables de contratación, equipos técnicos y clientes potenciales. No es únicamente una vitrina estática: la evolución prevista lo convierte gradualmente en una plataforma verificable, automatizada y asistida por agentes sin perder su propósito laboral.
+El Pascal Development System es la metodología interna utilizada para construir y mejorar productos. Pascal Engineering es la empresa futura que podrá operar sobre esa metodología; no es una capa que deba implementarse ahora.
 
 ## Objetivo profesional y criterio visual
 
@@ -27,11 +27,13 @@ El portafolio debe:
 
 Toda propuesta automatizada debe evaluarse con una pregunta sencilla: **¿hace que Pascal resulte más claro, competente y atractivo para una oportunidad profesional o comercial?**
 
-## Qué comunica el portafolio
+## Qué comunica Pascal.dev
 
 - Perfil profesional y propuesta de valor.
 - Tecnologías y áreas de especialización.
 - Casos de estudio con contexto, retos, soluciones y resultados.
+- Metodología de ingeniería y estándares de entrega.
+- Evidencia de cómo el Pascal Development System se aplica en proyectos reales.
 - Enlaces a demostraciones y repositorios.
 - Un canal de contacto para nuevas oportunidades y proyectos.
 
@@ -60,6 +62,7 @@ La aplicación usa App Router, genera páginas estáticas para los proyectos y e
 Documentación principal:
 
 - [Project Charter](./docs/product/PROJECT_CHARTER.md)
+- [Pascal Operating Model](./docs/product/PASCAL_OPERATING_MODEL.md)
 - [Experience Engineering](./docs/design/EXPERIENCE_ENGINEERING.md)
 - [Arquitectura](./docs/architecture/README.md)
 - [ADRs](./docs/architecture/adr/)
