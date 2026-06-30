@@ -8,7 +8,8 @@
     "lint": "next lint",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "check": "pnpm typecheck && pnpm lint && pnpm build"
+    "validate:data": "node scripts/validate-projects.mjs",
+    "check": "pnpm typecheck && pnpm lint && pnpm validate:data && pnpm build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
