@@ -85,10 +85,10 @@ export function Footer() {
           variants={containerVariants}
         >
           <motion.div className="space-y-4" variants={itemVariants}>
-            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Boutique Software Engineering</p>
+            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Software Product Engineering</p>
             <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Software moderno con diseño premium y criterio técnico.</h2>
             <p className="max-w-xl text-muted-foreground leading-7">
-              Una práctica boutique de ingeniería para equipos que necesitan claridad, arquitectura, automatización e interfaces que transmiten confianza.
+              Ingeniería de producto para equipos que necesitan claridad, arquitectura, automatización e interfaces que transmiten confianza.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((link) => (

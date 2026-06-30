@@ -73,14 +73,10 @@ export function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="hero-scene relative z-0 mx-0 mt-2 h-[15rem] min-w-0 overflow-hidden sm:mt-0 sm:h-[28rem] lg:h-[32rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
-          aria-label="Cubo conceptual interactivo con núcleo cambiante"
+          aria-label="Visual tridimensional de Pascal.dev"
         >
           <div className="pointer-events-none absolute inset-[14%] rounded-full bg-sky-300/[0.07] blur-[90px]" />
           <LazySpatialScene />
-          <div className="pointer-events-none absolute bottom-[15%] right-[12%] hidden items-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/30 lg:flex">
-            <span className="h-px w-8 bg-gradient-to-r from-transparent to-cyan-100/50" />
-            Hover · Núcleo reactivo
-          </div>
         </motion.div>
       </div>
 
