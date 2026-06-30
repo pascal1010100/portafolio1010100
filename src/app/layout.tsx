@@ -23,16 +23,15 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pascal.dev"),
-  title: "Pascal.dev — Software Product Engineering",
+  title: "Pascal.dev — Ingeniería de producto digital",
   description:
     "Pascal.dev diseña y desarrolla software moderno, escalable y mantenible con arquitectura sólida, diseño premium, automatización e ingeniería asistida por IA.",
   keywords: [
     "pascal.dev",
-    "Software Product Engineering",
-    "Product Engineering",
-    "Full-Stack Architecture",
-    "AI-assisted Development",
-    "UI/UX Systems",
+    "Ingeniería de producto digital",
+    "Arquitectura full-stack",
+    "Desarrollo asistido por IA",
+    "Sistemas UI/UX",
     "React",
     "Next.js",
     "TypeScript",
@@ -46,13 +45,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_GT",
     url: "https://pascal.dev",
-    title: "Pascal.dev — Software Product Engineering",
+    title: "Pascal.dev — Ingeniería de producto digital",
     description: "Software moderno, escalable y mantenible con arquitectura, diseño premium, automatización e IA asistida.",
     siteName: "pascal.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal.dev — Software Product Engineering",
+    title: "Pascal.dev — Ingeniería de producto digital",
     description: "Software moderno, escalable y mantenible con arquitectura, diseño premium, automatización e IA asistida.",
     creator: "@pascal1010100",
   },

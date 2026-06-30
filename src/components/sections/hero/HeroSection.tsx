@@ -81,7 +81,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-2 border-t border-white/10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-        {["Product Engineering", "Full-stack Architecture", "AI-assisted Development", "Premium UI Systems"].map((item, index) => (
+        {["Ingeniería de producto", "Arquitectura full-stack", "Desarrollo asistido por IA", "Sistemas UI/UX"].map((item, index) => (
           <div key={item} className="group flex items-center gap-2 border-white/10 py-4 text-[10px] uppercase tracking-[0.13em] text-white/30 transition hover:text-white/60 odd:border-r lg:border-r lg:last:border-r-0 lg:gap-3 lg:px-6 lg:py-5 lg:text-xs lg:tracking-[0.16em] lg:first:pl-0">
             <span className="text-cyan-100/55">0{index + 1}</span>
             {item}

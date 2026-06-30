@@ -1,16 +1,16 @@
 export const skills = [
     {
-        category: "Product Engineering",
+        category: "Ingeniería de producto",
         description: "Definición de producto, alcance por fases, MVP, roadmap y criterios de aceptación claros.",
         items: [
-            { name: "Discovery" },
-            { name: "MVP strategy" },
-            { name: "Roadmaps" },
-            { name: "Acceptance criteria" }
+            { name: "Descubrimiento" },
+            { name: "Estrategia de MVP" },
+            { name: "Hojas de ruta" },
+            { name: "Criterios de aceptación" }
         ]
     },
     {
-        category: "Full-Stack Architecture",
+        category: "Arquitectura full-stack",
         description: "Sistemas web con límites técnicos definidos, datos estructurados e integraciones preparadas para crecer.",
         items: [
             { name: "Next.js" },
@@ -20,43 +20,43 @@ export const skills = [
         ]
     },
     {
-        category: "AI-Assisted Development",
+        category: "Desarrollo asistido por IA",
         description: "IA aplicada como acelerador de ingeniería y producto, con casos de uso concretos y verificables.",
         items: [
             { name: "OpenAI API" },
             { name: "RAG" },
-            { name: "Assistants" },
-            { name: "Content workflows" }
+            { name: "Asistentes" },
+            { name: "Flujos de contenido" }
         ]
     },
     {
-        category: "UI/UX Systems",
+        category: "Sistemas UI/UX",
         description: "Interfaces premium, responsivas y accesibles que explican el producto y transmiten confianza.",
         items: [
-            { name: "Design systems" },
-            { name: "Responsive UI" },
-            { name: "Accessibility" },
-            { name: "Conversion UX" }
+            { name: "Sistemas de diseño" },
+            { name: "Interfaces responsivas" },
+            { name: "Accesibilidad" },
+            { name: "UX de conversión" }
         ]
     },
     {
-        category: "Automation & Integrations",
+        category: "Automatización e integraciones",
         description: "Conexiones y flujos que reducen trabajo manual sin introducir complejidad innecesaria.",
         items: [
             { name: "GitHub" },
             { name: "WhatsApp" },
             { name: "Resend" },
-            { name: "External APIs" }
+            { name: "APIs externas" }
         ]
     },
     {
-        category: "Cloud Deployment",
+        category: "Despliegue en la nube",
         description: "Publicación reproducible con entornos claros, CI/CD y una base preparada para mantenimiento.",
         items: [
             { name: "Vercel" },
             { name: "CI/CD" },
-            { name: "Environment variables" },
-            { name: "Build validation" }
+            { name: "Variables de entorno" },
+            { name: "Validación de compilación" }
         ]
     }
 ]
