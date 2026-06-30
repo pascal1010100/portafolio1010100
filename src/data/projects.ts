@@ -1,3 +1,9 @@
+export type ProjectEvidence = {
+    label: string
+    source: "Sitio público" | "Repositorio público" | "Repositorio privado"
+    url?: string
+}
+
 export const projects = [
     {
         title: "Open Narrative",
@@ -16,7 +22,12 @@ export const projects = [
         ],
         results: "El producto está disponible públicamente con una experiencia interactiva que permite pegar texto, analizarlo y acceder al flujo de humanización desde una interfaz enfocada.",
         technologies: ["Next.js", "TypeScript", "OpenAI API", "Stripe", "Supabase"],
-        evidence: ["Producto público verificado", "Editor interactivo visible", "Flujos de acceso y precios"],
+        evidence: [
+            { label: "Producto público operativo", source: "Sitio público", url: "https://opennarrative.co/" },
+            { label: "Editor interactivo visible", source: "Sitio público", url: "https://opennarrative.co/" },
+            { label: "Flujos de acceso y precios", source: "Sitio público", url: "https://opennarrative.co/pricing" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Desarrollo de la aplicación y experiencia de producto",
         status: "Producto público en operación",
         image: "/images/opennarrative.png",
@@ -42,7 +53,12 @@ export const projects = [
         ],
         results: "El MVP opera en dominio propio con catálogo real, búsqueda por categoría, carrito, checkout, pedidos guardados y entrega configurable para Guatemala.",
         technologies: ["Next.js", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM"],
-        evidence: ["Dominio de producción", "Catálogo real operativo", "CI y smoke tests"],
+        evidence: [
+            { label: "Dominio de producción", source: "Sitio público", url: "https://www.nativamarket.net/" },
+            { label: "Catálogo real operativo", source: "Sitio público", url: "https://www.nativamarket.net/#catalogo" },
+            { label: "CI y smoke tests", source: "Repositorio privado" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Producto, arquitectura e ingeniería full-stack",
         status: "MVP validado en producción",
         image: "/images/nativa-market.png",
@@ -68,7 +84,12 @@ export const projects = [
         ],
         results: "El sitio está publicado en dominio propio y presenta de forma verificable ambas propiedades, sus diferencias y un canal directo para consultar disponibilidad.",
         technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
-        evidence: ["Dominio de producción", "Repositorio público", "Consulta directa visible"],
+        evidence: [
+            { label: "Dominio de producción", source: "Sitio público", url: "https://www.mandalashostels.com/" },
+            { label: "Implementación disponible", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas" },
+            { label: "Consulta directa visible", source: "Sitio público", url: "https://www.mandalashostels.com/contact" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Diseño de experiencia y desarrollo web",
         status: "Sitio comercial en producción",
         image: "/images/mandalas.png",
@@ -94,7 +115,12 @@ export const projects = [
         ],
         results: "El MVP desplegado permite configurar una solicitud, entender el proceso completo y continuar la coordinación operativa por WhatsApp sin solicitar pago anticipado.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Zod", "Playwright"],
-        evidence: ["Demo pública verificada", "Flujo guiado funcional", "Pruebas unitarias y E2E"],
+        evidence: [
+            { label: "Demo pública operativa", source: "Sitio público", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Flujo guiado funcional", source: "Sitio público", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Pruebas unitarias y E2E", source: "Repositorio privado" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Producto, UX operativa e ingeniería full-stack",
         status: "MVP desplegado",
         image: "/images/not-your-money-laundry.png",
@@ -120,7 +146,12 @@ export const projects = [
         ],
         results: "La plataforma está publicada en dominio propio con navegación bilingüe, mapa de San Pedro, catálogo de experiencias y recorridos de reserva y transporte.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Leaflet", "next-intl"],
-        evidence: ["Dominio de producción", "Repositorio público", "Mapa y rutas bilingües"],
+        evidence: [
+            { label: "Dominio de producción", source: "Sitio público", url: "https://nomadafantasma.com/es" },
+            { label: "Implementación disponible", source: "Repositorio público", url: "https://github.com/pascal1010100/nomada-fantasma" },
+            { label: "Mapa y rutas bilingües", source: "Sitio público", url: "https://nomadafantasma.com/es/mapa?town=san-pedro" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Producto, arquitectura y experiencia geográfica",
         status: "Plataforma pública en evolución",
         image: "/images/nomadguide.png",
@@ -146,7 +177,12 @@ export const projects = [
         ],
         results: "La primera versión está desplegada, presenta tres opciones comerciales y conduce al visitante hacia reservas en Recurrente o contacto directo por WhatsApp.",
         technologies: ["Astro", "TypeScript", "SEO técnico", "Recurrente", "Vercel"],
-        evidence: ["Landing pública verificada", "Reservas externas conectadas", "Experiencia responsive"],
+        evidence: [
+            { label: "Landing pública operativa", source: "Sitio público", url: "https://guateraw-travel.vercel.app/" },
+            { label: "Reservas externas conectadas", source: "Sitio público", url: "https://guateraw-travel.vercel.app/#experiencias" },
+            { label: "Implementación responsive", source: "Repositorio privado" }
+        ] satisfies ProjectEvidence[],
+        verifiedAt: "2026-06-30",
         role: "Estrategia de conversión, diseño y desarrollo frontend",
         status: "Primera versión desplegada",
         image: "/images/guateraw-travel.png",

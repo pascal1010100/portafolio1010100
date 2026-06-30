@@ -106,9 +106,9 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
           </div>
           <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-white/38">
             {project.evidence.slice(0, 3).map((item) => (
-              <span key={item} className="inline-flex items-center gap-1.5">
+              <span key={`${item.source}-${item.label}`} className="inline-flex items-center gap-1.5">
                 <CheckCircle2 className="h-3 w-3 text-cyan-100/55" aria-hidden="true" />
-                {item}
+                {item.label}
               </span>
             ))}
           </div>

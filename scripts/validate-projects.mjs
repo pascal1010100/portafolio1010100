@@ -8,6 +8,7 @@ const dataFile = path.join(rootDir, "src/data/projects.ts")
 const publicDir = path.join(rootDir, "public")
 
 const errors = []
+const EVIDENCE_SOURCES = new Set(["Sitio público", "Repositorio público", "Repositorio privado"])
 
 function addError(message) {
   errors.push(message)
@@ -55,6 +56,49 @@ function validateUrl(value, field, label) {
     }
   } catch {
     addError(`${label}: "${field}" must be a valid URL.`)
+  }
+}
+
+function validateEvidence(project, label) {
+  const evidence = project.evidence
+
+  if (!Array.isArray(evidence) || evidence.length < 3) {
+    addError(`${label}: "evidence" must contain at least 3 item(s).`)
+    return
+  }
+
+  evidence.forEach((item, index) => {
+    const itemLabel = `${label}: evidence item ${index + 1}`
+
+    if (!item || typeof item !== "object") {
+      addError(`${itemLabel} must be an object.`)
+      return
+    }
+
+    if (!isNonEmptyString(item.label)) {
+      addError(`${itemLabel}: "label" must be a non-empty string.`)
+    }
+
+    if (!EVIDENCE_SOURCES.has(item.source)) {
+      addError(`${itemLabel}: "source" must identify a supported public or private source.`)
+    }
+
+    validateUrl(item.url, "url", itemLabel)
+
+    if (item.source !== "Repositorio privado" && !isNonEmptyString(item.url)) {
+      addError(`${itemLabel}: public evidence must include a URL.`)
+    }
+  })
+}
+
+function validateVerifiedAt(value, label) {
+  if (!isNonEmptyString(value) || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    addError(`${label}: "verifiedAt" must use YYYY-MM-DD format.`)
+    return
+  }
+
+  if (Number.isNaN(Date.parse(`${value}T00:00:00Z`))) {
+    addError(`${label}: "verifiedAt" must be a valid date.`)
   }
 }
 
@@ -106,7 +150,8 @@ if (!Array.isArray(projects) || projects.length === 0) {
     validateStringArray(project, "technologies", label, 3)
     validateStringArray(project, "challenges", label, 3)
     validateStringArray(project, "solutions", label, 3)
-    validateStringArray(project, "evidence", label, 3)
+    validateEvidence(project, label)
+    validateVerifiedAt(project.verifiedAt, label)
 
     if (isNonEmptyString(project.slug)) {
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug)) {

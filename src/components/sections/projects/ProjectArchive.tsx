@@ -129,9 +129,9 @@ export function ProjectArchive() {
                                     </div>
                                     <div className="flex flex-wrap gap-2">
                                         {project.evidence.slice(0, 2).map((item) => (
-                                            <span key={item} className="inline-flex items-center gap-1.5 text-zinc-400">
+                                            <span key={`${item.source}-${item.label}`} className="inline-flex items-center gap-1.5 text-zinc-400">
                                                 <CheckCircle2 className="h-3 w-3 text-cyan-100/55" aria-hidden="true" />
-                                                {item}
+                                                {item.label}
                                             </span>
                                         ))}
                                     </div>

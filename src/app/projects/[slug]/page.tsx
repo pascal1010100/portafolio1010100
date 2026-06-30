@@ -3,7 +3,36 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2, ShieldCheck } from "lucide-react"
-import { projects } from "@/data/projects"
+import { projects, type ProjectEvidence } from "@/data/projects"
+
+function formatVerifiedDate(value: string) {
+    return new Intl.DateTimeFormat("es-GT", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        timeZone: "UTC",
+    }).format(new Date(`${value}T00:00:00Z`))
+}
+
+function EvidenceItem({ item }: { item: ProjectEvidence }) {
+    const content = (
+        <>
+            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
+            <span>
+                <span className="block">{item.label}</span>
+                <span className="mt-0.5 block text-xs text-zinc-500">{item.source}</span>
+            </span>
+        </>
+    )
+
+    return item.url ? (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm text-zinc-300 transition hover:text-white">
+            {content}
+        </a>
+    ) : (
+        <div className="flex items-start gap-3 text-sm text-zinc-300">{content}</div>
+    )
+}
 
 export function generateStaticParams() {
     return projects.map((project) => ({
@@ -153,11 +182,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
                                     <ShieldCheck className="w-4 h-4" /> Evidencia
                                 </h3>
+                                <p className="mb-4 text-xs text-zinc-600">Verificado el {formatVerifiedDate(project.verifiedAt)}</p>
                                 <ul className="space-y-3">
                                     {project.evidence.map((item) => (
-                                        <li key={item} className="flex items-start gap-3 text-sm text-zinc-300">
-                                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
-                                            <span>{item}</span>
+                                        <li key={`${item.source}-${item.label}`}>
+                                            <EvidenceItem item={item} />
                                         </li>
                                     ))}
                                 </ul>
