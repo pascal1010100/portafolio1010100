@@ -10,8 +10,8 @@ export function SkillsSection() {
     <SectionContainer id="skills" className="py-20 sm:py-28 lg:py-36">
       <SectionHeader
         subtitle="01 — Capacidades"
-        title="Una práctica digital completa"
-        description="Producto, interfaz y sistemas pensados como una sola experiencia. Menos capas, mejores decisiones."
+        title="Capacidades para construir software de principio a fin"
+        description="No vendemos herramientas aisladas. Diseñamos, desarrollamos y desplegamos sistemas digitales completos usando tecnología moderna como soporte de decisiones de producto."
       />
 
       <div className="grid border-y border-white/10 md:grid-cols-3">
@@ -26,6 +26,7 @@ export function SkillsSection() {
           >
             <p className="text-xs text-white/25">0{index + 1}</p>
             <h3 className="mt-5 text-xl font-medium tracking-[-0.02em] text-white">{group.category}</h3>
+            <p className="mt-3 text-sm leading-6 text-white/42">{group.description}</p>
             <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3">
               {group.items.map((skill) => (
                 <span key={skill.name} className="text-sm text-white/45 transition hover:text-white/80">

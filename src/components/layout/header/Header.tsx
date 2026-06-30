@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils"
 
 const navItems = [
   { name: "Inicio", href: "#home" },
-  { name: "Enfoque", href: "#skills" },
+  { name: "Capacidades", href: "#skills" },
+  { name: "Enfoque", href: "#process" },
   { name: "Servicios", href: "#services" },
   { name: "Proyectos", href: "#projects" },
 ]
@@ -61,7 +62,7 @@ export function Navbar() {
           Pascal<span className="text-white/35">.dev</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegación principal">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -88,7 +89,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-white md:hidden"
+          className="rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-white lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMobileMenuOpen}
@@ -103,7 +104,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="border-t border-white/10 bg-black/95 px-4 py-5 backdrop-blur-2xl md:hidden"
+            className="border-t border-white/10 bg-black/95 px-4 py-5 backdrop-blur-2xl lg:hidden"
             aria-label="Navegación móvil"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-2">

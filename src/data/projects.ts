@@ -2,49 +2,49 @@ export const projects = [
     {
         title: "Open Narrative",
         slug: "open-narrative",
-        description: "Plataforma SaaS que utiliza modelos avanzados de AI para transformar texto generado automáticamente en una narrativa más natural, clara y atractiva.",
-        longDescription: "Open Narrative responde a la necesidad de mejorar la calidad editorial del contenido generado con AI. El producto ayuda a creadores y equipos de marketing a refinar tono, ritmo y naturalidad sin perder la intención original.",
+        description: "Plataforma SaaS con IA para mejorar la naturalidad y claridad de contenido generado automáticamente mediante una experiencia editorial simple.",
+        longDescription: "Open Narrative responde a la necesidad de mejorar contenido generado con IA sin perder intención, tono ni precisión. El caso explora procesamiento editorial, experiencia de usuario y una base técnica preparada para flujos de alto volumen.",
         challenges: [
             "Detectar patrones repetitivos en la salida de modelos de lenguaje.",
             "Mantener la intención y precisión del texto durante la reescritura.",
-            "Escalar el procesamiento para usuarios de alto volumen sin elevar la latencia."
+            "Preparar una arquitectura capaz de evolucionar hacia procesamiento de mayor volumen."
         ],
         solutions: [
-            "Implementé una pipeline de varias etapas para analizar y refinar el contenido.",
-            "Desarrollé una métrica de naturalidad con retroalimentación en tiempo real.",
-            "Diseñé un sistema de colas serverless sobre Supabase Edge Functions."
+            "Se diseñó una pipeline de varias etapas para analizar y refinar contenido.",
+            "Se exploró una métrica de naturalidad con retroalimentación en tiempo real.",
+            "Se planteó una base serverless preparada para procesamiento asíncrono."
         ],
-        results: "La arquitectura permitió procesar grandes volúmenes de texto durante la beta manteniendo una experiencia rápida y consistente.",
+        results: "La beta funcional permitió validar una experiencia editorial clara para transformar texto generado con IA en contenido más natural.",
         technologies: ["Next.js", "OpenAI API", "Stripe", "Supabase", "Tailwind CSS"],
-        evidence: ["Demo pública", "Repositorio base", "Caso en beta"],
+        evidence: ["Demo pública", "Repositorio base", "Beta funcional"],
         role: "Producto, UI/UX e ingeniería full-stack",
-        status: "Beta funcional",
+        status: "Beta funcional desplegada",
         image: "/images/opennarrative.png",
         github: "https://github.com/pascal1010100",
         demo: "https://opennarrative.co/",
         featured: true,
-        category: "AI SaaS"
+        category: "SaaS con IA"
     },
     {
         title: "Hostales Mandalas",
         slug: "hostales-mandalas",
-        description: "Ecosistema digital para hospitalidad que centraliza reservas, disponibilidad, pagos y comunicación con huéspedes.",
-        longDescription: "Hostales Mandalas necesitaba una solución propia para gestionar dormitorios y habitaciones privadas, reducir dependencia de intermediarios y fortalecer las reservas directas.",
+        description: "Sistema web para gestión de reservas, disponibilidad y operación de hospitalidad con experiencia pública y panel operativo.",
+        longDescription: "Hostales Mandalas necesitaba una solución propia para gestionar dormitorios y habitaciones privadas, reducir dependencia de intermediarios y fortalecer reservas directas. El proyecto conecta experiencia pública, administración interna y datos operativos.",
         challenges: [
             "Sincronizar disponibilidad en tiempo real para evitar reservas duplicadas.",
             "Resolver reglas distintas para inventario por cama y por habitación.",
             "Integrar métodos de pago locales en una experiencia sencilla."
         ],
         solutions: [
-            "Construí un motor de disponibilidad en tiempo real con PostgreSQL y Row Level Security.",
-            "Creé un panel administrativo para check-ins, reservas y operación interna.",
-            "Integré mapas interactivos para facilitar la llegada de los huéspedes."
+            "Se diseñó un modelo de disponibilidad con PostgreSQL y reglas de acceso.",
+            "Se construyó un panel administrativo para check-ins, reservas y operación interna.",
+            "Se integraron mapas interactivos para facilitar la llegada de huéspedes."
         ],
-        results: "La plataforma fortaleció el canal de reserva directa y redujo trabajo administrativo mediante confirmaciones automatizadas.",
+        results: "El prototipo avanzado desplegado muestra un flujo de reserva directa y una base operativa preparada para evolucionar con reglas reales del negocio.",
         technologies: ["Next.js", "Supabase", "Real-time", "PostgreSQL", "Google Maps API"],
-        evidence: ["Demo desplegada", "Repositorio público", "Flujo de reservas"],
+        evidence: ["Demo desplegada", "Repositorio público", "Flujo de reservas visible"],
         role: "Arquitectura, base de datos e interfaz operativa",
-        status: "Prototipo avanzado",
+        status: "Prototipo avanzado desplegado",
         image: "/images/mandalas.png",
         github: "https://github.com/pascal1010100/hostales-mandalas",
         demo: "https://mandalas-sigma.vercel.app/",
@@ -54,27 +54,27 @@ export const projects = [
     {
         title: "Nomad Guide AI",
         slug: "nomad-guide",
-        description: "Guía para nómadas digitales que combina mapas interactivos con un asistente de AI contextual basado en RAG.",
-        longDescription: "Nomad Guide AI ayuda a encontrar espacios de trabajo con conectividad y condiciones confiables al combinar información geográfica, reseñas y respuestas contextualizadas.",
+        description: "Guía para nómadas digitales que combina mapas interactivos, búsqueda contextual y asistencia con IA basada en RAG.",
+        longDescription: "Nomad Guide AI explora cómo combinar información geográfica, reseñas y respuestas contextualizadas para ayudar a comparar espacios y destinos de trabajo remoto.",
         challenges: [
             "Unificar información dispersa de distintas fuentes geográficas.",
             "Generar respuestas relevantes según ubicación y necesidades específicas.",
             "Mantener funciones útiles con conectividad limitada."
         ],
         solutions: [
-            "Construí una pipeline RAG para consultar una base vectorial de reseñas.",
-            "Implementé capacidades PWA para acceso con conectividad limitada.",
-            "Utilicé Mapbox para mapas interactivos personalizados y eficientes."
+            "Se diseñó una pipeline RAG para consultar información contextual.",
+            "Se exploraron capacidades PWA para mejorar disponibilidad de la experiencia.",
+            "Se integraron mapas interactivos para comparar ubicaciones de forma visual."
         ],
-        results: "La beta validó que combinar búsqueda geográfica y AI reduce la fricción al comparar espacios de trabajo.",
+        results: "La beta conceptual desplegada valida una dirección de producto donde geolocalización e IA reducen fricción al comparar espacios de trabajo.",
         technologies: ["RAG AI", "Mapbox", "PWA", "React", "Node.js"],
-        evidence: ["Demo pública", "Repositorio público", "Validación de concepto"],
-        role: "Producto, mapas, AI contextual y experiencia PWA",
-        status: "Beta conceptual",
+        evidence: ["Demo pública", "Repositorio público", "Validación conceptual"],
+        role: "Producto, mapas, IA contextual y experiencia PWA",
+        status: "Beta conceptual desplegada",
         image: "/images/nomadguide.png",
         github: "https://github.com/pascal1010100/nomad-guide",
         demo: "https://nomada-fantasma.vercel.app",
         featured: true,
-        category: "AI y geolocalización"
+        category: "IA y geolocalización"
     }
 ]

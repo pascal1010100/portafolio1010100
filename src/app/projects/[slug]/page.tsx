@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
     if (!project) {
         return {
-            title: "Project Not Found",
+            title: "Caso no encontrado",
         }
     }
 
     return {
-        title: `${project.title} | Pascal`,
+        title: `${project.title} | Pascal.dev`,
         description: project.description,
         openGraph: {
             title: project.title,

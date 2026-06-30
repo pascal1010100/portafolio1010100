@@ -28,13 +28,13 @@ export function Footer() {
       icon: <Github className="w-4 h-4" aria-hidden="true" />,
       href: "https://github.com/pascal1010100",
       label: "GitHub",
-      srText: "Visita mi perfil de GitHub",
+      srText: "Visita el perfil de GitHub de Pascal.dev",
     },
     {
       icon: <Linkedin className="w-4 h-4" aria-hidden="true" />,
       href: "https://www.linkedin.com/in/josema-aguilar-dev",
       label: "LinkedIn",
-      srText: "Visita mi perfil de LinkedIn",
+      srText: "Visita el perfil de LinkedIn de Pascal.dev",
     },
     {
       icon: <Mail className="w-4 h-4" aria-hidden="true" />,
@@ -85,10 +85,10 @@ export function Footer() {
           variants={containerVariants}
         >
           <motion.div className="space-y-4" variants={itemVariants}>
-            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Experience Engineering</p>
-            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Ideas claras. Experiencias memorables. Sistemas sólidos.</h2>
+            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Boutique Software Engineering</p>
+            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Software moderno con diseño premium y criterio técnico.</h2>
             <p className="max-w-xl text-muted-foreground leading-7">
-              Una práctica boutique de producto e ingeniería para equipos que necesitan claridad, una interfaz refinada y una base técnica confiable.
+              Una práctica boutique de ingeniería para equipos que necesitan claridad, arquitectura, automatización e interfaces que transmiten confianza.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((link) => (
@@ -129,8 +129,8 @@ export function Footer() {
         </motion.div>
 
         <div className="flex flex-col gap-4 border-t border-border/30 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>© {currentYear} Pascal. Todos los derechos reservados.</p>
-          <p>Diseño, producto e ingeniería con atención al detalle.</p>
+          <p>© {currentYear} Pascal.dev. Todos los derechos reservados.</p>
+          <p>Arquitectura, producto e ingeniería con atención al detalle.</p>
         </div>
       </div>
 

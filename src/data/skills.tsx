@@ -1,46 +1,62 @@
-import {
-    FaReact,
-    FaNodeJs,
-    FaGitAlt,
-    FaDocker,
-} from "react-icons/fa"
-import {
-    SiNextdotjs,
-    SiTailwindcss,
-    SiTypescript,
-    SiPostgresql,
-    SiSupabase,
-    SiGraphql,
-    SiOpenai,
-    SiPrisma
-} from "react-icons/si"
-
 export const skills = [
     {
-        category: "Frontend Core",
+        category: "Product Engineering",
+        description: "Definición de producto, alcance por fases, MVP, roadmap y criterios de aceptación claros.",
         items: [
-            { name: "React", icon: FaReact, color: "#61DAFB" },
-            { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
-            { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-            { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" }
+            { name: "Discovery" },
+            { name: "MVP strategy" },
+            { name: "Roadmaps" },
+            { name: "Acceptance criteria" }
         ]
     },
     {
-        category: "Backend & Database",
+        category: "Full-Stack Architecture",
+        description: "Sistemas web con límites técnicos definidos, datos estructurados e integraciones preparadas para crecer.",
         items: [
-            { name: "Node.js", icon: FaNodeJs, color: "#339933" },
-            { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
-            { name: "Supabase", icon: SiSupabase, color: "#3ECF8E" },
-            { name: "GraphQL", icon: SiGraphql, color: "#E10098" }
+            { name: "Next.js" },
+            { name: "Node.js" },
+            { name: "Supabase" },
+            { name: "PostgreSQL" }
         ]
     },
     {
-        category: "AI & Infrastructure",
+        category: "AI-Assisted Development",
+        description: "IA aplicada como acelerador de ingeniería y producto, con casos de uso concretos y verificables.",
         items: [
-            { name: "OpenAI API", icon: SiOpenai, color: "#412991" },
-            { name: "Docker", icon: FaDocker, color: "#2496ED" },
-            { name: "Git", icon: FaGitAlt, color: "#F05032" },
-            { name: "Prisma", icon: SiPrisma, color: "#2D3748" }
+            { name: "OpenAI API" },
+            { name: "RAG" },
+            { name: "Assistants" },
+            { name: "Content workflows" }
+        ]
+    },
+    {
+        category: "UI/UX Systems",
+        description: "Interfaces premium, responsivas y accesibles que explican el producto y transmiten confianza.",
+        items: [
+            { name: "Design systems" },
+            { name: "Responsive UI" },
+            { name: "Accessibility" },
+            { name: "Conversion UX" }
+        ]
+    },
+    {
+        category: "Automation & Integrations",
+        description: "Conexiones y flujos que reducen trabajo manual sin introducir complejidad innecesaria.",
+        items: [
+            { name: "GitHub" },
+            { name: "WhatsApp" },
+            { name: "Resend" },
+            { name: "External APIs" }
+        ]
+    },
+    {
+        category: "Cloud Deployment",
+        description: "Publicación reproducible con entornos claros, CI/CD y una base preparada para mantenimiento.",
+        items: [
+            { name: "Vercel" },
+            { name: "CI/CD" },
+            { name: "Environment variables" },
+            { name: "Build validation" }
         ]
     }
 ]

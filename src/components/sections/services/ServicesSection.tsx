@@ -9,27 +9,51 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 const services = [
   {
     number: "01",
-    title: "Launch Sprint",
-    description: "De una idea dispersa a una primera versión clara, deseable y lista para probar con usuarios reales.",
-    scope: "Estrategia · UX/UI · MVP",
-    timing: "3–5 semanas",
-    price: "Desde $5k",
+    title: "Aplicaciones web modernas",
+    description: "Productos SaaS, portales privados, MVPs y plataformas web construidas con arquitectura clara y una base lista para evolucionar.",
+    scope: "Producto · Full-stack · MVP",
+    timing: "Por fases",
+    price: "Diagnóstico previo",
   },
   {
     number: "02",
-    title: "Product System",
-    description: "Diseño y desarrollo de un producto digital completo, con una base visual y técnica preparada para crecer.",
-    scope: "Producto · Full-stack · Design system",
-    timing: "6–12 semanas",
-    price: "Desde $12k",
+    title: "Landing pages premium",
+    description: "Páginas comerciales con narrativa clara, dirección visual refinada y estructura pensada para convertir visitas calificadas.",
+    scope: "Copy · UI/UX · Conversión",
+    timing: "Sprint corto",
+    price: "Alcance definido",
   },
   {
     number: "03",
-    title: "AI Integration",
-    description: "Funciones de AI con una utilidad concreta: automatización, asistentes, búsqueda semántica y flujos inteligentes.",
-    scope: "AI aplicada · RAG · Automatización",
-    timing: "4–8 semanas",
-    price: "Desde $8k",
+    title: "E-commerce light",
+    description: "Catálogos, reservas, pagos y flujos de compra simples para negocios que necesitan vender sin cargar una plataforma innecesaria.",
+    scope: "Catálogo · Pagos · Operación",
+    timing: "Por alcance",
+    price: "Diagnóstico previo",
+  },
+  {
+    number: "04",
+    title: "Dashboards internos",
+    description: "Paneles para visualizar datos, gestionar procesos y reducir trabajo manual dentro de equipos pequeños o negocios en crecimiento.",
+    scope: "Datos · Roles · Operación",
+    timing: "Por módulos",
+    price: "Alcance definido",
+  },
+  {
+    number: "05",
+    title: "Automatizaciones con IA",
+    description: "Asistentes, clasificación, generación de contenido, búsqueda semántica y flujos inteligentes con utilidad concreta.",
+    scope: "IA aplicada · RAG · Workflows",
+    timing: "Por caso de uso",
+    price: "Diagnóstico previo",
+  },
+  {
+    number: "06",
+    title: "Integraciones cloud",
+    description: "Conexiones con Supabase, GitHub, WhatsApp, Resend, APIs externas, Vercel y servicios serverless para operaciones más fluidas.",
+    scope: "APIs · Webhooks · CI/CD",
+    timing: "Por integración",
+    price: "Alcance definido",
   },
 ]
 
@@ -45,9 +69,9 @@ export function ServicesSection() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_88%_20%,rgba(125,180,255,0.08),transparent_28%)]" />
       <div className="relative">
         <SectionHeader
-          subtitle="02 — Formas de colaborar"
-          title="Del concepto al producto, sin ruido entre capas"
-          description="Tres formatos concretos para avanzar con velocidad, criterio y una inversión visible desde el inicio."
+          subtitle="03 — Servicios"
+          title="Software concreto para necesidades reales de negocio"
+          description="Trabajamos con fundadores, equipos pequeños y negocios que necesitan convertir una idea, operación o proceso en una plataforma digital clara, usable y mantenible."
         />
 
         <div className="mb-10 grid gap-3 sm:grid-cols-3">
@@ -81,7 +105,7 @@ export function ServicesSection() {
               <div className="flex items-center justify-between gap-6 lg:justify-end">
                 <div className="space-y-1 lg:text-right">
                   <span className="block whitespace-nowrap text-sm font-medium text-cyan-100/75">{service.price}</span>
-                  <span className="block text-xs text-white/30">Diagnóstico previo</span>
+                  <span className="block text-xs text-white/30">Según fase</span>
                 </div>
                 <Link
                   href="#contact"
@@ -97,7 +121,7 @@ export function ServicesSection() {
         </div>
 
         <p className="mt-6 text-xs leading-5 text-white/28">
-          Alcance e inversión final se confirman después de una conversación de diagnóstico.
+          Alcance, inversión y prioridad técnica se definen después de una conversación de diagnóstico.
         </p>
       </div>
     </SectionContainer>

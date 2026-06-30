@@ -13,9 +13,9 @@ export function ProjectsSection() {
   return (
     <SectionContainer id="projects" className="border-y border-white/10 bg-white/[0.012] py-20 sm:py-28 lg:py-36">
       <SectionHeader
-        subtitle="03 — Trabajo seleccionado"
-        title="Productos con una idea clara detrás"
-        description="Cada caso conecta una necesidad real con una solución digital coherente, medible y preparada para evolucionar con criterio técnico."
+        subtitle="04 — Trabajo seleccionado"
+        title="Casos que demuestran criterio de producto e ingeniería"
+        description="Una selección de productos, prototipos y sistemas desplegados donde cada caso muestra problema, solución, stack, estado y evidencia disponible."
       />
 
       <div className="grid gap-5 lg:grid-cols-12">

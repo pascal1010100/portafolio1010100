@@ -69,9 +69,9 @@ export function ContactSection() {
   return (
     <SectionContainer id="contact" className="py-20 sm:py-28">
       <SectionHeader
-        subtitle="04 — Iniciar un proyecto"
-        title="Una buena conversación puede cambiar la trayectoria de una idea"
-        description="Cuéntame qué quieres construir, qué debe mejorar y dónde está hoy el reto. Te responderé con una lectura inicial y el siguiente paso recomendado."
+        subtitle="05 — Iniciar un proyecto"
+        title="Convirtamos una idea o sistema existente en una hoja de ruta clara"
+        description="Cuéntanos qué quieres construir, qué proceso necesita mejorar o qué producto debe evolucionar. Pascal.dev responderá con una lectura inicial, riesgos visibles y el siguiente paso recomendado."
       />
 
       <div className="grid overflow-hidden border border-white/10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -87,9 +87,9 @@ export function ContactSection() {
           </div>
           <div className="space-y-3">
             <p className="text-sm font-medium text-cyan-100/75">Agenda abierta · Respuesta en 24–48 h</p>
-            <h3 className="text-2xl font-semibold text-white">Hagamos algo que importe</h3>
+            <h3 className="text-2xl font-semibold text-white">Diagnóstico antes de construir</h3>
             <p className="leading-7 text-white/50">
-              Trabajo mejor con fundadores y equipos que valoran una idea clara, una interfaz excepcional y una ejecución técnica responsable.
+              Trabajamos mejor con fundadores, equipos pequeños y negocios que valoran claridad, diseño premium y una ejecución técnica responsable.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
