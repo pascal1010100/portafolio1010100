@@ -60,6 +60,7 @@ La aplicación usa App Router, genera páginas estáticas para los proyectos y e
 Documentación principal:
 
 - [Project Charter](./docs/product/PROJECT_CHARTER.md)
+- [Experience Engineering](./docs/design/EXPERIENCE_ENGINEERING.md)
 - [Arquitectura](./docs/architecture/README.md)
 - [ADRs](./docs/architecture/adr/)
 - [Auditoría inicial](./docs/architecture/AUDIT-2026-06-28.md)
