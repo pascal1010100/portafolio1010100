@@ -34,7 +34,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.65, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className={index === 0 ? "group lg:col-span-7" : index === 1 ? "group lg:col-span-5" : "group lg:col-span-12"}
+      className={index === 0 ? "group lg:col-span-7" : index === 1 ? "group lg:col-span-5" : "group lg:col-span-6"}
     >
       <div className="boutique-panel flex h-full flex-col overflow-hidden border border-white/10 bg-black transition duration-500 hover:border-cyan-100/25">
         <Link
@@ -48,7 +48,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
             src={project.image}
             alt={project.title}
             fill
-            sizes={index === 0 ? "(min-width: 1024px) 58vw, 100vw" : index === 1 ? "(min-width: 1024px) 42vw, 100vw" : "100vw"}
+            sizes={index === 0 ? "(min-width: 1024px) 58vw, 100vw" : index === 1 ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
             className="object-cover opacity-85 grayscale-[0.15] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />

@@ -78,7 +78,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {/* Header Section */}
                 <div className="grid md:grid-cols-2 gap-10 md:gap-12 mb-16 md:mb-20 items-center">
                     <div>
-                        <div className="flex items-center gap-3 mb-6">
+                        <div className="mb-6 flex flex-wrap items-center gap-3">
                             <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-wider">
                                 {project.category}
                             </span>
