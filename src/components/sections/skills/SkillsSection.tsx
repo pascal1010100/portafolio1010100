@@ -11,7 +11,7 @@ export function SkillsSection() {
       <SectionHeader
         subtitle="01 — Capacidades"
         title="Capacidades para construir software de principio a fin"
-        description="No vendemos herramientas aisladas. Diseñamos, desarrollamos y desplegamos sistemas digitales completos usando tecnología moderna como soporte de decisiones de producto."
+        description="Tecnología conectada para diseñar, desarrollar y desplegar sistemas completos alrededor de decisiones de producto."
         className="sm:mb-10 lg:mb-14"
       />
 

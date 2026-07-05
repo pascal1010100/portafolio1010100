@@ -89,7 +89,7 @@ export function ContactSection() {
             <p className="text-sm font-medium text-cyan-100/75">Agenda abierta · Respuesta en 24–48 h</p>
             <h3 className="text-2xl font-semibold text-white">Diagnóstico antes de construir</h3>
             <p className="leading-7 text-white/50">
-              Trabajamos mejor con fundadores, equipos pequeños y negocios que valoran claridad, diseño premium y una ejecución técnica responsable.
+              Mejor encaje: fundadores, equipos pequeños y negocios que valoran claridad, diseño cuidado y una ejecución técnica responsable.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/25 p-5">

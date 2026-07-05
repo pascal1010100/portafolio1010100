@@ -14,9 +14,19 @@ Cada pull request y cada push a `main` deben demostrar instalación reproducible
 
 1. `pnpm typecheck`
 2. `pnpm lint`
-3. `pnpm build`
+3. `pnpm validate:data`
+4. `pnpm build`
+5. `pnpm test:e2e`
 
-Las pruebas automatizadas se incorporarán en Fase 1. Hasta entonces, CI no debe afirmar que ejecuta tests.
+Las pruebas end-to-end usan Playwright con Chromium y cubren navegación pública, archivo y detalle de proyectos, responsive básico, contrato del endpoint de contacto y envío simulado del formulario. La suite nunca envía correos reales.
+
+Para ejecutarlas localmente:
+
+```bash
+pnpm exec playwright install chromium
+pnpm build
+pnpm test:e2e
+```
 
 ## Política recomendada en GitHub
 

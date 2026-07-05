@@ -36,8 +36,8 @@ export function ProcessSection() {
     <SectionContainer id="process" className="border-t border-white/10 py-16 sm:py-20 lg:py-32">
       <SectionHeader
         subtitle="02 — Cómo construimos"
-        title="Una metodología de ingeniería para construir productos con criterio"
-        description="Pascal.dev combina discovery, arquitectura, documentación, desarrollo asistido por IA, testing, CI/CD y despliegue para llevar ideas digitales desde una primera decisión clara hasta un producto mantenible."
+        title="Un método de ingeniería para construir productos con criterio"
+        description="De una primera decisión clara a un producto mantenible: arquitectura, documentación, desarrollo asistido por IA, pruebas y despliegue."
         className="sm:mb-10 lg:mb-14"
       />
 

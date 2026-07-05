@@ -93,10 +93,11 @@ pnpm build
 pnpm start
 pnpm lint
 pnpm typecheck
+pnpm test:e2e
 pnpm check
 ```
 
-ESLint y TypeScript forman parte obligatoria del build y del workflow de CI.
+TypeScript, ESLint, la validación de datos, las pruebas end-to-end y el build forman parte del workflow de CI.
 
 ## Variables de entorno
 
@@ -116,7 +117,7 @@ No deben almacenarse secretos reales en el repositorio. Las variables se configu
 ### Etapa 1 — Portafolio confiable
 
 - Configurar ESLint y activar la validación de tipos durante el build.
-- Añadir pruebas mínimas para navegación, páginas de proyectos y formulario.
+- Ampliar las pruebas end-to-end con auditorías de accesibilidad y recorridos responsive adicionales.
 - Proteger el endpoint de contacto con límites de frecuencia, validación de tamaño y medidas antispam.
 - Corregir enlaces y completar activos públicos, incluido el CV.
 - Añadir un workflow de CI que ejecute instalación reproducible, tipos, lint, pruebas y build.

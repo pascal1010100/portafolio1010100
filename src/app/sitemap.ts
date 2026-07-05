@@ -1,7 +1,17 @@
 import { MetadataRoute } from 'next'
+import { projects } from '@/data/projects'
+
+const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
+    'https://portafolio1010100.vercel.app'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://pascal.dev' // Replace with actual domain if different
+    const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
+        url: `${baseUrl}/projects/${project.slug}`,
+        lastModified: new Date(project.verifiedAt),
+        changeFrequency: 'monthly',
+        priority: project.featured ? 0.9 : 0.7,
+    }))
 
     return [
         {
@@ -13,8 +23,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         {
             url: `${baseUrl}/projects`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: 'monthly',
             priority: 0.8,
         },
+        ...projectEntries,
     ]
 }

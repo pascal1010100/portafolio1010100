@@ -9,50 +9,26 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 const services = [
   {
     number: "01",
-    title: "Aplicaciones web modernas",
-    description: "Productos SaaS, portales privados, MVPs y plataformas web construidas con arquitectura clara y una base lista para evolucionar.",
-    scope: "Producto · Full-stack · MVP",
+    title: "Productos web y MVPs",
+    description: "Productos SaaS, plataformas y portales construidos desde una necesidad validable, con arquitectura clara y una base lista para evolucionar.",
+    scope: "Discovery · Producto · Full-stack",
     timing: "Por fases",
     price: "Diagnóstico previo",
   },
   {
     number: "02",
-    title: "Landing pages premium",
-    description: "Páginas comerciales con narrativa clara, dirección visual refinada y estructura pensada para convertir visitas calificadas.",
-    scope: "Copy · UI/UX · Conversión",
-    timing: "Sprint corto",
-    price: "Alcance definido",
+    title: "Sistemas para operaciones digitales",
+    description: "Ecommerce, reservas, paneles internos y recorridos operativos que conectan la experiencia del cliente con el trabajo real del negocio.",
+    scope: "Operación · Datos · Automatización",
+    timing: "Por módulos",
+    price: "Diagnóstico previo",
   },
   {
     number: "03",
-    title: "E-commerce light",
-    description: "Catálogos, reservas, pagos y flujos de compra simples para negocios que necesitan vender sin cargar una plataforma innecesaria.",
-    scope: "Catálogo · Pagos · Operación",
-    timing: "Por alcance",
-    price: "Diagnóstico previo",
-  },
-  {
-    number: "04",
-    title: "Dashboards internos",
-    description: "Paneles para visualizar datos, gestionar procesos y reducir trabajo manual dentro de equipos pequeños o negocios en crecimiento.",
-    scope: "Datos · Roles · Operación",
-    timing: "Por módulos",
-    price: "Alcance definido",
-  },
-  {
-    number: "05",
-    title: "Automatizaciones con IA",
-    description: "Asistentes, clasificación, generación de contenido, búsqueda semántica y flujos inteligentes con utilidad concreta.",
-    scope: "IA aplicada · RAG · Workflows",
+    title: "IA e integraciones aplicadas",
+    description: "Interfaces con IA, asistentes e integraciones cloud diseñados alrededor de un caso de uso concreto, con límites, revisión y utilidad medible.",
+    scope: "IA aplicada · APIs · Workflows",
     timing: "Por caso de uso",
-    price: "Diagnóstico previo",
-  },
-  {
-    number: "06",
-    title: "Integraciones cloud",
-    description: "Conexiones con Supabase, GitHub, WhatsApp, Resend, APIs externas, Vercel y servicios serverless para operaciones más fluidas.",
-    scope: "APIs · Webhooks · CI/CD",
-    timing: "Por integración",
     price: "Alcance definido",
   },
 ]
@@ -70,8 +46,8 @@ export function ServicesSection() {
       <div className="relative">
         <SectionHeader
           subtitle="03 — Servicios"
-          title="Software concreto para necesidades reales de negocio"
-          description="Trabajamos con fundadores, equipos pequeños y negocios que necesitan convertir una idea, operación o proceso en una plataforma digital clara, usable y mantenible."
+          title="Software útil para necesidades reales"
+          description="Productos y sistemas para fundadores, equipos pequeños y negocios que necesitan avanzar con claridad."
         />
 
         <div className="mb-10 grid gap-3 sm:grid-cols-3">

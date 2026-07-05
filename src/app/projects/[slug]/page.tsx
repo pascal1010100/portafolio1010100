@@ -5,6 +5,10 @@ import Image from "next/image"
 import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2, ShieldCheck } from "lucide-react"
 import { projects, type ProjectEvidence } from "@/data/projects"
 
+const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
+    'https://portafolio1010100.vercel.app'
+
 function formatVerifiedDate(value: string) {
     return new Intl.DateTimeFormat("es-GT", {
         day: "numeric",
@@ -49,17 +53,23 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         }
     }
 
+    const pageUrl = `${siteUrl}/projects/${project.slug}`
+    const absoluteImage = `${siteUrl}${project.image}`
+
     return {
         title: `${project.title} | Pascal.dev`,
         description: project.description,
+        alternates: {
+            canonical: pageUrl,
+        },
         openGraph: {
             title: project.title,
             description: project.description,
             type: "article",
-            url: `https://pascal.dev/projects/${project.slug}`,
+            url: pageUrl,
             images: [
                 {
-                    url: project.image,
+                    url: absoluteImage,
                     width: 1200,
                     height: 630,
                     alt: project.title,
@@ -70,10 +80,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
             card: "summary_large_image",
             title: project.title,
             description: project.description,
-            images: [project.image],
+            images: [absoluteImage],
         },
     }
 }
+
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
     const project = projects.find((p) => p.slug === params.slug)

@@ -3,6 +3,12 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import ClientWrapper from "@/components/client-wrapper"
 import "./globals.css"
 import { LazyMotion, domAnimation } from "framer-motion"
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
+  'https://portafolio1010100.vercel.app'
 
 // Configuración de fuentes
 const inter = Inter({
@@ -22,10 +28,10 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pascal.dev"),
+  metadataBase: new URL(siteUrl),
   title: "Pascal.dev — Ingeniería de producto digital",
   description:
-    "Pascal.dev diseña y desarrolla software moderno, escalable y mantenible con arquitectura sólida, diseño premium, automatización e ingeniería asistida por IA.",
+    "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales y una ejecución técnica mantenible.",
   keywords: [
     "pascal.dev",
     "Ingeniería de producto digital",
@@ -39,20 +45,23 @@ export const metadata: Metadata = {
     "SaaS",
     "CI/CD",
   ],
-  authors: [{ name: "Pascal.dev", url: "https://pascal.dev" }],
+  authors: [{ name: "Pascal.dev", url: siteUrl }],
   creator: "Pascal.dev",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     type: "website",
     locale: "es_GT",
-    url: "https://pascal.dev",
+    url: siteUrl,
     title: "Pascal.dev — Ingeniería de producto digital",
-    description: "Software moderno, escalable y mantenible con arquitectura, diseño premium, automatización e IA asistida.",
+    description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
     siteName: "pascal.dev",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pascal.dev — Ingeniería de producto digital",
-    description: "Software moderno, escalable y mantenible con arquitectura, diseño premium, automatización e IA asistida.",
+    description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
     creator: "@pascal1010100",
   },
   robots: {
@@ -83,6 +92,8 @@ export default function RootLayout({
             </div>
           </ClientWrapper>
         </LazyMotion>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )

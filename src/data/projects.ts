@@ -70,33 +70,35 @@ export const projects = [
     {
         title: "Mandalas Hostal",
         slug: "mandalas-hostal",
-        description: "Experiencia web para presentar dos propiedades en San Pedro La Laguna y convertir interés en consultas directas por fechas y tipo de estadía.",
-        longDescription: "Mandalas necesitaba diferenciar con claridad una propiedad social en el centro y una alternativa tranquila cerca del lago. El sitio organiza ambas experiencias, sus espacios y su propuesta de valor, y dirige al huésped hacia una consulta directa por WhatsApp.",
+        description: "Experiencia web y base operativa para dos propiedades, con reservas directas en Cloudbeds, observabilidad Vercel y una integración PMS de solo lectura.",
+        longDescription: "Mandalas necesitaba diferenciar una propiedad social en el centro y una alternativa tranquila cerca del lago sin fragmentar la marca. La evolución actual conecta cada estadía con su propio motor de reservas de Cloudbeds y añade una capa operativa server-side para consultar inventario y reservas sin duplicar la fuente oficial del PMS.",
         challenges: [
             "Comunicar dos propiedades con personalidades distintas dentro de una sola marca.",
-            "Ayudar al viajero a elegir por ubicación, ritmo y tipo de estadía.",
-            "Reducir fricción entre la exploración visual y la consulta de disponibilidad."
+            "Conectar reservas y datos operativos de Cloudbeds sin exponer credenciales ni replicar información sensible.",
+            "Introducir medición y automatización sin comprometer el rendimiento ni mezclar la experiencia pública con las herramientas internas."
         ],
         solutions: [
             "Se diseñó una portada comparativa que presenta ambas propiedades desde el primer viewport.",
-            "Se construyeron recorridos editoriales separados para Mandalas y Hideout.",
-            "Se conectaron consultas guiadas y accesos directos a WhatsApp sin simular un motor de reservas inexistente."
+            "Se conectó cada propiedad con su motor de reserva de Cloudbeds y se implementó un cliente server-side de solo lectura con dashboard, mapeo de habitaciones y herramientas operativas.",
+            "Se añadieron Vercel Analytics, Speed Insights y pruebas smoke con Playwright para observar y proteger los recorridos públicos críticos."
         ],
-        results: "El sitio está publicado en dominio propio y presenta de forma verificable ambas propiedades, sus diferencias y un canal directo para consultar disponibilidad.",
-        technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+        results: "El sitio continúa publicado en dominio propio, dirige cada propiedad a su reserva directa en Cloudbeds y cuenta con una implementación pública verificable para lectura operativa del PMS, observabilidad y pruebas de navegación.",
+        technologies: ["Next.js 16", "TypeScript", "Cloudbeds API", "Vercel Analytics", "Playwright"],
         evidence: [
             { label: "Dominio de producción", source: "Sitio público", url: "https://www.mandalashostels.com/" },
-            { label: "Implementación disponible", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas" },
-            { label: "Consulta directa visible", source: "Sitio público", url: "https://www.mandalashostels.com/contact" }
+            { label: "Reservas directas en Cloudbeds", source: "Sitio público", url: "https://www.mandalashostels.com/pueblo" },
+            { label: "Integración Cloudbeds de solo lectura", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
+            { label: "Analytics y Speed Insights", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
+            { label: "Smoke tests de rutas críticas", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
         ] satisfies ProjectEvidence[],
-        verifiedAt: "2026-06-30",
-        role: "Diseño de experiencia y desarrollo web",
-        status: "Sitio comercial en producción",
+        verifiedAt: "2026-07-03",
+        role: "Producto, rediseño, integración Cloudbeds e ingeniería full-stack",
+        status: "Sitio en producción · integración operativa en evolución",
         image: "/images/mandalas.png",
         github: "https://github.com/pascal1010100/mandalas",
         demo: "https://www.mandalashostels.com/",
         featured: true,
-        category: "Hospitalidad y conversión"
+        category: "Hospitalidad y operaciones"
     },
     {
         title: "Not Your Money Laundry",
