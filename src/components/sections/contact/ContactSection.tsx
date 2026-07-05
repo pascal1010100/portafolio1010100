@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Mail, Sparkles } from "lucide-react"
+import { MessageCircle, Sparkles } from "lucide-react"
 import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
@@ -10,13 +10,12 @@ import { cn } from "@/lib/utils"
 
 type FormState = {
   name: string
-  email: string
   project: string
   budget: string
   message: string
-  website: string
 }
 
+const whatsappNumber = "50242900009"
 const budgetLabels = ["< $5k", "$5k - $15k", "$15k - $50k", "> $50k"]
 
 const responseExpectations = [
@@ -28,42 +27,34 @@ const responseExpectations = [
 export function ContactSection() {
   const [form, setForm] = useState<FormState>({
     name: "",
-    email: "",
     project: "",
     budget: "",
     message: "",
-    website: "",
   })
-  const [submitting, setSubmitting] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (form.website) return
-    setSubmitting(true)
-    setErrorMessage("")
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      })
-      const data: { ok?: boolean; error?: string } = await res.json()
+    const details = [
+      `Nombre: ${form.name.trim()}`,
+      form.project.trim() ? `Producto o reto: ${form.project.trim()}` : "",
+      form.budget ? `Inversión aproximada: ${form.budget}` : "",
+    ].filter(Boolean)
 
-      if (data.ok) {
-        setSuccess(true)
-        setForm({ name: "", email: "", project: "", budget: "", message: "", website: "" })
-      } else {
-        setErrorMessage(data.error || "No se pudo enviar el mensaje")
-      }
-    } catch (error) {
-      console.error(error)
-      setErrorMessage("Error de red, intenta de nuevo más tarde.")
-    } finally {
-      setSubmitting(false)
-    }
+    const message = [
+      "Hola Pascal, vi tu portafolio y me gustaría conversar sobre un proyecto.",
+      "",
+      ...details,
+      "",
+      "Contexto:",
+      form.message.trim(),
+    ].join("\n")
+
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    )
   }
 
   return (
@@ -71,7 +62,7 @@ export function ContactSection() {
       <SectionHeader
         subtitle="05 — Iniciar un proyecto"
         title="Convirtamos una idea o sistema existente en una hoja de ruta clara"
-        description="Cuéntanos qué quieres construir, qué proceso necesita mejorar o qué producto debe evolucionar. Pascal.dev responderá con una lectura inicial, riesgos visibles y el siguiente paso recomendado."
+        description="Cuéntame qué quieres construir, qué proceso necesita mejorar o qué producto debe evolucionar. Prepararemos el contexto y abriremos una conversación directa por WhatsApp."
       />
 
       <div className="grid overflow-hidden border border-white/10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -83,7 +74,7 @@ export function ContactSection() {
           className="space-y-7 border-b border-white/10 bg-white/[0.012] p-7 sm:p-9 lg:border-b-0 lg:border-r lg:p-10"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-white">
-            <Mail className="h-6 w-6" />
+            <MessageCircle className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="space-y-3">
             <p className="text-sm font-medium text-cyan-100/75">Agenda abierta · Respuesta en 24–48 h</p>
@@ -108,8 +99,15 @@ export function ContactSection() {
           </div>
           <div className="space-y-5 border-t border-white/10 pt-6">
             <div>
-              <p className="text-sm text-muted-foreground">Email</p>
-              <a href="mailto:josemanu0885@gmail.com" className="break-words text-foreground hover:text-primary transition-colors">josemanu0885@gmail.com</a>
+              <p className="text-sm text-muted-foreground">WhatsApp</p>
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noreferrer"
+                className="break-words text-foreground transition-colors hover:text-primary"
+              >
+                +502 4290 0009
+              </a>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">LinkedIn</p>
@@ -127,31 +125,18 @@ export function ContactSection() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           className="bg-white/[0.02] p-7 sm:p-9 lg:p-10"
         >
-          <form onSubmit={handleSubmit} className="space-y-6" aria-busy={submitting}>
-            <div className="grid gap-6 sm:grid-cols-2">
-              <InputField
-                label="Nombre"
-                id="contact-name"
-                name="name"
-                autoComplete="name"
-                required
-                minLength={2}
-                maxLength={100}
-                value={form.name}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, name: e.target.value })}
-              />
-              <InputField
-                label="Correo"
-                id="contact-email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                maxLength={254}
-                value={form.email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, email: e.target.value })}
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <InputField
+              label="Nombre"
+              id="contact-name"
+              name="name"
+              autoComplete="name"
+              required
+              minLength={2}
+              maxLength={100}
+              value={form.name}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, name: e.target.value })}
+            />
             <InputField
               label="Producto o reto"
               id="contact-project"
@@ -196,29 +181,13 @@ export function ContactSection() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
+              <p className="mt-3 text-xs leading-5 text-white/40">
+                No se enviará nada automáticamente. Podrás revisar y confirmar el mensaje dentro de WhatsApp.
+              </p>
             </div>
-            <input
-              type="text"
-              name="website"
-              aria-hidden="true"
-              tabIndex={-1}
-              autoComplete="off"
-              className="absolute -left-[10000px] h-px w-px overflow-hidden"
-              value={form.website}
-              onChange={(e) => setForm({ ...form, website: e.target.value })}
-            />
-            {errorMessage && (
-              <p role="alert" className="text-sm text-red-400">
-                {errorMessage}
-              </p>
-            )}
-            {success && (
-              <p role="status" className="text-sm text-emerald-400">
-                Gracias. Tu mensaje fue enviado correctamente.
-              </p>
-            )}
-            <Button type="submit" size="lg" className="liquid-sheen w-full justify-center bg-cyan-50 text-slate-950 hover:bg-white" disabled={submitting || success}>
-              {submitting ? "Enviando..." : success ? "Mensaje enviado" : "Solicitar conversación"}
+            <Button type="submit" size="lg" className="liquid-sheen w-full justify-center bg-cyan-50 text-slate-950 hover:bg-white">
+              <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
+              Continuar por WhatsApp
             </Button>
           </form>
         </motion.div>

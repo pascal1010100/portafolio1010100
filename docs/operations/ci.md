@@ -18,7 +18,7 @@ Cada pull request y cada push a `main` deben demostrar instalación reproducible
 4. `pnpm build`
 5. `pnpm test:e2e`
 
-Las pruebas end-to-end usan Playwright con Chromium y cubren navegación pública, archivo y detalle de proyectos, responsive básico, contrato del endpoint de contacto y envío simulado del formulario. La suite nunca envía correos reales.
+Las pruebas end-to-end usan Playwright con Chromium y cubren navegación pública, archivo y detalle de proyectos, responsive básico y la construcción del enlace de contacto por WhatsApp. La suite nunca abre conversaciones externas reales.
 
 Para ejecutarlas localmente:
 

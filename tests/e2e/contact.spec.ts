@@ -1,46 +1,44 @@
 import { expect, test } from "@playwright/test"
 
-test("valida el contrato HTTP del endpoint sin enviar correo", async ({ request }) => {
-  const unsupported = await request.post("/api/contact", {
-    data: "texto plano",
-    headers: { "content-type": "text/plain" },
-  })
-  expect(unsupported.status()).toBe(415)
-
-  const invalid = await request.post("/api/contact", {
-    data: { name: "A", email: "incorrecto", message: "corto" },
-  })
-  expect(invalid.status()).toBe(400)
-
-  const honeypot = await request.post("/api/contact", {
-    data: {
-      name: "Prueba automatizada",
-      email: "test@example.com",
-      message: "Este mensaje no debe salir del servidor.",
-      website: "https://bot.invalid",
-    },
-  })
-  expect(honeypot.status()).toBe(200)
-  expect(await honeypot.json()).toEqual({ ok: true })
-})
-
-test("muestra confirmación cuando el formulario recibe una respuesta correcta", async ({ page }) => {
-  await page.route("**/api/contact", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({ ok: true, id: "test-message" }),
-    })
+test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.open = (url) => {
+      document.documentElement.dataset.openedUrl = String(url)
+      return null
+    }
   })
 
   await page.goto("/")
   await page.getByLabel("Nombre").fill("Persona de prueba")
-  await page.getByLabel("Correo", { exact: true }).fill("persona@example.com")
+  await page.getByLabel("Producto o reto").fill("Plataforma de reservas")
+  await page.getByRole("button", { name: "< $5k", exact: true }).click()
   await page.getByLabel("Contexto para el diagnóstico").fill(
     "Necesito validar el flujo público del formulario de contacto.",
   )
-  await page.getByRole("button", { name: "Solicitar conversación" }).click()
+  await page.getByRole("button", { name: "Continuar por WhatsApp" }).click()
 
-  await expect(page.getByRole("status")).toHaveText("Gracias. Tu mensaje fue enviado correctamente.")
-  await expect(page.getByRole("button", { name: "Mensaje enviado" })).toBeDisabled()
+  const expectedMessage = [
+    "Hola Pascal, vi tu portafolio y me gustaría conversar sobre un proyecto.",
+    "",
+    "Nombre: Persona de prueba",
+    "Producto o reto: Plataforma de reservas",
+    "Inversión aproximada: < $5k",
+    "",
+    "Contexto:",
+    "Necesito validar el flujo público del formulario de contacto.",
+  ].join("\n")
+
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-opened-url",
+    `https://wa.me/50242900009?text=${encodeURIComponent(expectedMessage)}`,
+  )
+})
+
+test("ofrece WhatsApp como canal de contacto directo", async ({ page }) => {
+  await page.goto("/")
+
+  await expect(page.getByRole("link", { name: "+502 4290 0009" })).toHaveAttribute(
+    "href",
+    "https://wa.me/50242900009",
+  )
 })

@@ -46,10 +46,10 @@ El sitio está construido con:
 - Tailwind CSS y componentes basados en Radix UI.
 - Framer Motion para animaciones.
 - Three.js y React Three Fiber para la experiencia espacial 3D de la portada.
-- Resend para el formulario de contacto.
+- WhatsApp como canal directo para iniciar conversaciones.
 - Datos locales en `src/data/` para perfil, habilidades y proyectos.
 
-La aplicación usa App Router, genera páginas estáticas para los proyectos y expone un endpoint de contacto en `src/app/api/contact/route.ts`.
+La aplicación usa App Router, genera páginas estáticas para los proyectos y prepara mensajes de contacto para WhatsApp desde el navegador, sin enviar datos automáticamente.
 
 ## Baseline arquitectónico
 
@@ -101,12 +101,9 @@ TypeScript, ESLint, la validación de datos, las pruebas end-to-end y el build f
 
 ## Variables de entorno
 
-El formulario de contacto utiliza estas variables:
+La URL canónica del sitio utiliza esta variable:
 
 ```dotenv
-RESEND_API_KEY=
-FROM_EMAIL=
-CONTACT_TO=
 NEXT_PUBLIC_SITE_URL=
 ```
 
@@ -118,7 +115,7 @@ No deben almacenarse secretos reales en el repositorio. Las variables se configu
 
 - Configurar ESLint y activar la validación de tipos durante el build.
 - Ampliar las pruebas end-to-end con auditorías de accesibilidad y recorridos responsive adicionales.
-- Proteger el endpoint de contacto con límites de frecuencia, validación de tamaño y medidas antispam.
+- Validar periódicamente el recorrido público de contacto por WhatsApp.
 - Corregir enlaces y completar activos públicos, incluido el CV.
 - Añadir un workflow de CI que ejecute instalación reproducible, tipos, lint, pruebas y build.
 - Definir una guía visual y editorial orientada a la búsqueda de empleo.
