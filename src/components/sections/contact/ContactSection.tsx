@@ -6,17 +6,14 @@ import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 type FormState = {
   name: string
   project: string
-  budget: string
   message: string
 }
 
 const whatsappNumber = "50242900009"
-const budgetLabels = ["< $5k", "$5k - $15k", "$15k - $50k", "> $50k"]
 
 const responseExpectations = [
   "Lectura inicial del reto",
@@ -28,7 +25,6 @@ export function ContactSection() {
   const [form, setForm] = useState<FormState>({
     name: "",
     project: "",
-    budget: "",
     message: "",
   })
 
@@ -38,7 +34,6 @@ export function ContactSection() {
     const details = [
       `Nombre: ${form.name.trim()}`,
       form.project.trim() ? `Producto o reto: ${form.project.trim()}` : "",
-      form.budget ? `Inversión aproximada: ${form.budget}` : "",
     ].filter(Boolean)
 
     const message = [
@@ -146,27 +141,6 @@ export function ContactSection() {
               value={form.project}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, project: e.target.value })}
             />
-            <fieldset>
-              <legend className="mb-3 block text-sm font-medium text-muted-foreground">Inversión aproximada</legend>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-                {budgetLabels.map((label) => (
-                  <button
-                    key={label}
-                    type="button"
-                    aria-pressed={form.budget === label}
-                    onClick={() => setForm({ ...form, budget: label })}
-                    className={cn(
-                      "rounded-xl border px-3 py-3 text-sm transition",
-                      form.budget === label
-                        ? "border-primary bg-primary/10 text-primary"
-                        : "border-white/10 bg-white/[0.025] text-white/50 hover:border-white/25 hover:bg-white/[0.05]"
-                    )}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </fieldset>
             <div>
               <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">Contexto para el diagnóstico</label>
               <textarea

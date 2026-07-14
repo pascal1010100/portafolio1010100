@@ -11,7 +11,6 @@ test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
   await page.goto("/")
   await page.getByLabel("Nombre").fill("Persona de prueba")
   await page.getByLabel("Producto o reto").fill("Plataforma de reservas")
-  await page.getByRole("button", { name: "< $5k", exact: true }).click()
   await page.getByLabel("Contexto para el diagnóstico").fill(
     "Necesito validar el flujo público del formulario de contacto.",
   )
@@ -22,7 +21,6 @@ test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
     "",
     "Nombre: Persona de prueba",
     "Producto o reto: Plataforma de reservas",
-    "Inversión aproximada: < $5k",
     "",
     "Contexto:",
     "Necesito validar el flujo público del formulario de contacto.",
