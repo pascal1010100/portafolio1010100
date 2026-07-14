@@ -70,8 +70,8 @@ export const projects = [
     {
         title: "Mandalas Hostal",
         slug: "mandalas-hostal",
-        description: "Experiencia web y base operativa para dos propiedades, con reservas directas en Cloudbeds, observabilidad Vercel y una integración PMS de solo lectura.",
-        longDescription: "Mandalas necesitaba diferenciar una propiedad social en el centro y una alternativa tranquila cerca del lago sin fragmentar la marca. La evolución actual conecta cada estadía con su propio motor de reservas de Cloudbeds y añade una capa operativa server-side para consultar inventario y reservas sin duplicar la fuente oficial del PMS.",
+        description: "Experiencia web y base operativa para dos propiedades, con reservas directas en Cloudbeds, analítica de conversión con PostHog y una integración PMS de solo lectura.",
+        longDescription: "Mandalas necesitaba diferenciar una propiedad social en el centro y una alternativa tranquila cerca del lago sin fragmentar la marca. La evolución actual conecta cada estadía con su propio motor de reservas de Cloudbeds, mide de forma anónima la intención de reserva y contacto, y añade una capa operativa server-side para consultar inventario y reservas sin duplicar la fuente oficial del PMS.",
         challenges: [
             "Comunicar dos propiedades con personalidades distintas dentro de una sola marca.",
             "Conectar reservas y datos operativos de Cloudbeds sin exponer credenciales ni replicar información sensible.",
@@ -80,18 +80,20 @@ export const projects = [
         solutions: [
             "Se diseñó una portada comparativa que presenta ambas propiedades desde el primer viewport.",
             "Se conectó cada propiedad con su motor de reserva de Cloudbeds y se implementó un cliente server-side de solo lectura con dashboard, mapeo de habitaciones y herramientas operativas.",
-            "Se añadieron Vercel Analytics, Speed Insights y pruebas smoke con Playwright para observar y proteger los recorridos públicos críticos."
+            "Se combinaron Vercel Analytics y PostHog para medir visitas e intención de conversión mediante los eventos booking_intent y whatsapp_intent, sin autocaptura, perfiles personales ni grabación de sesiones; Playwright protege los recorridos públicos críticos."
         ],
-        results: "El sitio continúa publicado en dominio propio, dirige cada propiedad a su reserva directa en Cloudbeds y cuenta con una implementación pública verificable para lectura operativa del PMS, observabilidad y pruebas de navegación.",
-        technologies: ["Next.js 16", "TypeScript", "Cloudbeds API", "Vercel Analytics", "Playwright"],
+        results: "El sitio continúa publicado en dominio propio, dirige cada propiedad a su reserva directa en Cloudbeds y permite medir de forma anónima qué propiedad y punto de la experiencia generan intención de reserva o contacto por WhatsApp.",
+        technologies: ["Next.js 16", "TypeScript", "Cloudbeds API", "PostHog", "Vercel Analytics", "Playwright"],
         evidence: [
             { label: "Dominio de producción", source: "Sitio público", url: "https://www.mandalashostels.com/" },
             { label: "Reservas directas en Cloudbeds", source: "Sitio público", url: "https://www.mandalashostels.com/pueblo" },
             { label: "Integración Cloudbeds de solo lectura", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
             { label: "Analytics y Speed Insights", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
+            { label: "PostHog con analítica anónima", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/instrumentation-client.ts" },
+            { label: "Eventos de intención de conversión", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/src/lib/analytics.ts" },
             { label: "Smoke tests de rutas críticas", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
         ] satisfies ProjectEvidence[],
-        verifiedAt: "2026-07-03",
+        verifiedAt: "2026-07-14",
         role: "Producto, rediseño, integración Cloudbeds e ingeniería full-stack",
         status: "Sitio en producción · integración operativa en evolución",
         image: "/images/mandalas.png",
@@ -165,31 +167,32 @@ export const projects = [
     {
         title: "GuateRaw Travel",
         slug: "guateraw-travel",
-        description: "Landing comercial para experiencias de buceo de altura, estadías y transporte hacia el Lago de Atitlán.",
-        longDescription: "GuateRaw Travel necesitaba sustituir una presencia básica en WordPress por una experiencia rápida y enfocada en conversión. La landing presenta paquetes, precios e inclusiones y conecta cada decisión con el checkout externo de Recurrente o una consulta directa por WhatsApp.",
+        description: "Landing comercial en inglés para posicionar y reservar experiencias de buceo de altura, estadías y transporte en el Lago de Atitlán.",
+        longDescription: "GuateRaw Travel necesitaba sustituir una presencia básica en WordPress por una experiencia rápida, enfocada en turistas internacionales y orientada a conversión. El sitio organiza el catálogo vigente de Recurrente, explica paquetes, precios e inclusiones y conecta cada decisión con la reserva externa o una consulta directa por WhatsApp.",
         challenges: [
-            "Explicar experiencias turísticas de precio alto con suficiente claridad antes de enviar al usuario a otro sitio.",
-            "Distinguir lo incluido, lo que debe confirmarse y dónde termina el proceso de reserva.",
-            "Lograr una presencia visual fuerte con una implementación pequeña y rápida."
+            "Explicar experiencias turísticas de precio alto con suficiente claridad antes de enviar al usuario a Recurrente.",
+            "Captar búsquedas internacionales específicas sobre altitude scuba diving y servicios alrededor del Lago de Atitlán.",
+            "Mantener paquetes, precios e inclusiones alineados con la fuente comercial sin construir un motor de reservas propio."
         ],
         solutions: [
-            "Se construyó una landing estática y ligera con Astro.",
-            "Se organizó cada paquete con precio, inclusiones y llamadas a reserva específicas.",
-            "Se hizo explícita la transición hacia Recurrente y se mantuvo WhatsApp como canal de aclaración."
+            "Se construyó una landing estática en inglés con Astro, dominio propio y una jerarquía enfocada en búsqueda y conversión.",
+            "Se sincronizaron tres opciones comerciales con Recurrente y se hizo explícita la transición hacia su flujo de reserva.",
+            "Se implementaron metadata social, sitemap, canonical, FAQs y datos estructurados de TravelAgency, Service, Offer y FAQPage, junto con Vercel Analytics para observar tráfico."
         ],
-        results: "La primera versión está desplegada, presenta tres opciones comerciales y conduce al visitante hacia reservas en Recurrente o contacto directo por WhatsApp.",
-        technologies: ["Astro", "TypeScript", "SEO técnico", "Recurrente", "Vercel"],
+        results: "El sitio opera en guaterawtravel.com, presenta tres opciones comerciales verificadas y conduce al visitante hacia Recurrente o WhatsApp desde una experiencia optimizada para búsquedas sobre buceo de altura en el Lago de Atitlán.",
+        technologies: ["Astro 7", "TypeScript", "Schema.org", "Vercel Analytics", "Recurrente", "Google Search Console"],
         evidence: [
-            { label: "Landing pública operativa", source: "Sitio público", url: "https://guateraw-travel.vercel.app/" },
-            { label: "Reservas externas conectadas", source: "Sitio público", url: "https://guateraw-travel.vercel.app/#experiencias" },
-            { label: "Implementación responsive", source: "Repositorio privado" }
+            { label: "Dominio de producción", source: "Sitio público", url: "https://guaterawtravel.com/" },
+            { label: "Catálogo y reservas en Recurrente", source: "Sitio público", url: "https://guaterawtravel.com/#experiencias" },
+            { label: "SEO y datos estructurados", source: "Repositorio privado" },
+            { label: "Vercel Analytics y metadata", source: "Repositorio privado" }
         ] satisfies ProjectEvidence[],
-        verifiedAt: "2026-06-30",
+        verifiedAt: "2026-07-14",
         role: "Estrategia de conversión, diseño y desarrollo frontend",
-        status: "Primera versión desplegada",
+        status: "Sitio en producción · SEO en seguimiento",
         image: "/images/guateraw-travel.png",
         github: "",
-        demo: "https://guateraw-travel.vercel.app/",
+        demo: "https://guaterawtravel.com/",
         featured: false,
         category: "Landing comercial"
     }
