@@ -39,28 +39,31 @@ export const projects = [
     {
         title: "Nativa Market",
         slug: "nativa-market",
-        description: "Ecommerce para Guatemala con catálogo administrable, carrito, checkout, pedidos persistentes y confirmación operativa por WhatsApp.",
-        longDescription: "Nativa Market necesitaba vender productos naturales sin depender de una plataforma genérica. El proyecto conecta catálogo público, búsqueda, filtros, carrito y checkout con un panel privado donde el negocio administra productos, categorías, configuración y estados de pedidos.",
+        description: "Ecommerce operativo para Guatemala con catálogo administrable, experiencia de compra renovada, pedidos transaccionales y SEO preparado para productos y categorías.",
+        longDescription: "Nativa Market evolucionó de un catálogo funcional a una tienda ecommerce completa para productos naturales. La plataforma conecta una experiencia pública editorial con búsqueda, categorías, galerías, carrito y checkout; detrás, un panel protegido permite administrar productos, pedidos, pagos, entregas y configuración sin depender de una plataforma genérica.",
         challenges: [
-            "Cerrar un flujo de compra completo sin añadir una pasarela de pago innecesaria para el MVP.",
-            "Mantener catálogo, disponibilidad, costos de entrega y métodos de pago configurables por el negocio.",
-            "Guardar el pedido de forma confiable antes de continuar la conversación por WhatsApp."
+            "Cerrar un flujo de compra completo sin introducir una pasarela de pago que no correspondía al alcance validado del MVP.",
+            "Presentar un catálogo amplio y galerías de producto con una experiencia clara, rápida y consistente en móvil y escritorio.",
+            "Mantener indexables productos y categorías sin exponer al buscador las rutas privadas o transaccionales."
         ],
         solutions: [
-            "Se diseñó un modelo transaccional de pedidos e ítems sobre PostgreSQL y Drizzle ORM.",
-            "Se construyó un panel protegido para productos, categorías, pedidos y configuración comercial.",
-            "Se añadió verificación automatizada del flujo principal y smoke tests contra producción."
+            "Se organizó el sistema por funcionalidades sobre Next.js 16, React 19, PostgreSQL, Supabase y Drizzle, con acciones administrativas protegidas desde servidor.",
+            "El checkout recalcula importes desde la base de datos y guarda pedido e ítems mediante una función SQL transaccional antes de preparar la confirmación por WhatsApp.",
+            "Se renovó la tienda con una dirección visual boutique, carruseles táctiles, imágenes con encuadre completo y recorridos responsive para catálogo, carrito, checkout y confirmación.",
+            "Se implementaron canonical, sitemap dinámico, rutas por categoría y datos estructurados OnlineStore, Product, Offer y BreadcrumbList, con noindex en flujos privados."
         ],
-        results: "El MVP opera en dominio propio con catálogo real, búsqueda por categoría, carrito, checkout, pedidos guardados y entrega configurable para Guatemala.",
-        technologies: ["Next.js", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM"],
+        results: "El MVP opera en dominio propio con 28 productos activos, siete categorías, dos métodos de pago y entrega configurable para toda Guatemala. La renovación UI/UX fue validada en desktop y móvil; los smoke tests verifican el flujo de pedidos y producción, y Search Console confirmó sitemap correcto y resultados enriquecidos de producto válidos.",
+        technologies: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM", "Motion"],
         evidence: [
-            { label: "Dominio de producción", source: "Sitio público", url: "https://www.nativamarket.net/" },
-            { label: "Catálogo real operativo", source: "Sitio público", url: "https://www.nativamarket.net/#catalogo" },
-            { label: "CI y smoke tests", source: "Repositorio privado" }
+            { label: "Tienda y catálogo operativo en dominio propio", source: "Sitio público", url: "https://www.nativamarket.net/" },
+            { label: "Productos y categorías en sitemap público", source: "Sitio público", url: "https://www.nativamarket.net/sitemap.xml" },
+            { label: "Checkout transaccional y panel administrativo", source: "Repositorio privado" },
+            { label: "CI y smoke tests de MVP y producción", source: "Repositorio privado" },
+            { label: "SEO ecommerce y resultados enriquecidos verificados", source: "Repositorio privado" }
         ] satisfies ProjectEvidence[],
-        verifiedAt: "2026-06-30",
-        role: "Producto, arquitectura e ingeniería full-stack",
-        status: "MVP validado en producción",
+        verifiedAt: "2026-07-15",
+        role: "Producto, arquitectura, UI/UX e ingeniería full-stack",
+        status: "MVP en producción · UI/UX y SEO renovados",
         image: "/images/nativa-market.png",
         github: "",
         demo: "https://www.nativamarket.net/",
