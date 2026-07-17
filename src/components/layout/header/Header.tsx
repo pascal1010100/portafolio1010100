@@ -59,7 +59,7 @@ export function Navbar() {
           <span className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-lg border border-white/15 bg-white/[0.06]">
             <span className="h-3 w-3 rotate-45 border border-white/80" />
           </span>
-          Pascal<span className="text-white/35">.dev</span>
+          Pascal<span className="text-white/55">.dev</span>
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegación principal">
@@ -72,7 +72,7 @@ export function Navbar() {
                 "rounded-full px-4 py-2 text-sm font-medium transition",
                 activeSection === item.href.slice(1)
                   ? "bg-white/10 text-white"
-                  : "text-white/50 hover:text-white",
+                  : "text-white/65 hover:text-white",
               )}
             >
               {item.name}

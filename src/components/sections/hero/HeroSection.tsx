@@ -27,7 +27,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="hero-copy relative z-20 w-full min-w-0 max-w-3xl"
         >
-          <div className="mb-5 flex min-w-0 items-center gap-3 text-[10px] font-medium uppercase tracking-[0.16em] text-white/50 sm:mb-6 sm:text-xs sm:tracking-[0.2em]">
+          <div className="mb-5 flex min-w-0 items-center gap-3 text-[10px] font-medium uppercase tracking-[0.16em] text-white/65 sm:mb-6 sm:text-xs sm:tracking-[0.2em]">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-200 opacity-50" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-100" />
@@ -39,7 +39,7 @@ export function HeroSection() {
             {profile.headline}
           </h1>
 
-          <p className="mt-5 max-w-full text-base leading-7 text-white/58 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
+          <p className="mt-5 max-w-full text-base leading-7 text-white/72 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
             {profile.subheadline}
           </p>
 
@@ -53,9 +53,9 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <div className="hero-proof mt-7 grid grid-cols-2 gap-x-3 gap-y-3 border-t border-white/10 pt-5 text-[11px] text-white/45 sm:mt-9 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:pt-5 sm:text-sm">
-            <span className="text-white/62">Proyectos · Colaboraciones · Oportunidades</span>
-            <span className="text-white/62">Producto · Full-stack · IA aplicada</span>
+          <div className="hero-proof mt-7 grid grid-cols-2 gap-x-3 gap-y-3 border-t border-white/10 pt-5 text-[11px] text-white/60 sm:mt-9 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:pt-5 sm:text-sm">
+            <span className="text-white/75">Proyectos · Colaboraciones · Oportunidades</span>
+            <span className="text-white/75">Producto · Full-stack · IA aplicada</span>
             <a href={profile.social.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 transition hover:text-white">
               <Github className="h-3.5 w-3.5" aria-hidden="true" /> GitHub
             </a>
@@ -72,7 +72,7 @@ export function HeroSection() {
           initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-          className="hero-scene relative z-0 mx-0 mt-2 h-[15rem] min-w-0 overflow-hidden sm:mt-0 sm:h-[28rem] lg:h-[32rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
+          className="hero-scene relative z-0 mx-0 hidden min-w-0 overflow-hidden sm:mt-0 sm:block sm:h-[28rem] lg:h-[32rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
           aria-label="Visual tridimensional de Pascal.dev"
         >
           <div className="pointer-events-none absolute inset-[14%] rounded-full bg-sky-300/[0.07] blur-[90px]" />
@@ -80,14 +80,6 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-2 border-t border-white/10 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
-        {["Ingeniería de producto", "Arquitectura full-stack", "Desarrollo asistido por IA", "Sistemas UI/UX"].map((item, index) => (
-          <div key={item} className="group flex items-center gap-2 border-white/10 py-4 text-[10px] uppercase tracking-[0.13em] text-white/30 transition hover:text-white/60 odd:border-r lg:border-r lg:last:border-r-0 lg:gap-3 lg:px-6 lg:py-5 lg:text-xs lg:tracking-[0.16em] lg:first:pl-0">
-            <span className="text-cyan-100/55">0{index + 1}</span>
-            {item}
-          </div>
-        ))}
-      </div>
     </section>
   )
 }

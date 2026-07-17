@@ -11,22 +11,12 @@ export const skills = [
     },
     {
         category: "Arquitectura full-stack",
-        description: "Sistemas web con límites técnicos definidos, datos estructurados e integraciones preparadas para crecer.",
+        description: "Sistemas web con límites claros, datos estructurados y una operación preparada para evolucionar.",
         items: [
             { name: "Next.js" },
-            { name: "Node.js" },
-            { name: "Supabase" },
-            { name: "PostgreSQL" }
-        ]
-    },
-    {
-        category: "Desarrollo asistido por IA",
-        description: "IA aplicada como acelerador de ingeniería y producto, con casos de uso concretos y verificables.",
-        items: [
-            { name: "OpenAI API" },
-            { name: "RAG" },
-            { name: "Asistentes" },
-            { name: "Flujos de contenido" }
+            { name: "PostgreSQL" },
+            { name: "Cloud" },
+            { name: "CI/CD" }
         ]
     },
     {
@@ -40,23 +30,13 @@ export const skills = [
         ]
     },
     {
-        category: "Automatización e integraciones",
-        description: "Conexiones y flujos que reducen trabajo manual sin introducir complejidad innecesaria.",
+        category: "IA e integraciones",
+        description: "IA, APIs y automatizaciones aplicadas a problemas concretos, con revisión y utilidad verificable.",
         items: [
-            { name: "GitHub" },
-            { name: "WhatsApp" },
-            { name: "Resend" },
-            { name: "APIs externas" }
-        ]
-    },
-    {
-        category: "Despliegue en la nube",
-        description: "Publicación reproducible con entornos claros, CI/CD y una base preparada para mantenimiento.",
-        items: [
-            { name: "Vercel" },
-            { name: "CI/CD" },
-            { name: "Variables de entorno" },
-            { name: "Validación de compilación" }
+            { name: "OpenAI API" },
+            { name: "Asistentes" },
+            { name: "APIs" },
+            { name: "Workflows" }
         ]
     }
 ]

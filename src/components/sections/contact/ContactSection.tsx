@@ -74,7 +74,7 @@ export function ContactSection() {
           <div className="space-y-3">
             <p className="text-sm font-medium text-cyan-100/75">Agenda abierta · Respuesta en 24–48 h</p>
             <h3 className="text-2xl font-semibold text-white">Diagnóstico antes de construir</h3>
-            <p className="leading-7 text-white/50">
+            <p className="leading-7 text-white/65">
               Mejor encaje: fundadores, equipos pequeños y negocios que valoran claridad, diseño cuidado y una ejecución técnica responsable.
             </p>
           </div>
@@ -83,7 +83,7 @@ export function ContactSection() {
               <Sparkles className="h-4 w-4 text-cyan-100/70" aria-hidden="true" />
               Qué recibirás primero
             </div>
-            <ul className="space-y-3 text-sm text-white/48">
+            <ul className="space-y-3 text-sm text-white/60">
               {responseExpectations.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-100/65" />
@@ -150,12 +150,12 @@ export function ContactSection() {
                 required
                 minLength={10}
                 maxLength={4000}
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/25 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/45 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
                 placeholder="Objetivo, problema actual, plazo, usuarios y cualquier enlace que ayude a entender la oportunidad."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
-              <p className="mt-3 text-xs leading-5 text-white/40">
+              <p className="mt-3 text-xs leading-5 text-white/55">
                 No se enviará nada automáticamente. Podrás revisar y confirmar el mensaje dentro de WhatsApp.
               </p>
             </div>
@@ -177,10 +177,10 @@ type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 function InputField({ label, id, ...props }: InputFieldProps) {
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-medium text-white/50">{label}</label>
+      <label htmlFor={id} className="block text-sm font-medium text-white/65">{label}</label>
       <input
         id={id}
-        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/25 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/45 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
         {...props}
       />
     </div>

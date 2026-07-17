@@ -12,6 +12,11 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
   await expect(
     page.getByRole("heading", { name: "Casos que demuestran criterio de producto e ingeniería" }),
   ).toBeVisible()
+  await expect(page.locator("#projects article")).toHaveCount(3)
+  await expect(page.getByRole("link", { name: "Explorar todos los casos" })).toHaveAttribute(
+    "href",
+    "/projects",
+  )
 })
 
 test("mantiene el recorrido principal usable en móvil y sin overflow horizontal", async ({ page }) => {
@@ -22,10 +27,13 @@ test("mantiene el recorrido principal usable en móvil y sin overflow horizontal
   await expect(menuButton).toBeVisible()
   await menuButton.click()
   await expect(page.getByRole("navigation", { name: "Navegación móvil" })).toBeVisible()
+  await expect(page.locator(".hero-scene")).toBeHidden()
 
   const dimensions = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
+    heroHeight: document.querySelector<HTMLElement>("#home")?.getBoundingClientRect().height ?? 0,
   }))
   expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
+  expect(dimensions.heroHeight).toBeLessThanOrEqual(844)
 })
