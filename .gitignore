@@ -21,6 +21,25 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+# impeccable-ignore-start
+# Ephemeral output, runtime state, and per-developer overrides.
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/*.png
+.impeccable/live/server.json
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/annotations/
+.impeccable/live/cache/
+.impeccable/live/manual-edit-apply-transaction.json
+.impeccable/live/manual-edit-events.jsonl
+.impeccable/live/manual-edit-evidence/
+.impeccable/live/pending-manual-edits.json
+.impeccable/live/deferred-svelte-component-accepts.json
+.impeccable/live/*.png
+# impeccable-ignore-end
+
 # env files
 .env*
 !.env.example
@@ -34,3 +53,6 @@ next-env.d.ts
 
 # operating system
 .DS_Store
+
+# editor temporary files
+*.swp

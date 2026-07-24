@@ -24,13 +24,13 @@ function EvidenceItem({ item }: { item: ProjectEvidence }) {
             <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
             <span>
                 <span className="block">{item.label}</span>
-                <span className="mt-0.5 block text-xs text-zinc-500">{item.source}</span>
+                <span className="mt-0.5 block text-xs text-zinc-400">{item.source}</span>
             </span>
         </>
     )
 
     return item.url ? (
-        <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm text-zinc-300 transition hover:text-white">
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-start gap-3 py-1.5 text-sm text-zinc-300 transition hover:text-white">
             {content}
         </a>
     ) : (
@@ -109,7 +109,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 {/* Navigation */}
                 <Link
                     href="/projects"
-                    className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-12 group"
+                    className="mb-12 inline-flex min-h-11 items-center gap-2 py-2 text-sm font-mono text-muted-foreground transition-colors hover:text-primary group"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     Volver al archivo
@@ -141,19 +141,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         </p>
 
                         <div className="mb-8 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
-                            <p className="text-xs font-mono uppercase tracking-wider text-zinc-500">Rol principal</p>
+                            <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Rol principal</p>
                             <p className="mt-2 text-sm text-zinc-300">{project.role}</p>
                         </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                             {project.demo && (
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all">
-                                    Ver demo <ExternalLink className="w-4 h-4" />
+                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="group flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+                                    Ver demo <ExternalLink className="w-4 h-4" aria-hidden="true" />
                                 </a>
                             )}
                             {project.github && (
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
-                                    Ver código <Github className="w-4 h-4" />
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10">
+                                    Ver código <Github className="w-4 h-4" aria-hidden="true" />
                                 </a>
                             )}
                         </div>
@@ -178,9 +178,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     {/* Sidebar: Tech Stack */}
                     <div className="md:col-span-4 space-y-8">
                         <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 top-32 sticky">
-                            <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
-                                <Layers className="w-4 h-4" /> Stack técnico
-                            </h3>
+                            <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
+                                <Layers className="w-4 h-4" aria-hidden="true" /> Stack técnico
+                            </h2>
                             <div className="flex flex-wrap gap-2">
                                 {project.technologies.map(tech => (
                                     <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-zinc-300 font-mono">
@@ -190,10 +190,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             </div>
 
                             <div className="mt-8 border-t border-white/10 pt-6">
-                                <h3 className="text-sm font-mono uppercase text-zinc-500 mb-4 flex items-center gap-2">
-                                    <ShieldCheck className="w-4 h-4" /> Evidencia
-                                </h3>
-                                <p className="mb-4 text-xs text-zinc-600">Verificado el {formatVerifiedDate(project.verifiedAt)}</p>
+                                <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
+                                    <ShieldCheck className="w-4 h-4" aria-hidden="true" /> Evidencia
+                                </h2>
+                                <p className="mb-4 text-xs text-zinc-400">Verificado el {formatVerifiedDate(project.verifiedAt)}</p>
                                 <ul className="space-y-3">
                                     {project.evidence.map((item) => (
                                         <li key={`${item.source}-${item.label}`}>
@@ -271,16 +271,16 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                         {/* Next Project Navigation */}
                         <div className="pt-20 border-t border-white/5">
-                            <p className="text-sm font-mono text-zinc-500 mb-4">Siguiente caso</p>
+                            <p className="text-sm font-mono text-zinc-400 mb-4">Siguiente caso</p>
                             <Link
                                 href={`/projects/${nextProject.slug}`}
                                 className="group block p-6 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all sm:p-8"
                             >
                                 <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
-                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                                        <h2 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
                                             {nextProject.title}
-                                        </h3>
+                                        </h2>
                                         <p className="text-muted-foreground">{nextProject.description}</p>
                                     </div>
                                     <div className="w-12 h-12 shrink-0 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all">

@@ -15,8 +15,9 @@ Cada pull request y cada push a `main` deben demostrar instalación reproducible
 1. `pnpm typecheck`
 2. `pnpm lint`
 3. `pnpm validate:data`
-4. `pnpm build`
-5. `pnpm test:e2e`
+4. `pnpm validate:catalog`
+5. `pnpm build`
+6. `pnpm test:e2e`
 
 Las pruebas end-to-end usan Playwright con Chromium y cubren navegación pública, archivo y detalle de proyectos, responsive básico y la construcción del enlace de contacto por WhatsApp. La suite nunca abre conversaciones externas reales.
 

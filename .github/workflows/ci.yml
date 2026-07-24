@@ -45,6 +45,9 @@ jobs:
       - name: Validate data
         run: pnpm validate:data
 
+      - name: Validate engineering catalog
+        run: pnpm validate:catalog
+
       - name: Build
         run: pnpm build
 

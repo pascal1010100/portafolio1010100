@@ -1,6 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
 import { skills } from "@/data/skills"
@@ -37,13 +34,9 @@ export function SkillsSection() {
 
       <div className="hidden gap-px border-y border-white/10 bg-white/10 sm:grid sm:grid-cols-2">
         {skills.map((group, index) => (
-          <motion.article
+          <article
             key={group.category}
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#030506] py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-9"
+            className="bg-[var(--observatory-graphite)] py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-9"
           >
             <p className="text-xs text-white/45">0{index + 1}</p>
             <h3 className="mt-3 text-lg font-medium tracking-[-0.02em] text-white sm:text-xl">{group.category}</h3>
@@ -55,7 +48,7 @@ export function SkillsSection() {
                 </span>
               ))}
             </div>
-          </motion.article>
+          </article>
         ))}
       </div>
     </SectionContainer>

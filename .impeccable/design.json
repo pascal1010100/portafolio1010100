@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-24T21:31:46Z",
+  "title": "Design System: Pascal.dev",
+  "extensions": {
+    "colorMeta": {
+      "graphite-void": {
+        "role": "neutral",
+        "displayName": "Vacío Grafito",
+        "canonical": "hsl(0 0% 2%)",
+        "tonalRamp": ["#050505", "#161616", "#2b2b2b", "#444444", "#626262", "#858585", "#b4b4b4", "#f2f2f2"]
+      },
+      "graphite-deep": {
+        "role": "neutral",
+        "displayName": "Negro Orbital",
+        "canonical": "#030506",
+        "tonalRamp": ["#030506", "#111719", "#253033", "#3b494d", "#58686c", "#7c8c90", "#aebabc", "#eef2f3"]
+      },
+      "carbon-surface": {
+        "role": "neutral",
+        "displayName": "Carbono Profundo",
+        "canonical": "hsl(0 0% 4%)",
+        "tonalRamp": ["#0a0a0a", "#1b1b1b", "#303030", "#494949", "#686868", "#8b8b8b", "#b9b9b9", "#f2f2f2"]
+      },
+      "raised-surface": {
+        "role": "neutral",
+        "displayName": "Superficie Elevada",
+        "canonical": "hsl(0 0% 7%)",
+        "tonalRamp": ["#121212", "#222222", "#363636", "#505050", "#6e6e6e", "#919191", "#bdbdbd", "#f2f2f2"]
+      },
+      "muted-surface": {
+        "role": "neutral",
+        "displayName": "Superficie Silenciosa",
+        "canonical": "hsl(0 0% 8%)",
+        "tonalRamp": ["#141414", "#242424", "#383838", "#515151", "#707070", "#929292", "#bdbdbd", "#f2f2f2"]
+      },
+      "polar-white": {
+        "role": "neutral",
+        "displayName": "Blanco Polar",
+        "canonical": "hsl(0 0% 98%)",
+        "tonalRamp": ["#262626", "#444444", "#646464", "#858585", "#a7a7a7", "#c7c7c7", "#e3e3e3", "#fafafa"]
+      },
+      "secondary-white": {
+        "role": "neutral",
+        "displayName": "Blanco Secundario",
+        "canonical": "hsl(0 0% 96%)",
+        "tonalRamp": ["#252525", "#434343", "#626262", "#838383", "#a4a4a4", "#c4c4c4", "#dfdfdf", "#f5f5f5"]
+      },
+      "muted-copy": {
+        "role": "neutral",
+        "displayName": "Texto Atenuado",
+        "canonical": "hsl(0 0% 62%)",
+        "tonalRamp": ["#242424", "#3e3e3e", "#595959", "#747474", "#8e8e8e", "#a9a9a9", "#c6c6c6", "#eeeeee"]
+      },
+      "structural-line": {
+        "role": "neutral",
+        "displayName": "Línea Estructural",
+        "canonical": "hsl(0 0% 14%)",
+        "tonalRamp": ["#242424", "#343434", "#494949", "#626262", "#7f7f7f", "#a0a0a0", "#c8c8c8", "#f2f2f2"]
+      },
+      "polar-cyan": {
+        "role": "primary",
+        "displayName": "Luz Polar",
+        "canonical": "#ecfeff",
+        "tonalRamp": ["oklch(15% 0.025 195)", "oklch(27% 0.035 195)", "oklch(39% 0.045 195)", "oklch(52% 0.055 195)", "oklch(65% 0.06 195)", "oklch(76% 0.055 195)", "oklch(87% 0.04 195)", "oklch(95% 0.025 195)"]
+      },
+      "horizon-cyan": {
+        "role": "primary",
+        "displayName": "Cian de Horizonte",
+        "canonical": "#cffafe",
+        "tonalRamp": ["oklch(15% 0.035 195)", "oklch(27% 0.05 195)", "oklch(39% 0.065 195)", "oklch(52% 0.075 195)", "oklch(65% 0.08 195)", "oklch(76% 0.07 195)", "oklch(87% 0.05 195)", "oklch(95% 0.03 195)"]
+      },
+      "polar-glint": {
+        "role": "primary",
+        "displayName": "Destello Polar",
+        "canonical": "rgb(207 239 255)",
+        "tonalRamp": ["oklch(15% 0.025 225)", "oklch(27% 0.04 225)", "oklch(39% 0.055 225)", "oklch(52% 0.07 225)", "oklch(65% 0.075 225)", "oklch(76% 0.065 225)", "oklch(87% 0.045 225)", "oklch(95% 0.025 225)"]
+      },
+      "ice-structure": {
+        "role": "secondary",
+        "displayName": "Estructura de Hielo",
+        "canonical": "rgb(195 232 255)",
+        "tonalRamp": ["oklch(15% 0.03 230)", "oklch(27% 0.045 230)", "oklch(39% 0.06 230)", "oklch(52% 0.075 230)", "oklch(65% 0.08 230)", "oklch(76% 0.07 230)", "oklch(87% 0.05 230)", "oklch(95% 0.025 230)"]
+      },
+      "boutique-blue": {
+        "role": "secondary",
+        "displayName": "Azul Boutique",
+        "canonical": "rgb(137 205 255)",
+        "tonalRamp": ["oklch(15% 0.04 240)", "oklch(27% 0.065 240)", "oklch(39% 0.09 240)", "oklch(52% 0.11 240)", "oklch(65% 0.12 240)", "oklch(76% 0.1 240)", "oklch(87% 0.065 240)", "oklch(95% 0.03 240)"]
+      },
+      "atmospheric-blue": {
+        "role": "secondary",
+        "displayName": "Azul Atmosférico",
+        "canonical": "rgb(112 170 255)",
+        "tonalRamp": ["oklch(15% 0.045 255)", "oklch(27% 0.07 255)", "oklch(39% 0.095 255)", "oklch(52% 0.12 255)", "oklch(65% 0.135 255)", "oklch(76% 0.11 255)", "oklch(87% 0.07 255)", "oklch(95% 0.035 255)"]
+      },
+      "residual-amber": {
+        "role": "secondary",
+        "displayName": "Ámbar Residual",
+        "canonical": "rgb(255 193 124)",
+        "tonalRamp": ["oklch(15% 0.04 65)", "oklch(27% 0.06 65)", "oklch(39% 0.08 65)", "oklch(52% 0.1 65)", "oklch(65% 0.11 65)", "oklch(76% 0.09 65)", "oklch(87% 0.06 65)", "oklch(95% 0.03 65)"]
+      },
+      "destructive": {
+        "role": "tertiary",
+        "displayName": "Rojo de Error",
+        "canonical": "hsl(0 72% 51%)",
+        "tonalRamp": ["oklch(15% 0.07 25)", "oklch(27% 0.12 25)", "oklch(39% 0.17 25)", "oklch(52% 0.21 25)", "oklch(65% 0.19 25)", "oklch(76% 0.14 25)", "oklch(87% 0.08 25)", "oklch(95% 0.035 25)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular principal y momentos de máxima jerarquía."
+      },
+      "display-compact": {
+        "displayName": "Display Compact",
+        "purpose": "Paso móvil intermedio del titular principal."
+      },
+      "display-short": {
+        "displayName": "Display Short Viewport",
+        "purpose": "Titular principal ajustado a pantallas anchas de poca altura."
+      },
+      "display-wide": {
+        "displayName": "Display Wide",
+        "purpose": "Paso amplio del titular principal antes del máximo 2xl."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Encabezados editoriales de sección."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de proyectos, servicios y bloques."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura explicativa, formularios y contenido extenso."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Categorías, numeración, estados y metadatos."
+      },
+      "metadata-compact": {
+        "displayName": "Metadata Compact",
+        "purpose": "Etiquetas técnicas mínimas y breves."
+      },
+      "metadata": {
+        "displayName": "Metadata",
+        "purpose": "Evidencia, tecnologías y estados secundarios."
+      },
+      "calendar-label": {
+        "displayName": "Calendar Label",
+        "purpose": "Numeración compacta de la primitiva de calendario."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-ambient",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 80px rgba(0,0,0,0.28)",
+        "purpose": "Separación ambiental para paneles premium."
+      },
+      {
+        "name": "panel-deep",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.035), 0 28px 90px rgba(0,0,0,0.25)",
+        "purpose": "Profundidad contenida en tarjetas de proyecto."
+      },
+      {
+        "name": "polar-action",
+        "value": "inset 0 1px 0 rgba(255,255,255,0.42), 0 0 32px rgba(207,239,255,0.1)",
+        "purpose": "Respuesta luminosa de acciones destacadas en hover o foco."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-observatory",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entrada y transformación serena de elementos principales."
+      },
+      {
+        "name": "ease-soft",
+        "value": "ease",
+        "purpose": "Transiciones breves de color, borde y opacidad."
+      },
+      {
+        "name": "duration-state",
+        "value": "180ms–320ms",
+        "purpose": "Estados de controles y microinteracciones."
+      },
+      {
+        "name": "duration-ambient",
+        "value": "500ms–700ms",
+        "purpose": "Luz, imagen y transformaciones ambientales."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de alto contraste con reflejo polar.",
+      "html": "<button class=\"ds-btn-primary\">VER TRABAJO <span aria-hidden=\"true\">↗</span></button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:14px 24px; border:0; border-radius:9999px; background:#ecfeff; color:#030506; font:600 14px/1 Inter,system-ui,sans-serif; cursor:pointer; transition:background-color 220ms ease,box-shadow 320ms ease,transform 180ms ease; } .ds-btn-primary:hover { background:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.42),0 0 32px rgba(207,239,255,.1); } .ds-btn-primary:focus-visible { outline:2px solid rgba(255,255,255,.8); outline-offset:3px; } .ds-btn-primary:active { transform:translateY(1px) scale(.99); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción secundaria transparente que conserva la jerarquía del contenido.",
+      "html": "<button class=\"ds-btn-secondary\">INICIAR CONVERSACIÓN</button>",
+      "css": ".ds-btn-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:14px 24px; border:1px solid rgba(255,255,255,.2); border-radius:9999px; background:rgba(255,255,255,.025); color:rgba(255,255,255,.82); font:500 14px/1 Inter,system-ui,sans-serif; cursor:pointer; transition:border-color 220ms ease,background-color 220ms ease,color 220ms ease; } .ds-btn-secondary:hover { border-color:rgba(255,255,255,.35); background:rgba(255,255,255,.055); color:#fff; } .ds-btn-secondary:focus-visible { outline:2px solid rgba(255,255,255,.8); outline-offset:3px; }"
+    },
+    {
+      "name": "Navigation Pill",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Estado activo de navegación dentro de una cabecera translúcida.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">CAPACIDADES</a><a href=\"#\" class=\"ds-nav-link ds-nav-link-active\">PROYECTOS</a><a href=\"#\" class=\"ds-nav-link\">SERVICIOS</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:4px; padding:8px; border:1px solid rgba(255,255,255,.1); background:rgba(0,0,0,.8); backdrop-filter:blur(24px); } .ds-nav-link { padding:8px 16px; border-radius:9999px; color:rgba(255,255,255,.65); font:500 14px/1 Inter,system-ui,sans-serif; text-decoration:none; transition:background-color 200ms ease,color 200ms ease; } .ds-nav-link:hover,.ds-nav-link:focus-visible { color:#fff; outline:none; } .ds-nav-link:focus-visible { box-shadow:0 0 0 2px rgba(255,255,255,.8); } .ds-nav-link-active { background:rgba(255,255,255,.1); color:#fff; }"
+    },
+    {
+      "name": "Contact Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo oscuro y legible para el diagnóstico previo.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Producto o reto</span><input class=\"ds-input\" placeholder=\"Describe brevemente la oportunidad\"></label>",
+      "css": ".ds-field { display:grid; gap:8px; color:rgba(255,255,255,.65); font-family:Inter,system-ui,sans-serif; } .ds-field-label { font-size:14px; font-weight:500; } .ds-input { min-height:48px; padding:12px 16px; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(0,0,0,.4); color:#fafafa; font:400 16px/1.5 Inter,system-ui,sans-serif; transition:border-color 180ms ease,box-shadow 180ms ease; } .ds-input::placeholder { color:rgba(255,255,255,.45); } .ds-input:focus { border-color:rgba(255,255,255,.3); outline:none; box-shadow:0 0 0 1px rgba(255,255,255,.2); }"
+    },
+    {
+      "name": "Technology Chip",
+      "kind": "chip",
+      "refersTo": "technology-chip",
+      "description": "Metadato compacto para tecnologías y categorías.",
+      "html": "<span class=\"ds-chip\">NEXT.JS</span>",
+      "css": ".ds-chip { display:inline-flex; align-items:center; padding:4px 10px; border:1px solid rgba(255,255,255,.1); border-radius:9999px; background:rgba(255,255,255,.025); color:rgba(255,255,255,.6); font:500 11px/1.2 Inter,system-ui,sans-serif; letter-spacing:.02em; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Caso editorial con imagen dominante, evidencia y metadatos compactos.",
+      "html": "<article class=\"ds-project-card\"><div class=\"ds-project-image\"><span>IMAGEN DEL PROYECTO</span></div><div class=\"ds-project-body\"><p class=\"ds-project-kicker\">PRODUCTO DIGITAL</p><h3>Nombre del proyecto</h3><p>Problema, decisión y resultado explicados con claridad y evidencia.</p><div class=\"ds-project-meta\"><span>ROL · FULL-STACK</span><span>ESTADO · PUBLICADO</span></div></div></article>",
+      "css": ".ds-project-card { overflow:hidden; border:1px solid rgba(255,255,255,.1); background:#000; color:#fafafa; box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 28px 90px rgba(0,0,0,.25); font-family:Inter,system-ui,sans-serif; transition:border-color 500ms ease; } .ds-project-card:hover { border-color:rgba(207,250,254,.25); } .ds-project-image { display:grid; min-height:220px; place-items:center; background:radial-gradient(circle at 75% 22%,rgba(190,230,255,.2),transparent 34%),linear-gradient(135deg,#15191b,#050505); color:rgba(255,255,255,.45); font-size:11px; letter-spacing:.16em; } .ds-project-body { padding:28px; } .ds-project-kicker { margin:0 0 12px; color:rgba(255,255,255,.6); font-size:12px; letter-spacing:.16em; } .ds-project-card h3 { margin:0; font:500 24px/1.2 'Space Grotesk',system-ui,sans-serif; letter-spacing:-.03em; } .ds-project-card p { color:rgba(255,255,255,.65); line-height:1.6; } .ds-project-meta { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1); } .ds-project-meta span { padding:8px 12px; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(255,255,255,.018); color:rgba(255,255,255,.58); font-size:11px; }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "description": "Jerarquía editorial recurrente para orientar secciones largas.",
+      "html": "<header class=\"ds-section-header\"><span>04 — TRABAJO SELECCIONADO</span><h2>Casos que demuestran criterio de producto e ingeniería</h2><p>Productos desplegados presentados mediante problema, decisiones, ejecución y evidencia.</p></header>",
+      "css": ".ds-section-header { max-width:768px; color:#fafafa; } .ds-section-header>span { display:inline-block; margin-bottom:20px; color:rgba(255,255,255,.55); font:500 12px/1 Inter,system-ui,sans-serif; letter-spacing:.18em; } .ds-section-header h2 { margin:0 0 20px; font:500 clamp(30px,4vw,48px)/1.05 'Space Grotesk',system-ui,sans-serif; letter-spacing:-.04em; } .ds-section-header p { max-width:672px; margin:0; color:rgba(255,255,255,.65); font:400 18px/1.75 Inter,system-ui,sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Observatorio de Ingeniería",
+    "overview": "Pascal.dev se comporta como un observatorio técnico: un entorno oscuro y silencioso donde cada proyecto aparece como evidencia bajo una luz precisa. La profundidad espacial, las retículas tenues y el núcleo tridimensional sugieren exploración, pero la estructura editorial mantiene el contenido profesional en primer plano.\n\nEl sistema es sobrio y de densidad media-baja. Usa grandes pausas, jerarquías tipográficas contenidas y superficies casi negras separadas por líneas translúcidas. Los acentos fríos funcionan como instrumentos de enfoque; los reflejos cálidos aparecen solo como contrapunto atmosférico. Debe sentirse construido con criterio, nunca decorado por acumulación.",
+    "keyCharacteristics": [
+      "Fondos negros matizados, no negro plano uniforme.",
+      "Tipografía geométrica para jerarquía y sans humanista para lectura.",
+      "Composición asimétrica y editorial con espacio negativo generoso.",
+      "Bordes finos y capas tonales antes que sombras voluminosas.",
+      "Cian polar reservado para acciones, evidencia y estados de atención.",
+      "Movimiento sereno, breve y subordinado al contenido."
+    ],
+    "rules": [
+      {
+        "name": "The Polar Signal Rule",
+        "body": "El cian debe ocupar una fracción pequeña de cada pantalla. Su rareza le da significado.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tinted Black Rule",
+        "body": "Las superficies oscuras se distinguen mediante matices, gradientes y transparencia; no mediante una colección de negros arbitrarios.",
+        "section": "colors"
+      },
+      {
+        "name": "The Compressed Horizon Rule",
+        "body": "Los titulares grandes usan interlineado y tracking negativos; el cuerpo recupera aire mediante line-height amplio.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Observatory Rule",
+        "body": "Las superficies permanecen planas en reposo; la luz y la profundidad aumentan solo para comunicar jerarquía o interacción.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar Luz Polar y Cian de Horizonte para acciones, evidencia y estados con intención.",
+      "Do mantener un gesto visual dominante por sección y espacio negativo alrededor.",
+      "Do sostener la jerarquía con escala, alineación y contraste antes de añadir contenedores.",
+      "Do usar bordes finos, capas tonales y halos ambientales para construir profundidad.",
+      "Do conservar prefers-reduced-motion y una experiencia completa sin WebGL.",
+      "Do presentar proyectos mediante problema, decisiones, ejecución y evidencia verificable."
+    ],
+    "donts": [
+      "Don't introducir estética gamer, terminales decorativas, neón saturado o efectos cyberpunk heredados.",
+      "Don't convertir cada bloque en una tarjeta ni anidar tarjetas sin una función informativa.",
+      "Don't usar cian como relleno dominante; debe funcionar como señal escasa.",
+      "Don't añadir animaciones elásticas, rebotes o movimiento que compita con la lectura.",
+      "Don't reemplazar la evidencia real con métricas, testimonios o afirmaciones inventadas.",
+      "Don't permitir que el 3D, los glows o el blur reduzcan contraste, rendimiento o accesibilidad."
+    ]
+  }
+}

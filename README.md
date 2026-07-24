@@ -48,6 +48,7 @@ El sitio está construido con:
 - Three.js y React Three Fiber para la experiencia espacial 3D de la portada.
 - WhatsApp como canal directo para iniciar conversaciones.
 - Datos locales en `src/data/` para perfil, habilidades y proyectos.
+- Un catálogo interno versionado que autoriza repositorios y define el contrato de futuros reportes de ingeniería.
 
 La aplicación usa App Router, genera páginas estáticas para los proyectos y prepara mensajes de contacto para WhatsApp desde el navegador, sin enviar datos automáticamente.
 
@@ -93,11 +94,24 @@ pnpm build
 pnpm start
 pnpm lint
 pnpm typecheck
+pnpm catalog:generate
+pnpm validate:catalog
 pnpm test:e2e
 pnpm check
 ```
 
 TypeScript, ESLint, la validación de datos, las pruebas end-to-end y el build forman parte del workflow de CI.
+
+## Catálogo de ingeniería
+
+El registro de `catalog/repositories.json` es la lista explícita de repositorios autorizados. Este comando consulta únicamente información pública de GitHub mediante operaciones de lectura y genera un snapshot local en `catalog/generated/`:
+
+```bash
+pnpm catalog:generate
+pnpm validate:catalog
+```
+
+El reporte no modifica repositorios ni alimenta el frontend automáticamente. Cualquier publicación continúa requiriendo revisión humana.
 
 ## Variables de entorno
 
@@ -162,6 +176,7 @@ src/app/                 Rutas, páginas, metadata y API
 src/components/          Componentes y secciones visuales
 src/data/                Perfil, habilidades y proyectos
 src/lib/                 Utilidades compartidas
+catalog/                 Registro autorizado y contratos del catálogo de ingeniería
 public/                  Imágenes y activos públicos
 .github/workflows/       CI reproducible
 docs/                    Charter, arquitectura, ADRs y runbooks

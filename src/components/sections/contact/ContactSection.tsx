@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { MessageCircle, Sparkles } from "lucide-react"
-import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
 import { Button } from "@/components/ui/button"
@@ -61,11 +60,7 @@ export function ContactSection() {
       />
 
       <div className="grid overflow-hidden border border-white/10 lg:grid-cols-[0.85fr_1.15fr]">
-        <motion.div
-          initial={false}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="space-y-7 border-b border-white/10 bg-white/[0.012] p-7 sm:p-9 lg:border-b-0 lg:border-r lg:p-10"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] text-white">
@@ -99,34 +94,39 @@ export function ContactSection() {
                 href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noreferrer"
-                className="break-words text-foreground transition-colors hover:text-primary"
+                className="inline-flex min-h-11 items-center break-words py-2 text-foreground transition-colors hover:text-primary"
               >
                 +502 4290 0009
               </a>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">LinkedIn</p>
-              <a href="https://www.linkedin.com/in/josema-aguilar-dev" target="_blank" rel="noreferrer" className="break-words text-foreground hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/in/josema-aguilar-dev" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center break-words py-2 text-foreground transition-colors hover:text-primary">
                 linkedin.com/in/josema-aguilar-dev
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={false}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        <div
           className="bg-white/[0.02] p-7 sm:p-9 lg:p-10"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            aria-describedby="contact-form-instructions"
+          >
+            <p id="contact-form-instructions" className="text-sm leading-6 text-white/60">
+              Los campos marcados con <span aria-hidden="true">*</span>
+              <span className="sr-only">asterisco</span> son obligatorios.
+            </p>
             <InputField
               label="Nombre"
               id="contact-name"
               name="name"
               autoComplete="name"
               required
+              hint="Escribe al menos 2 caracteres."
               minLength={2}
               maxLength={100}
               value={form.name}
@@ -142,7 +142,10 @@ export function ContactSection() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, project: e.target.value })}
             />
             <div>
-              <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">Contexto para el diagnóstico</label>
+              <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">
+                Contexto para el diagnóstico <span aria-hidden="true" className="text-cyan-100/75">*</span>
+                <span className="sr-only"> (obligatorio)</span>
+              </label>
               <textarea
                 id="contact-message"
                 name="message"
@@ -150,21 +153,25 @@ export function ContactSection() {
                 required
                 minLength={10}
                 maxLength={4000}
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/45 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                aria-describedby="contact-message-hint contact-message-privacy"
+                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
                 placeholder="Objetivo, problema actual, plazo, usuarios y cualquier enlace que ayude a entender la oportunidad."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
-              <p className="mt-3 text-xs leading-5 text-white/55">
+              <p id="contact-message-hint" className="mt-3 text-xs leading-5 text-white/65">
+                Incluye al menos 10 caracteres para explicar la oportunidad.
+              </p>
+              <p id="contact-message-privacy" className="mt-2 text-xs leading-5 text-white/55">
                 No se enviará nada automáticamente. Podrás revisar y confirmar el mensaje dentro de WhatsApp.
               </p>
             </div>
-            <Button type="submit" size="lg" className="liquid-sheen w-full justify-center bg-cyan-50 text-slate-950 hover:bg-white">
+            <Button type="submit" size="lg" className="liquid-sheen w-full justify-center bg-cyan-50 text-[var(--observatory-graphite)] hover:bg-white">
               <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
               Continuar por WhatsApp
             </Button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </SectionContainer>
   )
@@ -172,17 +179,35 @@ export function ContactSection() {
 
 type InputFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string
+  hint?: string
 }
 
-function InputField({ label, id, ...props }: InputFieldProps) {
+function InputField({ label, id, hint, required, ...props }: InputFieldProps) {
+  const hintId = hint && id ? `${id}-hint` : undefined
+
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-medium text-white/65">{label}</label>
+      <label htmlFor={id} className="block text-sm font-medium text-white/65">
+        {label}
+        {required && (
+          <>
+            {" "}<span aria-hidden="true" className="text-cyan-100/75">*</span>
+            <span className="sr-only"> (obligatorio)</span>
+          </>
+        )}
+      </label>
       <input
         id={id}
-        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/45 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+        required={required}
+        aria-describedby={hintId}
+        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
         {...props}
       />
+      {hint && (
+        <p id={hintId} className="text-xs leading-5 text-white/65">
+          {hint}
+        </p>
+      )}
     </div>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -18,6 +18,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [scrolled, setScrolled] = useState(false)
+  const shouldReduceMotion = useReducedMotion() ?? false
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +38,9 @@ export function Navbar() {
   }, [])
 
   const handleNavClick = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" })
+    document.querySelector(href)?.scrollIntoView({
+      behavior: shouldReduceMotion ? "auto" : "smooth",
+    })
     setIsMobileMenuOpen(false)
   }
 
@@ -68,8 +71,11 @@ export function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => handleNavClick(item.href)}
+              aria-current={
+                activeSection === item.href.slice(1) ? "location" : undefined
+              }
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition",
+                "inline-flex min-h-11 items-center rounded-full px-4 py-2 text-sm font-medium transition",
                 activeSection === item.href.slice(1)
                   ? "bg-white/10 text-white"
                   : "text-white/65 hover:text-white",
@@ -81,7 +87,7 @@ export function Navbar() {
           <Link
             href="#contact"
             onClick={() => handleNavClick("#contact")}
-            className="ml-3 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90"
+            className="ml-3 inline-flex min-h-11 items-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             Iniciar proyecto
           </Link>
@@ -89,7 +95,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="rounded-full border border-white/15 bg-white/[0.04] p-2.5 text-white lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMobileMenuOpen}
@@ -101,15 +107,24 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.nav
-            initial={{ opacity: 0, y: -8 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.24, ease: [0.16, 1, 0.3, 1] }}
             className="border-t border-white/10 bg-black/95 px-4 py-5 backdrop-blur-2xl lg:hidden"
             aria-label="Navegación móvil"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-2">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => handleNavClick(item.href)} className="rounded-xl px-4 py-3 text-base font-medium text-white hover:bg-white/[0.06]">
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => handleNavClick(item.href)}
+                  aria-current={
+                    activeSection === item.href.slice(1) ? "location" : undefined
+                  }
+                  className="rounded-xl px-4 py-3 text-base font-medium text-white hover:bg-white/[0.06]"
+                >
                   {item.name}
                 </Link>
               ))}

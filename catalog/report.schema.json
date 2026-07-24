@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pascal.dev/schemas/engineering-catalog-report.v1.json",
+  "title": "Pascal Engineering Catalog Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "generatedAt", "generator", "repositories"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 }
+      }
+    },
+    "repositories": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/repositoryReport" }
+    }
+  },
+  "$defs": {
+    "repositoryReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "displayName",
+        "repositoryUrl",
+        "sourceRevision",
+        "observedAt",
+        "facts",
+        "documents",
+        "quality",
+        "activity",
+        "findings",
+        "sources"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "displayName": { "type": "string", "minLength": 1 },
+        "repositoryUrl": { "type": "string", "format": "uri" },
+        "sourceRevision": { "type": "string", "minLength": 1 },
+        "observedAt": { "type": "string", "format": "date-time" },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lifecycle", "description", "technologies", "demoUrl"],
+          "properties": {
+            "lifecycle": {
+              "enum": ["experimental", "active", "maintenance", "archived", "unknown"]
+            },
+            "description": { "type": ["string", "null"] },
+            "technologies": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true
+            },
+            "demoUrl": {
+              "type": ["string", "null"],
+              "format": "uri"
+            }
+          }
+        },
+        "documents": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["readme", "agents", "architecture"],
+          "properties": {
+            "readme": { "$ref": "#/$defs/fileEvidence" },
+            "agents": { "$ref": "#/$defs/fileEvidence" },
+            "architecture": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/fileEvidence" }
+            }
+          }
+        },
+        "quality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["ci", "tests"],
+          "properties": {
+            "ci": { "$ref": "#/$defs/signal" },
+            "tests": { "$ref": "#/$defs/signal" }
+          }
+        },
+        "activity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["lastCommitAt"],
+          "properties": {
+            "lastCommitAt": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            }
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/finding" }
+        },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/source" },
+          "minItems": 1
+        }
+      }
+    },
+    "fileEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "path"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "path": { "type": ["string", "null"] }
+      }
+    },
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "evidence"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "evidence": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "severity", "message"],
+      "properties": {
+        "code": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "severity": { "enum": ["info", "warning", "error"] },
+        "message": { "type": "string", "minLength": 1 },
+        "sourceRef": { "type": ["string", "null"] }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref", "revision"],
+      "properties": {
+        "kind": { "enum": ["repository", "file", "workflow", "manifest"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 },
+        "url": { "type": ["string", "null"], "format": "uri" }
+      }
+    }
+  }
+}

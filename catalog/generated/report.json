@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-05T21:57:41.526Z",
+  "generator": {
+    "name": "pascal-engineering-catalog",
+    "version": "1.0.0"
+  },
+  "repositories": [
+    {
+      "id": "pascal-dev",
+      "displayName": "Pascal.dev",
+      "repositoryUrl": "https://github.com/pascal1010100/portafolio1010100",
+      "sourceRevision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+      "observedAt": "2026-07-05T21:57:41.526Z",
+      "facts": {
+        "lifecycle": "active",
+        "description": null,
+        "technologies": [
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Playwright",
+          "Three.js",
+          "React Three Fiber"
+        ],
+        "demoUrl": "https://portafolio1010100.vercel.app"
+      },
+      "documents": {
+        "readme": {
+          "present": true,
+          "path": "README.md"
+        },
+        "agents": {
+          "present": true,
+          "path": "AGENTS.md"
+        },
+        "architecture": [
+          {
+            "present": true,
+            "path": "docs/architecture/AUDIT-2026-06-28.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/README.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/adr/0001-modular-monolith.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/adr/0002-pnpm-toolchain.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/adr/0003-automation-boundaries.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/adr/0004-server-client-boundaries.md"
+          },
+          {
+            "present": true,
+            "path": "docs/architecture/adr/0005-three-system-operating-model.md"
+          }
+        ]
+      },
+      "quality": {
+        "ci": {
+          "present": true,
+          "evidence": [
+            ".github/workflows/ci.yml"
+          ]
+        },
+        "tests": {
+          "present": true,
+          "evidence": [
+            "test:e2e: playwright test",
+            "test:e2e:ui: playwright test --ui",
+            "tests/e2e/contact.spec.ts",
+            "tests/e2e/home.spec.ts",
+            "tests/e2e/projects.spec.ts"
+          ]
+        }
+      },
+      "activity": {
+        "lastCommitAt": "2026-07-05T20:34:15Z"
+      },
+      "findings": [],
+      "sources": [
+        {
+          "kind": "repository",
+          "ref": "pascal1010100/portafolio1010100",
+          "revision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+          "url": "https://github.com/pascal1010100/portafolio1010100"
+        },
+        {
+          "kind": "file",
+          "ref": "README.md",
+          "revision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+          "url": "https://github.com/pascal1010100/portafolio1010100/blob/79b8ad88f56cc6b5bfc2078b6189fb4432fd5377/README.md"
+        },
+        {
+          "kind": "file",
+          "ref": "AGENTS.md",
+          "revision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+          "url": "https://github.com/pascal1010100/portafolio1010100/blob/79b8ad88f56cc6b5bfc2078b6189fb4432fd5377/AGENTS.md"
+        },
+        {
+          "kind": "manifest",
+          "ref": "package.json",
+          "revision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+          "url": "https://github.com/pascal1010100/portafolio1010100/blob/79b8ad88f56cc6b5bfc2078b6189fb4432fd5377/package.json"
+        },
+        {
+          "kind": "workflow",
+          "ref": ".github/workflows/ci.yml",
+          "revision": "79b8ad88f56cc6b5bfc2078b6189fb4432fd5377",
+          "url": "https://github.com/pascal1010100/portafolio1010100/blob/79b8ad88f56cc6b5bfc2078b6189fb4432fd5377/.github/workflows/ci.yml"
+        }
+      ]
+    },
+    {
+      "id": "mandalas-hostal",
+      "displayName": "Mandalas Hostal",
+      "repositoryUrl": "https://github.com/pascal1010100/mandalas",
+      "sourceRevision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+      "observedAt": "2026-07-05T21:57:41.526Z",
+      "facts": {
+        "lifecycle": "active",
+        "description": null,
+        "technologies": [
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Supabase",
+          "Playwright",
+          "Leaflet"
+        ],
+        "demoUrl": "https://www.mandalashostels.com"
+      },
+      "documents": {
+        "readme": {
+          "present": true,
+          "path": "README.md"
+        },
+        "agents": {
+          "present": false,
+          "path": null
+        },
+        "architecture": []
+      },
+      "quality": {
+        "ci": {
+          "present": true,
+          "evidence": [
+            ".github/workflows/ci.yml",
+            ".github/workflows/docker.yml"
+          ]
+        },
+        "tests": {
+          "present": true,
+          "evidence": [
+            "test: vitest run",
+            "test:e2e: playwright test",
+            "test:e2e:ui: playwright test --ui",
+            "scripts/_archive/tests/simulate_logic.ts",
+            "scripts/_archive/tests/test_dorm_booking.ts",
+            "scripts/_archive/tests/test_grid_logic.ts",
+            "src/domains/bookings/services/availability.service.test.ts",
+            "src/domains/bookings/utils/validators.test.ts",
+            "src/infrastructure/cloudbeds/client.test.ts",
+            "src/infrastructure/cloudbeds/overview.test.ts",
+            "src/infrastructure/cloudbeds/room-mapping.test.ts",
+            "src/infrastructure/cloudbeds/webhook-alert.test.ts",
+            "src/infrastructure/cloudbeds/webhook-event.test.ts",
+            "tests/e2e/public-site.spec.ts"
+          ]
+        }
+      },
+      "activity": {
+        "lastCommitAt": "2026-07-03T02:52:15Z"
+      },
+      "findings": [
+        {
+          "code": "missing-agents",
+          "severity": "warning",
+          "message": "No se encontró AGENTS.md.",
+          "sourceRef": null
+        },
+        {
+          "code": "missing-architecture-docs",
+          "severity": "info",
+          "message": "No se encontró documentación dentro de docs/architecture.",
+          "sourceRef": null
+        }
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "ref": "pascal1010100/mandalas",
+          "revision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+          "url": "https://github.com/pascal1010100/mandalas"
+        },
+        {
+          "kind": "file",
+          "ref": "README.md",
+          "revision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+          "url": "https://github.com/pascal1010100/mandalas/blob/eb5fd155838abe19e00240dfdad6f456cb92fc71/README.md"
+        },
+        {
+          "kind": "manifest",
+          "ref": "package.json",
+          "revision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+          "url": "https://github.com/pascal1010100/mandalas/blob/eb5fd155838abe19e00240dfdad6f456cb92fc71/package.json"
+        },
+        {
+          "kind": "workflow",
+          "ref": ".github/workflows/ci.yml",
+          "revision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+          "url": "https://github.com/pascal1010100/mandalas/blob/eb5fd155838abe19e00240dfdad6f456cb92fc71/.github/workflows/ci.yml"
+        },
+        {
+          "kind": "workflow",
+          "ref": ".github/workflows/docker.yml",
+          "revision": "eb5fd155838abe19e00240dfdad6f456cb92fc71",
+          "url": "https://github.com/pascal1010100/mandalas/blob/eb5fd155838abe19e00240dfdad6f456cb92fc71/.github/workflows/docker.yml"
+        }
+      ]
+    },
+    {
+      "id": "nomada-fantasma",
+      "displayName": "Nómada Fantasma",
+      "repositoryUrl": "https://github.com/pascal1010100/nomada-fantasma",
+      "sourceRevision": "404d367f32a487022adb1e6c65863406091a903c",
+      "observedAt": "2026-07-05T21:57:41.526Z",
+      "facts": {
+        "lifecycle": "active",
+        "description": null,
+        "technologies": [
+          "TypeScript",
+          "Next.js",
+          "React",
+          "Tailwind CSS",
+          "Supabase",
+          "Leaflet",
+          "next-intl"
+        ],
+        "demoUrl": "https://nomadafantasma.com/es"
+      },
+      "documents": {
+        "readme": {
+          "present": true,
+          "path": "README.md"
+        },
+        "agents": {
+          "present": false,
+          "path": null
+        },
+        "architecture": []
+      },
+      "quality": {
+        "ci": {
+          "present": true,
+          "evidence": [
+            ".github/workflows/ci.yml"
+          ]
+        },
+        "tests": {
+          "present": true,
+          "evidence": [
+            "test: vitest",
+            "test:ui: vitest --ui",
+            "test:coverage: vitest --coverage",
+            "test:e2e:booking: tsx scripts/e2e-booking-workflow.ts",
+            "app/[locale]/rutas-magicas/lib/townSlugs.test.ts",
+            "app/api/internal/jobs/process-notifications/route.test.ts",
+            "app/api/internal/requests/payment/route.test.ts",
+            "app/api/internal/requests/send-email/route.test.ts",
+            "app/api/internal/requests/status/route.test.ts",
+            "app/api/reservations/route.test.ts",
+            "app/api/shuttles/reserve/route.test.ts",
+            "app/lib/elite-voucher.test.ts",
+            "app/lib/locale.test.ts",
+            "app/lib/notification-job-processor.test.ts",
+            "app/lib/notification-jobs.test.ts",
+            "app/lib/rate-limit.test.ts",
+            "app/lib/tour-booking-options.test.ts",
+            "app/lib/validations.test.ts"
+          ]
+        }
+      },
+      "activity": {
+        "lastCommitAt": "2026-05-07T01:33:57Z"
+      },
+      "findings": [
+        {
+          "code": "missing-agents",
+          "severity": "warning",
+          "message": "No se encontró AGENTS.md.",
+          "sourceRef": null
+        },
+        {
+          "code": "missing-architecture-docs",
+          "severity": "info",
+          "message": "No se encontró documentación dentro de docs/architecture.",
+          "sourceRef": null
+        }
+      ],
+      "sources": [
+        {
+          "kind": "repository",
+          "ref": "pascal1010100/nomada-fantasma",
+          "revision": "404d367f32a487022adb1e6c65863406091a903c",
+          "url": "https://github.com/pascal1010100/nomada-fantasma"
+        },
+        {
+          "kind": "file",
+          "ref": "README.md",
+          "revision": "404d367f32a487022adb1e6c65863406091a903c",
+          "url": "https://github.com/pascal1010100/nomada-fantasma/blob/404d367f32a487022adb1e6c65863406091a903c/README.md"
+        },
+        {
+          "kind": "manifest",
+          "ref": "package.json",
+          "revision": "404d367f32a487022adb1e6c65863406091a903c",
+          "url": "https://github.com/pascal1010100/nomada-fantasma/blob/404d367f32a487022adb1e6c65863406091a903c/package.json"
+        },
+        {
+          "kind": "workflow",
+          "ref": ".github/workflows/ci.yml",
+          "revision": "404d367f32a487022adb1e6c65863406091a903c",
+          "url": "https://github.com/pascal1010100/nomada-fantasma/blob/404d367f32a487022adb1e6c65863406091a903c/.github/workflows/ci.yml"
+        }
+      ]
+    }
+  ]
+}

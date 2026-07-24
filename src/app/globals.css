@@ -29,6 +29,15 @@
     --chart-3: 215 78% 70%;
     --chart-4: 217 91% 60%;
     --chart-5: 142 71% 45%;
+    --observatory-graphite: #030506;
+    --observatory-canvas: #050505;
+    --observatory-polar: #ecfeff;
+    --observatory-horizon: #cffafe;
+    --observatory-polar-glint-rgb: 207, 239, 255;
+    --observatory-ice-structure-rgb: 195, 232, 255;
+    --observatory-boutique-blue-rgb: 137, 205, 255;
+    --observatory-atmospheric-rgb: 112, 170, 255;
+    --observatory-residual-rgb: 255, 193, 124;
   }
 
   * {
@@ -38,7 +47,7 @@
   html {
     overflow-x: clip;
     scroll-behavior: smooth;
-    background: #050505;
+    background: var(--observatory-canvas);
   }
 
   body {
@@ -46,8 +55,8 @@
     overflow-x: hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
     background-image:
-      radial-gradient(circle at 70% -12%, rgba(112, 170, 255, 0.09), transparent 30%),
-      linear-gradient(to bottom, #030506, #020202);
+      radial-gradient(circle at 70% -12%, rgba(var(--observatory-atmospheric-rgb), 0.09), transparent 30%),
+      linear-gradient(to bottom, var(--observatory-graphite), #020202);
   }
 
   h1,
@@ -73,45 +82,22 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #050505;
+    background: var(--observatory-canvas);
   }
 
   ::-webkit-scrollbar-thumb {
-    border: 3px solid #050505;
+    border: 3px solid var(--observatory-canvas);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.24);
   }
 }
 
 @layer utilities {
-  .spatial-grid {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-    background-size: 72px 72px;
-  }
-
-  .spatial-grid::after {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    content: "";
-    pointer-events: none;
-    background: radial-gradient(circle at 52% 42%, transparent 0%, rgba(0, 0, 0, 0.22) 45%, #050505 88%);
-  }
-
   .spatial-beam {
     background:
       radial-gradient(circle, rgba(112, 170, 255, 0.2), transparent 54%),
-      radial-gradient(circle at 70% 44%, rgba(207, 239, 255, 0.12), transparent 36%);
+      radial-gradient(circle at 70% 44%, rgba(var(--observatory-polar-glint-rgb), 0.12), transparent 36%);
     filter: blur(28px);
-  }
-
-  .premium-panel {
-    background:
-      radial-gradient(circle at 80% 0%, rgba(112, 170, 255, 0.08), transparent 35%),
-      rgba(255, 255, 255, 0.025);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 80px rgba(0, 0, 0, 0.28);
   }
 
   .liquid-sheen {
@@ -140,7 +126,7 @@
   }
 
   .liquid-sheen:hover {
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42), 0 0 32px rgba(207, 239, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42), 0 0 32px rgba(var(--observatory-polar-glint-rgb), 0.1);
   }
 
   .liquid-sheen:hover::after,
@@ -166,9 +152,9 @@
   }
 
   .boutique-row:hover {
-    border-color: rgba(195, 232, 255, 0.18);
+    border-color: rgba(var(--observatory-ice-structure-rgb), 0.18);
     background-image:
-      radial-gradient(circle at 86% 50%, rgba(137, 205, 255, 0.075), transparent 30%),
+      radial-gradient(circle at 86% 50%, rgba(var(--observatory-boutique-blue-rgb), 0.075), transparent 30%),
       linear-gradient(90deg, rgba(255, 255, 255, 0.018), transparent 52%);
   }
 
@@ -177,6 +163,44 @@
       radial-gradient(circle at 90% 0%, rgba(122, 186, 255, 0.045), transparent 30%),
       #000;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 28px 90px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-status {
+      animation: observatory-signal 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-title {
+      animation: observatory-aperture 720ms 70ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-title::after {
+      position: absolute;
+      inset: 48% -4% auto;
+      height: 1px;
+      content: "";
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(var(--observatory-polar-glint-rgb), 0.72), transparent);
+      transform-origin: left;
+      animation: observatory-scan 640ms 110ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-subheadline {
+      animation: observatory-resolve 520ms 170ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-actions {
+      animation: observatory-resolve 520ms 230ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-proof {
+      animation: observatory-resolve 520ms 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .hero-scene {
+      transform-origin: 52% 48%;
+      animation: observatory-lens 780ms 90ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
   }
 
   @media (min-width: 1280px) and (max-height: 860px) {
@@ -207,13 +231,79 @@
   }
 }
 
+@keyframes observatory-signal {
+  from {
+    opacity: 0.45;
+    filter: blur(3px);
+  }
+}
+
+@keyframes observatory-aperture {
+  from {
+    opacity: 0.65;
+    clip-path: inset(0 100% 0 0);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes observatory-scan {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  24% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes observatory-resolve {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes observatory-lens {
+  from {
+    opacity: 0.35;
+    clip-path: circle(12% at 52% 48%);
+    filter: blur(8px);
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    clip-path: circle(76% at 52% 48%);
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  html {
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  }
+
+  .hero-status,
+  .hero-title,
+  .hero-title::after,
+  .hero-subheadline,
+  .hero-actions,
+  .hero-proof,
+  .hero-scene,
+  .animate-ping {
+    animation: none !important;
   }
 }

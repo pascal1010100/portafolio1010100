@@ -44,12 +44,10 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Elite Cyberpunk Palette
-        custom: {
-          "void": "#0a0a0f",
-          "void-light": "#1a1a23",
-          "cyan": "#00f0ff",
-          "matrix": "#00ff9d",
+        observatory: {
+          graphite: "var(--observatory-graphite)",
+          polar: "var(--observatory-polar)",
+          horizon: "var(--observatory-horizon)",
         },
       },
       borderRadius: {
@@ -65,27 +63,6 @@ const config: Config = {
       backgroundImage: {
         radial: "radial-gradient(var(--tw-gradient-stops))",
         conic: "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        // Modernized gradient
-        cyber: "linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(10, 10, 15, 0.9) 100%)",
-      },
-      animation: {
-        "fade-in": "fadeIn 0.5s ease-in-out",
-        "slide-up": "slideUp 0.5s ease-out",
-        glow: "glow 2s ease-in-out infinite alternate",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        glow: {
-          "0%": { boxShadow: "0 0 20px rgba(0, 240, 255, 0.3)" },
-          "100%": { boxShadow: "0 0 30px rgba(0, 240, 255, 0.5)" },
-        },
       },
       spacing: {
         18: "4.5rem",

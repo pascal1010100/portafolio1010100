@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "repositories": [
+    {
+      "id": "pascal-dev",
+      "displayName": "Pascal.dev",
+      "source": {
+        "provider": "github",
+        "owner": "pascal1010100",
+        "repository": "portafolio1010100",
+        "defaultBranch": "main"
+      },
+      "visibility": "public",
+      "lifecycle": "active",
+      "demoUrl": "https://portafolio1010100.vercel.app",
+      "publication": {
+        "allowed": true,
+        "requiresApproval": true
+      }
+    },
+    {
+      "id": "mandalas-hostal",
+      "displayName": "Mandalas Hostal",
+      "source": {
+        "provider": "github",
+        "owner": "pascal1010100",
+        "repository": "mandalas",
+        "defaultBranch": "main"
+      },
+      "visibility": "public",
+      "lifecycle": "active",
+      "demoUrl": "https://www.mandalashostels.com",
+      "publication": {
+        "allowed": true,
+        "requiresApproval": true
+      }
+    },
+    {
+      "id": "nomada-fantasma",
+      "displayName": "Nómada Fantasma",
+      "source": {
+        "provider": "github",
+        "owner": "pascal1010100",
+        "repository": "nomada-fantasma",
+        "defaultBranch": "main"
+      },
+      "visibility": "public",
+      "lifecycle": "active",
+      "demoUrl": "https://nomadafantasma.com/es",
+      "publication": {
+        "allowed": true,
+        "requiresApproval": true
+      }
+    }
+  ]
+}

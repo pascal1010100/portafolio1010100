@@ -1,6 +1,3 @@
-"use client"
-
-import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
 
@@ -48,18 +45,14 @@ export function ProcessSection() {
 
       <div className="hidden gap-px border-y border-white/10 bg-white/10 sm:grid sm:grid-cols-2">
         {processSteps.map((step, index) => (
-          <motion.article
+          <article
             key={step.title}
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="group bg-[#030506] p-6 transition-colors hover:bg-[#07090a] lg:p-8"
+            className="group bg-[var(--observatory-graphite)] p-6 transition-colors hover:bg-[#07090a] lg:p-8"
           >
             <p className="text-xs tracking-[0.18em] text-cyan-100/60">0{index + 1}</p>
             <h3 className="mt-4 text-xl font-medium tracking-[-0.025em] text-white">{step.title}</h3>
             <p className="mt-3 text-sm leading-6 text-white/60">{step.description}</p>
-          </motion.article>
+          </article>
         ))}
       </div>
     </SectionContainer>

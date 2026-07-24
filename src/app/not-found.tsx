@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft, AlertTriangle } from "lucide-react"
+import { ArrowLeft, ArrowUpRight } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "Página no encontrada | Pascal.dev",
@@ -9,52 +9,47 @@ export const metadata: Metadata = {
 }
 
 export default function NotFound() {
-    return (
-        <div className="relative min-h-screen w-full flex flex-col items-center justify-center bg-background overflow-hidden text-center px-4">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.03] pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background pointer-events-none" />
+  return (
+    <main className="relative isolate flex min-h-screen overflow-hidden bg-background px-4 py-24 text-foreground sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[var(--observatory-graphite)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_28%,rgba(112,170,255,0.12),transparent_28%),linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:auto,120px_120px,120px_120px] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
 
-            <div className="relative z-10 max-w-2xl mx-auto space-y-8">
-                {/* 404 number */}
-                <div className="relative">
-                    <p className="text-[150px] sm:text-[200px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-primary/80 to-transparent font-display opacity-20 select-none">
-                        404
-                    </p>
+      <div className="mx-auto flex w-full max-w-7xl items-center">
+        <div className="grid w-full items-end gap-12 border-y border-white/10 py-12 sm:py-16 lg:grid-cols-[1fr_auto] lg:gap-20 lg:py-20">
+          <div className="max-w-3xl">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-cyan-100/65">
+              Señal 404 · Ruta no encontrada
+            </p>
+            <h1 className="mt-6 text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+              Esta coordenada quedó fuera del mapa.
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+              La página no existe o cambió de ubicación. Puedes volver al inicio o continuar explorando los casos de trabajo.
+            </p>
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <div className="flex items-center gap-3 mb-4 text-red-500 bg-red-500/10 px-4 py-2 rounded-full border border-red-500/20">
-                            <AlertTriangle className="w-5 h-5" aria-hidden="true" />
-                            <span className="font-mono text-sm tracking-widest uppercase">Ruta no encontrada</span>
-                        </div>
-
-                        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                            Página no encontrada
-                        </h1>
-
-                        <p className="text-muted-foreground text-lg max-w-md mx-auto">
-                            La ruta que buscas no existe o fue movida. Vuelve al inicio para explorar el trabajo disponible.
-                        </p>
-                    </div>
-                </div>
-
-                {/* Action Button */}
-                <div>
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 group bg-primary text-primary-foreground px-8 py-4 rounded-none border border-primary/20 font-mono tracking-wider uppercase hover:bg-primary/90 transition-all"
-                    >
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
-                        Volver al inicio
-                    </Link>
-                </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/"
+                className="liquid-sheen group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3 text-sm font-semibold text-[var(--observatory-graphite)] transition hover:bg-white"
+              >
+                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" />
+                Volver al inicio
+              </Link>
+              <Link
+                href="/projects"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:bg-white/[0.055] hover:text-white"
+              >
+                Explorar casos
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              </Link>
             </div>
+          </div>
 
-            {/* Decorative Footer */}
-            <div className="absolute bottom-8 left-0 right-0 text-center opacity-30">
-                <p className="font-mono text-xs uppercase tracking-[0.3em]">pascal.dev — error 404</p>
-            </div>
+          <p className="select-none text-[clamp(7rem,22vw,15rem)] font-medium leading-[0.72] tracking-[-0.04em] text-white/[0.055]" aria-hidden="true">
+            404
+          </p>
         </div>
-    )
+      </div>
+    </main>
+  )
 }
-

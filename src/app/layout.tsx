@@ -1,14 +1,19 @@
 import type { Metadata } from "next"
 import { Inter, Space_Grotesk } from "next/font/google"
-import ClientWrapper from "@/components/client-wrapper"
 import "./globals.css"
-import { LazyMotion, domAnimation } from "framer-motion"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
   'https://portafolio1010100.vercel.app'
+
+const socialImage = {
+  url: "/social-preview.png",
+  width: 1200,
+  height: 630,
+  alt: "Pascal.dev — Ingeniería de producto digital",
+}
 
 // Configuración de fuentes
 const inter = Inter({
@@ -57,12 +62,14 @@ export const metadata: Metadata = {
     title: "Pascal.dev — Ingeniería de producto digital",
     description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
     siteName: "pascal.dev",
+    images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pascal.dev — Ingeniería de producto digital",
     description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
     creator: "@pascal1010100",
+    images: [socialImage],
   },
   robots: {
     index: true,
@@ -85,13 +92,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
-        <LazyMotion features={domAnimation}>
-          <ClientWrapper>
-            <div className="relative z-10">
-              {children}
-            </div>
-          </ClientWrapper>
-        </LazyMotion>
+        <div className="relative z-10">
+          {children}
+        </div>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Pascal.dev — Ingeniería de producto digital</title>
+  <desc id="description">Vista previa social de Pascal.dev con una esfera tecnológica sobre un fondo oscuro editorial.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b0e"/>
+      <stop offset="0.55" stop-color="#030506"/>
+      <stop offset="1" stop-color="#071016"/>
+    </linearGradient>
+    <radialGradient id="sphere" cx="35%" cy="28%" r="76%">
+      <stop offset="0" stop-color="#e9fbff"/>
+      <stop offset="0.16" stop-color="#93d9e8"/>
+      <stop offset="0.42" stop-color="#24526b"/>
+      <stop offset="0.76" stop-color="#09151e"/>
+      <stop offset="1" stop-color="#030506"/>
+    </radialGradient>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#67d9f1" stop-opacity=".18"/>
+      <stop offset=".55" stop-color="#3b8eaa" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#030506" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arc" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#c5f5ff" stop-opacity=".08"/>
+      <stop offset=".48" stop-color="#b9f3ff" stop-opacity=".88"/>
+      <stop offset="1" stop-color="#69bed2" stop-opacity=".05"/>
+    </linearGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#d8f7ff" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="blur32"><feGaussianBlur stdDeviation="32"/></filter>
+    <filter id="blur10"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000" flood-opacity=".8"/>
+    </filter>
+    <clipPath id="sphereClip"><circle cx="924" cy="306" r="142"/></clipPath>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M0 88H1200M0 542H1200" stroke="#d8f7ff" stroke-opacity=".06"/>
+  <circle cx="927" cy="306" r="286" fill="url(#halo)" filter="url(#blur32)"/>
+
+  <g transform="translate(72 66)">
+    <circle cx="5" cy="5" r="5" fill="#a5f3fc"/>
+    <circle cx="5" cy="5" r="13" fill="#a5f3fc" opacity=".12" filter="url(#blur10)"/>
+    <text x="24" y="10" fill="#d6f8ff" fill-opacity=".58" font-family="Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="2.4">PASCAL.DEV / PRODUCT ENGINEERING</text>
+  </g>
+
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <text x="72" y="224" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">Software claro para</text>
+    <text x="72" y="294" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">sistemas que evolucionan.</text>
+    <text x="74" y="354" fill="#d8e4e8" fill-opacity=".62" font-size="21" font-weight="400">Producto digital, arquitectura full-stack e IA aplicada.</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <circle cx="924" cy="306" r="142" fill="url(#sphere)" stroke="#c8f5ff" stroke-opacity=".18"/>
+    <ellipse cx="892" cy="266" rx="70" ry="50" fill="#dffaff" opacity=".11" filter="url(#blur10)"/>
+    <g clip-path="url(#sphereClip)" fill="none" stroke="#c6f5ff">
+      <path d="M784 285C845 244 891 246 1058 324" opacity=".11"/>
+      <path d="M808 361C865 322 952 315 1055 350" opacity=".08"/>
+      <ellipse cx="924" cy="306" rx="83" ry="144" opacity=".08" transform="rotate(-18 924 306)"/>
+      <ellipse cx="924" cy="306" rx="124" ry="66" opacity=".07" transform="rotate(22 924 306)"/>
+    </g>
+  </g>
+
+  <ellipse cx="924" cy="306" rx="218" ry="92" fill="none" stroke="url(#arc)" stroke-width="1.5" transform="rotate(-13 924 306)"/>
+  <circle cx="714" cy="344" r="4" fill="#d6f8ff"/>
+  <circle cx="714" cy="344" r="13" fill="#73d7ec" opacity=".22" filter="url(#blur10)"/>
+  <circle cx="1119" cy="259" r="3.5" fill="#bdefff"/>
+  <circle cx="1119" cy="259" r="12" fill="#73d7ec" opacity=".18" filter="url(#blur10)"/>
+  <g fill="#bcefff">
+    <circle cx="777" cy="202" r="2" opacity=".48"/>
+    <circle cx="1068" cy="407" r="2.5" opacity=".54"/>
+    <circle cx="1140" cy="376" r="1.5" opacity=".38"/>
+    <circle cx="741" cy="421" r="1.5" opacity=".34"/>
+  </g>
+
+  <g font-family="Inter, Helvetica, Arial, sans-serif">
+    <text x="72" y="568" fill="#ffffff" font-size="20" font-weight="700" letter-spacing="-.4">pascal.dev</text>
+    <text x="1128" y="568" text-anchor="end" fill="#d8e4e8" fill-opacity=".48" font-size="13" font-weight="500" letter-spacing="1.6">PRODUCTO · FULL-STACK · IA</text>
+  </g>
+</svg>

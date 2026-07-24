@@ -1,8 +1,5 @@
-"use client"
-
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { motion } from "framer-motion"
 import { SectionContainer } from "@/components/ui/section-container"
 import { SectionHeader } from "@/components/ui/SectionHeader"
 
@@ -46,12 +43,8 @@ export function ServicesSection() {
 
         <div className="border-t border-white/12">
           {services.map((service, index) => (
-            <motion.article
+            <article
               key={service.title}
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.06 }}
               className="boutique-row group grid gap-5 border-b border-white/10 py-7 transition-colors sm:px-5 sm:py-8 lg:grid-cols-[4rem_1.05fr_1fr_auto] lg:items-center lg:gap-10"
             >
               <span className="text-xs tracking-[0.18em] text-white/50">{service.number}</span>
@@ -71,13 +64,13 @@ export function ServicesSection() {
                 <Link
                   href="#contact"
                   aria-label={`Consultar ${service.title}`}
-                  className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white/65 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
+                  className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white/65 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
                 >
                   Consultar
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
 

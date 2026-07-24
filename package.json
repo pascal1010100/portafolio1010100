@@ -10,8 +10,10 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "typecheck": "tsc --noEmit",
+    "catalog:generate": "node scripts/generate-catalog-report.mjs",
+    "validate:catalog": "node scripts/validate-catalog.mjs",
     "validate:data": "node scripts/validate-projects.mjs",
-    "check": "pnpm typecheck && pnpm lint && pnpm validate:data && pnpm build && pnpm test:e2e"
+    "check": "pnpm typecheck && pnpm lint && pnpm validate:data && pnpm validate:catalog && pnpm build && pnpm test:e2e"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

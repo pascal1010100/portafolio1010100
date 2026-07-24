@@ -1,19 +1,23 @@
-import dynamic from "next/dynamic"
-
-const Navbar = dynamic(() => import("@/components/layout/header/Header").then((mod) => mod.Navbar))
-const HeroSection = dynamic(() => import("@/components/sections/hero/HeroSection").then((mod) => mod.HeroSection))
-const SkillsSection = dynamic(() => import("@/components/sections/skills/SkillsSection").then((mod) => mod.SkillsSection))
-const ProcessSection = dynamic(() => import("@/components/sections/process/ProcessSection").then((mod) => mod.ProcessSection))
-const ServicesSection = dynamic(() => import("@/components/sections/services/ServicesSection").then((mod) => mod.ServicesSection))
-const ProjectsSection = dynamic(() => import("@/components/sections/projects/ProjectsSection").then((mod) => mod.ProjectsSection))
-const ContactSection = dynamic(() => import("@/components/sections/contact/ContactSection").then((mod) => mod.ContactSection))
-const Footer = dynamic(() => import("@/components/layout/footer/Footer").then((mod) => mod.Footer))
+import { Navbar } from "@/components/layout/header/Header"
+import { Footer } from "@/components/layout/footer/Footer"
+import { ContactSection } from "@/components/sections/contact/ContactSection"
+import { HeroSection } from "@/components/sections/hero/HeroSection"
+import { ProcessSection } from "@/components/sections/process/ProcessSection"
+import { ProjectsSection } from "@/components/sections/projects/ProjectsSection"
+import { ServicesSection } from "@/components/sections/services/ServicesSection"
+import { SkillsSection } from "@/components/sections/skills/SkillsSection"
 
 export default function Home() {
   return (
     <div>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-cyan-50 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-[var(--observatory-graphite)]"
+      >
+        Saltar al contenido
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <HeroSection />
         <SkillsSection />
         <ProcessSection />
