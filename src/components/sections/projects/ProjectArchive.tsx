@@ -38,10 +38,10 @@ export function ProjectArchive() {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/5">
                         <div>
                             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">
-                                Casos de trabajo
+                                Proyectos
                             </h1>
                             <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-                                Productos, prototipos y sistemas desplegados por Pascal.dev con contexto, stack, estado y evidencia disponible.
+                                Productos web publicados por Pascal.dev, con detalles sobre el problema, la solución, las tecnologías y el resultado.
                             </p>
                         </div>
 

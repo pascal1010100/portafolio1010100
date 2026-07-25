@@ -3,20 +3,20 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 
 const processSteps = [
   {
-    title: "Descubrimiento y arquitectura",
-    description: "Aclaramos el problema, el alcance y las decisiones técnicas que sostendrán el producto.",
+    title: "Entender el problema",
+    description: "Revisamos el objetivo, las personas que usarán el producto, las prioridades y las restricciones antes de decidir qué construir.",
   },
   {
-    title: "Diseño y construcción",
-    description: "Convertimos el recorrido principal en una interfaz clara y una implementación mantenible.",
+    title: "Diseñar y construir",
+    description: "Convertimos la idea en una experiencia clara y desarrollamos primero lo que aporta más valor.",
   },
   {
-    title: "Verificación y lanzamiento",
-    description: "Protegemos tipos, datos y flujos críticos antes de publicar en un entorno reproducible.",
+    title: "Probar y publicar",
+    description: "Revisamos las tareas principales, los datos y el rendimiento antes de poner el producto en línea.",
   },
   {
-    title: "Medición y evolución",
-    description: "Observamos uso y resultados para priorizar la siguiente mejora con evidencia real.",
+    title: "Medir y mejorar",
+    description: "Después del lanzamiento, usamos resultados reales para decidir qué conviene mejorar a continuación.",
   },
 ]
 
@@ -24,9 +24,9 @@ export function ProcessSection() {
   return (
     <SectionContainer id="process" className="border-t border-white/10 py-16 sm:py-20 lg:py-32">
       <SectionHeader
-        subtitle="02 — Cómo construimos"
-        title="Un proceso corto, verificable y preparado para evolucionar"
-        description="Cuatro etapas conectan la decisión inicial con un producto publicado y medible."
+        subtitle="02 — Cómo trabajo"
+        title="De una necesidad clara a un producto funcionando"
+        description="Trabajo en cuatro etapas para reducir dudas, construir con foco y lanzar con confianza."
         className="sm:mb-10 lg:mb-14"
       />
 

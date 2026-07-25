@@ -12,9 +12,9 @@ export function ProjectsSection() {
   return (
     <SectionContainer id="projects" className="border-y border-white/10 bg-white/[0.012] py-20 sm:py-28 lg:py-36">
       <SectionHeader
-        subtitle="04 — Trabajo seleccionado"
-        title="Casos que demuestran criterio de producto e ingeniería"
-        description="Tres productos desplegados que muestran problema, decisiones, ejecución y evidencia disponible."
+        subtitle="04 — Proyectos destacados"
+        title="Trabajo real y decisiones que puedes revisar"
+        description="Tres productos publicados con una explicación clara del problema, mi trabajo y el resultado."
       />
 
       <div className="grid gap-5 lg:grid-cols-12">
@@ -25,7 +25,7 @@ export function ProjectsSection() {
 
       <div className="mt-8 flex justify-center sm:mt-10">
         <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-5 py-3 text-sm font-medium text-white/75 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black">
-          Explorar todos los casos
+          Ver todos los proyectos
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
@@ -63,8 +63,8 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               <p className="text-xs uppercase tracking-[0.16em] text-white/60">{project.category}</p>
               <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
             </div>
-            <Link href={`/projects/${project.slug}`} aria-label={`Ver caso ${project.title}`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
-              Ver caso
+            <Link href={`/projects/${project.slug}`} aria-label={`Ver proyecto ${project.title}`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
+              Ver proyecto
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -91,7 +91,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               ))}
             </div>
             <div className="flex items-center gap-3">
-              <Link href={`/projects/${project.slug}`} aria-label={`Ver caso ${project.title}`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
+              <Link href={`/projects/${project.slug}`} aria-label={`Ver proyecto ${project.title}`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               {project.demo && (

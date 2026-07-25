@@ -4,7 +4,7 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
   await page.goto("/")
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Software claro para sistemas que deben evolucionar",
+    "Software claro, útil y listo para crecer",
   )
   const primaryNavigation = page.getByRole("navigation", {
     name: "Navegación principal",
@@ -15,12 +15,12 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
     "location",
   )
   await expect(page.getByRole("link", { name: "Ver trabajo" })).toHaveAttribute("href", "#projects")
-  await expect(page.getByRole("link", { name: "Iniciar conversación" })).toHaveAttribute("href", "#contact")
+  await expect(page.getByRole("link", { name: "Hablemos de tu proyecto" })).toHaveAttribute("href", "#contact")
   await expect(
-    page.getByRole("heading", { name: "Casos que demuestran criterio de producto e ingeniería" }),
+    page.getByRole("heading", { name: "Trabajo real y decisiones que puedes revisar" }),
   ).toBeVisible()
   await expect(page.locator("#projects article")).toHaveCount(3)
-  await expect(page.getByRole("link", { name: "Explorar todos los casos" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "Ver todos los proyectos" })).toHaveAttribute(
     "href",
     "/projects",
   )
@@ -82,14 +82,14 @@ test("comunica campos obligatorios e instrucciones del formulario", async ({ pag
 
   const name = page.getByRole("textbox", { name: /Nombre.*obligatorio/ })
   const context = page.getByRole("textbox", {
-    name: /Contexto para el diagnóstico.*obligatorio/,
+    name: /Cuéntame un poco más.*obligatorio/,
   })
 
   await expect(name).toHaveAttribute("required", "")
   await expect(name).toHaveAccessibleDescription("Escribe al menos 2 caracteres.")
   await expect(context).toHaveAttribute("required", "")
   await expect(context).toHaveAccessibleDescription(
-    /Incluye al menos 10 caracteres.*No se enviará nada automáticamente/,
+    /Escribe al menos 10 caracteres.*No se enviará nada automáticamente/,
   )
 })
 
@@ -100,9 +100,9 @@ test("mantiene objetivos táctiles y ancho estable en contextos compactos", asyn
   const touchTargets = [
     page.getByRole("button", { name: "Abrir menú" }),
     page.locator("#home").getByRole("link", { name: "GitHub" }),
-    page.locator("#projects").getByRole("link", { name: /Ver caso/ }).first(),
+    page.locator("#projects").getByRole("link", { name: /Ver proyecto/ }).first(),
     page.locator("#projects").getByRole("link", { name: /Abrir demo/ }).first(),
-    page.locator("#services").getByRole("link", { name: /Consultar/ }).first(),
+    page.locator("#services").getByRole("link", { name: /Hablar sobre/ }).first(),
   ]
 
   for (const target of touchTargets) {

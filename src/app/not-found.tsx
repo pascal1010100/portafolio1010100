@@ -24,7 +24,7 @@ export default function NotFound() {
               Esta coordenada quedó fuera del mapa.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
-              La página no existe o cambió de ubicación. Puedes volver al inicio o continuar explorando los casos de trabajo.
+              La página no existe o cambió de ubicación. Puedes volver al inicio o continuar explorando los proyectos.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -39,7 +39,7 @@ export default function NotFound() {
                 href="/projects"
                 className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:bg-white/[0.055] hover:text-white"
               >
-                Explorar casos
+                Ver proyectos
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>

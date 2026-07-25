@@ -15,9 +15,9 @@ type FormState = {
 const whatsappNumber = "50242900009"
 
 const responseExpectations = [
-  "Lectura inicial del reto",
-  "Siguiente paso recomendado",
-  "Rango de alcance si hay fit",
+  "Una primera lectura de tu idea",
+  "El siguiente paso que recomiendo",
+  "Una estimación inicial, si puedo ayudarte",
 ]
 
 export function ContactSection() {
@@ -32,7 +32,7 @@ export function ContactSection() {
 
     const details = [
       `Nombre: ${form.name.trim()}`,
-      form.project.trim() ? `Producto o reto: ${form.project.trim()}` : "",
+      form.project.trim() ? `Proyecto o idea: ${form.project.trim()}` : "",
     ].filter(Boolean)
 
     const message = [
@@ -55,8 +55,8 @@ export function ContactSection() {
     <SectionContainer id="contact" className="py-20 sm:py-28">
       <SectionHeader
         subtitle="05 — Iniciar un proyecto"
-        title="Convirtamos una idea o sistema existente en una hoja de ruta clara"
-        description="Cuéntame qué quieres construir, qué proceso necesita mejorar o qué producto debe evolucionar. Prepararemos el contexto y abriremos una conversación directa por WhatsApp."
+        title="Cuéntame qué quieres construir o mejorar"
+        description="Comparte tu idea, el problema que quieres resolver o el producto que ya tienes. Podrás revisar el mensaje antes de enviármelo por WhatsApp."
       />
 
       <div className="grid overflow-hidden border border-white/10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -67,16 +67,16 @@ export function ContactSection() {
             <MessageCircle className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="space-y-3">
-            <p className="text-sm font-medium text-cyan-100/75">Agenda abierta · Respuesta en 24–48 h</p>
-            <h3 className="text-2xl font-semibold text-white">Diagnóstico antes de construir</h3>
+            <p className="text-sm font-medium text-cyan-100/75">Disponible · Respondo en 24–48 h</p>
+            <h3 className="text-2xl font-semibold text-white">Primero entendemos el proyecto</h3>
             <p className="leading-7 text-white/65">
-              Mejor encaje: fundadores, equipos pequeños y negocios que valoran claridad, diseño cuidado y una ejecución técnica responsable.
+              Suelo trabajar con fundadores, equipos pequeños y negocios que buscan claridad, buen diseño y un desarrollo responsable.
             </p>
           </div>
           <div className="rounded-3xl border border-white/10 bg-black/25 p-5">
             <div className="mb-4 flex items-center gap-2 text-sm font-medium text-white/75">
               <Sparkles className="h-4 w-4 text-cyan-100/70" aria-hidden="true" />
-              Qué recibirás primero
+              Qué puedes esperar de mi respuesta
             </div>
             <ul className="space-y-3 text-sm text-white/60">
               {responseExpectations.map((item) => (
@@ -133,7 +133,7 @@ export function ContactSection() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, name: e.target.value })}
             />
             <InputField
-              label="Producto o reto"
+              label="¿Qué quieres construir o mejorar?"
               id="contact-project"
               name="project"
               autoComplete="off"
@@ -143,7 +143,7 @@ export function ContactSection() {
             />
             <div>
               <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">
-                Contexto para el diagnóstico <span aria-hidden="true" className="text-cyan-100/75">*</span>
+                Cuéntame un poco más <span aria-hidden="true" className="text-cyan-100/75">*</span>
                 <span className="sr-only"> (obligatorio)</span>
               </label>
               <textarea
@@ -155,12 +155,12 @@ export function ContactSection() {
                 maxLength={4000}
                 aria-describedby="contact-message-hint contact-message-privacy"
                 className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
-                placeholder="Objetivo, problema actual, plazo, usuarios y cualquier enlace que ayude a entender la oportunidad."
+                placeholder="Puedes incluir el objetivo, el problema actual, quién lo usará, el plazo y cualquier enlace que ayude a entender la idea."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
               <p id="contact-message-hint" className="mt-3 text-xs leading-5 text-white/65">
-                Incluye al menos 10 caracteres para explicar la oportunidad.
+                Escribe al menos 10 caracteres para explicar tu idea.
               </p>
               <p id="contact-message-privacy" className="mt-2 text-xs leading-5 text-white/55">
                 No se enviará nada automáticamente. Podrás revisar y confirmar el mensaje dentro de WhatsApp.

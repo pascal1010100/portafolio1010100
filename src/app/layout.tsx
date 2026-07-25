@@ -12,7 +12,7 @@ const socialImage = {
   url: "/social-preview.png",
   width: 1200,
   height: 630,
-  alt: "Pascal.dev — Ingeniería de producto digital",
+  alt: "Pascal.dev — Diseño y desarrollo de productos digitales",
 }
 
 // Configuración de fuentes
@@ -34,15 +34,15 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Pascal.dev — Ingeniería de producto digital",
+  title: "Pascal.dev — Diseño y desarrollo de productos digitales",
   description:
-    "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales y una ejecución técnica mantenible.",
+    "Productos web, herramientas internas e integraciones con IA diseñados y desarrollados a partir de necesidades reales.",
   keywords: [
     "pascal.dev",
-    "Ingeniería de producto digital",
+    "Diseño de productos digitales",
     "Arquitectura full-stack",
     "Desarrollo asistido por IA",
-    "Sistemas UI/UX",
+    "Diseño de experiencia",
     "React",
     "Next.js",
     "TypeScript",
@@ -59,15 +59,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_GT",
     url: siteUrl,
-    title: "Pascal.dev — Ingeniería de producto digital",
-    description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
+    title: "Pascal.dev — Diseño y desarrollo de productos digitales",
+    description: "Productos web, herramientas internas e integraciones con IA creados a partir de necesidades reales.",
     siteName: "pascal.dev",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal.dev — Ingeniería de producto digital",
-    description: "Producto digital, arquitectura full-stack e IA aplicada, respaldados por casos reales.",
+    title: "Pascal.dev — Diseño y desarrollo de productos digitales",
+    description: "Productos web, herramientas internas e integraciones con IA creados a partir de necesidades reales.",
     creator: "@pascal1010100",
     images: [socialImage],
   },

@@ -6,27 +6,27 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 const services = [
   {
     number: "01",
-    title: "Productos web y MVPs",
-    description: "Productos SaaS, plataformas y portales construidos desde una necesidad validable, con arquitectura clara y una base lista para evolucionar.",
-    scope: "Discovery · Producto · Full-stack",
-    timing: "Por fases",
-    price: "Diagnóstico previo",
+    title: "Productos web y primeras versiones",
+    description: "Diseño y desarrollo productos SaaS, plataformas y portales para validar una idea y comenzar con una base sólida.",
+    scope: "Planificación · Diseño · Desarrollo",
+    timing: "Trabajo por etapas",
+    price: "Propuesta personalizada",
   },
   {
     number: "02",
-    title: "Sistemas para operaciones digitales",
-    description: "Ecommerce, reservas, paneles internos y recorridos operativos que conectan la experiencia del cliente con el trabajo real del negocio.",
-    scope: "Operación · Datos · Automatización",
-    timing: "Por módulos",
-    price: "Diagnóstico previo",
+    title: "Herramientas para el día a día",
+    description: "Tiendas en línea, reservas y paneles internos que simplifican el trabajo del negocio y la experiencia de sus clientes.",
+    scope: "Procesos · Datos · Automatización",
+    timing: "Trabajo por módulos",
+    price: "Propuesta personalizada",
   },
   {
     number: "03",
-    title: "IA e integraciones aplicadas",
-    description: "Interfaces con IA, asistentes e integraciones cloud diseñados alrededor de un caso de uso concreto, con límites, revisión y utilidad medible.",
-    scope: "IA aplicada · APIs · Workflows",
-    timing: "Por caso de uso",
-    price: "Alcance definido",
+    title: "IA, automatizaciones e integraciones",
+    description: "Conecto asistentes, servicios externos y herramientas con IA para resolver tareas concretas y reducir trabajo manual.",
+    scope: "IA · APIs · Automatización",
+    timing: "Según la necesidad",
+    price: "Propuesta personalizada",
   },
 ]
 
@@ -37,8 +37,8 @@ export function ServicesSection() {
       <div className="relative">
         <SectionHeader
           subtitle="03 — Servicios"
-          title="Software útil para necesidades reales"
-          description="Productos y sistemas para fundadores, equipos pequeños y negocios que necesitan avanzar con claridad."
+          title="Software pensado para resolver problemas reales"
+          description="Ayudo a fundadores, equipos pequeños y negocios a convertir una necesidad en un producto que puedan usar y hacer crecer."
         />
 
         <div className="border-t border-white/12">
@@ -59,14 +59,14 @@ export function ServicesSection() {
               <div className="flex items-center justify-between gap-6 lg:justify-end">
                 <div className="space-y-1 lg:text-right">
                   <span className="block whitespace-nowrap text-sm font-medium text-cyan-100/75">{service.price}</span>
-                  <span className="block text-xs text-white/50">Según fase</span>
+                  <span className="block text-xs text-white/50">Según el proyecto</span>
                 </div>
                 <Link
                   href="#contact"
-                  aria-label={`Consultar ${service.title}`}
+                  aria-label={`Hablar sobre ${service.title}`}
                   className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white/65 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
                 >
-                  Consultar
+                  Hablemos
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
@@ -75,7 +75,7 @@ export function ServicesSection() {
         </div>
 
         <p className="mt-6 text-xs leading-5 text-white/50">
-          Alcance, inversión y prioridad técnica se definen después de una conversación de diagnóstico.
+          El tiempo, la inversión y lo que incluye cada proyecto se acuerdan después de entender lo que necesitas.
         </p>
       </div>
     </SectionContainer>

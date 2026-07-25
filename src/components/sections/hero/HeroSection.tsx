@@ -20,7 +20,7 @@ export function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-200 opacity-50" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-100" />
             </span>
-            <span className="min-w-0">Disponible para proyectos seleccionados</span>
+            <span className="min-w-0">Disponible para nuevos proyectos</span>
           </div>
 
           <h1 className="hero-title relative max-w-full text-[2.35rem] font-medium leading-[0.98] tracking-[-0.04em] text-white min-[380px]:text-[2.55rem] sm:text-6xl lg:text-[4.15rem] xl:text-[4.35rem] 2xl:text-[4.65rem]">
@@ -37,7 +37,7 @@ export function HeroSection() {
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
             <Link href="#contact" className="inline-flex w-full min-w-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.025] px-6 py-3.5 text-sm font-medium text-white/82 transition hover:border-white/35 hover:bg-white/[0.055] hover:text-white sm:w-auto">
-              Iniciar conversación
+              Hablemos de tu proyecto
             </Link>
           </div>
 

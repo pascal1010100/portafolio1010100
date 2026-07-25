@@ -6,9 +6,9 @@ export function SkillsSection() {
   return (
     <SectionContainer id="skills" className="py-16 sm:py-20 lg:py-32">
       <SectionHeader
-        subtitle="01 — Capacidades"
-        title="Cuatro capacidades conectadas para construir producto"
-        description="Producto, arquitectura, experiencia e integraciones reunidos en una ejecución técnica coherente."
+        subtitle="01 — Lo que hago"
+        title="Todo lo necesario para llevar una idea a producción"
+        description="Puedo ayudarte a definir qué construir, diseñar la experiencia, desarrollar el producto y conectar las herramientas que necesita."
         className="sm:mb-10 lg:mb-14"
       />
 

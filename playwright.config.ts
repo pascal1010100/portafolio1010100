@@ -1,5 +1,8 @@
 import { defineConfig, devices } from "@playwright/test"
 
+const testPort = Number(process.env.PLAYWRIGHT_PORT ?? 3107)
+const testUrl = `http://127.0.0.1:${testPort}`
+
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
@@ -10,7 +13,7 @@ export default defineConfig({
     ? [["github"], ["html", { open: "never" }]]
     : [["list"], ["html", { open: "never" }]],
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: testUrl,
     contextOptions: { reducedMotion: "reduce" },
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
@@ -22,8 +25,8 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "pnpm start",
-    url: "http://127.0.0.1:3000",
+    command: `pnpm exec next start -p ${testPort}`,
+    url: testUrl,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },

@@ -36,10 +36,10 @@ export function Footer() {
           className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.8fr_0.8fr] mb-12"
         >
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Ingeniería de producto digital</p>
-            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Problemas reales convertidos en software claro y verificable.</h2>
+            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Diseño y desarrollo de software</p>
+            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Ideas y procesos complejos convertidos en software claro.</h2>
             <p className="max-w-xl text-muted-foreground leading-7">
-              Producto, arquitectura e ingeniería full-stack para sistemas que deben evolucionar.
+              Productos web, herramientas internas e integraciones pensadas para crecer contigo.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((link) => (
@@ -78,7 +78,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-4 border-t border-border/30 pt-8 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>© {currentYear} Pascal.dev. Todos los derechos reservados.</p>
-          <p>Arquitectura, producto e ingeniería con atención al detalle.</p>
+          <p>Software útil, claro y hecho con atención al detalle.</p>
         </div>
       </div>
 

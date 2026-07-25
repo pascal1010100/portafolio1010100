@@ -1,17 +1,17 @@
 export const skills = [
     {
-        category: "Ingeniería de producto",
-        description: "Definición de producto, alcance por fases, MVP, roadmap y criterios de aceptación claros.",
+        category: "Producto y planificación",
+        description: "Defino qué construir primero, qué dejar para después y cómo comprobar que cada entrega resuelve el problema.",
         items: [
-            { name: "Descubrimiento" },
-            { name: "Estrategia de MVP" },
-            { name: "Hojas de ruta" },
-            { name: "Criterios de aceptación" }
+            { name: "Definición del problema" },
+            { name: "MVP por etapas" },
+            { name: "Prioridades del producto" },
+            { name: "Criterios de entrega" }
         ]
     },
     {
-        category: "Arquitectura full-stack",
-        description: "Sistemas web con límites claros, datos estructurados y una operación preparada para evolucionar.",
+        category: "Desarrollo full-stack",
+        description: "Aplicaciones web rápidas y mantenibles, con datos bien organizados y una base preparada para crecer.",
         items: [
             { name: "Next.js" },
             { name: "PostgreSQL" },
@@ -20,23 +20,23 @@ export const skills = [
         ]
     },
     {
-        category: "Sistemas UI/UX",
-        description: "Interfaces premium, responsivas y accesibles que explican el producto y transmiten confianza.",
+        category: "Diseño de experiencia",
+        description: "Interfaces claras, responsivas y accesibles que facilitan cada tarea y transmiten confianza.",
         items: [
             { name: "Sistemas de diseño" },
             { name: "Interfaces responsivas" },
             { name: "Accesibilidad" },
-            { name: "UX de conversión" }
+            { name: "Experiencia de usuario" }
         ]
     },
     {
-        category: "IA e integraciones",
-        description: "IA, APIs y automatizaciones aplicadas a problemas concretos, con revisión y utilidad verificable.",
+        category: "IA y automatización",
+        description: "Integro IA, APIs y automatizaciones cuando ayudan a reducir trabajo manual o mejorar una tarea concreta.",
         items: [
-            { name: "OpenAI API" },
-            { name: "Asistentes" },
+            { name: "Integraciones con IA" },
+            { name: "Asistentes digitales" },
             { name: "APIs" },
-            { name: "Workflows" }
+            { name: "Automatizaciones" }
         ]
     }
 ]
