@@ -195,14 +195,17 @@ function seededValue(index: number) {
 function AmbientField({
   reduceMotion,
   hoverTarget,
+  compact,
 }: {
   reduceMotion: boolean
   hoverTarget: MutableRefObject<number>
+  compact: boolean
 }) {
   const material = useRef<ShaderMaterial>(null)
+  const motionTime = useRef(0)
 
   const particleData = useMemo(() => {
-    const count = 68
+    const count = compact ? 42 : 68
     const positions = new Float32Array(count * 3)
     const phases = new Float32Array(count)
     const sizes = new Float32Array(count)
@@ -223,10 +226,12 @@ function AmbientField({
     }
 
     return { positions, phases, sizes, speeds, warmth }
-  }, [])
+  }, [compact])
 
   useFrame((state, delta) => {
-    const time = reduceMotion ? 0.85 : state.clock.elapsedTime
+    void state
+    motionTime.current += Math.min(delta, 1 / 30)
+    const time = reduceMotion ? 0.85 : motionTime.current
 
     if (material.current) {
       material.current.uniforms.uTime.value = time
@@ -286,31 +291,35 @@ function setOrbitPosition(target: Vector3, orbitIndex: number, angle: number) {
 function OrbitalTracers({
   reduceMotion,
   hoverTarget,
+  compact,
 }: {
   reduceMotion: boolean
   hoverTarget: MutableRefObject<number>
+  compact: boolean
 }) {
   const tracerGroups = useRef<Array<Group | null>>([])
   const trailGeometries = useRef<Array<BufferGeometry | null>>([])
   const trailMaterials = useRef<Array<ShaderMaterial | null>>([])
   const currentPosition = useMemo(() => new Vector3(), [])
   const samplePosition = useMemo(() => new Vector3(), [])
+  const motionTime = useRef(0)
+  const segmentCount = compact ? 16 : TRAIL_SEGMENTS
 
   const trailData = useMemo(() => [0, 1].map(() => {
-    const positions = new Float32Array(TRAIL_SEGMENTS * 6)
-    const alphas = new Float32Array(TRAIL_SEGMENTS * 2)
+    const positions = new Float32Array(segmentCount * 6)
+    const alphas = new Float32Array(segmentCount * 2)
 
-    for (let index = 0; index < TRAIL_SEGMENTS; index += 1) {
-      const fade = Math.pow(1 - index / TRAIL_SEGMENTS, 1.65)
+    for (let index = 0; index < segmentCount; index += 1) {
+      const fade = Math.pow(1 - index / segmentCount, 1.65)
       alphas[index * 2] = fade
       alphas[index * 2 + 1] = Math.pow(
-        1 - (index + 1) / TRAIL_SEGMENTS,
+        1 - (index + 1) / segmentCount,
         1.65,
       )
     }
 
     return { positions, alphas }
-  }), [])
+  }), [segmentCount])
 
   useEffect(() => {
     trailGeometries.current.forEach((geometry) => {
@@ -320,7 +329,9 @@ function OrbitalTracers({
   }, [])
 
   useFrame((state, delta) => {
-    const time = reduceMotion ? 0.85 : state.clock.elapsedTime
+    void state
+    motionTime.current += Math.min(delta, 1 / 30)
+    const time = reduceMotion ? 0.85 : motionTime.current
 
     for (let orbitIndex = 0; orbitIndex < 2; orbitIndex += 1) {
       const speed = (0.28 + orbitIndex * 0.055) * (1 + hoverTarget.current * 0.58)
@@ -341,9 +352,9 @@ function OrbitalTracers({
         const positions = trailData[orbitIndex].positions
         const tailLength = orbitIndex === 0 ? 1.34 : 1.18
 
-        for (let segment = 0; segment < TRAIL_SEGMENTS; segment += 1) {
-          const fromAngle = angle - (segment / TRAIL_SEGMENTS) * tailLength
-          const toAngle = angle - ((segment + 1) / TRAIL_SEGMENTS) * tailLength
+        for (let segment = 0; segment < segmentCount; segment += 1) {
+          const fromAngle = angle - (segment / segmentCount) * tailLength
+          const toAngle = angle - ((segment + 1) / segmentCount) * tailLength
           setOrbitPosition(samplePosition, orbitIndex, fromAngle)
           positions.set(samplePosition.toArray(), segment * 6)
           setOrbitPosition(samplePosition, orbitIndex, toAngle)
@@ -421,7 +432,13 @@ function OrbitalTracers({
   )
 }
 
-function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
+function SystemCore({
+  reduceMotion,
+  compact,
+}: {
+  reduceMotion: boolean
+  compact: boolean
+}) {
   const shell = useRef<Group>(null)
   const core = useRef<Group>(null)
   const network = useRef<Group>(null)
@@ -429,6 +446,7 @@ function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
   const coreMaterial = useRef<ShaderMaterial>(null)
   const shellMaterial = useRef<MeshPhysicalMaterial>(null)
   const hoverTarget = useRef(0)
+  const motionTime = useRef(0)
   const { invalidate } = useThree()
 
   const shellEdges = useMemo(() => {
@@ -453,30 +471,45 @@ function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
   }, [shellEdges])
 
   useFrame((state, delta) => {
-    const time = reduceMotion ? 0.85 : state.clock.elapsedTime
-    const entrance = reduceMotion ? 1 : Math.min(1, time / 1.8)
+    const frameDelta = Math.min(delta, 1 / 30)
+    motionTime.current += frameDelta
+    const time = reduceMotion ? 0.85 : motionTime.current
+    const entrance = reduceMotion ? 1 : Math.min(1, time / 0.82)
     const entranceEase = 1 - Math.pow(1 - entrance, 3)
+    const settle = 1 - entranceEase
 
     if (coreMaterial.current) {
       coreMaterial.current.uniforms.uTime.value = time
       const currentHover = coreMaterial.current.uniforms.uHover.value
       coreMaterial.current.uniforms.uHover.value +=
-        (hoverTarget.current - currentHover) * Math.min(1, delta * 4.5)
+        (hoverTarget.current - currentHover) * Math.min(1, frameDelta * 4.5)
     }
 
     if (shellMaterial.current) {
       const targetOpacity = hoverTarget.current ? 0.035 : 0.08
       shellMaterial.current.opacity +=
-        (targetOpacity - shellMaterial.current.opacity) * Math.min(1, delta * 4)
+        (targetOpacity - shellMaterial.current.opacity) * Math.min(1, frameDelta * 4)
     }
 
     if (!reduceMotion && shell.current) {
-      shell.current.rotation.y += delta * 0.035
+      const response = 1 - Math.exp(-frameDelta * 3.8)
+      const targetX = 0.36 + state.pointer.y * 0.045 + settle * 0.24
+      const targetY =
+        -0.5 + time * 0.035 + state.pointer.x * 0.065 - settle * 0.34
+      const targetZ = 0.06 + state.pointer.x * 0.04 + settle * 0.12
+
       shell.current.rotation.x +=
-        (0.36 + state.pointer.y * 0.045 - shell.current.rotation.x) * 0.022
+        (targetX - shell.current.rotation.x) * response
+      shell.current.rotation.y +=
+        (targetY - shell.current.rotation.y) * response
       shell.current.rotation.z +=
-        (0.06 + state.pointer.x * 0.04 - shell.current.rotation.z) * 0.022
-      const introScale = 0.92 + entranceEase * 0.08
+        (targetZ - shell.current.rotation.z) * response
+      shell.current.position.x +=
+        (state.pointer.x * 0.075 - shell.current.position.x) * response
+      shell.current.position.y +=
+        (state.pointer.y * 0.055 - shell.current.position.y) * response
+
+      const introScale = 0.84 + entranceEase * 0.16
       shell.current.scale.set(
         introScale * (1 + Math.sin(time * 0.24) * 0.008),
         introScale * (1 + Math.sin(time * 0.24 + 2.1) * 0.012),
@@ -485,8 +518,9 @@ function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
     }
 
     if (!reduceMotion && core.current) {
-      core.current.rotation.x -= delta * 0.055
-      core.current.rotation.y += delta * 0.09
+      core.current.rotation.x = -time * 0.055 + settle * 0.42
+      core.current.rotation.y = time * 0.09 - settle * 0.52
+      core.current.position.z = settle * -0.32
     }
 
     if (!reduceMotion && network.current) {
@@ -532,10 +566,18 @@ function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
       <pointLight position={[-3, -2, 4]} color="#4fa7e8" intensity={18} distance={10} />
       <pointLight position={[0.8, 1.2, 2.2]} color="#d9f4ff" intensity={5.5} distance={5} />
 
-      <AmbientField reduceMotion={reduceMotion} hoverTarget={hoverTarget} />
+      <AmbientField
+        reduceMotion={reduceMotion}
+        hoverTarget={hoverTarget}
+        compact={compact}
+      />
 
       <group ref={shell} rotation={[0.36, -0.5, 0.06]}>
-        <OrbitalTracers reduceMotion={reduceMotion} hoverTarget={hoverTarget} />
+        <OrbitalTracers
+          reduceMotion={reduceMotion}
+          hoverTarget={hoverTarget}
+          compact={compact}
+        />
         <mesh onPointerOver={() => setHover(true)} onPointerOut={() => setHover(false)}>
           <boxGeometry args={[2.9, 2.9, 2.9]} />
           <meshPhysicalMaterial
@@ -624,17 +666,27 @@ function SystemCore({ reduceMotion }: { reduceMotion: boolean }) {
   )
 }
 
-export function SpatialScene() {
+export function SpatialScene({
+  active,
+  compact,
+}: {
+  active: boolean
+  compact: boolean
+}) {
   const shouldReduceMotion = useReducedMotion() ?? false
 
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={compact ? 1 : [1, 1.5]}
       camera={{ position: [0, 0, 7.2], fov: 38 }}
-      frameloop={shouldReduceMotion ? "demand" : "always"}
-      gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+      frameloop={active && !shouldReduceMotion ? "always" : "demand"}
+      gl={{
+        alpha: true,
+        antialias: !compact,
+        powerPreference: "high-performance",
+      }}
     >
-      <SystemCore reduceMotion={shouldReduceMotion} />
+      <SystemCore reduceMotion={shouldReduceMotion} compact={compact} />
     </Canvas>
   )
 }
