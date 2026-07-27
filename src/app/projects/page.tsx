@@ -9,18 +9,18 @@ const socialImage = {
     url: "/social-preview.png",
     width: 1200,
     height: 630,
-    alt: "Proyectos de Pascal.dev",
+    alt: "Pascal.dev projects",
 }
 
 export const metadata: Metadata = {
-    title: "Proyectos | Pascal.dev",
-    description: "Productos web publicados por Pascal.dev, con detalles sobre el problema, la solución, las tecnologías y el resultado.",
+    title: "Projects | Pascal.dev",
+    description: "Published web products with details about the problem, solution, technologies, and outcome.",
     alternates: {
         canonical: `${siteUrl}/projects`,
     },
     openGraph: {
-        title: "Proyectos | Pascal.dev",
-        description: "Productos web publicados por Pascal.dev, con detalles sobre el problema, la solución, las tecnologías y el resultado.",
+        title: "Projects | Pascal.dev",
+        description: "Published web products with details about the problem, solution, technologies, and outcome.",
         type: "website",
         url: `${siteUrl}/projects`,
         siteName: "pascal.dev",
@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Proyectos | Pascal.dev",
-        description: "Productos web publicados por Pascal.dev, con detalles sobre el problema, la solución, las tecnologías y el resultado.",
+        title: "Projects | Pascal.dev",
+        description: "Published web products with details about the problem, solution, technologies, and outcome.",
         images: [socialImage],
     },
 }

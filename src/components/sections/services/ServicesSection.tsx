@@ -6,27 +6,27 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 const services = [
   {
     number: "01",
-    title: "Productos web y primeras versiones",
-    description: "Diseño y desarrollo productos SaaS, plataformas y portales para validar una idea y comenzar con una base sólida.",
-    scope: "Planificación · Diseño · Desarrollo",
-    timing: "Trabajo por etapas",
-    price: "Propuesta personalizada",
+    title: "Web products and first releases",
+    description: "I design and build SaaS products, platforms, and portals to validate an idea on solid foundations.",
+    scope: "Planning · Design · Development",
+    timing: "Phased delivery",
+    price: "Custom proposal",
   },
   {
     number: "02",
-    title: "Herramientas para el día a día",
-    description: "Tiendas en línea, reservas y paneles internos que simplifican el trabajo del negocio y la experiencia de sus clientes.",
-    scope: "Procesos · Datos · Automatización",
-    timing: "Trabajo por módulos",
-    price: "Propuesta personalizada",
+    title: "Tools for daily operations",
+    description: "Online stores, booking flows, and internal dashboards that simplify operations and improve customer experience.",
+    scope: "Processes · Data · Automation",
+    timing: "Modular delivery",
+    price: "Custom proposal",
   },
   {
     number: "03",
-    title: "IA, automatizaciones e integraciones",
-    description: "Conecto asistentes, servicios externos y herramientas con IA para resolver tareas concretas y reducir trabajo manual.",
-    scope: "IA · APIs · Automatización",
-    timing: "Según la necesidad",
-    price: "Propuesta personalizada",
+    title: "AI, automation, and integrations",
+    description: "I connect assistants, external services, and AI tools to solve specific tasks and reduce manual work.",
+    scope: "AI · APIs · Automation",
+    timing: "Based on the need",
+    price: "Custom proposal",
   },
 ]
 
@@ -36,9 +36,9 @@ export function ServicesSection() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_88%_20%,rgba(125,180,255,0.08),transparent_28%)]" />
       <div className="relative">
         <SectionHeader
-          subtitle="03 — Servicios"
-          title="Software pensado para resolver problemas reales"
-          description="Ayudo a fundadores, equipos pequeños y negocios a convertir una necesidad en un producto que puedan usar y hacer crecer."
+          subtitle="03 — Services"
+          title="Software designed to solve real problems"
+          description="I help founders, small teams, and businesses turn a need into a product they can use and grow."
         />
 
         <div className="border-t border-white/12">
@@ -59,14 +59,14 @@ export function ServicesSection() {
               <div className="flex items-center justify-between gap-6 lg:justify-end">
                 <div className="space-y-1 lg:text-right">
                   <span className="block whitespace-nowrap text-sm font-medium text-cyan-100/75">{service.price}</span>
-                  <span className="block text-xs text-white/50">Según el proyecto</span>
+                  <span className="block text-xs text-white/50">Project dependent</span>
                 </div>
                 <Link
                   href="#contact"
-                  aria-label={`Hablar sobre ${service.title}`}
+                  aria-label={`Discuss ${service.title}`}
                   className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white/65 transition group-hover:border-cyan-100/35 group-hover:bg-cyan-100 group-hover:text-black"
                 >
-                  Hablemos
+                  Let's talk
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
@@ -75,7 +75,7 @@ export function ServicesSection() {
         </div>
 
         <p className="mt-6 text-xs leading-5 text-white/50">
-          El tiempo, la inversión y lo que incluye cada proyecto se acuerdan después de entender lo que necesitas.
+          Timeline, investment, and scope are agreed after understanding what you need.
         </p>
       </div>
     </SectionContainer>

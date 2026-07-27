@@ -20,7 +20,7 @@ export function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-200 opacity-50" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-100" />
             </span>
-            <span className="min-w-0">Disponible para nuevos proyectos</span>
+            <span className="min-w-0">Available for new projects</span>
           </div>
 
           <h1 className="hero-title relative max-w-full text-[2.35rem] font-medium leading-[0.98] tracking-[-0.04em] text-white min-[380px]:text-[2.55rem] sm:text-6xl lg:text-[4.15rem] xl:text-[4.35rem] 2xl:text-[4.65rem]">
@@ -33,25 +33,25 @@ export function HeroSection() {
 
           <div className="hero-actions mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
             <Link href="#projects" className="liquid-sheen group inline-flex w-full min-w-0 items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3.5 text-sm font-semibold text-[var(--observatory-graphite)] shadow-[0_0_36px_rgba(207,239,255,0.08)] transition hover:bg-white sm:w-auto">
-              <span className="truncate">Ver trabajo</span>
+              <span className="truncate">View my work</span>
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
             <Link href="#contact" className="inline-flex w-full min-w-0 items-center justify-center rounded-full border border-white/20 bg-white/[0.025] px-6 py-3.5 text-sm font-medium text-white/82 transition hover:border-white/35 hover:bg-white/[0.055] hover:text-white sm:w-auto">
-              Hablemos de tu proyecto
+              Discuss your project
             </Link>
           </div>
 
           <div className="hero-proof mt-7 grid grid-cols-2 gap-x-3 gap-y-3 border-t border-white/10 pt-5 text-[11px] text-white/60 sm:mt-9 sm:flex sm:flex-wrap sm:items-center sm:gap-x-5 sm:pt-5 sm:text-sm">
-            <span className="text-white/75">Proyectos · Colaboraciones · Oportunidades</span>
-            <span className="text-white/75">Producto · Full-stack · IA aplicada</span>
+            <span className="text-white/75">Projects · Collaborations · Opportunities</span>
+            <span className="text-white/75">Product · Full-stack · Applied AI</span>
             <a href={profile.social.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-1.5 py-2 transition hover:text-white sm:min-h-0 sm:py-0">
               <Github className="h-3.5 w-3.5" aria-hidden="true" /> GitHub
             </a>
             <a href={profile.social.linkedin} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-1.5 py-2 transition hover:text-white sm:min-h-0 sm:py-0">
               <Linkedin className="h-3.5 w-3.5" aria-hidden="true" /> LinkedIn
             </a>
-            <a href={`${profile.social.email}?subject=Solicitud%20de%20CV`} className="inline-flex min-h-11 items-center py-2 transition hover:text-white sm:min-h-0 sm:py-0">
-              Solicitar CV
+            <a href={`${profile.social.email}?subject=Resume%20request`} className="inline-flex min-h-11 items-center py-2 transition hover:text-white sm:min-h-0 sm:py-0">
+              Request resume
             </a>
           </div>
         </div>

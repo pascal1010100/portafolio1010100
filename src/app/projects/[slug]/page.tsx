@@ -10,7 +10,7 @@ const siteUrl =
     'https://portafolio1010100.vercel.app'
 
 function formatVerifiedDate(value: string) {
-    return new Intl.DateTimeFormat("es-GT", {
+    return new Intl.DateTimeFormat("en-US", {
         day: "numeric",
         month: "short",
         year: "numeric",
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
     if (!project) {
         return {
-            title: "Proyecto no encontrado",
+            title: "Project not found",
         }
     }
 
@@ -112,7 +112,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     className="mb-12 inline-flex min-h-11 items-center gap-2 py-2 text-sm font-mono text-muted-foreground transition-colors hover:text-primary group"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                    Volver a proyectos
+                    Back to projects
                 </Link>
 
                 {/* Header Section */}
@@ -127,7 +127,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             </span>
                             {project.featured && (
                                 <span className="px-3 py-1 rounded-full border border-yellow-500/20 bg-yellow-500/5 text-yellow-500 text-xs font-mono uppercase tracking-wider">
-                                    Proyecto destacado
+                                    Featured project
                                 </span>
                             )}
                         </div>
@@ -141,19 +141,19 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         </p>
 
                         <div className="mb-8 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
-                            <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Rol principal</p>
+                            <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Primary role</p>
                             <p className="mt-2 text-sm text-zinc-300">{project.role}</p>
                         </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                             {project.demo && (
                                 <a href={project.demo} target="_blank" rel="noopener noreferrer" className="group flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90">
-                                    Ver demo <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                                    View demo <ExternalLink className="w-4 h-4" aria-hidden="true" />
                                 </a>
                             )}
                             {project.github && (
                                 <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10">
-                                    Ver código <Github className="w-4 h-4" aria-hidden="true" />
+                                    View source <Github className="w-4 h-4" aria-hidden="true" />
                                 </a>
                             )}
                         </div>
@@ -179,7 +179,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <div className="md:col-span-4 space-y-8">
                         <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 top-32 sticky">
                             <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
-                                <Layers className="w-4 h-4" aria-hidden="true" /> Tecnologías
+                                <Layers className="w-4 h-4" aria-hidden="true" /> Technologies
                             </h2>
                             <div className="flex flex-wrap gap-2">
                                 {project.technologies.map(tech => (
@@ -191,9 +191,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                             <div className="mt-8 border-t border-white/10 pt-6">
                                 <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
-                                    <ShieldCheck className="w-4 h-4" aria-hidden="true" /> Enlaces para comprobarlo
+                                    <ShieldCheck className="w-4 h-4" aria-hidden="true" /> Evidence links
                                 </h2>
-                                <p className="mb-4 text-xs text-zinc-400">Revisado el {formatVerifiedDate(project.verifiedAt)}</p>
+                                <p className="mb-4 text-xs text-zinc-400">Verified {formatVerifiedDate(project.verifiedAt)}</p>
                                 <ul className="space-y-3">
                                     {project.evidence.map((item) => (
                                         <li key={`${item.source}-${item.label}`}>
@@ -212,7 +212,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.longDescription && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">01.</span> Contexto
+                                    <span className="text-primary font-mono text-sm">01.</span> Context
                                 </h2>
                                 <div className="prose prose-invert prose-lg text-zinc-400">
                                     <p>{project.longDescription}</p>
@@ -224,7 +224,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.challenges && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">02.</span> El reto
+                                    <span className="text-primary font-mono text-sm">02.</span> The challenge
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.challenges.map((challenge: string, i: number) => (
@@ -241,7 +241,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.solutions && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">03.</span> Qué construí
+                                    <span className="text-primary font-mono text-sm">03.</span> What I built
                                 </h2>
                                 <ul className="space-y-4">
                                     {project.solutions.map((solution: string, i: number) => (
@@ -258,7 +258,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         {project.results && (
                             <section>
                                 <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                                    <span className="text-primary font-mono text-sm">04.</span> Resultado
+                                    <span className="text-primary font-mono text-sm">04.</span> Outcome
                                 </h2>
                                 <div className="p-6 rounded-2xl bg-gradient-to-br from-cyan-100/[0.08] to-white/[0.02] border border-cyan-100/15">
                                     <div className="flex items-start gap-4">
@@ -271,7 +271,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                         {/* Next Project Navigation */}
                         <div className="pt-20 border-t border-white/5">
-                            <p className="text-sm font-mono text-zinc-400 mb-4">Siguiente proyecto</p>
+                            <p className="text-sm font-mono text-zinc-400 mb-4">Next project</p>
                             <Link
                                 href={`/projects/${nextProject.slug}`}
                                 className="group block p-6 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all sm:p-8"

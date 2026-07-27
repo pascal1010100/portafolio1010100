@@ -64,11 +64,13 @@ Documentación principal:
 
 - [Project Charter](./docs/product/PROJECT_CHARTER.md)
 - [Pascal Operating Model](./docs/product/PASCAL_OPERATING_MODEL.md)
+- [Oferta freelance](./docs/product/FREELANCE_OFFER.md)
 - [Experience Engineering](./docs/design/EXPERIENCE_ENGINEERING.md)
 - [Arquitectura](./docs/architecture/README.md)
 - [ADRs](./docs/architecture/adr/)
 - [Auditoría inicial](./docs/architecture/AUDIT-2026-06-28.md)
 - [Runbook de CI](./docs/operations/ci.md)
+- [Evaluación de oportunidades](./docs/operations/opportunity-evaluation.md)
 - [Instrucciones operativas](./AGENTS.md)
 - [Arquitectura futura de agentes](./AGENTES.md)
 

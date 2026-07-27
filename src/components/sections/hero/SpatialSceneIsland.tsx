@@ -65,7 +65,7 @@ export function SpatialSceneIsland() {
       ref={container}
       className="hero-scene relative z-0 mx-0 hidden min-w-0 overflow-hidden sm:mt-0 sm:block sm:h-[28rem] lg:h-[32rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
       role="img"
-      aria-label="Ilustración 3D de un núcleo digital de Pascal.dev"
+      aria-label="3D illustration of the Pascal.dev digital core"
     >
       <div className="pointer-events-none absolute inset-[14%] rounded-full bg-sky-300/[0.07] blur-[90px]" />
       <div className="h-full w-full overflow-hidden">

@@ -3,20 +3,20 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 
 const processSteps = [
   {
-    title: "Entender el problema",
-    description: "Revisamos el objetivo, las personas que usarán el producto, las prioridades y las restricciones antes de decidir qué construir.",
+    title: "Understand the problem",
+    description: "We review the goal, the people who will use the product, the priorities, and the constraints before deciding what to build.",
   },
   {
-    title: "Diseñar y construir",
-    description: "Convertimos la idea en una experiencia clara y desarrollamos primero lo que aporta más valor.",
+    title: "Design and build",
+    description: "We turn the idea into a clear experience and build the highest-value parts first.",
   },
   {
-    title: "Probar y publicar",
-    description: "Revisamos las tareas principales, los datos y el rendimiento antes de poner el producto en línea.",
+    title: "Test and launch",
+    description: "We validate core tasks, data, and performance before putting the product online.",
   },
   {
-    title: "Medir y mejorar",
-    description: "Después del lanzamiento, usamos resultados reales para decidir qué conviene mejorar a continuación.",
+    title: "Measure and improve",
+    description: "After launch, we use real results to decide what should improve next.",
   },
 ]
 
@@ -24,9 +24,9 @@ export function ProcessSection() {
   return (
     <SectionContainer id="process" className="border-t border-white/10 py-16 sm:py-20 lg:py-32">
       <SectionHeader
-        subtitle="02 — Cómo trabajo"
-        title="De una necesidad clara a un producto funcionando"
-        description="Trabajo en cuatro etapas para reducir dudas, construir con foco y lanzar con confianza."
+        subtitle="02 — How I work"
+        title="From a clear need to a working product"
+        description="I work in four stages to reduce uncertainty, build with focus, and launch with confidence."
         className="sm:mb-10 lg:mb-14"
       />
 

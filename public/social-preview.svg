@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
-  <title id="title">Pascal.dev — Ingeniería de producto digital</title>
-  <desc id="description">Vista previa social de Pascal.dev con una esfera tecnológica sobre un fondo oscuro editorial.</desc>
+  <title id="title">Pascal.dev — Digital product engineering</title>
+  <desc id="description">Pascal.dev social preview with a technological sphere on a dark editorial background.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#070b0e"/>
@@ -47,9 +47,9 @@
   </g>
 
   <g font-family="Inter, Helvetica, Arial, sans-serif">
-    <text x="72" y="224" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">Software claro para</text>
-    <text x="72" y="294" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">sistemas que evolucionan.</text>
-    <text x="74" y="354" fill="#d8e4e8" fill-opacity=".62" font-size="21" font-weight="400">Producto digital, arquitectura full-stack e IA aplicada.</text>
+    <text x="72" y="224" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">Clear software for</text>
+    <text x="72" y="294" fill="#ffffff" font-size="62" font-weight="650" letter-spacing="-2.8">systems that evolve.</text>
+    <text x="74" y="354" fill="#d8e4e8" fill-opacity=".62" font-size="21" font-weight="400">Digital products, full-stack architecture, and applied AI.</text>
   </g>
 
   <g filter="url(#shadow)">
@@ -77,6 +77,6 @@
 
   <g font-family="Inter, Helvetica, Arial, sans-serif">
     <text x="72" y="568" fill="#ffffff" font-size="20" font-weight="700" letter-spacing="-.4">pascal.dev</text>
-    <text x="1128" y="568" text-anchor="end" fill="#d8e4e8" fill-opacity=".48" font-size="13" font-weight="500" letter-spacing="1.6">PRODUCTO · FULL-STACK · IA</text>
+    <text x="1128" y="568" text-anchor="end" fill="#d8e4e8" fill-opacity=".48" font-size="13" font-weight="500" letter-spacing="1.6">PRODUCT · FULL-STACK · AI</text>
   </g>
 </svg>

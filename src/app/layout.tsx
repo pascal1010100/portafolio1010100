@@ -12,10 +12,10 @@ const socialImage = {
   url: "/social-preview.png",
   width: 1200,
   height: 630,
-  alt: "Pascal.dev — Diseño y desarrollo de productos digitales",
+  alt: "Pascal.dev — Digital product design and development",
 }
 
-// Configuración de fuentes
+// Font configuration
 const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
@@ -34,19 +34,19 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Pascal.dev — Diseño y desarrollo de productos digitales",
+  title: "Pascal.dev — Digital product design and development",
   description:
-    "Productos web, herramientas internas e integraciones con IA diseñados y desarrollados a partir de necesidades reales.",
+    "Web products, internal tools, and AI integrations designed and built around real needs.",
   keywords: [
     "pascal.dev",
-    "Diseño de productos digitales",
-    "Arquitectura full-stack",
-    "Desarrollo asistido por IA",
-    "Diseño de experiencia",
+    "Digital product design",
+    "Full-stack architecture",
+    "AI-assisted development",
+    "Experience design",
     "React",
     "Next.js",
     "TypeScript",
-    "IA",
+    "AI",
     "SaaS",
     "CI/CD",
   ],
@@ -57,17 +57,17 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "es_GT",
+    locale: "en_US",
     url: siteUrl,
-    title: "Pascal.dev — Diseño y desarrollo de productos digitales",
-    description: "Productos web, herramientas internas e integraciones con IA creados a partir de necesidades reales.",
+    title: "Pascal.dev — Digital product design and development",
+    description: "Web products, internal tools, and AI integrations built around real needs.",
     siteName: "pascal.dev",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal.dev — Diseño y desarrollo de productos digitales",
-    description: "Productos web, herramientas internas e integraciones con IA creados a partir de necesidades reales.",
+    title: "Pascal.dev — Digital product design and development",
+    description: "Web products, internal tools, and AI integrations built around real needs.",
     creator: "@pascal1010100",
     images: [socialImage],
   },
@@ -90,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <div className="relative z-10">
           {children}

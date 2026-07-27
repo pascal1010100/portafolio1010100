@@ -7,11 +7,11 @@ import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { name: "Inicio", href: "#home" },
-  { name: "Capacidades", href: "#skills" },
-  { name: "Enfoque", href: "#process" },
-  { name: "Servicios", href: "#services" },
-  { name: "Proyectos", href: "#projects" },
+  { name: "Home", href: "#home" },
+  { name: "Capabilities", href: "#skills" },
+  { name: "Process", href: "#process" },
+  { name: "Services", href: "#services" },
+  { name: "Projects", href: "#projects" },
 ]
 
 export function Navbar() {
@@ -65,7 +65,7 @@ export function Navbar() {
           Pascal<span className="text-white/55">.dev</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -89,7 +89,7 @@ export function Navbar() {
             onClick={() => handleNavClick("#contact")}
             className="ml-3 inline-flex min-h-11 items-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90"
           >
-            Iniciar proyecto
+            Start a project
           </Link>
         </nav>
 
@@ -97,7 +97,7 @@ export function Navbar() {
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
-          aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -112,7 +112,7 @@ export function Navbar() {
             exit={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.24, ease: [0.16, 1, 0.3, 1] }}
             className="border-t border-white/10 bg-black/95 px-4 py-5 backdrop-blur-2xl lg:hidden"
-            aria-label="Navegación móvil"
+            aria-label="Mobile navigation"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-2">
               {navItems.map((item) => (
@@ -129,7 +129,7 @@ export function Navbar() {
                 </Link>
               ))}
               <Link href="#contact" onClick={() => handleNavClick("#contact")} className="mt-2 rounded-xl bg-white px-4 py-3 text-center font-semibold text-black">
-                Iniciar proyecto
+                Start a project
               </Link>
             </div>
           </motion.nav>

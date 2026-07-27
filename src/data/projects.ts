@@ -1,6 +1,6 @@
 export type ProjectEvidence = {
     label: string
-    source: "Sitio público" | "Repositorio público" | "Repositorio privado"
+    source: "Public website" | "Public repository" | "Private repository"
     url?: string
 }
 
@@ -8,195 +8,195 @@ export const projects = [
     {
         title: "Open Narrative",
         slug: "open-narrative",
-        description: "Producto SaaS con IA para analizar borradores, ajustar su tono y convertir texto generado automáticamente en escritura más natural.",
-        longDescription: "Open Narrative convierte un problema técnico complejo —detectar y refinar patrones de escritura generada por IA— en una experiencia editorial directa. El producto público integra un editor, análisis de contenido, humanización, cuentas y planes de acceso dentro de un flujo único.",
+        description: "An AI-powered SaaS product for analyzing drafts, adjusting tone, and turning automatically generated text into more natural writing.",
+        longDescription: "Open Narrative turns a complex technical problem—detecting and refining patterns in AI-generated writing—into a direct editorial experience. The public product combines an editor, content analysis, humanization, accounts, and access plans in one coherent flow.",
         challenges: [
-            "Presentar análisis y transformación de texto sin convertir la experiencia en una herramienta difícil de entender.",
-            "Mantener la intención del borrador mientras se ajustan tono, longitud y patrones mecánicos.",
-            "Conectar la experiencia gratuita con autenticación y planes comerciales de forma clara."
+            "Present text analysis and transformation without making the experience difficult to understand.",
+            "Preserve the draft's intent while adjusting tone, length, and mechanical patterns.",
+            "Connect the free experience with authentication and commercial plans clearly."
         ],
         solutions: [
-            "Se construyó un editor central con acciones separadas para analizar contenido y producir una versión más natural.",
-            "Se diseñó una jerarquía simple alrededor del texto, el límite de palabras y el estado del procesamiento.",
-            "Se integraron flujos públicos de acceso, registro y precios como parte de una experiencia SaaS coherente."
+            "Built a central editor with separate actions for analyzing content and producing a more natural version.",
+            "Designed a simple hierarchy around the text, word limit, and processing status.",
+            "Integrated public access, registration, and pricing flows into a coherent SaaS experience."
         ],
-        results: "El producto está disponible públicamente con una experiencia interactiva que permite pegar texto, analizarlo y acceder al flujo de humanización desde una interfaz enfocada.",
+        results: "The product is publicly available with an interactive experience where users can paste text, analyze it, and enter the humanization flow through a focused interface.",
         technologies: ["Next.js", "TypeScript", "OpenAI API", "Stripe", "Supabase"],
         evidence: [
-            { label: "Producto público operativo", source: "Sitio público", url: "https://opennarrative.co/" },
-            { label: "Editor interactivo visible", source: "Sitio público", url: "https://opennarrative.co/" },
-            { label: "Flujos de acceso y precios", source: "Sitio público", url: "https://opennarrative.co/pricing" }
+            { label: "Operational public product", source: "Public website", url: "https://opennarrative.co/" },
+            { label: "Interactive editor available", source: "Public website", url: "https://opennarrative.co/" },
+            { label: "Access and pricing flows", source: "Public website", url: "https://opennarrative.co/pricing" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
-        role: "Desarrollo de la aplicación y experiencia de producto",
-        status: "Producto público en operación",
+        role: "Application development and product experience",
+        status: "Public product in operation",
         image: "/images/opennarrative.png",
         github: "",
         demo: "https://opennarrative.co/",
         featured: true,
-        category: "SaaS con IA"
+        category: "AI SaaS"
     },
     {
         title: "Nativa Market",
         slug: "nativa-market",
-        description: "Ecommerce operativo para Guatemala con catálogo administrable, experiencia de compra renovada, pedidos transaccionales y SEO preparado para productos y categorías.",
-        longDescription: "Nativa Market evolucionó de un catálogo funcional a una tienda ecommerce completa para productos naturales. La plataforma conecta una experiencia pública editorial con búsqueda, categorías, galerías, carrito y checkout; detrás, un panel protegido permite administrar productos, pedidos, pagos, entregas y configuración sin depender de una plataforma genérica.",
+        description: "A production ecommerce platform for Guatemala with a manageable catalogue, redesigned shopping experience, transactional orders, and product-level SEO.",
+        longDescription: "Nativa Market evolved from a functional catalogue into a complete ecommerce store for natural products. The platform connects an editorial storefront with search, categories, galleries, cart, and checkout; behind it, a protected dashboard manages products, orders, payments, deliveries, and configuration without relying on a generic commerce platform.",
         challenges: [
-            "Cerrar un flujo de compra completo sin introducir una pasarela de pago que no correspondía al alcance validado del MVP.",
-            "Presentar un catálogo amplio y galerías de producto con una experiencia clara, rápida y consistente en móvil y escritorio.",
-            "Mantener indexables productos y categorías sin exponer al buscador las rutas privadas o transaccionales."
+            "Complete the purchase flow without introducing a payment gateway that was outside the validated MVP scope.",
+            "Present a broad catalogue and product galleries through a clear, fast, and consistent mobile and desktop experience.",
+            "Keep products and categories indexable without exposing private or transactional routes to search engines."
         ],
         solutions: [
-            "Se organizó el sistema por funcionalidades sobre Next.js 16, React 19, PostgreSQL, Supabase y Drizzle, con acciones administrativas protegidas desde servidor.",
-            "El checkout recalcula importes desde la base de datos y guarda pedido e ítems mediante una función SQL transaccional antes de preparar la confirmación por WhatsApp.",
-            "Se renovó la tienda con una dirección visual boutique, carruseles táctiles, imágenes con encuadre completo y recorridos responsive para catálogo, carrito, checkout y confirmación.",
-            "Se implementaron canonical, sitemap dinámico, rutas por categoría y datos estructurados OnlineStore, Product, Offer y BreadcrumbList, con noindex en flujos privados."
+            "Organized the system by feature on Next.js 16, React 19, PostgreSQL, Supabase, and Drizzle, with protected server-side administrative actions.",
+            "The checkout recalculates totals from the database and stores each order and its items through a transactional SQL function before preparing WhatsApp confirmation.",
+            "Redesigned the store with a boutique visual direction, touch carousels, complete image framing, and responsive catalogue, cart, checkout, and confirmation flows.",
+            "Implemented canonicals, a dynamic sitemap, category routes, and OnlineStore, Product, Offer, and BreadcrumbList structured data, with noindex rules for private flows."
         ],
-        results: "El MVP opera en dominio propio con 28 productos activos, siete categorías, dos métodos de pago y entrega configurable para toda Guatemala. La renovación UI/UX fue validada en desktop y móvil; los smoke tests verifican el flujo de pedidos y producción, y Search Console confirmó sitemap correcto y resultados enriquecidos de producto válidos.",
+        results: "The MVP runs on its own domain with 28 active products, seven categories, two payment methods, and configurable delivery across Guatemala. The UI/UX redesign was validated on desktop and mobile; smoke tests cover ordering and production, while Search Console confirmed a valid sitemap and eligible product rich results.",
         technologies: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM", "Motion"],
         evidence: [
-            { label: "Tienda y catálogo operativo en dominio propio", source: "Sitio público", url: "https://www.nativamarket.net/" },
-            { label: "Productos y categorías en sitemap público", source: "Sitio público", url: "https://www.nativamarket.net/sitemap.xml" },
-            { label: "Checkout transaccional y panel administrativo", source: "Repositorio privado" },
-            { label: "CI y smoke tests de MVP y producción", source: "Repositorio privado" },
-            { label: "SEO ecommerce y resultados enriquecidos verificados", source: "Repositorio privado" }
+            { label: "Production store and catalogue on its own domain", source: "Public website", url: "https://www.nativamarket.net/" },
+            { label: "Products and categories in the public sitemap", source: "Public website", url: "https://www.nativamarket.net/sitemap.xml" },
+            { label: "Transactional checkout and admin dashboard", source: "Private repository" },
+            { label: "CI and MVP/production smoke tests", source: "Private repository" },
+            { label: "Verified ecommerce SEO and rich results", source: "Private repository" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-15",
-        role: "Producto, arquitectura, UI/UX e ingeniería full-stack",
-        status: "MVP en producción · UI/UX y SEO renovados",
+        role: "Product, architecture, UI/UX, and full-stack engineering",
+        status: "MVP in production · UI/UX and SEO redesigned",
         image: "/images/nativa-market.png",
         github: "",
         demo: "https://www.nativamarket.net/",
         featured: true,
-        category: "Ecommerce y operaciones"
+        category: "Ecommerce and operations"
     },
     {
         title: "Mandalas Hostal",
         slug: "mandalas-hostal",
-        description: "Experiencia web y base operativa para dos propiedades, con reservas directas en Cloudbeds, analítica de conversión con PostHog y una integración PMS de solo lectura.",
-        longDescription: "Mandalas necesitaba diferenciar una propiedad social en el centro y una alternativa tranquila cerca del lago sin fragmentar la marca. La evolución actual conecta cada estadía con su propio motor de reservas de Cloudbeds, mide de forma anónima la intención de reserva y contacto, y añade una capa operativa server-side para consultar inventario y reservas sin duplicar la fuente oficial del PMS.",
+        description: "A web experience and operational foundation for two properties, with direct Cloudbeds bookings, PostHog conversion analytics, and a read-only PMS integration.",
+        longDescription: "Mandalas needed to distinguish a social town-center property from a quieter lakeside alternative without fragmenting the brand. The current experience connects each stay to its Cloudbeds booking engine, measures booking and contact intent anonymously, and adds a server-side operational layer for reading inventory and reservations without duplicating the PMS source of truth.",
         challenges: [
-            "Comunicar dos propiedades con personalidades distintas dentro de una sola marca.",
-            "Conectar reservas y datos operativos de Cloudbeds sin exponer credenciales ni replicar información sensible.",
-            "Introducir medición y automatización sin comprometer el rendimiento ni mezclar la experiencia pública con las herramientas internas."
+            "Communicate two properties with distinct personalities under one brand.",
+            "Connect Cloudbeds booking and operational data without exposing credentials or replicating sensitive information.",
+            "Introduce measurement and automation without compromising performance or mixing the public experience with internal tools."
         ],
         solutions: [
-            "Se diseñó una portada comparativa que presenta ambas propiedades desde el primer viewport.",
-            "Se conectó cada propiedad con su motor de reserva de Cloudbeds y se implementó un cliente server-side de solo lectura con dashboard, mapeo de habitaciones y herramientas operativas.",
-            "Se combinaron Vercel Analytics y PostHog para medir visitas e intención de conversión mediante los eventos booking_intent y whatsapp_intent, sin autocaptura, perfiles personales ni grabación de sesiones; Playwright protege los recorridos públicos críticos."
+            "Designed a comparative homepage that introduces both properties in the first viewport.",
+            "Connected each property to its Cloudbeds booking engine and implemented a read-only server-side client with a dashboard, room mapping, and operational tools.",
+            "Combined Vercel Analytics and PostHog to measure visits and conversion intent through booking_intent and whatsapp_intent events, without autocapture, personal profiles, or session recordings; Playwright protects critical public journeys."
         ],
-        results: "El sitio continúa publicado en dominio propio, dirige cada propiedad a su reserva directa en Cloudbeds y permite medir de forma anónima qué propiedad y punto de la experiencia generan intención de reserva o contacto por WhatsApp.",
+        results: "The website remains live on its own domain, sends each property to its direct Cloudbeds booking flow, and anonymously measures which property and touchpoint generate booking or WhatsApp contact intent.",
         technologies: ["Next.js 16", "TypeScript", "Cloudbeds API", "PostHog", "Vercel Analytics", "Playwright"],
         evidence: [
-            { label: "Dominio de producción", source: "Sitio público", url: "https://www.mandalashostels.com/" },
-            { label: "Reservas directas en Cloudbeds", source: "Sitio público", url: "https://www.mandalashostels.com/pueblo" },
-            { label: "Integración Cloudbeds de solo lectura", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
-            { label: "Analytics y Speed Insights", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
-            { label: "PostHog con analítica anónima", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/instrumentation-client.ts" },
-            { label: "Eventos de intención de conversión", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/src/lib/analytics.ts" },
-            { label: "Smoke tests de rutas críticas", source: "Repositorio público", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
+            { label: "Production domain", source: "Public website", url: "https://www.mandalashostels.com/" },
+            { label: "Direct Cloudbeds bookings", source: "Public website", url: "https://www.mandalashostels.com/pueblo" },
+            { label: "Read-only Cloudbeds integration", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
+            { label: "Analytics and Speed Insights", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
+            { label: "Anonymous PostHog analytics", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/instrumentation-client.ts" },
+            { label: "Conversion-intent events", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/src/lib/analytics.ts" },
+            { label: "Critical-route smoke tests", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-14",
-        role: "Producto, rediseño, integración Cloudbeds e ingeniería full-stack",
-        status: "Sitio en producción · integración operativa en evolución",
+        role: "Product, redesign, Cloudbeds integration, and full-stack engineering",
+        status: "Live website · operational integration evolving",
         image: "/images/mandalas.png",
         github: "https://github.com/pascal1010100/mandalas",
         demo: "https://www.mandalashostels.com/",
         featured: true,
-        category: "Hospitalidad y operaciones"
+        category: "Hospitality and operations"
     },
     {
         title: "Not Your Money Laundry",
         slug: "not-your-money-laundry",
-        description: "Aplicación operativa para solicitar recolección de lavandería, elegir nivel de servicio y coordinar entrega y pago en San Pedro La Laguna.",
-        longDescription: "Not Your Money Laundry transforma una coordinación informal por mensajes en un recorrido guiado. El cliente define servicio, punto de recogida y cuidados; el negocio confirma ruta, cantidad y total antes de lavar y mantiene cada orden asociada a una bolsa codificada.",
+        description: "An operational application for requesting laundry pickup, selecting a service level, and coordinating delivery and payment in San Pedro La Laguna.",
+        longDescription: "Not Your Money Laundry turns informal message-based coordination into a guided journey. Customers define service, pickup point, and garment care; the business confirms the route, quantity, and total before washing and keeps every order associated with a coded bag.",
         challenges: [
-            "Recoger la información necesaria sin convertir la solicitud en un formulario pesado.",
-            "Explicar precios variables por peso o pieza antes de conocer el total final.",
-            "Conectar la solicitud digital con la operación física de bolsas, rutas y entregas."
+            "Collect the information needed without turning the request into a heavy form.",
+            "Explain weight- or item-based variable pricing before the final total is known.",
+            "Connect the digital request with the physical operation of bags, routes, and deliveries."
         ],
         solutions: [
-            "Se creó un flujo por pasos para servicio, recogida, cuidados y confirmación.",
-            "Se diseñó un ticket legible que resume la solicitud y prepara el mensaje de WhatsApp.",
-            "Se incorporó una base de pruebas unitarias y end-to-end para proteger el recorrido principal."
+            "Built a step-by-step flow for service, pickup, care instructions, and confirmation.",
+            "Designed a readable ticket that summarizes the request and prepares the WhatsApp message.",
+            "Added unit and end-to-end test foundations to protect the core journey."
         ],
-        results: "El MVP desplegado permite configurar una solicitud, entender el proceso completo y continuar la coordinación operativa por WhatsApp sin solicitar pago anticipado.",
+        results: "The deployed MVP lets customers configure a request, understand the complete process, and continue operational coordination through WhatsApp without upfront payment.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Zod", "Playwright"],
         evidence: [
-            { label: "Demo pública operativa", source: "Sitio público", url: "https://not-your-money-laundry.vercel.app/" },
-            { label: "Flujo guiado funcional", source: "Sitio público", url: "https://not-your-money-laundry.vercel.app/" },
-            { label: "Pruebas unitarias y E2E", source: "Repositorio privado" }
+            { label: "Operational public demo", source: "Public website", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Functional guided flow", source: "Public website", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Unit and E2E tests", source: "Private repository" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
-        role: "Producto, UX operativa e ingeniería full-stack",
-        status: "MVP desplegado",
+        role: "Product, operational UX, and full-stack engineering",
+        status: "Deployed MVP",
         image: "/images/not-your-money-laundry.png",
         github: "",
         demo: "https://not-your-money-laundry.vercel.app/",
         featured: true,
-        category: "Operaciones locales"
+        category: "Local operations"
     },
     {
         title: "Nómada Fantasma",
         slug: "nomada-fantasma",
-        description: "Plataforma bilingüe para explorar Guatemala mediante tours, transporte, reservas y un mapa de lugares verificados.",
-        longDescription: "Nómada Fantasma organiza información que normalmente está dispersa entre mensajes, redes sociales y recomendaciones. La experiencia reúne rutas mágicas, shuttles y puntos útiles en un mapa para que el viajero pueda entender opciones y avanzar hacia una reserva.",
+        description: "A bilingual platform for exploring Guatemala through tours, transportation, bookings, and a map of verified places.",
+        longDescription: "Nómada Fantasma organizes information that is usually scattered across messages, social media, and recommendations. The experience brings magical routes, shuttles, and useful places into one map so travelers can understand their options and move toward a booking.",
         challenges: [
-            "Unificar experiencias, transporte y lugares útiles sin perder claridad de navegación.",
-            "Presentar contenido local en español e inglés con rutas consistentes.",
-            "Mantener datos geográficos y flujos de reserva verificables antes de publicar."
+            "Unify experiences, transportation, and useful places without losing navigational clarity.",
+            "Present local content in Spanish and English through consistent routes.",
+            "Keep geographic data and booking flows verifiable before publication."
         ],
         solutions: [
-            "Se estructuró la plataforma alrededor de tres decisiones: experiencias, transporte y mapa.",
-            "Se implementó internacionalización con rutas por idioma y contenido localizado.",
-            "Se añadieron pruebas, verificación de releases y una capa geográfica basada en Leaflet."
+            "Structured the platform around three decisions: experiences, transportation, and map.",
+            "Implemented internationalization with language-based routes and localized content.",
+            "Added testing, release verification, and a Leaflet-based geographic layer."
         ],
-        results: "La plataforma está publicada en dominio propio con navegación bilingüe, mapa de San Pedro, catálogo de experiencias y recorridos de reserva y transporte.",
+        results: "The platform is live on its own domain with bilingual navigation, a San Pedro map, an experience catalogue, and booking and transportation journeys.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Leaflet", "next-intl"],
         evidence: [
-            { label: "Dominio de producción", source: "Sitio público", url: "https://nomadafantasma.com/es" },
-            { label: "Implementación disponible", source: "Repositorio público", url: "https://github.com/pascal1010100/nomada-fantasma" },
-            { label: "Mapa y rutas bilingües", source: "Sitio público", url: "https://nomadafantasma.com/es/mapa?town=san-pedro" }
+            { label: "Production domain", source: "Public website", url: "https://nomadafantasma.com/es" },
+            { label: "Public implementation", source: "Public repository", url: "https://github.com/pascal1010100/nomada-fantasma" },
+            { label: "Bilingual map and routes", source: "Public website", url: "https://nomadafantasma.com/es/mapa?town=san-pedro" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
-        role: "Producto, arquitectura y experiencia geográfica",
-        status: "Plataforma pública en evolución",
+        role: "Product, architecture, and geographic experience",
+        status: "Public platform evolving",
         image: "/images/nomadguide.png",
         github: "https://github.com/pascal1010100/nomada-fantasma",
         demo: "https://nomadafantasma.com/es",
         featured: false,
-        category: "Turismo y geolocalización"
+        category: "Tourism and geolocation"
     },
     {
         title: "GuateRaw Travel",
         slug: "guateraw-travel",
-        description: "Landing comercial en inglés para posicionar y reservar experiencias de buceo de altura, estadías y transporte en el Lago de Atitlán.",
-        longDescription: "GuateRaw Travel necesitaba sustituir una presencia básica en WordPress por una experiencia rápida, enfocada en turistas internacionales y orientada a conversión. El sitio organiza el catálogo vigente de Recurrente, explica paquetes, precios e inclusiones y conecta cada decisión con la reserva externa o una consulta directa por WhatsApp.",
+        description: "An English-language commercial landing page for discovering and booking high-altitude diving, stays, and transportation around Lake Atitlán.",
+        longDescription: "GuateRaw Travel needed to replace a basic WordPress presence with a fast experience aimed at international travelers and focused on conversion. The website organizes the current Recurrente catalogue, explains packages, pricing, and inclusions, and connects each decision to an external booking or a direct WhatsApp inquiry.",
         challenges: [
-            "Explicar experiencias turísticas de precio alto con suficiente claridad antes de enviar al usuario a Recurrente.",
-            "Captar búsquedas internacionales específicas sobre altitude scuba diving y servicios alrededor del Lago de Atitlán.",
-            "Mantener paquetes, precios e inclusiones alineados con la fuente comercial sin construir un motor de reservas propio."
+            "Explain high-value travel experiences clearly enough before sending visitors to Recurrente.",
+            "Capture specific international searches for high-altitude scuba diving and services around Lake Atitlán.",
+            "Keep packages, pricing, and inclusions aligned with the commercial source without building a proprietary booking engine."
         ],
         solutions: [
-            "Se construyó una landing estática en inglés con Astro, dominio propio y una jerarquía enfocada en búsqueda y conversión.",
-            "Se sincronizaron tres opciones comerciales con Recurrente y se hizo explícita la transición hacia su flujo de reserva.",
-            "Se implementaron metadata social, sitemap, canonical, FAQs y datos estructurados de TravelAgency, Service, Offer y FAQPage, junto con Vercel Analytics para observar tráfico."
+            "Built a static English-language landing page with Astro, its own domain, and a hierarchy focused on search and conversion.",
+            "Synchronized three commercial options with Recurrente and made the transition to its booking flow explicit.",
+            "Implemented social metadata, sitemap, canonicals, FAQs, and TravelAgency, Service, Offer, and FAQPage structured data, together with Vercel Analytics for traffic observation."
         ],
-        results: "El sitio opera en guaterawtravel.com, presenta tres opciones comerciales verificadas y conduce al visitante hacia Recurrente o WhatsApp desde una experiencia optimizada para búsquedas sobre buceo de altura en el Lago de Atitlán.",
+        results: "The site runs on guaterawtravel.com, presents three verified commercial options, and guides visitors to Recurrente or WhatsApp through an experience optimized for high-altitude diving searches around Lake Atitlán.",
         technologies: ["Astro 7", "TypeScript", "Schema.org", "Vercel Analytics", "Recurrente", "Google Search Console"],
         evidence: [
-            { label: "Dominio de producción", source: "Sitio público", url: "https://guaterawtravel.com/" },
-            { label: "Catálogo y reservas en Recurrente", source: "Sitio público", url: "https://guaterawtravel.com/#experiencias" },
-            { label: "SEO y datos estructurados", source: "Repositorio privado" },
-            { label: "Vercel Analytics y metadata", source: "Repositorio privado" }
+            { label: "Production domain", source: "Public website", url: "https://guaterawtravel.com/" },
+            { label: "Catalogue and bookings on Recurrente", source: "Public website", url: "https://guaterawtravel.com/#experiencias" },
+            { label: "SEO and structured data", source: "Private repository" },
+            { label: "Vercel Analytics and metadata", source: "Private repository" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-14",
-        role: "Estrategia de conversión, diseño y desarrollo frontend",
-        status: "Sitio en producción · SEO en seguimiento",
+        role: "Conversion strategy, design, and frontend development",
+        status: "Live website · SEO under observation",
         image: "/images/guateraw-travel.png",
         github: "",
         demo: "https://guaterawtravel.com/",
         featured: false,
-        category: "Landing comercial"
+        category: "Commercial landing page"
     }
 ]

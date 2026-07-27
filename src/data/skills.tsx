@@ -1,17 +1,17 @@
 export const skills = [
     {
-        category: "Producto y planificación",
-        description: "Defino qué construir primero, qué dejar para después y cómo comprobar que cada entrega resuelve el problema.",
+        category: "Product and planning",
+        description: "I define what to build first, what to defer, and how to verify that each release solves the right problem.",
         items: [
-            { name: "Definición del problema" },
-            { name: "MVP por etapas" },
-            { name: "Prioridades del producto" },
-            { name: "Criterios de entrega" }
+            { name: "Problem definition" },
+            { name: "Phased MVPs" },
+            { name: "Product priorities" },
+            { name: "Acceptance criteria" }
         ]
     },
     {
-        category: "Desarrollo full-stack",
-        description: "Aplicaciones web rápidas y mantenibles, con datos bien organizados y una base preparada para crecer.",
+        category: "Full-stack development",
+        description: "Fast, maintainable web applications with well-structured data and foundations designed to grow.",
         items: [
             { name: "Next.js" },
             { name: "PostgreSQL" },
@@ -20,23 +20,23 @@ export const skills = [
         ]
     },
     {
-        category: "Diseño de experiencia",
-        description: "Interfaces claras, responsivas y accesibles que facilitan cada tarea y transmiten confianza.",
+        category: "Experience design",
+        description: "Clear, responsive, and accessible interfaces that make tasks easier and build trust.",
         items: [
-            { name: "Sistemas de diseño" },
-            { name: "Interfaces responsivas" },
-            { name: "Accesibilidad" },
-            { name: "Experiencia de usuario" }
+            { name: "Design systems" },
+            { name: "Responsive interfaces" },
+            { name: "Accessibility" },
+            { name: "User experience" }
         ]
     },
     {
-        category: "IA y automatización",
-        description: "Integro IA, APIs y automatizaciones cuando ayudan a reducir trabajo manual o mejorar una tarea concreta.",
+        category: "AI and automation",
+        description: "I integrate AI, APIs, and automation when they reduce manual work or improve a specific task.",
         items: [
-            { name: "Integraciones con IA" },
-            { name: "Asistentes digitales" },
+            { name: "AI integrations" },
+            { name: "Digital assistants" },
             { name: "APIs" },
-            { name: "Automatizaciones" }
+            { name: "Automation" }
         ]
     }
 ]

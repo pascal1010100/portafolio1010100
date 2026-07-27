@@ -32,22 +32,22 @@ export function ProjectArchive() {
                         href="/"
                         className="mb-8 inline-flex min-h-11 items-center gap-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground group"
                     >
-                        <span className="group-hover:-translate-x-1 transition-transform">←</span> Volver al inicio
+                        <span className="group-hover:-translate-x-1 transition-transform">←</span> Back to home
                     </Link>
 
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/5">
                         <div>
                             <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-3">
-                                Proyectos
+                                Projects
                             </h1>
                             <p className="text-muted-foreground max-w-xl text-lg leading-relaxed">
-                                Productos web publicados por Pascal.dev, con detalles sobre el problema, la solución, las tecnologías y el resultado.
+                                Published web products with details about the problem, solution, technologies, and outcome.
                             </p>
                         </div>
 
                         <div className="relative group w-full md:w-auto">
                             <label htmlFor="project-search" className="sr-only">
-                                Buscar proyectos
+                                Search projects
                             </label>
                             <Search
                                 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-primary transition-colors"
@@ -56,7 +56,7 @@ export function ProjectArchive() {
                             <input
                                 id="project-search"
                                 type="text"
-                                placeholder="Buscar proyectos..."
+                                placeholder="Search projects..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="bg-zinc-900/50 border border-white/10 rounded-full py-3 pl-10 pr-6 text-sm outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all w-full md:w-64 placeholder:text-zinc-400"
@@ -102,7 +102,7 @@ export function ProjectArchive() {
                                                 href={project.github}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                aria-label={`Abrir repositorio de ${project.title}`}
+                                                aria-label={`Open ${project.title} repository`}
                                                 className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/5 hover:text-white"
                                             >
                                                 <Github className="w-4 h-4" aria-hidden="true" />
@@ -113,7 +113,7 @@ export function ProjectArchive() {
                                                 href={project.demo}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                aria-label={`Abrir demo de ${project.title}`}
+                                                aria-label={`Open ${project.title} demo`}
                                                 className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/5 hover:text-white"
                                             >
                                                 <ExternalLink className="w-4 h-4" aria-hidden="true" />
@@ -128,7 +128,7 @@ export function ProjectArchive() {
 
                                 <div className="mb-5 grid gap-2 text-xs text-zinc-400">
                                     <div className="rounded-xl border border-white/5 bg-black/20 px-3 py-2">
-                                        <span className="block text-zinc-400">Rol</span>
+                                        <span className="block text-zinc-400">Role</span>
                                         <span className="mt-1 block text-zinc-300">{project.role}</span>
                                     </div>
                                     <div className="flex flex-wrap gap-2">
@@ -161,13 +161,13 @@ export function ProjectArchive() {
 
                 {filteredProjects.length === 0 && (
                     <div className="text-center py-20">
-                        <p className="text-muted-foreground text-lg">No hay proyectos que coincidan con tu búsqueda.</p>
+                        <p className="text-muted-foreground text-lg">No projects match your search.</p>
                         <button
                             type="button"
                             onClick={() => setSearchQuery("")}
                             className="mt-4 inline-flex min-h-11 items-center rounded-full px-4 py-2 text-primary transition-colors hover:bg-white/5 hover:text-white"
                         >
-                            Limpiar búsqueda
+                            Clear search
                         </button>
                     </div>
                 )}

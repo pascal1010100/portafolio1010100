@@ -3,8 +3,8 @@ import Link from "next/link"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
 
 export const metadata: Metadata = {
-    title: "Página no encontrada | Pascal.dev",
-    description: "La ruta solicitada no existe. Vuelve al inicio para explorar los proyectos y servicios de Pascal.dev.",
+    title: "Page not found | Pascal.dev",
+    description: "The requested path does not exist. Return home to explore Pascal.dev projects and services.",
     robots: { index: false, follow: true },
 }
 
@@ -18,13 +18,13 @@ export default function NotFound() {
         <div className="grid w-full items-end gap-12 border-y border-white/10 py-12 sm:py-16 lg:grid-cols-[1fr_auto] lg:gap-20 lg:py-20">
           <div className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-cyan-100/65">
-              Señal 404 · Ruta no encontrada
+              Signal 404 · Route not found
             </p>
             <h1 className="mt-6 text-4xl font-medium leading-[1.02] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
-              Esta coordenada quedó fuera del mapa.
+              This coordinate fell outside the map.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
-              La página no existe o cambió de ubicación. Puedes volver al inicio o continuar explorando los proyectos.
+              This page does not exist or has moved. Return home or continue exploring the projects.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -33,13 +33,13 @@ export default function NotFound() {
                 className="liquid-sheen group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3 text-sm font-semibold text-[var(--observatory-graphite)] transition hover:bg-white"
               >
                 <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" />
-                Volver al inicio
+                Back to home
               </Link>
               <Link
                 href="/projects"
                 className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-6 py-3 text-sm font-medium text-white/80 transition hover:border-white/35 hover:bg-white/[0.055] hover:text-white"
               >
-                Ver proyectos
+                View projects
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
             </div>

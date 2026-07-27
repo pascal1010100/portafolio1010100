@@ -12,9 +12,9 @@ export function ProjectsSection() {
   return (
     <SectionContainer id="projects" className="border-y border-white/10 bg-white/[0.012] py-20 sm:py-28 lg:py-36">
       <SectionHeader
-        subtitle="04 — Proyectos destacados"
-        title="Trabajo real y decisiones que puedes revisar"
-        description="Tres productos publicados con una explicación clara del problema, mi trabajo y el resultado."
+        subtitle="04 — Selected projects"
+        title="Real work and decisions you can review"
+        description="Three published products with a clear account of the problem, my work, and the outcome."
       />
 
       <div className="grid gap-5 lg:grid-cols-12">
@@ -25,7 +25,7 @@ export function ProjectsSection() {
 
       <div className="mt-8 flex justify-center sm:mt-10">
         <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-5 py-3 text-sm font-medium text-white/75 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black">
-          Ver todos los proyectos
+          View all projects
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </Link>
       </div>
@@ -63,8 +63,8 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               <p className="text-xs uppercase tracking-[0.16em] text-white/60">{project.category}</p>
               <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
             </div>
-            <Link href={`/projects/${project.slug}`} aria-label={`Ver proyecto ${project.title}`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
-              Ver proyecto
+            <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} project`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
+              View project
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -73,11 +73,11 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 
           <div className="mt-5 grid gap-2 text-xs text-white/60 sm:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/[0.018] px-3 py-2">
-              <span className="block text-white/50">Rol</span>
+              <span className="block text-white/50">Role</span>
               <span className="mt-1 block text-white/58">{project.role}</span>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/[0.018] px-3 py-2">
-              <span className="block text-white/50">Estado</span>
+              <span className="block text-white/50">Status</span>
               <span className="mt-1 block text-white/58">{project.status}</span>
             </div>
           </div>
@@ -91,16 +91,16 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               ))}
             </div>
             <div className="flex items-center gap-3">
-              <Link href={`/projects/${project.slug}`} aria-label={`Ver proyecto ${project.title}`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
+              <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} project`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               {project.demo && (
-                <a href={project.demo} target="_blank" rel="noreferrer" aria-label={`Abrir demo de ${project.title}`} className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white">
+                <a href={project.demo} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} demo`} className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white">
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
                 </a>
               )}
               {project.github && (
-                <a href={project.github} target="_blank" rel="noreferrer" aria-label={`Abrir código de ${project.title}`} className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white">
+                <a href={project.github} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} source code`} className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/60 transition hover:bg-white/5 hover:text-white">
                   <Github className="h-4 w-4" aria-hidden="true" />
                 </a>
               )}
