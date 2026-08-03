@@ -9,10 +9,10 @@ const siteUrl =
   'https://portafolio1010100.vercel.app'
 
 const socialImage = {
-  url: "/social-preview.png",
+  url: "/social-preview-v2.png",
   width: 1200,
   height: 630,
-  alt: "Pascal.dev — Digital product design and development",
+  alt: "Pascal.dev — Founder-led product engineering studio",
 }
 
 // Font configuration
@@ -34,9 +34,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Pascal.dev — Digital product design and development",
+  title: "Pascal.dev — Founder-led product engineering studio",
   description:
-    "Web products, internal tools, and AI integrations designed and built around real needs.",
+    "An independent practice building commercial websites, operational tools, and focused web MVPs for founders, small teams, and businesses.",
   keywords: [
     "pascal.dev",
     "Digital product design",
@@ -59,16 +59,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Pascal.dev — Digital product design and development",
-    description: "Web products, internal tools, and AI integrations built around real needs.",
+    title: "Pascal.dev — Founder-led product engineering studio",
+    description: "An independent practice building commercial websites, operational tools, and focused web MVPs around real business needs.",
     siteName: "pascal.dev",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pascal.dev — Digital product design and development",
-    description: "Web products, internal tools, and AI integrations built around real needs.",
-    creator: "@pascal1010100",
+    title: "Pascal.dev — Founder-led product engineering studio",
+    description: "An independent practice building commercial websites, operational tools, and focused web MVPs around real business needs.",
     images: [socialImage],
   },
   robots: {

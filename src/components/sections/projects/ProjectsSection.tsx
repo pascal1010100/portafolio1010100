@@ -12,9 +12,9 @@ export function ProjectsSection() {
   return (
     <SectionContainer id="projects" className="border-y border-white/10 bg-white/[0.012] py-20 sm:py-28 lg:py-36">
       <SectionHeader
-        subtitle="04 — Selected projects"
-        title="Real work and decisions you can review"
-        description="Three published products with a clear account of the problem, my work, and the outcome."
+        subtitle="01 — Selected work"
+        title="Real work, documented decisions, and evidence you can review"
+        description="Each case explains the problem, my role, the decisions made, and the outcome described by the available sources."
       />
 
       <div className="grid gap-5 lg:grid-cols-12">
@@ -50,7 +50,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
             src={project.image}
             alt={project.title}
             fill
-            sizes={index === 0 ? "(min-width: 1024px) 58vw, 100vw" : index === 1 ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 1024px) 50vw, 100vw"}
+            sizes={index === 0 ? "(min-width: 1024px) 58vw, 100vw" : index === 1 ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 1280px) 1280px, 100vw"}
             className="object-cover opacity-85 grayscale-[0.15] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
@@ -63,8 +63,8 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               <p className="text-xs uppercase tracking-[0.16em] text-white/60">{project.category}</p>
               <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-white">{project.title}</h3>
             </div>
-            <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} project`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
-              View project
+            <Link href={`/projects/${project.slug}`} aria-label={`Read ${project.title} case study`} className="hidden min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white/70 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:inline-flex">
+              Read case study
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -91,7 +91,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
               ))}
             </div>
             <div className="flex items-center gap-3">
-              <Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} project`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
+              <Link href={`/projects/${project.slug}`} aria-label={`Read ${project.title} case study`} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/55 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black sm:hidden">
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               {project.demo && (

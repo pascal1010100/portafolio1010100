@@ -10,14 +10,14 @@ test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
 
   await page.goto("/")
   await page.getByLabel("Name").fill("Test person")
-  await page.getByLabel("What do you want to build or improve?").fill("Booking platform")
-  await page.getByLabel(/Tell me a little more.*required/).fill(
+  await page.getByLabel("What do you need help with?").fill("Booking platform")
+  await page.getByLabel(/Tell me about the problem.*required/).fill(
     "I need to validate the public contact form flow.",
   )
-  await page.getByRole("button", { name: "Continue on WhatsApp" }).click()
+  await page.getByRole("button", { name: "Review message in WhatsApp" }).click()
 
   const expectedMessage = [
-    "Hi Pascal, I saw your portfolio and would like to discuss a project.",
+    "Hi Pascal, I visited Pascal.dev and would like to discuss a project.",
     "",
     "Name: Test person",
     "Project or idea: Booking platform",
@@ -30,6 +30,7 @@ test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
     "data-opened-url",
     `https://wa.me/50242900009?text=${encodeURIComponent(expectedMessage)}`,
   )
+  await expect(page.getByRole("status")).toContainText("Open the prepared message directly")
 })
 
 test("ofrece WhatsApp como canal de contacto directo", async ({ page }) => {

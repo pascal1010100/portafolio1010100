@@ -6,9 +6,9 @@ export function SkillsSection() {
   return (
     <SectionContainer id="skills" className="py-16 sm:py-20 lg:py-32">
       <SectionHeader
-        subtitle="01 — What I do"
-        title="Everything needed to take an idea to production"
-        description="I can help define what to build, design the experience, develop the product, and connect the tools it needs."
+        subtitle="04 — Capabilities"
+        title="Product judgment and full-stack delivery in one accountable practice"
+        description="Product definition, interface engineering, full-stack development, and integrations remain connected from scope to delivery."
         className="sm:mb-10 lg:mb-14"
       />
 
@@ -16,7 +16,7 @@ export function SkillsSection() {
         {skills.map((group, index) => (
           <details key={group.category} className="group border-b border-white/10 last:border-b-0">
             <summary className="flex cursor-pointer list-none items-center gap-3 py-5 [&::-webkit-details-marker]:hidden">
-              <span className="w-6 shrink-0 text-xs text-cyan-100/45">0{index + 1}</span>
+              <span className="w-6 shrink-0 text-xs text-cyan-100/65">0{index + 1}</span>
               <span className="min-w-0 flex-1 text-base font-medium tracking-[-0.02em] text-white">{group.category}</span>
               <span className="text-xl font-light text-white/55 transition-transform duration-300 group-open:rotate-45" aria-hidden="true">+</span>
             </summary>
@@ -38,7 +38,7 @@ export function SkillsSection() {
             key={group.category}
             className="bg-[var(--observatory-graphite)] py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-9"
           >
-            <p className="text-xs text-white/45">0{index + 1}</p>
+            <p className="text-xs text-white/65">0{index + 1}</p>
             <h3 className="mt-3 text-lg font-medium tracking-[-0.02em] text-white sm:text-xl">{group.category}</h3>
             <p className="mt-2 text-sm leading-6 text-white/60">{group.description}</p>
             <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 sm:mt-6">

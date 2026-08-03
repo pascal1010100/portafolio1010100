@@ -11,7 +11,7 @@ export const skills = [
     },
     {
         category: "Full-stack development",
-        description: "Fast, maintainable web applications with well-structured data and foundations designed to grow.",
+        description: "Maintainable web applications with well-structured data and foundations designed to evolve.",
         items: [
             { name: "Next.js" },
             { name: "PostgreSQL" },
@@ -31,7 +31,7 @@ export const skills = [
     },
     {
         category: "AI and automation",
-        description: "I integrate AI, APIs, and automation when they reduce manual work or improve a specific task.",
+        description: "I use external services, automation, and AI capabilities when the agreed scope identifies a specific need.",
         items: [
             { name: "AI integrations" },
             { name: "Digital assistants" },

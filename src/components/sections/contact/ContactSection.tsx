@@ -21,6 +21,7 @@ const responseExpectations = [
 ]
 
 export function ContactSection() {
+  const [fallbackUrl, setFallbackUrl] = useState<string | null>(null)
   const [form, setForm] = useState<FormState>({
     name: "",
     project: "",
@@ -36,7 +37,7 @@ export function ContactSection() {
     ].filter(Boolean)
 
     const message = [
-      "Hi Pascal, I saw your portfolio and would like to discuss a project.",
+      "Hi Pascal, I visited Pascal.dev and would like to discuss a project.",
       "",
       ...details,
       "",
@@ -44,19 +45,22 @@ export function ContactSection() {
       form.message.trim(),
     ].join("\n")
 
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+    const openedWindow = window.open(
+      url,
       "_blank",
       "noopener,noreferrer",
     )
+
+    setFallbackUrl(openedWindow ? null : url)
   }
 
   return (
     <SectionContainer id="contact" className="py-20 sm:py-28">
       <SectionHeader
-        subtitle="05 — Start a project"
-        title="Tell me what you want to build or improve"
-        description="Share your idea, the problem you want to solve, or the product you already have. You can review the message before sending it through WhatsApp."
+        subtitle="06 — Start a conversation"
+        title="Tell me what you need to launch, improve, or simplify"
+        description="Share the goal, the current problem, who will use the product, your expected timeline, and any links that provide useful context."
       />
 
       <div className="grid overflow-hidden border border-white/10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -67,8 +71,8 @@ export function ContactSection() {
             <MessageCircle className="h-6 w-6" aria-hidden="true" />
           </div>
           <div className="space-y-3">
-            <p className="text-sm font-medium text-cyan-100/75">Available · Replies within 24–48 hours</p>
-            <h3 className="text-2xl font-semibold text-white">First, we understand the project</h3>
+            <p className="text-sm font-medium text-cyan-100/75">Independent practice · Guatemala · Remote</p>
+            <h3 className="text-2xl font-semibold text-white">A direct conversation about the project</h3>
             <p className="leading-7 text-white/65">
               I work with founders, small teams, and businesses that value clarity, thoughtful design, and responsible development.
             </p>
@@ -133,7 +137,7 @@ export function ContactSection() {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setForm({ ...form, name: e.target.value })}
             />
             <InputField
-              label="What do you want to build or improve?"
+              label="What do you need help with?"
               id="contact-project"
               name="project"
               autoComplete="off"
@@ -143,7 +147,7 @@ export function ContactSection() {
             />
             <div>
               <label htmlFor="contact-message" className="mb-3 block text-sm font-medium text-muted-foreground">
-                Tell me a little more <span aria-hidden="true" className="text-cyan-100/75">*</span>
+                Tell me about the problem <span aria-hidden="true" className="text-cyan-100/75">*</span>
                 <span className="sr-only"> (required)</span>
               </label>
               <textarea
@@ -155,7 +159,7 @@ export function ContactSection() {
                 maxLength={4000}
                 aria-describedby="contact-message-hint contact-message-privacy"
                 className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
-                placeholder="Include the goal, the current problem, who will use it, the timeline, and any links that help explain the idea."
+                placeholder="Include the goal, the current process or product, who will use it, your expected timeline, and any useful links."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
@@ -168,8 +172,16 @@ export function ContactSection() {
             </div>
             <Button type="submit" size="lg" className="liquid-sheen w-full justify-center bg-cyan-50 text-[var(--observatory-graphite)] hover:bg-white">
               <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
-              Continue on WhatsApp
+              Review message in WhatsApp
             </Button>
+            {fallbackUrl && (
+              <p role="status" className="text-sm leading-6 text-white/70">
+                If WhatsApp did not open, {" "}
+                <a href={fallbackUrl} target="_blank" rel="noreferrer" className="font-medium text-cyan-100 underline underline-offset-4">
+                  Open the prepared message directly
+                </a>.
+              </p>
+            )}
           </form>
         </div>
       </div>

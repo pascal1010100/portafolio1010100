@@ -8,10 +8,10 @@ web
 
 ## Users
 
-Pascal.dev atiende con la misma prioridad a dos audiencias:
+Pascal.dev atiende a dos audiencias con una prioridad explícita:
 
-- Reclutadores y equipos que evalúan a Pascal para una oportunidad laboral o colaboración profesional.
-- Fundadores, equipos pequeños y negocios que necesitan contratar el diseño y la construcción de un producto o sistema digital.
+- **Audiencia primaria:** fundadores, equipos pequeños y negocios que necesitan contratar el diseño y la construcción de un producto o sistema digital.
+- **Audiencia secundaria:** reclutadores y equipos que evalúan a Pascal para una oportunidad laboral o colaboración profesional.
 
 Ambas audiencias necesitan entender rápidamente qué sabe construir Pascal, cómo trabaja, qué evidencia respalda su experiencia y cómo iniciar una conversación.
 
@@ -25,7 +25,7 @@ El producto presenta experiencia en producto digital, arquitectura full-stack e 
 
 Pascal.dev conecta criterio de producto, arquitectura y ejecución técnica en casos reales. No se presenta como una agencia de marketing ni como un currículum estático: muestra cómo una necesidad se convierte en un sistema claro, mantenible, publicado y preparado para evolucionar.
 
-Hoy la marca representa el trabajo de una sola persona. Su estructura y lenguaje deben permitir una evolución gradual hacia un estudio de ingeniería sin afirmar que ese equipo o empresa ya existe.
+Hoy la marca representa el trabajo de una sola persona. Puede describirse como un estudio de ingeniería de producto liderado por su fundador únicamente cuando el mismo contexto deja claro que Pascal dirige y ejecuta personalmente el trabajo. Su estructura y lenguaje deben permitir una evolución gradual sin afirmar que ya existe un equipo o empresa.
 
 ## Operating Context
 
@@ -72,7 +72,7 @@ Los proyectos publicados, los servicios ofrecidos, la experiencia con IA aplicad
 
 ## Product Principles
 
-1. Servir con igual claridad a oportunidades laborales y comerciales.
+1. Priorizar conversaciones comerciales sin ocultar las rutas secundarias para empleo y colaboración.
 2. Demostrar capacidad mediante trabajo y decisiones verificables, no mediante afirmaciones genéricas.
 3. Presentar honestamente una práctica individual preparada para evolucionar sin fingir una empresa existente.
 4. Convertir interés en una conversación profesional clara y voluntaria.

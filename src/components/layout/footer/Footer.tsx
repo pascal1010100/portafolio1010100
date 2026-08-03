@@ -36,10 +36,10 @@ export function Footer() {
           className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.8fr_0.8fr] mb-12"
         >
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Software design and development</p>
-            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Complex ideas and processes turned into clear software.</h2>
+            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Founder-led product engineering studio</p>
+            <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Commercial websites, operational tools, and focused web MVPs.</h2>
             <p className="max-w-xl text-muted-foreground leading-7">
-              Web products, internal tools, and integrations designed to grow with you.
+              An independent practice based in Guatemala and working remotely.
             </p>
             <div className="flex gap-3">
               {socialLinks.map((link) => (
@@ -61,8 +61,11 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-foreground">Navigation</h3>
             <ul className="mt-3">
               <li><a href="#home" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Home</a></li>
+              <li><a href="#projects" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Work</a></li>
               <li><a href="#services" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Services</a></li>
-              <li><a href="#projects" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Projects</a></li>
+              <li><a href="#process" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Process</a></li>
+              <li><a href="#skills" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Capabilities</a></li>
+              <li><a href="#about" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">About</a></li>
               <li><a href="#contact" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Contact</a></li>
             </ul>
           </div>

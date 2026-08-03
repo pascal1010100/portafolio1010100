@@ -63,7 +63,7 @@ export function SpatialSceneIsland() {
   return (
     <div
       ref={container}
-      className="hero-scene relative z-0 mx-0 hidden min-w-0 overflow-hidden sm:mt-0 sm:block sm:h-[28rem] lg:h-[32rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
+      className="hero-scene relative z-0 mx-0 hidden min-w-0 overflow-hidden sm:mt-0 sm:block sm:h-64 lg:-ml-20 lg:mr-[-2rem] lg:h-[30rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
       role="img"
       aria-label="3D illustration of the Pascal.dev digital core"
     >

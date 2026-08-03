@@ -1,17 +1,23 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Capabilities", href: "#skills" },
-  { name: "Process", href: "#process" },
+  { name: "Work", href: "#projects" },
   { name: "Services", href: "#services" },
-  { name: "Projects", href: "#projects" },
+  { name: "Process", href: "#process" },
+  { name: "Capabilities", href: "#skills" },
+  { name: "About", href: "#about" },
+]
+
+const observedSections = [
+  { name: "Home", href: "#home" },
+  ...navItems,
+  { name: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
@@ -19,13 +25,14 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("home")
   const [scrolled, setScrolled] = useState(false)
   const shouldReduceMotion = useReducedMotion() ?? false
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 16)
 
       const scrollPosition = window.scrollY + 160
-      const visible = navItems.findLast((item) => {
+      const visible = observedSections.findLast((item) => {
         const element = document.getElementById(item.href.slice(1))
         return element ? element.offsetTop <= scrollPosition : false
       })
@@ -37,11 +44,31 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+
+      setIsMobileMenuOpen(false)
+      requestAnimationFrame(() => menuButtonRef.current?.focus())
+    }
+
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
+  }, [isMobileMenuOpen])
+
   const handleNavClick = (href: string) => {
+    const shouldRestoreMenuFocus = isMobileMenuOpen
+
     document.querySelector(href)?.scrollIntoView({
       behavior: shouldReduceMotion ? "auto" : "smooth",
     })
     setIsMobileMenuOpen(false)
+
+    if (shouldRestoreMenuFocus) {
+      requestAnimationFrame(() => menuButtonRef.current?.focus())
+    }
   }
 
   return (
@@ -87,18 +114,21 @@ export function Navbar() {
           <Link
             href="#contact"
             onClick={() => handleNavClick("#contact")}
+            aria-current={activeSection === "contact" ? "location" : undefined}
             className="ml-3 inline-flex min-h-11 items-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90"
           >
-            Start a project
+            Discuss your project
           </Link>
         </nav>
 
         <button
+          ref={menuButtonRef}
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white lg:hidden"
           onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -107,6 +137,7 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.nav
+            id="mobile-navigation"
             initial={shouldReduceMotion ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
@@ -128,8 +159,8 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
-              <Link href="#contact" onClick={() => handleNavClick("#contact")} className="mt-2 rounded-xl bg-white px-4 py-3 text-center font-semibold text-black">
-                Start a project
+              <Link href="#contact" onClick={() => handleNavClick("#contact")} aria-current={activeSection === "contact" ? "location" : undefined} className="mt-2 rounded-xl bg-white px-4 py-3 text-center font-semibold text-black">
+                Discuss your project
               </Link>
             </div>
           </motion.nav>

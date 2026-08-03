@@ -12,12 +12,12 @@ Existen tres conceptos separados:
 
 Pascal.dev debe generar confianza, demostrar criterio técnico y convertir visitantes en clientes, colaboraciones u oportunidades profesionales sin parecer una agencia de marketing ni un CV.
 
-## Objetivos simultáneos
+## Objetivos
 
-- Conseguir empleo y clientes.
+- Convertir visitas calificadas en conversaciones con posibles clientes.
+- Conservar rutas secundarias claras para empleo y colaboraciones.
 - Demostrar criterio técnico, arquitectura y procesos modernos.
 - Demostrar integración responsable con IA.
-- Convertir visitas calificadas en conversaciones profesionales.
 - Crear capacidades reutilizables para futuros productos.
 - Validar el PDS mediante proyectos reales antes de extraer nuevas prácticas.
 - Mantener alineado lo que Pascal.dev comunica con la evidencia disponible.
