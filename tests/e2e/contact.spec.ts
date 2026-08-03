@@ -9,21 +9,21 @@ test("abre WhatsApp con el contexto del formulario", async ({ page }) => {
   })
 
   await page.goto("/")
-  await page.getByLabel("Nombre").fill("Persona de prueba")
-  await page.getByLabel("¿Qué quieres construir o mejorar?").fill("Plataforma de reservas")
-  await page.getByLabel(/Cuéntame un poco más.*obligatorio/).fill(
-    "Necesito validar el flujo público del formulario de contacto.",
+  await page.getByLabel("Name").fill("Test person")
+  await page.getByLabel("What do you want to build or improve?").fill("Booking platform")
+  await page.getByLabel(/Tell me a little more.*required/).fill(
+    "I need to validate the public contact form flow.",
   )
-  await page.getByRole("button", { name: "Continuar por WhatsApp" }).click()
+  await page.getByRole("button", { name: "Continue on WhatsApp" }).click()
 
   const expectedMessage = [
-    "Hola Pascal, vi tu portafolio y me gustaría conversar sobre un proyecto.",
+    "Hi Pascal, I saw your portfolio and would like to discuss a project.",
     "",
-    "Nombre: Persona de prueba",
-    "Proyecto o idea: Plataforma de reservas",
+    "Name: Test person",
+    "Project or idea: Booking platform",
     "",
-    "Contexto:",
-    "Necesito validar el flujo público del formulario de contacto.",
+    "Context:",
+    "I need to validate the public contact form flow.",
   ].join("\n")
 
   await expect(page.locator("html")).toHaveAttribute(

@@ -4,23 +4,23 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
   await page.goto("/")
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Software claro, útil y listo para crecer",
+    "Clear, useful software built to grow.",
   )
   const primaryNavigation = page.getByRole("navigation", {
-    name: "Navegación principal",
+    name: "Primary navigation",
   })
   await expect(primaryNavigation).toBeVisible()
-  await expect(primaryNavigation.getByRole("link", { name: "Inicio" })).toHaveAttribute(
+  await expect(primaryNavigation.getByRole("link", { name: "Home" })).toHaveAttribute(
     "aria-current",
     "location",
   )
-  await expect(page.getByRole("link", { name: "Ver trabajo" })).toHaveAttribute("href", "#projects")
-  await expect(page.getByRole("link", { name: "Hablemos de tu proyecto" })).toHaveAttribute("href", "#contact")
+  await expect(page.getByRole("link", { name: "View my work" })).toHaveAttribute("href", "#projects")
+  await expect(page.getByRole("link", { name: "Discuss your project" })).toHaveAttribute("href", "#contact")
   await expect(
-    page.getByRole("heading", { name: "Trabajo real y decisiones que puedes revisar" }),
+    page.getByRole("heading", { name: "Real work and decisions you can review" }),
   ).toBeVisible()
   await expect(page.locator("#projects article")).toHaveCount(3)
-  await expect(page.getByRole("link", { name: "Ver todos los proyectos" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "View all projects" })).toHaveAttribute(
     "href",
     "/projects",
   )
@@ -30,10 +30,10 @@ test("mantiene el recorrido principal usable en móvil y sin overflow horizontal
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto("/")
 
-  const menuButton = page.getByRole("button", { name: "Abrir menú" })
+  const menuButton = page.getByRole("button", { name: "Open menu" })
   await expect(menuButton).toBeVisible()
   await menuButton.click()
-  await expect(page.getByRole("navigation", { name: "Navegación móvil" })).toBeVisible()
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible()
   await expect(page.locator(".hero-scene")).toBeHidden()
 
   const dimensions = await page.evaluate(() => ({
@@ -73,23 +73,23 @@ test("respeta la preferencia de movimiento reducido", async ({ page }) => {
   expect(motionPreferences.titleAnimation).toBe("none")
 
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.getByRole("button", { name: "Abrir menú" }).click()
-  await expect(page.getByRole("navigation", { name: "Navegación móvil" })).toBeVisible()
+  await page.getByRole("button", { name: "Open menu" }).click()
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible()
 })
 
 test("comunica campos obligatorios e instrucciones del formulario", async ({ page }) => {
   await page.goto("/#contact")
 
-  const name = page.getByRole("textbox", { name: /Nombre.*obligatorio/ })
+  const name = page.getByRole("textbox", { name: /Name.*required/ })
   const context = page.getByRole("textbox", {
-    name: /Cuéntame un poco más.*obligatorio/,
+    name: /Tell me a little more.*required/,
   })
 
   await expect(name).toHaveAttribute("required", "")
-  await expect(name).toHaveAccessibleDescription("Escribe al menos 2 caracteres.")
+  await expect(name).toHaveAccessibleDescription("Enter at least 2 characters.")
   await expect(context).toHaveAttribute("required", "")
   await expect(context).toHaveAccessibleDescription(
-    /Escribe al menos 10 caracteres.*No se enviará nada automáticamente/,
+    /Enter at least 10 characters.*Nothing is sent automatically/,
   )
 })
 
@@ -98,11 +98,11 @@ test("mantiene objetivos táctiles y ancho estable en contextos compactos", asyn
   await page.goto("/")
 
   const touchTargets = [
-    page.getByRole("button", { name: "Abrir menú" }),
+    page.getByRole("button", { name: "Open menu" }),
     page.locator("#home").getByRole("link", { name: "GitHub" }),
-    page.locator("#projects").getByRole("link", { name: /Ver proyecto/ }).first(),
-    page.locator("#projects").getByRole("link", { name: /Abrir demo/ }).first(),
-    page.locator("#services").getByRole("link", { name: /Hablar sobre/ }).first(),
+    page.locator("#projects").getByRole("link", { name: /View .* project/ }).first(),
+    page.locator("#projects").getByRole("link", { name: /Open .* demo/ }).first(),
+    page.locator("#services").getByRole("link", { name: /Discuss / }).first(),
   ]
 
   for (const target of touchTargets) {
