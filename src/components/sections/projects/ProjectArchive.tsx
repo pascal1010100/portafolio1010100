@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { CheckCircle2, Github, ExternalLink, Search } from "lucide-react"
+import { ArrowUpRight, CheckCircle2, Github, ExternalLink, Search } from "lucide-react"
 import { projects } from "@/data/projects"
 import Link from "next/link"
 
@@ -21,7 +21,7 @@ export function ProjectArchive() {
     })
 
     return (
-        <div className="relative min-h-screen bg-background pt-32 pb-20">
+        <main id="main-content" tabIndex={-1} className="relative min-h-screen bg-background pb-20 pt-32 sm:pt-36">
             {/* Background Grid */}
             <div className="fixed inset-0 bg-[url('/images/grid.svg')] opacity-[0.03] pointer-events-none" />
             <div className="fixed top-0 left-0 w-full h-32 bg-gradient-to-b from-background to-transparent z-10" />
@@ -76,7 +76,7 @@ export function ProjectArchive() {
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
                                 <Image
                                     src={project.image}
-                                    alt={project.title}
+                                    alt={project.imageAlt}
                                     fill
                                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
@@ -171,7 +171,22 @@ export function ProjectArchive() {
                         </button>
                     </div>
                 )}
+
+                <section className="mt-20 overflow-hidden rounded-[2rem] border border-cyan-100/15 bg-gradient-to-br from-cyan-100/[0.08] via-white/[0.025] to-transparent px-6 py-10 sm:px-10 sm:py-12 lg:flex lg:items-end lg:justify-between lg:gap-10" aria-labelledby="projects-contact-title">
+                    <div className="max-w-2xl">
+                        <p className="text-xs font-mono uppercase tracking-[0.18em] text-cyan-100/60">Have a similar challenge?</p>
+                        <h2 id="projects-contact-title" className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl">
+                            Let&apos;s turn the business need into a focused product.
+                        </h2>
+                        <p className="mt-4 max-w-xl leading-7 text-white/60">
+                            Share the context, constraints, and outcome you need. I&apos;ll help define a practical next step.
+                        </p>
+                    </div>
+                    <Link href="/#contact" className="liquid-sheen mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3 text-sm font-semibold text-[var(--observatory-graphite)] transition hover:bg-white sm:w-auto lg:mt-0">
+                        Discuss a project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                </section>
             </div>
-        </div>
+        </main>
     )
 }

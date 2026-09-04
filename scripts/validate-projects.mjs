@@ -8,8 +8,6 @@ const dataFile = path.join(rootDir, "src/data/projects.ts")
 const publicDir = path.join(rootDir, "public")
 
 const errors = []
-const EVIDENCE_SOURCES = new Set(["Sitio público", "Repositorio público", "Repositorio privado"])
-
 function addError(message) {
   errors.push(message)
 }
@@ -79,14 +77,22 @@ function validateEvidence(project, label) {
       addError(`${itemLabel}: "label" must be a non-empty string.`)
     }
 
-    if (!EVIDENCE_SOURCES.has(item.source)) {
+    if (!isNonEmptyString(item.supports)) {
+      addError(`${itemLabel}: "supports" must identify the claim supported by this evidence.`)
+    }
+
+    if (!projectEvidenceSources.has(item.source)) {
       addError(`${itemLabel}: "source" must identify a supported public or private source.`)
     }
 
     validateUrl(item.url, "url", itemLabel)
 
-    if (item.source !== "Repositorio privado" && !isNonEmptyString(item.url)) {
+    if (item.source !== privateEvidenceSource && !isNonEmptyString(item.url)) {
       addError(`${itemLabel}: public evidence must include a URL.`)
+    }
+
+    if (item.source === privateEvidenceSource && isNonEmptyString(item.url)) {
+      addError(`${itemLabel}: private evidence must not expose a URL.`)
     }
   })
 }
@@ -102,7 +108,7 @@ function validateVerifiedAt(value, label) {
   }
 }
 
-function loadProjects() {
+function loadProjectData() {
   const source = fs.readFileSync(dataFile, "utf8")
   const transpiled = ts.transpileModule(source, {
     compilerOptions: {
@@ -124,10 +130,31 @@ function loadProjects() {
     timeout: 1000,
   })
 
-  return sandbox.module.exports.projects ?? sandbox.exports.projects
+  const projectModule = sandbox.module.exports
+
+  return {
+    projects: projectModule.projects ?? sandbox.exports.projects,
+    projectEvidenceSources:
+      projectModule.PROJECT_EVIDENCE_SOURCES ?? sandbox.exports.PROJECT_EVIDENCE_SOURCES,
+    privateEvidenceSource:
+      projectModule.PRIVATE_PROJECT_EVIDENCE_SOURCE ?? sandbox.exports.PRIVATE_PROJECT_EVIDENCE_SOURCE,
+  }
 }
 
-const projects = loadProjects()
+const {
+  projects,
+  projectEvidenceSources: evidenceSources,
+  privateEvidenceSource,
+} = loadProjectData()
+const projectEvidenceSources = new Set(evidenceSources ?? [])
+
+if (projectEvidenceSources.size === 0) {
+  addError("PROJECT_EVIDENCE_SOURCES must define at least one supported source.")
+}
+
+if (!projectEvidenceSources.has(privateEvidenceSource)) {
+  addError("PRIVATE_PROJECT_EVIDENCE_SOURCE must be included in PROJECT_EVIDENCE_SOURCES.")
+}
 
 if (!Array.isArray(projects) || projects.length === 0) {
   addError("projects must be a non-empty array.")
@@ -146,6 +173,7 @@ if (!Array.isArray(projects) || projects.length === 0) {
     validateString(project, "role", label)
     validateString(project, "status", label)
     validateString(project, "category", label)
+    validateString(project, "imageAlt", label)
 
     validateStringArray(project, "technologies", label, 3)
     validateStringArray(project, "challenges", label, 3)

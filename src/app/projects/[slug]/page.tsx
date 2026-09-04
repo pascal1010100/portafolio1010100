@@ -2,12 +2,14 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowLeft, Github, ExternalLink, Layers, CheckCircle2, ShieldCheck } from "lucide-react"
-import { projects, type ProjectEvidence } from "@/data/projects"
+import { ArrowLeft, ArrowUpRight, Github, ExternalLink, Layers, CheckCircle2, ShieldCheck, LockKeyhole } from "lucide-react"
+import { ProjectShell } from "@/components/layout/ProjectShell"
+import { PRIVATE_PROJECT_EVIDENCE_SOURCE, projects, type ProjectEvidence } from "@/data/projects"
+import { absoluteUrl } from "@/lib/site"
 
-const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
-    'https://portafolio1010100.vercel.app'
+type ProjectPageProps = {
+    params: Promise<{ slug: string }>
+}
 
 function formatVerifiedDate(value: string) {
     return new Intl.DateTimeFormat("en-US", {
@@ -19,23 +21,37 @@ function formatVerifiedDate(value: string) {
 }
 
 function EvidenceItem({ item }: { item: ProjectEvidence }) {
+    const isPublic = item.source !== PRIVATE_PROJECT_EVIDENCE_SOURCE
     const content = (
         <>
-            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/65" aria-hidden="true" />
-            <span>
-                <span className="block">{item.label}</span>
-                <span className="mt-0.5 block text-xs text-zinc-400">{item.source}</span>
+            {isPublic ? (
+                <ExternalLink className="mt-0.5 h-4 w-4 shrink-0 text-cyan-100/75" aria-hidden="true" />
+            ) : (
+                <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" aria-hidden="true" />
+            )}
+            <span className="min-w-0">
+                <span className="block font-medium">{item.label}</span>
+                <span className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-[0.65rem] font-mono uppercase tracking-wide ${isPublic ? "border-cyan-100/15 bg-cyan-100/[0.06] text-cyan-100/70" : "border-white/10 bg-white/[0.025] text-zinc-500"}`}>
+                    {item.source}
+                </span>
+                <span className="mt-2 block text-xs leading-5 text-zinc-400">
+                    Supports: {item.supports}
+                </span>
             </span>
         </>
     )
 
     return item.url ? (
-        <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-start gap-3 py-1.5 text-sm text-zinc-300 transition hover:text-white">
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-start gap-3 rounded-lg py-1.5 text-sm text-zinc-300 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
             {content}
         </a>
     ) : (
-        <div className="flex items-start gap-3 text-sm text-zinc-300">{content}</div>
+        <div className="flex items-start gap-3 rounded-lg border border-dashed border-white/10 bg-black/10 p-3 text-sm text-zinc-300">{content}</div>
     )
+}
+
+function serializeJsonLd(value: unknown) {
+    return JSON.stringify(value).replace(/</g, "\\u003c")
 }
 
 export function generateStaticParams() {
@@ -44,8 +60,9 @@ export function generateStaticParams() {
     }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-    const project = projects.find((p) => p.slug === params.slug)
+export async function generateMetadata({ params }: ProjectPageProps) {
+    const { slug } = await params
+    const project = projects.find((p) => p.slug === slug)
 
     if (!project) {
         return {
@@ -53,8 +70,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
         }
     }
 
-    const pageUrl = `${siteUrl}/projects/${project.slug}`
-    const absoluteImage = `${siteUrl}${project.image}`
+    const pageUrl = absoluteUrl(`/projects/${project.slug}`)
+    const absoluteImage = absoluteUrl(project.image)
 
     return {
         title: `${project.title} | Pascal.dev`,
@@ -72,7 +89,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
                     url: absoluteImage,
                     width: 1200,
                     height: 630,
-                    alt: project.title,
+                    alt: project.imageAlt,
                 },
             ],
         },
@@ -86,16 +103,61 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-    const project = projects.find((p) => p.slug === params.slug)
-    const currentIndex = projects.findIndex((p) => p.slug === params.slug)
+export default async function ProjectPage({ params }: ProjectPageProps) {
+    const { slug } = await params
+    const project = projects.find((p) => p.slug === slug)
+    const currentIndex = projects.findIndex((p) => p.slug === slug)
     const nextProject = projects[(currentIndex + 1) % projects.length]
 
     if (!project) {
         notFound()
     }
 
+    const pageUrl = absoluteUrl(`/projects/${project.slug}`)
+    const projectsUrl = absoluteUrl("/projects")
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CreativeWork",
+                "@id": `${pageUrl}#case-study`,
+                name: `${project.title} case study`,
+                description: project.description,
+                url: pageUrl,
+                image: {
+                    "@type": "ImageObject",
+                    url: absoluteUrl(project.image),
+                    caption: project.imageAlt,
+                },
+                dateModified: project.verifiedAt,
+                genre: "Software case study",
+                about: {
+                    "@type": "SoftwareApplication",
+                    name: project.title,
+                    applicationCategory: project.category,
+                    operatingSystem: "Web",
+                    url: project.demo,
+                },
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": `${pageUrl}#breadcrumbs`,
+                itemListElement: [
+                    { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+                    { "@type": "ListItem", position: 2, name: "Projects", item: projectsUrl },
+                    { "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
+                ],
+            },
+        ],
+    }
+
     return (
+        <ProjectShell>
+        <script
+            id="project-json-ld"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        />
         <div className="min-h-screen bg-background relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-[0.03] pointer-events-none" />
@@ -104,7 +166,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {/* Dynamic Atmosphere */}
             <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none opacity-50 mix-blend-screen" />
 
-            <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 relative z-20">
+            <main id="main-content" tabIndex={-1} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 sm:pt-32 sm:pb-20 relative z-20">
 
                 {/* Navigation */}
                 <Link
@@ -116,7 +178,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </Link>
 
                 {/* Header Section */}
-                <div className="grid md:grid-cols-2 gap-10 md:gap-12 mb-16 md:mb-20 items-center">
+                <div className="grid gap-10 mb-16 lg:grid-cols-2 lg:gap-12 lg:mb-20 lg:items-center">
                     <div>
                         <div className="mb-6 flex flex-wrap items-center gap-3">
                             <span className="px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-mono uppercase tracking-wider">
@@ -163,9 +225,9 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                         <Image
                             src={project.image}
-                            alt={project.title}
+                            alt={project.imageAlt}
                             fill
-                            sizes="(min-width: 768px) 50vw, 100vw"
+                            sizes="(min-width: 1024px) 50vw, 100vw"
                             priority
                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                         />
@@ -173,11 +235,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 </div>
 
                 {/* Deep Dive Content */}
-                <div className="grid md:grid-cols-12 gap-12">
+                <div className="grid gap-12 lg:grid-cols-12">
 
                     {/* Sidebar: Tech Stack */}
-                    <div className="md:col-span-4 space-y-8">
-                        <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 top-32 sticky">
+                    <aside className="order-2 space-y-8 lg:order-1 lg:col-span-4" aria-label="Project details">
+                        <div className="p-6 rounded-2xl bg-zinc-900/40 border border-white/5 lg:sticky lg:top-32">
                             <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
                                 <Layers className="w-4 h-4" aria-hidden="true" /> Technologies
                             </h2>
@@ -191,9 +253,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                             <div className="mt-8 border-t border-white/10 pt-6">
                                 <h2 className="text-sm font-mono uppercase text-zinc-400 mb-4 flex items-center gap-2">
-                                    <ShieldCheck className="w-4 h-4" aria-hidden="true" /> Evidence links
+                                    <ShieldCheck className="w-4 h-4" aria-hidden="true" /> Evidence links and records
                                 </h2>
-                                <p className="mb-4 text-xs text-zinc-400">Verified {formatVerifiedDate(project.verifiedAt)}</p>
+                                <p className="mb-2 text-xs text-zinc-400">Reviewed {formatVerifiedDate(project.verifiedAt)}</p>
+                                <p className="mb-4 text-xs leading-5 text-zinc-500">Public items open their source. Private records are identified but are not publicly accessible.</p>
                                 <ul className="space-y-3">
                                     {project.evidence.map((item) => (
                                         <li key={`${item.source}-${item.label}`}>
@@ -203,10 +266,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </aside>
 
                     {/* Main Content: The Case Study */}
-                    <div className="md:col-span-8 space-y-16">
+                    <div className="order-1 space-y-16 lg:order-2 lg:col-span-8">
 
                         {/* Context */}
                         {project.longDescription && (
@@ -271,7 +334,12 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
                         {/* Next Project Navigation */}
                         <div className="pt-20 border-t border-white/5">
-                            <p className="text-sm font-mono text-zinc-400 mb-4">Next project</p>
+                            <div className="mb-4 flex items-center justify-between gap-4">
+                                <p className="text-sm font-mono text-zinc-400">Next project</p>
+                                <Link href="/projects" className="inline-flex min-h-11 items-center text-sm text-white/55 transition hover:text-white">
+                                    Browse all work
+                                </Link>
+                            </div>
                             <Link
                                 href={`/projects/${nextProject.slug}`}
                                 className="group block p-6 rounded-2xl bg-zinc-900/40 border border-white/5 hover:bg-white/5 hover:border-primary/20 transition-all sm:p-8"
@@ -290,10 +358,24 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                             </Link>
                         </div>
 
+                        <section className="overflow-hidden rounded-[2rem] border border-cyan-100/15 bg-gradient-to-br from-cyan-100/[0.09] via-white/[0.025] to-transparent px-6 py-9 sm:px-8 sm:py-10" aria-labelledby="project-contact-title">
+                            <p className="text-xs font-mono uppercase tracking-[0.18em] text-cyan-100/60">A project with similar constraints?</p>
+                            <h2 id="project-contact-title" className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white">
+                                Let&apos;s define the clearest path from need to release.
+                            </h2>
+                            <p className="mt-4 max-w-xl leading-7 text-white/60">
+                                Tell me what you are trying to improve, what is getting in the way, and what a useful outcome looks like.
+                            </p>
+                            <Link href="/#contact" className="liquid-sheen mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-50 px-6 py-3 text-sm font-semibold text-[var(--observatory-graphite)] transition hover:bg-white sm:w-auto">
+                                Discuss a similar project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                            </Link>
+                        </section>
+
                     </div>
                 </div>
 
             </main>
         </div>
+        </ProjectShell>
     )
 }

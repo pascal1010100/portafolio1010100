@@ -1,9 +1,7 @@
 import { Metadata } from "next"
+import { ProjectShell } from "@/components/layout/ProjectShell"
 import { ProjectArchive } from "@/components/sections/projects/ProjectArchive"
-
-const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
-    'https://portafolio1010100.vercel.app'
+import { absoluteUrl } from "@/lib/site"
 
 const socialImage = {
     url: "/social-preview.png",
@@ -16,13 +14,13 @@ export const metadata: Metadata = {
     title: "Projects | Pascal.dev",
     description: "Published web products with details about the problem, solution, technologies, and outcome.",
     alternates: {
-        canonical: `${siteUrl}/projects`,
+        canonical: absoluteUrl("/projects"),
     },
     openGraph: {
         title: "Projects | Pascal.dev",
         description: "Published web products with details about the problem, solution, technologies, and outcome.",
         type: "website",
-        url: `${siteUrl}/projects`,
+        url: absoluteUrl("/projects"),
         siteName: "pascal.dev",
         images: [socialImage],
     },
@@ -35,5 +33,9 @@ export const metadata: Metadata = {
 }
 
 export default function ProjectsPage() {
-    return <ProjectArchive />
+    return (
+        <ProjectShell>
+            <ProjectArchive />
+        </ProjectShell>
+    )
 }

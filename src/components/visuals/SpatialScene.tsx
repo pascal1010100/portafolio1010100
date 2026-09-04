@@ -10,6 +10,7 @@ import {
   EdgesGeometry,
   type BufferAttribute,
   type BufferGeometry,
+  type NormalOrGLBufferAttributes,
   type Group,
   type Mesh,
   type MeshPhysicalMaterial,
@@ -298,7 +299,9 @@ function OrbitalTracers({
   compact: boolean
 }) {
   const tracerGroups = useRef<Array<Group | null>>([])
-  const trailGeometries = useRef<Array<BufferGeometry | null>>([])
+  const trailGeometries = useRef<
+    Array<BufferGeometry<NormalOrGLBufferAttributes> | null>
+  >([])
   const trailMaterials = useRef<Array<ShaderMaterial | null>>([])
   const currentPosition = useMemo(() => new Vector3(), [])
   const samplePosition = useMemo(() => new Vector3(), [])

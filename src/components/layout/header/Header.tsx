@@ -112,6 +112,12 @@ export function Navbar() {
             </Link>
           ))}
           <Link
+            href="/hiring"
+            className="ml-2 inline-flex min-h-11 items-center rounded-full px-3 py-2 text-sm font-medium text-white/55 transition hover:text-white"
+          >
+            Hiring
+          </Link>
+          <Link
             href="#contact"
             onClick={() => handleNavClick("#contact")}
             aria-current={activeSection === "contact" ? "location" : undefined}
@@ -159,6 +165,12 @@ export function Navbar() {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/hiring"
+                className="rounded-xl px-4 py-3 text-base font-medium text-white/70 hover:bg-white/[0.06] hover:text-white"
+              >
+                Hiring
+              </Link>
               <Link href="#contact" onClick={() => handleNavClick("#contact")} aria-current={activeSection === "contact" ? "location" : undefined} className="mt-2 rounded-xl bg-white px-4 py-3 text-center font-semibold text-black">
                 Discuss your project
               </Link>

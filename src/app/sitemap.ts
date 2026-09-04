@@ -1,13 +1,12 @@
 import { MetadataRoute } from 'next'
 import { projects } from '@/data/projects'
+import { absoluteUrl, siteUrl } from '@/lib/site'
 
-const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
-    'https://portafolio1010100.vercel.app'
+const publicPagesUpdatedAt = new Date('2026-08-22T00:00:00Z')
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
-        url: `${baseUrl}/projects/${project.slug}`,
+        url: absoluteUrl(`/projects/${project.slug}`),
         lastModified: new Date(project.verifiedAt),
         changeFrequency: 'monthly',
         priority: project.featured ? 0.9 : 0.7,
@@ -15,16 +14,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return [
         {
-            url: baseUrl,
-            lastModified: new Date(),
+            url: siteUrl,
+            lastModified: publicPagesUpdatedAt,
             changeFrequency: 'monthly',
             priority: 1,
         },
         {
-            url: `${baseUrl}/projects`,
-            lastModified: new Date(),
+            url: absoluteUrl('/projects'),
+            lastModified: publicPagesUpdatedAt,
             changeFrequency: 'monthly',
             priority: 0.8,
+        },
+        {
+            url: absoluteUrl('/hiring'),
+            lastModified: publicPagesUpdatedAt,
+            changeFrequency: 'monthly',
+            priority: 0.7,
         },
         ...projectEntries,
     ]

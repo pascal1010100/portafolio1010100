@@ -1,6 +1,17 @@
+export const PRIVATE_PROJECT_EVIDENCE_SOURCE = "Private evidence" as const
+
+export const PROJECT_EVIDENCE_SOURCES = [
+    "Public product",
+    "Public source",
+    PRIVATE_PROJECT_EVIDENCE_SOURCE,
+] as const
+
+export type ProjectEvidenceSource = typeof PROJECT_EVIDENCE_SOURCES[number]
+
 export type ProjectEvidence = {
     label: string
-    source: "Public website" | "Public repository" | "Private repository"
+    source: ProjectEvidenceSource
+    supports: string
     url?: string
 }
 
@@ -23,14 +34,15 @@ export const projects = [
         results: "The product is publicly available with an interactive experience where users can paste text, analyze it, and enter the humanization flow through a focused interface.",
         technologies: ["Next.js", "TypeScript", "OpenAI API", "Stripe", "Supabase"],
         evidence: [
-            { label: "Operational public product", source: "Public website", url: "https://opennarrative.co/" },
-            { label: "Interactive editor available", source: "Public website", url: "https://opennarrative.co/" },
-            { label: "Access and pricing flows", source: "Public website", url: "https://opennarrative.co/pricing" }
+            { label: "Operational public product", source: "Public product", supports: "The product is publicly available.", url: "https://opennarrative.co/" },
+            { label: "Interactive editor available", source: "Public product", supports: "The public experience includes a text editor.", url: "https://opennarrative.co/" },
+            { label: "Access and pricing flows", source: "Public product", supports: "The product publishes access and pricing options.", url: "https://opennarrative.co/pricing" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
         role: "Application development and product experience",
         status: "Public product in operation",
         image: "/images/opennarrative.png",
+        imageAlt: "Open Narrative homepage with its AI writing editor and primary call to action",
         github: "",
         demo: "https://opennarrative.co/",
         featured: true,
@@ -55,16 +67,17 @@ export const projects = [
         results: "The MVP runs on its own domain with 28 active products, seven categories, two payment methods, and configurable delivery across Guatemala. The UI/UX redesign was validated on desktop and mobile; smoke tests cover ordering and production, while Search Console confirmed a valid sitemap and eligible product rich results.",
         technologies: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM", "Motion"],
         evidence: [
-            { label: "Production store and catalogue on its own domain", source: "Public website", url: "https://www.nativamarket.net/" },
-            { label: "Products and categories in the public sitemap", source: "Public website", url: "https://www.nativamarket.net/sitemap.xml" },
-            { label: "Transactional checkout and admin dashboard", source: "Private repository" },
-            { label: "CI and MVP/production smoke tests", source: "Private repository" },
-            { label: "Verified ecommerce SEO and rich results", source: "Private repository" }
+            { label: "Production store and catalogue on its own domain", source: "Public product", supports: "The ecommerce storefront and catalogue are publicly available.", url: "https://www.nativamarket.net/" },
+            { label: "Products and categories in the public sitemap", source: "Public product", supports: "The production sitemap exposes indexable catalogue routes.", url: "https://www.nativamarket.net/sitemap.xml" },
+            { label: "Transactional checkout and admin dashboard", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "The implementation includes transactional ordering and protected administration." },
+            { label: "CI and MVP/production smoke tests", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Automated checks cover the documented release flows." },
+            { label: "Ecommerce SEO and rich-result validation", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Search Console validation supports the documented SEO outcome." }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-15",
         role: "Product, architecture, UI/UX, and full-stack engineering",
         status: "MVP in production · UI/UX and SEO redesigned",
         image: "/images/nativa-market.png",
+        imageAlt: "Nativa Market ecommerce storefront showing its natural-products catalogue",
         github: "",
         demo: "https://www.nativamarket.net/",
         featured: true,
@@ -88,18 +101,19 @@ export const projects = [
         results: "The website remains live on its own domain, sends each property to its direct Cloudbeds booking flow, and anonymously measures which property and touchpoint generate booking or WhatsApp contact intent.",
         technologies: ["Next.js 16", "TypeScript", "Cloudbeds API", "PostHog", "Vercel Analytics", "Playwright"],
         evidence: [
-            { label: "Production domain", source: "Public website", url: "https://www.mandalashostels.com/" },
-            { label: "Direct Cloudbeds bookings", source: "Public website", url: "https://www.mandalashostels.com/pueblo" },
-            { label: "Read-only Cloudbeds integration", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
-            { label: "Analytics and Speed Insights", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
-            { label: "Anonymous PostHog analytics", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/instrumentation-client.ts" },
-            { label: "Conversion-intent events", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/src/lib/analytics.ts" },
-            { label: "Critical-route smoke tests", source: "Public repository", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
+            { label: "Production domain", source: "Public product", supports: "The hospitality website is live on its own domain.", url: "https://www.mandalashostels.com/" },
+            { label: "Direct Cloudbeds bookings", source: "Public product", supports: "Property pages connect visitors to direct booking flows.", url: "https://www.mandalashostels.com/pueblo" },
+            { label: "Read-only Cloudbeds integration", source: "Public source", supports: "The source includes a read-only Cloudbeds integration layer.", url: "https://github.com/pascal1010100/mandalas/tree/main/src/infrastructure/cloudbeds" },
+            { label: "Analytics and Speed Insights", source: "Public source", supports: "The application installs the documented analytics tooling.", url: "https://github.com/pascal1010100/mandalas/blob/main/src/app/layout.tsx" },
+            { label: "Anonymous PostHog analytics", source: "Public source", supports: "The analytics configuration disables personal profiles and session recording.", url: "https://github.com/pascal1010100/mandalas/blob/main/instrumentation-client.ts" },
+            { label: "Conversion-intent events", source: "Public source", supports: "The implementation defines booking and WhatsApp intent events.", url: "https://github.com/pascal1010100/mandalas/blob/main/src/lib/analytics.ts" },
+            { label: "Critical-route smoke tests", source: "Public source", supports: "Playwright tests cover critical public journeys.", url: "https://github.com/pascal1010100/mandalas/blob/main/tests/e2e/public-site.spec.ts" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-14",
         role: "Product, redesign, Cloudbeds integration, and full-stack engineering",
         status: "Live website · operational integration evolving",
         image: "/images/mandalas.png",
+        imageAlt: "Mandalas Hostal website introducing its two Lake Atitlán properties",
         github: "https://github.com/pascal1010100/mandalas",
         demo: "https://www.mandalashostels.com/",
         featured: true,
@@ -123,14 +137,15 @@ export const projects = [
         results: "The deployed MVP lets customers configure a request, understand the complete process, and continue operational coordination through WhatsApp without upfront payment.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Zod", "Playwright"],
         evidence: [
-            { label: "Operational public demo", source: "Public website", url: "https://not-your-money-laundry.vercel.app/" },
-            { label: "Functional guided flow", source: "Public website", url: "https://not-your-money-laundry.vercel.app/" },
-            { label: "Unit and E2E tests", source: "Private repository" }
+            { label: "Operational public demo", source: "Public product", supports: "The laundry request MVP is publicly accessible.", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Functional guided flow", source: "Public product", supports: "Customers can move through the guided request flow.", url: "https://not-your-money-laundry.vercel.app/" },
+            { label: "Unit and E2E tests", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Private test suites support the documented core-journey coverage." }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
         role: "Product, operational UX, and full-stack engineering",
         status: "Deployed MVP",
         image: "/images/not-your-money-laundry.png",
+        imageAlt: "Not Your Money Laundry interface for configuring a pickup request",
         github: "",
         demo: "https://not-your-money-laundry.vercel.app/",
         featured: true,
@@ -154,14 +169,15 @@ export const projects = [
         results: "The platform is live on its own domain with bilingual navigation, a San Pedro map, an experience catalogue, and booking and transportation journeys.",
         technologies: ["Next.js", "TypeScript", "Supabase", "Leaflet", "next-intl"],
         evidence: [
-            { label: "Production domain", source: "Public website", url: "https://nomadafantasma.com/es" },
-            { label: "Public implementation", source: "Public repository", url: "https://github.com/pascal1010100/nomada-fantasma" },
-            { label: "Bilingual map and routes", source: "Public website", url: "https://nomadafantasma.com/es/mapa?town=san-pedro" }
+            { label: "Production domain", source: "Public product", supports: "The travel platform is live on its own domain.", url: "https://nomadafantasma.com/es" },
+            { label: "Public implementation", source: "Public source", supports: "The application implementation is publicly reviewable.", url: "https://github.com/pascal1010100/nomada-fantasma" },
+            { label: "Bilingual map and routes", source: "Public product", supports: "The public product includes localized routes and a San Pedro map.", url: "https://nomadafantasma.com/es/mapa?town=san-pedro" }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-06-30",
         role: "Product, architecture, and geographic experience",
         status: "Public platform evolving",
         image: "/images/nomadguide.png",
+        imageAlt: "Nómada Fantasma travel platform with Guatemala experiences and map navigation",
         github: "https://github.com/pascal1010100/nomada-fantasma",
         demo: "https://nomadafantasma.com/es",
         featured: false,
@@ -185,15 +201,16 @@ export const projects = [
         results: "The site runs on guaterawtravel.com, presents three verified commercial options, and guides visitors to Recurrente or WhatsApp through an experience optimized for high-altitude diving searches around Lake Atitlán.",
         technologies: ["Astro 7", "TypeScript", "Schema.org", "Vercel Analytics", "Recurrente", "Google Search Console"],
         evidence: [
-            { label: "Production domain", source: "Public website", url: "https://guaterawtravel.com/" },
-            { label: "Catalogue and bookings on Recurrente", source: "Public website", url: "https://guaterawtravel.com/#experiencias" },
-            { label: "SEO and structured data", source: "Private repository" },
-            { label: "Vercel Analytics and metadata", source: "Private repository" }
+            { label: "Production domain", source: "Public product", supports: "The commercial travel site is live on its own domain.", url: "https://guaterawtravel.com/" },
+            { label: "Catalogue and booking paths", source: "Public product", supports: "The public experience presents the catalogue and routes visitors toward booking.", url: "https://guaterawtravel.com/#experiencias" },
+            { label: "SEO and structured data", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Private implementation evidence supports the documented technical SEO work." },
+            { label: "Vercel Analytics and metadata", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Private implementation evidence supports the documented analytics and metadata setup." }
         ] satisfies ProjectEvidence[],
         verifiedAt: "2026-07-14",
         role: "Conversion strategy, design, and frontend development",
         status: "Live website · SEO under observation",
         image: "/images/guateraw-travel.png",
+        imageAlt: "GuateRaw Travel landing page presenting Lake Atitlán diving experiences",
         github: "",
         demo: "https://guaterawtravel.com/",
         featured: false,

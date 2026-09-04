@@ -41,7 +41,7 @@ Toda propuesta automatizada debe evaluarse con una pregunta sencilla: **¿hace q
 
 El sitio está construido con:
 
-- Next.js 14 y React 18.
+- Next.js 15 y React 19.
 - TypeScript.
 - Tailwind CSS y componentes basados en Radix UI.
 - Framer Motion para animaciones.
@@ -82,8 +82,10 @@ Requisitos:
 - pnpm 10, según la versión declarada en `package.json`.
 
 ```bash
-pnpm install
-pnpm dev
+# Activa Node 20 con tu gestor de versiones; el repositorio incluye .nvmrc.
+corepack pnpm install --frozen-lockfile
+corepack pnpm exec playwright install chromium
+corepack pnpm dev
 ```
 
 La aplicación estará disponible normalmente en `http://localhost:3000`.
@@ -91,15 +93,15 @@ La aplicación estará disponible normalmente en `http://localhost:3000`.
 Comandos principales:
 
 ```bash
-pnpm dev
-pnpm build
-pnpm start
-pnpm lint
-pnpm typecheck
-pnpm catalog:generate
-pnpm validate:catalog
-pnpm test:e2e
-pnpm check
+corepack pnpm dev
+corepack pnpm build
+corepack pnpm start
+corepack pnpm lint
+corepack pnpm typecheck
+corepack pnpm catalog:generate
+corepack pnpm validate:catalog
+corepack pnpm test:e2e
+corepack pnpm check
 ```
 
 TypeScript, ESLint, la validación de datos, las pruebas end-to-end y el build forman parte del workflow de CI.

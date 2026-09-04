@@ -158,7 +158,7 @@ export function ContactSection() {
                 minLength={10}
                 maxLength={4000}
                 aria-describedby="contact-message-hint contact-message-privacy"
-                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+                className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-4 text-white placeholder:text-white/55 focus-visible:border-white/30"
                 placeholder="Include the goal, the current process or product, who will use it, your expected timeline, and any useful links."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -212,7 +212,7 @@ function InputField({ label, id, hint, required, ...props }: InputFieldProps) {
         id={id}
         required={required}
         aria-describedby={hintId}
-        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/55 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20"
+        className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white placeholder:text-white/55 focus-visible:border-white/30"
         {...props}
       />
       {hint && (

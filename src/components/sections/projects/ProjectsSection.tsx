@@ -24,7 +24,7 @@ export function ProjectsSection() {
       </div>
 
       <div className="mt-8 flex justify-center sm:mt-10">
-        <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.025] px-5 py-3 text-sm font-medium text-white/75 transition hover:border-cyan-100/40 hover:bg-cyan-50 hover:text-black">
+        <Link href="/projects" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-cyan-50 px-5 py-3 text-sm font-semibold text-[var(--observatory-graphite)] shadow-[0_8px_24px_rgba(207,239,255,0.16)] transition hover:bg-white hover:text-black">
           View all projects
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </Link>
@@ -48,7 +48,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
         >
           <Image
             src={project.image}
-            alt={project.title}
+            alt={project.imageAlt}
             fill
             sizes={index === 0 ? "(min-width: 1024px) 58vw, 100vw" : index === 1 ? "(min-width: 1024px) 42vw, 100vw" : "(min-width: 1280px) 1280px, 100vw"}
             className="object-cover opacity-85 grayscale-[0.15] transition duration-700 group-hover:scale-[1.025] group-hover:opacity-100"

@@ -80,6 +80,37 @@ test("respeta la preferencia de movimiento reducido", async ({ page }) => {
   await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible()
 })
 
+test("mantiene el contenido disponible cuando WebGL no puede iniciar", async ({ page }) => {
+  await page.addInitScript(() => {
+    const originalGetContext = HTMLCanvasElement.prototype.getContext
+
+    HTMLCanvasElement.prototype.getContext = function getContext(
+      this: HTMLCanvasElement,
+      contextId: string,
+      ...args: unknown[]
+    ) {
+      if (contextId === "webgl" || contextId === "webgl2") return null
+
+      return originalGetContext.call(this, contextId, ...args)
+    } as typeof HTMLCanvasElement.prototype.getContext
+  })
+
+  await page.goto("/")
+
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
+  await expect(page.getByTestId("spatial-scene-fallback")).toBeVisible()
+  await expect(page.locator("body")).not.toContainText("Application error")
+  await expect(page.locator("#home").getByRole("link", { name: "Discuss your project" })).toBeVisible()
+})
+
+test("renderiza la escena 3D cuando WebGL está disponible", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  await expect(page.locator(".hero-scene canvas")).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByTestId("spatial-scene-fallback")).toHaveCount(0)
+})
+
 test("comunica campos obligatorios e instrucciones del formulario", async ({ page }) => {
   await page.goto("/#contact")
 

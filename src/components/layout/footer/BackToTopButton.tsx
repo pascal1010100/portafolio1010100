@@ -30,6 +30,7 @@ export function BackToTopButton() {
     <button
       type="button"
       onClick={scrollToTop}
+      aria-hidden={!isVisible}
       className={cn(
         "fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 transition-[opacity,transform,background-color] duration-300 hover:bg-primary/90 focus:outline-none",
         isVisible
@@ -37,6 +38,7 @@ export function BackToTopButton() {
           : "pointer-events-none translate-y-5 opacity-0",
       )}
       aria-label="Back to top"
+      tabIndex={isVisible ? 0 : -1}
     >
       <ArrowUp className="h-5 w-5" aria-hidden="true" />
     </button>

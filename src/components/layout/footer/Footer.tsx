@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, MapPin } from "lucide-react"
+import Link from "next/link"
 import { BackToTopButton } from "@/components/layout/footer/BackToTopButton"
 
 export function Footer() {
@@ -66,6 +67,7 @@ export function Footer() {
               <li><a href="#process" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Process</a></li>
               <li><a href="#skills" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Capabilities</a></li>
               <li><a href="#about" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">About</a></li>
+              <li><Link href="/hiring" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Hiring</Link></li>
               <li><a href="#contact" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Contact</a></li>
             </ul>
           </div>

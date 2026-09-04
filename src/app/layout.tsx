@@ -3,10 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ??
-  'https://portafolio1010100.vercel.app'
+import { siteUrl, siteUrlObject } from "@/lib/site"
 
 const socialImage = {
   url: "/social-preview-v2.png",
@@ -33,7 +30,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: siteUrlObject,
   title: "Pascal.dev — Founder-led product engineering studio",
   description:
     "An independent practice building commercial websites, operational tools, and focused web MVPs for founders, small teams, and businesses.",

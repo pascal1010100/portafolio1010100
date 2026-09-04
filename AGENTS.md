@@ -10,12 +10,12 @@ La dirección visual actual se conserva: tecnológica boutique, oscura, minimali
 
 ## Contrato técnico actual
 
-- Next.js 14 con App Router y React 18.
+- Next.js 15 con App Router y React 19.
 - TypeScript estricto.
 - Tailwind CSS y componentes Radix/shadcn.
 - Framer Motion para movimiento de interfaz.
 - Three.js y React Three Fiber para el visual 3D aislado.
-- Zod y Resend para el formulario de contacto.
+- Formulario cliente que prepara un mensaje de WhatsApp para revisión y envío manual.
 - pnpm 10 y Node.js 20 como toolchain oficial.
 
 ## Comandos oficiales
