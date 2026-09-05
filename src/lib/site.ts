@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = 'https://portafolio1010100.vercel.app'
+const DEFAULT_SITE_URL = 'https://portfolio-i.vercel.app'
 
 function resolveSiteUrl(value: string | undefined) {
   if (!value) {
