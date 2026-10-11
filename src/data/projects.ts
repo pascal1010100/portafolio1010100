@@ -51,8 +51,8 @@ export const projects = [
     {
         title: "Nativa Market",
         slug: "nativa-market",
-        description: "A production ecommerce platform for Guatemala with a manageable catalogue, redesigned shopping experience, transactional orders, and product-level SEO.",
-        longDescription: "Nativa Market evolved from a functional catalogue into a complete ecommerce store for natural products. The platform connects an editorial storefront with search, categories, galleries, cart, and checkout; behind it, a protected dashboard manages products, orders, payments, deliveries, and configuration without relying on a generic commerce platform.",
+        description: "An ecommerce project for Guatemala with a public Vercel demonstration of its catalogue, product browsing, cart, and checkout experience.",
+        longDescription: "Nativa Market connects a natural-products catalogue with product browsing, cart, and checkout. The Vercel URL preserves a public demonstration of the customer experience. The original client engagement has ended; the former custom domain is not the portfolio demo. Order persistence and administrative operations are not certified by the current public review.",
         challenges: [
             "Complete the purchase flow without introducing a payment gateway that was outside the validated MVP scope.",
             "Present a broad catalogue and product galleries through a clear, fast, and consistent mobile and desktop experience.",
@@ -60,26 +60,24 @@ export const projects = [
         ],
         solutions: [
             "Organized the system by feature on Next.js 16, React 19, PostgreSQL, Supabase, and Drizzle, with protected server-side administrative actions.",
-            "The checkout recalculates totals from the database and stores each order and its items through a transactional SQL function before preparing WhatsApp confirmation.",
+            "Designed a checkout that separates customer details, delivery, payment choice, and a clear order summary before WhatsApp confirmation; current verification stops before submitting an order.",
             "Redesigned the store with a boutique visual direction, touch carousels, complete image framing, and responsive catalogue, cart, checkout, and confirmation flows.",
             "Implemented canonicals, a dynamic sitemap, category routes, and OnlineStore, Product, Offer, and BreadcrumbList structured data, with noindex rules for private flows."
         ],
-        results: "The MVP runs on its own domain with 28 active products, seven categories, two payment methods, and configurable delivery across Guatemala. The UI/UX redesign was validated on desktop and mobile; smoke tests cover ordering and production, while Search Console confirmed a valid sitemap and eligible product rich results.",
+        results: "The public Vercel demonstration was reviewed on October 11, 2026: the catalogue loaded, a product could be added to the cart, and checkout showed the selection and estimated total. No order was submitted, no payment was made, and backend persistence or administration was not verified. Historical client delivery remains separate from this portfolio demonstration.",
         technologies: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "Supabase", "Drizzle ORM", "Motion"],
         evidence: [
-            { label: "Production store and catalogue on its own domain", source: "Public product", supports: "The ecommerce storefront and catalogue are publicly available.", url: "https://www.nativamarket.net/" },
-            { label: "Products and categories in the public sitemap", source: "Public product", supports: "The production sitemap exposes indexable catalogue routes.", url: "https://www.nativamarket.net/sitemap.xml" },
-            { label: "Transactional checkout and admin dashboard", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "The implementation includes transactional ordering and protected administration." },
-            { label: "CI and MVP/production smoke tests", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Automated checks cover the documented release flows." },
-            { label: "Ecommerce SEO and rich-result validation", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "Search Console validation supports the documented SEO outcome." }
+            { label: "Public Vercel demonstration", source: "Public product", supports: "The storefront and catalogue load on the Vercel URL.", url: "https://nativa-gamma.vercel.app/" },
+            { label: "Cart and checkout experience", source: "Public product", supports: "Public review reached checkout after adding a product; order submission and persistence were not tested.", url: "https://nativa-gamma.vercel.app/carrito" },
+            { label: "Historical implementation", source: PRIVATE_PROJECT_EVIDENCE_SOURCE, supports: "The original project included backend and administrative work; their current operational status is not certified by this demo review." }
         ] satisfies ProjectEvidence[],
-        verifiedAt: "2026-07-15",
+        verifiedAt: "2026-10-11",
         role: "Product, architecture, UI/UX, and full-stack engineering",
-        status: "MVP in production · UI/UX and SEO redesigned",
+        status: "Public demo · original engagement closed",
         image: "/images/nativa-market.png",
         imageAlt: "Nativa Market ecommerce storefront showing its natural-products catalogue",
         github: "",
-        demo: "https://www.nativamarket.net/",
+        demo: "https://nativa-gamma.vercel.app/",
         featured: true,
         category: "Ecommerce and operations"
     },
