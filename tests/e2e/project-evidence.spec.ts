@@ -8,18 +8,24 @@ test("distinguishes public evidence from private records and names the supported
   await expect(evidence.getByText(/Public items open their source/)).toBeVisible()
 
   const publicItem = evidence.getByRole("listitem").filter({
-    hasText: "Production store and catalogue on its own domain",
+    hasText: "Public Vercel demonstration",
   })
-  await expect(publicItem.getByRole("link")).toHaveAttribute("href", "https://www.nativamarket.net/")
+  await expect(publicItem.getByRole("link")).toHaveAttribute("href", "https://nativa-gamma.vercel.app/")
   await expect(publicItem.getByText("Public product", { exact: true })).toBeVisible()
-  await expect(publicItem.getByText(/Supports: The ecommerce storefront/)).toBeVisible()
+  await expect(publicItem.getByText(/Supports: The storefront and catalogue load/)).toBeVisible()
+
+  const checkoutItem = evidence.getByRole("listitem").filter({
+    hasText: "Cart and checkout experience",
+  })
+  await expect(checkoutItem.getByRole("link")).toHaveAttribute("href", "https://nativa-gamma.vercel.app/carrito")
+  await expect(evidence.locator('a[href*="nativamarket.net"]')).toHaveCount(0)
 
   const privateItem = evidence.getByRole("listitem").filter({
-    hasText: "Transactional checkout and admin dashboard",
+    hasText: "Historical implementation",
   })
   await expect(privateItem.getByText("Private evidence", { exact: true })).toBeVisible()
   await expect(privateItem.getByRole("link")).toHaveCount(0)
-  await expect(privateItem.getByText(/Supports: The implementation includes transactional ordering/)).toBeVisible()
+  await expect(privateItem.getByText(/Supports: The original project included backend and administrative work/)).toBeVisible()
 })
 
 test("exposes prudent case-study, application, and breadcrumb structured data", async ({ page }) => {
