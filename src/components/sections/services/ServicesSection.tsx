@@ -52,7 +52,7 @@ const services = [
       {
         title: "Nativa Market",
         href: "/projects/nativa-market",
-        proof: "Production ecommerce MVP with transactional orders",
+        proof: "Public ecommerce demo with cart and checkout",
       },
       {
         title: "Open Narrative",
