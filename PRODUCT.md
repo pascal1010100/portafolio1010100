@@ -41,11 +41,11 @@ El repositorio utiliza documentación, datos locales y un catálogo de ingenier�
 
 ## Capabilities and Constraints
 
-- Portafolio web público construido con Next.js 14, React 18, TypeScript, Tailwind CSS, Radix UI, Framer Motion y un visual 3D aislado con Three.js.
+- Portafolio web público construido con Next.js 15, React 19, TypeScript, Tailwind CSS, Radix UI, Framer Motion y un visual 3D aislado con Three.js.
 - Casos de estudio, servicios, proceso, capacidades profesionales y contacto mediante WhatsApp.
 - Páginas estáticas de proyecto alimentadas por datos locales en `src/data/`.
 - Catálogo interno de repositorios autorizados con generación y validación deterministas.
-- pnpm 10 y Node.js 20 son el toolchain oficial; no se admite un segundo lockfile.
+- pnpm 10 y Node.js 24 son el toolchain oficial; no se admite un segundo lockfile.
 - Los Server Components son el valor por defecto y el código cliente se reserva para interacción o APIs del navegador.
 - Los secretos no se versionan y toda publicación o escritura en servicios externos requiere aprobación humana.
 - Pascal Development System es la metodología interna; Pascal Engineering es una posible empresa futura y no debe presentarse como una organización operativa actual.

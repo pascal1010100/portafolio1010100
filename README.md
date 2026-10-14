@@ -55,7 +55,7 @@ La aplicación usa App Router, genera páginas estáticas para los proyectos y p
 ## Baseline arquitectónico
 
 - El repositorio se mantiene inicialmente como monolito modular.
-- pnpm 10 y Node.js 20 forman el toolchain oficial.
+- pnpm 10 y Node.js 24 forman el toolchain oficial.
 - TypeScript, ESLint y build son checks obligatorios de CI.
 - Scripts, workflows, agentes futuros y aprobación humana tienen responsabilidades separadas.
 - La evolución se registra mediante ADRs y una auditoría técnica versionada.
@@ -78,11 +78,11 @@ Documentación principal:
 
 Requisitos:
 
-- Node.js 20.
+- Node.js 24.
 - pnpm 10, según la versión declarada en `package.json`.
 
 ```bash
-# Activa Node 20 con tu gestor de versiones; el repositorio incluye .nvmrc.
+# Activa Node 24 con tu gestor de versiones; el repositorio incluye .nvmrc.
 corepack pnpm install --frozen-lockfile
 corepack pnpm exec playwright install chromium
 corepack pnpm dev

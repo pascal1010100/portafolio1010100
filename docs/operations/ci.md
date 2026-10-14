@@ -6,7 +6,7 @@ Cada pull request y cada push a `main` deben demostrar instalación reproducible
 
 ## Entorno
 
-- Node.js 20.
+- Node.js 24, alineado con `.nvmrc`, `engines.node` y el workflow de CI.
 - pnpm definido en `package.json`.
 - Instalación con `pnpm install --frozen-lockfile`.
 
