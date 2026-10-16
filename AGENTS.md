@@ -16,7 +16,7 @@ La dirección visual actual se conserva: tecnológica boutique, oscura, minimali
 - Framer Motion para movimiento de interfaz.
 - Three.js y React Three Fiber para el visual 3D aislado.
 - Formulario cliente que prepara un mensaje de WhatsApp para revisión y envío manual.
-- pnpm 10 y Node.js 20 como toolchain oficial.
+- pnpm 10 y Node.js 24 como toolchain oficial.
 
 ## Comandos oficiales
 
