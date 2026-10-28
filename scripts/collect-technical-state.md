@@ -12,7 +12,7 @@ Pruebas con datos ficticios, sin red ni cambios de Git:
 node --test /Users/usuario/proyectos/portafolio1010100-main/scripts/collect-technical-state.test.mjs
 ```
 
-Requiere Git y `gh` ya autenticado para la parte remota. El contrato oficial del repositorio es Node.js 20.x (`package.json`, `.nvmrc`, AGENTS y runbook CI); no se cambia. Revisión de cierre: pruebas y ejecución real comprobadas con Node 20.20.2 y 22.23.1, sin instalaciones. Node 22 es una comprobación adicional, no el toolchain oficial. No instala nada ni lee `.env`.
+Requiere Git y `gh` ya autenticado para la parte remota. El contrato oficial del repositorio es Node.js 24.x (`package.json`, `.nvmrc`, AGENTS y runbook CI), conforme al ADR-0002. La revisión original del recolector comprobó pruebas y ejecución real con Node 20.20.2 y 22.23.1; esas versiones son evidencia histórica, no el toolchain actual. No instala nada ni lee `.env`.
 
 El script usa el directorio padre de `scripts/`, exige que sea raíz Git y que un remoto corresponda a `pascal1010100/portafolio1010100`. No recorre catálogos ni otros proyectos. Solo stdout JSON v1; diagnósticos seguros por stderr. Fechas ISO 8601 en UTC (`Z`), campo timezone explícito. `historical: null`: no reutiliza resultados anteriores como observaciones actuales.
 

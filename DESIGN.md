@@ -220,7 +220,7 @@ La paleta combina grafitos casi negros con blancos fríos, cian polar y dos refl
 
 El contenido vive dentro de un contenedor máximo de `80rem` (`max-w-7xl`) con gutters de `16px`, `24px` y `32px` según breakpoint. Las secciones principales usan entre `80px` y `144px` de espacio vertical y se separan con líneas de baja opacidad.
 
-La portada usa una composición asimétrica de dos columnas: contenido a la izquierda y una escena tridimensional que se superpone parcialmente desde la derecha. Las secciones editoriales alternan listas de ancho completo, cuadrículas de doce columnas y divisiones `0.85fr / 1.15fr`. En móvil, estas estructuras se convierten en una sola columna y el 3D deja de competir con la lectura.
+La portada usa una composición asimétrica de dos columnas independientes: contenido a la izquierda y una escena tridimensional a la derecha, sin invadir el texto. Las secciones editoriales alternan listas de ancho completo, cuadrículas de doce columnas y divisiones `0.85fr / 1.15fr`. En móvil y tableta, estas estructuras se convierten en una sola columna y el 3D aparece debajo del texto.
 
 El ritmo base se construye con múltiplos de `4px`, usando `8px`, `16px`, `24px` y `32px` como intervalos recurrentes. La densidad es contenida: cada sección tiene un gesto dominante y suficiente espacio negativo para separar evidencia, explicación y acción.
 

@@ -73,7 +73,7 @@ test("mantiene el relato en una columna hasta escritorio y sin overflow", async 
     { width: 1023, height: 768 },
   ]) {
     await page.setViewportSize(viewport)
-    await page.goto("/projects/nativa-market")
+    await page.goto("/projects/nativa-market", { waitUntil: "domcontentloaded" })
 
     const context = page.getByRole("heading", { name: /Context/ })
     const details = page.getByRole("complementary", { name: "Project details" })

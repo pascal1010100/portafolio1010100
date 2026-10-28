@@ -166,16 +166,34 @@ export function Navbar({ context = "home" }: NavbarProps) {
             <div className="mx-auto flex max-w-7xl flex-col gap-1">
               {navItems.map((item) => {
                 const href = context === "home" ? item.homeHref : item.siteHref
+                const isActive = context === "home" ? activeSection === item.id : context === "work" && item.id === "projects"
                 return (
-                  <Link key={item.id} href={href} onClick={context === "home" ? () => handleHomeAnchor(item.homeHref) : closeMobileMenu} className="rounded-xl px-4 py-3 text-base font-medium text-white/75 transition hover:bg-white/[0.06] hover:text-white">
+                  <Link
+                    key={item.id}
+                    href={href}
+                    onClick={context === "home" ? () => handleHomeAnchor(item.homeHref) : closeMobileMenu}
+                    aria-current={isActive ? (context === "home" ? "location" : "page") : undefined}
+                    className={cn(
+                      "rounded-xl px-4 py-3 text-base font-medium transition hover:bg-white/[0.06] hover:text-white",
+                      isActive ? "bg-white/[0.06] text-white underline decoration-[#89cdff] underline-offset-8" : "text-white/75",
+                    )}
+                  >
                     {item.name}
                   </Link>
                 )
               })}
-              <Link href="/hiring" onClick={closeMobileMenu} className="rounded-xl px-4 py-3 text-base font-medium text-white/75 transition hover:bg-white/[0.06] hover:text-white">
+              <Link
+                href="/hiring"
+                onClick={closeMobileMenu}
+                aria-current={context === "hiring" ? "page" : undefined}
+                className={cn(
+                  "rounded-xl px-4 py-3 text-base font-medium transition hover:bg-white/[0.06] hover:text-white",
+                  context === "hiring" ? "bg-white/[0.06] text-white underline decoration-[#89cdff] underline-offset-8" : "text-white/75",
+                )}
+              >
                 Hiring
               </Link>
-              <a href={cta.href} onClick={context === "home" ? () => handleHomeAnchor("#contact") : closeMobileMenu} className="mt-2 rounded-xl bg-[#ecfeff] px-4 py-3 text-center font-semibold text-[#030506]">
+              <a href={cta.href} aria-current={context === "home" && activeSection === "contact" ? "location" : undefined} onClick={context === "home" ? () => handleHomeAnchor("#contact") : closeMobileMenu} className="mt-2 rounded-xl bg-[#ecfeff] px-4 py-3 text-center font-semibold text-[#030506]">
                 {cta.long}
               </a>
             </div>

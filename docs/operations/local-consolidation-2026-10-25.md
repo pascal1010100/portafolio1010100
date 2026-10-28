@@ -1,5 +1,7 @@
 # Consolidación local — 25 octubre 2026
 
+> Estado actualizado el 28 de octubre: main integrado localmente en `codex/consolidate-portfolio-main`, Node 24 y Nativa conciliados, menú móvil corregido y checks completos correctos. Ver «Integración completada» al final. Las secciones anteriores conservan el historial de las revisiones previas.
+
 ## Directorio de continuidad
 
 `/Users/usuario/proyectos/portafolio1010100-main` es el directorio para continuar esta versión consolidada. La rama existente es `feat/portfolio-technical-state-collector`, con base `96b1b52`; la consolidación sigue sin commit. No representa el estado actual de main remoto ni de producción.
@@ -103,3 +105,35 @@ Consulta de solo lectura mediante el conector GitHub. `gh` no pudo completar la 
 6. Revisar visualmente escritorio/móvil y cerrar un commit local con los activos requeridos. Publicación, PR, merge y despliegue siguen sujetos a aprobación humana.
 
 No se hicieron commit, fetch, pull, push, PR, merge, deploy ni escrituras en servicios externos. Se dejó una vista local del build revisado en `http://127.0.0.1:3212/`; ese build debe renovarse si se cambia código.
+
+## Integración completada — 28 octubre 2026
+
+### Alcance autorizado y conservación
+
+El usuario autorizó conciliar main preservando el diseño, la corrección de Nativa y Node 24, corregir el menú móvil y validar antes de publicar.
+
+- Respaldo previo a la integración en `.local-backups/consolidation-2026-10-28/pre-main/`: archivos modificados/nuevos, patch binario y estado Git. No incluye `.env` ni dependencias.
+- Rama local de integración: `codex/consolidate-portfolio-main`. Commit de preservación visual: `2696a5f`.
+- Se descargó e integró main en `0deb5a353c0a0754f0f05bd474329a5234e39b98`, conservando el commit local del recolector `96b1b52`. La integración automática no generó conflictos; se revisó el resultado combinado de `tests/e2e/projects.spec.ts`.
+- Comparación contra el commit de preservación: sin cambios en hero, isla, escena 3D, marca, archivo editorial, CSS global ni imagen de portada. Se mantienen la carga diferida, pausa, movimiento reducido y fallback sin WebGL.
+- Nativa conserva exactamente los datos corregidos de main: demo pública en Vercel, encargo histórico cerrado y límites explícitos de la verificación. No se recertificó la operación externa ni se enviaron pedidos.
+- Node 24 queda alineado en `.nvmrc`, package.json, CI, AGENTS, README, PRODUCT, ADR y runbook. Se actualizó también el contrato del recolector en su documentación, conservando las verificaciones anteriores como evidencia histórica.
+- El menú móvil muestra un subrayado y `aria-current="page"` en Work/Hiring, y `aria-current="location"` en secciones de portada/contacto. Mantiene cierre con Escape y restauración de foco.
+- DESIGN ahora describe las columnas independientes y la escena debajo del texto en móvil/tableta. Las tres críticas históricas no versionadas se preservan fuera del commit de integración.
+
+### Evidencia de cierre
+
+- Runtime: Node `24.21.0`, pnpm `10.18.2`.
+- Instalación reproducible: `CI=true corepack pnpm install --frozen-lockfile`, correcta; lockfile sin cambios. pnpm informó scripts de instalación omitidos para sharp/unrs-resolver; no impidieron build ni pruebas y no se ampliaron permisos de esos paquetes.
+- `CI=true corepack pnpm check`: correcto de principio a fin. Tipos, lint, datos de seis proyectos, catálogo de tres repositorios, build de 14 páginas y **36/36 pruebas Chromium en 50,2 s**, sin reintentos reportados.
+- Cuatro regresiones nuevas cubren estado activo en archivo, detalle, Hiring y recorrido de secciones de portada, además de Escape y foco.
+- `node --test scripts/collect-technical-state.test.mjs`: **10/10** con Node 24.
+- Revisión adicional de cuatro rutas (`/`, `/projects`, `/projects/nativa-market`, `/hiring`) en 1440, 768 y 390 px: las 12 combinaciones respondieron HTTP 200, sin overflow horizontal ni errores JavaScript de página. Menú móvil con un único enlace activo de Work en el archivo.
+- Capturas y mediciones del build integrado en `.local-backups/consolidation-2026-10-28/integrated-evidence/`, con `review.json`. Las capturas de portada se completaron después de esperar al primer fotograma de la escena.
+- Detector Impeccable del header sin hallazgos deterministas; `git diff --check` correcto. Se mantiene el aviso de deprecación de `next lint`; no se migró ESLint en este cierre. El sidecar `.impeccable/design.json` sigue desfasado respecto de DESIGN; no afecta el build y su regeneración queda como mantenimiento posterior.
+
+### Entrega y límites
+
+La consolidación queda lista para revisión humana y publicación posterior, con integración guardada localmente. El build revisado se sirve en `http://127.0.0.1:3212/`, ahora con Node 24. No se hicieron push, PR, merge remoto, despliegue ni escrituras en servicios externos. El main remoto observado es el descargado durante esta sesión; antes de publicar se debe comprobar si recibió nuevos cambios y exigir CI remoto.
+
+La revisión no es una auditoría WCAG o Lighthouse completa. La evidencia tardía de los casos móviles y otras observaciones históricas de diseño siguen como mejoras posteriores; no se rediseñaron las plantillas de detalle en este cierre.
