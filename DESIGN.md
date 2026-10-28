@@ -16,6 +16,8 @@ colors:
   polar-glint: "rgb(207 239 255)"
   ice-structure: "rgb(195 232 255)"
   boutique-blue: "rgb(137 205 255)"
+  brand-mark-cyan: "rgb(66 217 255)"
+  brand-mark-joint: "rgb(184 245 255)"
   atmospheric-blue: "rgb(112 170 255)"
   residual-amber: "rgb(255 193 124)"
   destructive: "hsl(0 72% 51%)"
@@ -174,6 +176,8 @@ La paleta combina grafitos casi negros con blancos fríos, cian polar y dos refl
 - **Destello Polar** (`rgb(207 239 255)`): reflejo puntual en barridos, foco y acciones; siempre translúcido.
 - **Estructura de Hielo** (`rgb(195 232 255)`): intensificación mínima de bordes interactivos.
 - **Azul Boutique** (`rgb(137 205 255)`): luz localizada en filas editoriales durante hover.
+- **Cian de Marca** (`rgb(66 217 255)`): aristas derechas y encuentros estructurales del símbolo Pascal.dev; no se usa como relleno dominante.
+- **Unión de Marca** (`rgb(184 245 255)`): eje central del símbolo, usado para conectar las caras sin competir con el cian principal.
 
 ### Neutral
 

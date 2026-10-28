@@ -38,6 +38,9 @@
     --observatory-boutique-blue-rgb: 137, 205, 255;
     --observatory-atmospheric-rgb: 112, 170, 255;
     --observatory-residual-rgb: 255, 193, 124;
+    --brand-mark-cyan: #42d9ff;
+    --brand-mark-cyan-rgb: 66, 217, 255;
+    --brand-mark-joint-rgb: 184, 245, 255;
   }
 
   * {
@@ -165,6 +168,73 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 28px 90px rgba(0, 0, 0, 0.25);
   }
 
+  .spatial-fallback {
+    background:
+      radial-gradient(ellipse at 58% 42%, rgba(var(--brand-mark-cyan-rgb), 0.06), transparent 32%),
+      linear-gradient(180deg, transparent 48%, rgba(3, 12, 14, 0.42) 100%);
+  }
+
+  .spatial-fallback__mist {
+    position: absolute;
+    inset: 16% 12% 22%;
+    background: radial-gradient(ellipse, rgba(var(--brand-mark-cyan-rgb), 0.09), transparent 62%);
+    filter: blur(30px);
+  }
+
+  .spatial-fallback__pedestal {
+    position: absolute;
+    left: 50%;
+    bottom: 17%;
+    width: min(54%, 22rem);
+    height: 16%;
+    background: linear-gradient(158deg, #0b1518 0%, #030708 56%, #010203 100%);
+    border: 1px solid rgba(var(--observatory-polar-glint-rgb), 0.1);
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.62);
+    transform: translateX(-44%) perspective(420px) rotateX(55deg) rotateZ(-2deg);
+    transform-origin: center bottom;
+  }
+
+  .spatial-fallback__top {
+    position: absolute;
+    inset: 8% 5% 34%;
+    background: linear-gradient(145deg, rgba(var(--observatory-ice-structure-rgb), 0.16), rgba(5, 11, 13, 0.9) 64%);
+    border: 1px solid rgba(var(--observatory-polar-glint-rgb), 0.1);
+  }
+
+  .spatial-fallback__reflection {
+    position: absolute;
+    left: 48%;
+    top: 14%;
+    width: 34%;
+    height: 48%;
+    background: radial-gradient(ellipse, rgba(var(--brand-mark-cyan-rgb), 0.16), transparent 70%);
+    filter: blur(4px);
+    transform: translateX(-50%);
+  }
+
+  .spatial-fallback__cube {
+    position: absolute;
+    left: 53%;
+    top: 47%;
+    width: clamp(7.5rem, 31%, 12.5rem);
+    height: auto;
+    color: white;
+    filter: drop-shadow(8px 13px 18px rgba(0, 0, 0, 0.72)) drop-shadow(7px 5px 8px rgba(var(--brand-mark-cyan-rgb), 0.13));
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 899px) {
+    .spatial-fallback__pedestal {
+      bottom: 8%;
+      width: min(72%, 18rem);
+    }
+
+    .spatial-fallback__cube {
+      top: 43%;
+      width: clamp(8.5rem, 42%, 11.5rem);
+    }
+  }
+
   @media (prefers-reduced-motion: no-preference) {
     .hero-status {
       animation: observatory-signal 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -201,6 +271,8 @@
       transform-origin: 52% 48%;
       animation: observatory-lens 780ms 90ms cubic-bezier(0.16, 1, 0.3, 1) both;
     }
+
+
   }
 
   @media (min-width: 1280px) and (max-height: 860px) {
@@ -224,10 +296,7 @@
       padding-top: 1rem;
     }
 
-    .hero-scene {
-      height: 35rem;
-      margin-top: -5.5rem;
-    }
+
   }
 }
 

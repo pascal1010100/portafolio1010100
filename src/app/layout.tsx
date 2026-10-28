@@ -87,7 +87,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>
+      <body
+        className={`${inter.className} bg-background text-foreground antialiased`}
+        suppressHydrationWarning
+      >
         <div className="relative z-10">
           {children}
         </div>

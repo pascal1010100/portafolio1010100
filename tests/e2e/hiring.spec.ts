@@ -6,14 +6,14 @@ test("presenta un perfil profesional verificable y vías de contacto", async ({ 
   await expect(
     page.getByRole("heading", { level: 1, name: "Product-focused full-stack developer." }),
   ).toBeVisible()
-  await expect(page.getByText("Guatemala · Remote", { exact: true })).toBeVisible()
+  await expect(page.locator("main").getByText("Guatemala · Remote", { exact: true })).toBeVisible()
   await expect(page.getByText("Native Spanish · English B2", { exact: true })).toBeVisible()
   await expect(
     page.getByText("6 years of practical JavaScript and React development", { exact: true }),
   ).toBeVisible()
   await expect(page.getByText(/not six years of formal employment/i)).toBeVisible()
 
-  await expect(page.getByRole("link", { name: "Request résumé" })).toHaveAttribute(
+  await expect(page.locator("main").getByRole("link", { name: "Request résumé" })).toHaveAttribute(
     "href",
     /^mailto:josemanu0885@gmail\.com\?subject=/,
   )
@@ -60,7 +60,7 @@ test("mantiene la ruta usable y sin overflow en móvil y tablet", async ({ page 
     await page.goto("/hiring")
 
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible()
-    await expect(page.getByRole("link", { name: "Request résumé" })).toBeVisible()
+    await expect(page.locator("main").getByRole("link", { name: "Request résumé" })).toBeVisible()
 
     const dimensions = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,

@@ -3,15 +3,15 @@ import { expect, test } from "@playwright/test"
 test("permite buscar y abrir un proyecto", async ({ page }) => {
   await page.goto("/projects")
 
-  await expect(page.getByRole("heading", { name: "Projects" })).toBeVisible()
-  await page.getByPlaceholder("Search projects...").fill("Open Narrative")
+  await expect(page.getByRole("heading", { name: "Products built around real constraints." })).toBeVisible()
+  await page.getByRole("searchbox", { name: "Search projects by name, category, or technology" }).fill("Open Narrative")
   await expect(page.getByRole("heading", { level: 2, name: "Open Narrative" })).toBeVisible()
   await expect(page.getByRole("heading", { level: 2, name: "Nativa Market" })).toHaveCount(0)
 
   await page.getByRole("heading", { name: "Open Narrative" }).click()
   await expect(page).toHaveURL(/\/projects\/open-narrative$/)
   await expect(page.getByRole("heading", { level: 1, name: "Open Narrative" })).toBeVisible()
-  await expect(page.getByRole("heading", { name: "Evidence links" })).toBeVisible()
+  await expect(page.getByRole("heading", { name: /Evidence links/i })).toBeVisible()
 })
 
 test("responde con 404 para un proyecto inexistente", async ({ page }) => {
@@ -31,7 +31,7 @@ test("responde con 404 para un proyecto inexistente", async ({ page }) => {
 test("expone nombres accesibles para buscar y abrir recursos", async ({ page }) => {
   await page.goto("/projects")
 
-  await expect(page.getByRole("textbox", { name: "Search projects" })).toBeVisible()
+  await expect(page.getByRole("searchbox", { name: "Search projects by name, category, or technology" })).toBeVisible()
 
   const firstProject = page.locator("[class*='group']").filter({
     has: page.getByRole("heading", { name: "Mandalas Hostal" }),
@@ -48,10 +48,10 @@ test("expone nombres accesibles para buscar y abrir recursos", async ({ page }) 
 test("mantiene el archivo dentro del recorrido público y ofrece un siguiente paso", async ({ page }) => {
   await page.goto("/projects")
 
-  await expect(page.getByRole("link", { name: "Pascal.dev home" })).toHaveAttribute("href", "/")
+  await expect(page.getByRole("banner").getByRole("link", { name: "Pascal.dev home" })).toHaveAttribute("href", "/")
   const navigation = page.getByRole("navigation", { name: "Primary navigation" })
   await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("aria-current", "page")
-  await expect(page.getByRole("heading", { level: 1, name: "Projects" })).toBeVisible()
+  await expect(page.getByRole("heading", { level: 1, name: "Products built around real constraints." })).toBeVisible()
   await expect(page.getByRole("contentinfo", { name: "Footer" })).toBeVisible()
   await expect(page.getByRole("link", { name: "Discuss a project" })).toHaveAttribute("href", "/#contact")
 })
