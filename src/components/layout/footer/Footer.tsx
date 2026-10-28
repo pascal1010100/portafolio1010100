@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, MapPin } from "lucide-react"
 import Link from "next/link"
 import { BackToTopButton } from "@/components/layout/footer/BackToTopButton"
+import { PascalMark } from "@/components/brand/PascalMark"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -37,7 +38,11 @@ export function Footer() {
           className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_0.8fr_0.8fr] mb-12"
         >
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-cyan-100/75">Pascal.dev · Founder-led product engineering studio</p>
+            <Link href="/" className="inline-flex items-center gap-3 font-display text-xl font-medium tracking-[-0.03em] text-[#ecfeff]" aria-label="Pascal.dev home">
+              <PascalMark compact />
+              <span>Pascal<span className="text-white/55">.dev</span></span>
+            </Link>
+            <p className="text-sm font-medium text-cyan-100/70">Independent product engineering practice</p>
             <h2 className="text-2xl font-display font-semibold tracking-[-0.03em] text-foreground sm:text-3xl">Commercial websites, operational tools, and focused web MVPs.</h2>
             <p className="max-w-xl text-muted-foreground leading-7">
               An independent practice based in Guatemala and working remotely.
@@ -61,14 +66,14 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-foreground">Navigation</h3>
             <ul className="mt-3">
-              <li><a href="#home" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Home</a></li>
-              <li><a href="#projects" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Work</a></li>
-              <li><a href="#services" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Services</a></li>
-              <li><a href="#process" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Process</a></li>
-              <li><a href="#skills" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Capabilities</a></li>
-              <li><a href="#about" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">About</a></li>
+              <li><Link href="/" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Home</Link></li>
+              <li><Link href="/projects" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Work</Link></li>
+              <li><Link href="/#services" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Services</Link></li>
+              <li><Link href="/#process" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Process</Link></li>
+              <li><Link href="/#skills" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Capabilities</Link></li>
+              <li><Link href="/#about" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">About</Link></li>
               <li><Link href="/hiring" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Hiring</Link></li>
-              <li><a href="#contact" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Contact</a></li>
+              <li><Link href="/#contact" className="inline-flex min-h-11 items-center text-muted-foreground transition hover:text-foreground lg:min-h-0 lg:py-1.5">Contact</Link></li>
             </ul>
           </div>
 

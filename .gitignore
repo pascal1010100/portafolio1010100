@@ -56,3 +56,6 @@ next-env.d.ts
 
 # editor temporary files
 *.swp
+
+# Local snapshots before consolidating uncommitted work
+/.local-backups/

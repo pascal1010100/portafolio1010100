@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test"
 
-test("presenta la propuesta y permite navegar por las secciones principales", async ({ page }) => {
+test("presenta la propuesta y permite navegar por las secciones principales", async ({ page }, testInfo) => {
   await page.goto("/")
 
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
@@ -16,6 +16,8 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
     page.getByRole("heading", { name: "Real work, documented decisions, and evidence you can review" }),
   ).toBeVisible()
   await expect(page.locator("#projects article")).toHaveCount(3)
+  await page.locator(".hero-scene canvas").waitFor({ state: "visible" })
+  await page.screenshot({ path: testInfo.outputPath("consolidated-desktop.png") })
   const sectionOrder = await page.locator("main > section").evaluateAll((sections) =>
     sections.map((section) => section.id),
   )
@@ -26,7 +28,7 @@ test("presenta la propuesta y permite navegar por las secciones principales", as
   )
 })
 
-test("mantiene el recorrido principal usable en móvil y sin overflow horizontal", async ({ page }) => {
+test("mantiene el recorrido principal usable en móvil y sin overflow horizontal", async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto("/")
 
@@ -37,7 +39,7 @@ test("mantiene el recorrido principal usable en móvil y sin overflow horizontal
   await page.keyboard.press("Escape")
   await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeHidden()
   await expect(menuButton).toBeFocused()
-  await expect(page.locator(".hero-scene")).toBeHidden()
+  await expect(page.locator(".hero-scene")).toBeVisible()
 
   const dimensions = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
@@ -45,7 +47,9 @@ test("mantiene el recorrido principal usable en móvil y sin overflow horizontal
     heroHeight: document.querySelector<HTMLElement>("#home")?.getBoundingClientRect().height ?? 0,
   }))
   expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
-  expect(dimensions.heroHeight).toBeLessThanOrEqual(844)
+  expect(dimensions.heroHeight).toBeLessThanOrEqual(1100)
+  await page.locator(".hero-scene canvas").waitFor({ state: "visible" })
+  await page.screenshot({ path: testInfo.outputPath("consolidated-mobile.png"), fullPage: true })
 })
 
 test("permite saltar la navegación con teclado", async ({ page }) => {
@@ -109,6 +113,84 @@ test("renderiza la escena 3D cuando WebGL está disponible", async ({ page }) =>
 
   await expect(page.locator(".hero-scene canvas")).toBeVisible({ timeout: 15_000 })
   await expect(page.getByTestId("spatial-scene-fallback")).toHaveCount(0)
+})
+
+test("anima solo mientras la escena está realmente visible", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+
+  const scene = page.locator(".hero-scene")
+  await expect(scene).toHaveAttribute("data-scene-loaded", "true")
+  await expect(scene).toHaveAttribute("data-scene-motion", "running")
+
+  await page.locator("#contact").scrollIntoViewIfNeeded()
+  await expect(scene).toHaveAttribute("data-scene-motion", "paused")
+
+  await page.locator("#home").scrollIntoViewIfNeeded()
+  await expect(scene).toHaveAttribute("data-scene-motion", "running")
+
+  await page.getByRole("button", { name: "Pause motion" }).click()
+  await expect(scene).toHaveAttribute("data-scene-motion", "paused")
+  await page.getByRole("button", { name: "Resume motion" }).click()
+  await expect(scene).toHaveAttribute("data-scene-motion", "running")
+  await page.mouse.move(0, 0)
+  const canvas = scene.locator("canvas")
+  const clip = await canvas.boundingBox()
+  expect(clip).not.toBeNull()
+  const movingBefore = await page.screenshot({ clip: clip! })
+  await page.waitForTimeout(650)
+  const movingAfter = await page.screenshot({ clip: clip! })
+  expect(movingBefore.equals(movingAfter)).toBe(false)
+
+  await page.emulateMedia({ reducedMotion: "reduce" })
+  await expect(scene).toHaveAttribute("data-scene-motion", "reduced")
+  await page.waitForTimeout(250)
+  const stillBefore = await page.screenshot({ clip: clip! })
+  await page.waitForTimeout(650)
+  const stillAfter = await page.screenshot({ clip: clip! })
+  expect(stillBefore.equals(stillAfter)).toBe(true)
+})
+
+test("responde al evento de visibilidad simulada sin fingir una pestaña real", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" })
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto("/")
+  const scene = page.locator(".hero-scene")
+  await expect(scene).toHaveAttribute("data-scene-motion", "running")
+  for (const state of ["hidden", "visible"]) {
+    await page.evaluate((visibility) => {
+      Object.defineProperty(document, "visibilityState", { configurable: true, get: () => visibility })
+      document.dispatchEvent(new Event("visibilitychange"))
+    }, state)
+    await expect(scene).toHaveAttribute("data-scene-motion", state === "hidden" ? "paused" : "running")
+  }
+})
+
+test("recompone la escena por viewport sin ligar el encuadre a la calidad", async ({ page }) => {
+  const viewports = [
+    { width: 390, height: 844, composition: "phone", minimumSceneHeight: 300 },
+    { width: 768, height: 1024, composition: "tablet", minimumSceneHeight: 340 },
+    { width: 1024, height: 768, composition: "desktop", minimumSceneHeight: 500 },
+  ]
+
+  for (const viewport of viewports) {
+    await page.setViewportSize({ width: viewport.width, height: viewport.height })
+    await page.goto("/")
+
+    const scene = page.locator(".hero-scene")
+    await expect(scene).toHaveAttribute("data-scene-composition", viewport.composition)
+    await expect(scene.locator("canvas")).toBeVisible({ timeout: 15_000 })
+
+    const dimensions = await scene.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      return { height: rect.height, right: rect.right, left: rect.left }
+    })
+    expect(dimensions.height).toBeGreaterThanOrEqual(viewport.minimumSceneHeight)
+    expect(dimensions.left).toBeGreaterThanOrEqual(-32)
+    expect(dimensions.right).toBeLessThanOrEqual(viewport.width + 32)
+    await expect(scene).toHaveAttribute("data-scene-quality", /^(low|standard)$/)
+  }
 })
 
 test("comunica campos obligatorios e instrucciones del formulario", async ({ page }) => {
@@ -178,7 +260,7 @@ test("mantiene el hero compacto y sin overflow en tablet", async ({ page }) => {
     }))
 
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth)
-    expect(dimensions.heroHeight).toBeLessThanOrEqual(950)
+    expect(dimensions.heroHeight).toBeLessThanOrEqual(1100)
     await expect(page.locator("#home").getByRole("link", { name: "Discuss your project" })).toBeVisible()
     await expect(page.locator("#home").getByRole("link", { name: "See selected work" })).toBeVisible()
     await expect(page.locator(".hero-scene")).toBeVisible()

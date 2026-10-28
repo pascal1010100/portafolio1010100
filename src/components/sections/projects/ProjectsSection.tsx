@@ -38,7 +38,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
     <article
       className={index === 0 ? "group lg:col-span-7" : index === 1 ? "group lg:col-span-5" : "group lg:col-span-12"}
     >
-      <div className="boutique-panel flex h-full flex-col overflow-hidden border border-white/10 bg-black transition duration-500 hover:border-cyan-100/25">
+      <div className="boutique-panel flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#203038]/90 bg-[#030506] shadow-[inset_0_1px_0_rgba(236,254,255,0.045),0_22px_54px_-30px_rgba(0,0,0,0.78)] transition-[border-color,background-color,box-shadow] duration-500 hover:border-[#456a78]/80 hover:bg-[#05090b] hover:shadow-[inset_0_1px_0_rgba(236,254,255,0.07),0_26px_64px_-30px_rgba(0,0,0,0.88)]">
         <Link
           href={`/projects/${project.slug}`}
           className={cn(

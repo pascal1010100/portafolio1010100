@@ -31,7 +31,7 @@ const expectedEvidence = [
     service: "Product MVP",
     cases: [
       {
-        name: "Nativa Market: Production ecommerce MVP with transactional orders",
+        name: "Nativa Market: Public ecommerce demo with catalogue, cart, and checkout",
         href: "/projects/nativa-market",
       },
       {
@@ -71,7 +71,7 @@ test("mantiene la evidencia usable y sin overflow en móvil", async ({ page }) =
   await page.goto("/#services")
 
   const evidenceLinks = page.locator("#services").getByRole("link", {
-    name: /Cloudbeds|booking options|WhatsApp workflow|ecommerce MVP|SaaS editor/,
+    name: /Cloudbeds|booking options|WhatsApp workflow|ecommerce demo|SaaS editor/,
   })
 
   await expect(evidenceLinks).toHaveCount(6)

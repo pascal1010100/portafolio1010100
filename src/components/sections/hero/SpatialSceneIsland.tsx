@@ -9,6 +9,7 @@ import {
   type ErrorInfo,
   type ReactNode,
 } from "react"
+import { PascalMark } from "@/components/brand/PascalMark"
 
 const SpatialScene = dynamic(
   () => import("@/components/visuals/SpatialScene").then((module) => module.SpatialScene),
@@ -18,13 +19,16 @@ const SpatialScene = dynamic(
 function SpatialSceneFallback() {
   return (
     <div
-      className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      className="spatial-fallback pointer-events-none absolute inset-0"
       data-testid="spatial-scene-fallback"
       aria-hidden="true"
     >
-      <div className="absolute h-[58%] w-[58%] rounded-full border border-cyan-100/[0.08] bg-[radial-gradient(circle,rgba(112,170,255,0.12),rgba(3,5,6,0)_68%)]" />
-      <div className="absolute h-[38%] w-[38%] rotate-45 border border-cyan-100/[0.14] bg-white/[0.012] shadow-[0_28px_90px_rgba(0,0,0,0.25)]" />
-      <div className="h-[16%] w-[16%] rotate-45 border border-cyan-50/25 bg-[radial-gradient(circle_at_35%_30%,rgba(207,239,255,0.2),rgba(3,5,6,0.94)_66%)]" />
+      <div className="spatial-fallback__mist" />
+      <div className="spatial-fallback__pedestal">
+        <div className="spatial-fallback__top" />
+        <div className="spatial-fallback__reflection" />
+      </div>
+      <div className="spatial-fallback__cube"><PascalMark className="h-full w-full border-0 bg-transparent [&_svg]:h-full [&_svg]:w-full" /></div>
     </div>
   )
 }
@@ -55,8 +59,20 @@ export function SpatialSceneIsland() {
   const [shouldRender, setShouldRender] = useState(false)
   const [isInViewport, setIsInViewport] = useState(false)
   const [isPageVisible, setIsPageVisible] = useState(true)
-  const [useCompactQuality, setUseCompactQuality] = useState(false)
+  const [useLowQuality, setUseLowQuality] = useState(false)
+  const [composition, setComposition] = useState<"phone" | "tablet" | "desktop">("desktop")
+  const [pointerActive, setPointerActive] = useState(false)
+  const [motionPaused, setMotionPaused] = useState(false)
   const [sceneFailed, setSceneFailed] = useState(false)
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(true)
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const updatePreference = () => setShouldReduceMotion(preference.matches)
+    updatePreference()
+    preference.addEventListener("change", updatePreference)
+    return () => preference.removeEventListener("change", updatePreference)
+  }, [])
 
   useEffect(() => {
     const element = container.current
@@ -73,13 +89,16 @@ export function SpatialSceneIsland() {
     }
 
     const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number }
-    const compactDevice =
-      window.matchMedia("(max-width: 900px)").matches ||
-      (navigatorWithMemory.deviceMemory ?? 8) <= 4 ||
-      navigator.hardwareConcurrency <= 4
+    const lowPowerDevice =
+      (navigatorWithMemory.deviceMemory ?? 8) <= 4 || navigator.hardwareConcurrency <= 4
 
-    setUseCompactQuality(compactDevice)
+    const updateComposition = () => {
+      setComposition(window.innerWidth < 600 ? "phone" : window.innerWidth < 900 ? "tablet" : "desktop")
+    }
+
+    setUseLowQuality(lowPowerDevice)
     setIsPageVisible(document.visibilityState === "visible")
+    updateComposition()
 
     const handleVisibilityChange = () => {
       setIsPageVisible(document.visibilityState === "visible")
@@ -90,6 +109,7 @@ export function SpatialSceneIsland() {
     }
 
     document.addEventListener("visibilitychange", handleVisibilityChange)
+    window.addEventListener("resize", updateComposition)
     element.addEventListener("webglcontextlost", handleContextLoss, true)
 
     if (!("IntersectionObserver" in window)) {
@@ -97,37 +117,64 @@ export function SpatialSceneIsland() {
       setIsInViewport(true)
       return () => {
         document.removeEventListener("visibilitychange", handleVisibilityChange)
+        window.removeEventListener("resize", updateComposition)
         element.removeEventListener("webglcontextlost", handleContextLoss, true)
       }
     }
 
-    const observer = new IntersectionObserver(
+    const preloadObserver = new IntersectionObserver(
       ([entry]) => {
-        setIsInViewport(entry.isIntersecting)
-
         if (entry.isIntersecting) {
           setShouldRender(true)
+          preloadObserver.disconnect()
         }
       },
       { rootMargin: "120px" },
     )
 
-    observer.observe(element)
+    const activityObserver = new IntersectionObserver(
+      ([entry]) => setIsInViewport(entry.isIntersecting && entry.intersectionRatio > 0),
+      { rootMargin: "0px", threshold: 0.01 },
+    )
+
+    preloadObserver.observe(element)
+    activityObserver.observe(element)
     return () => {
-      observer.disconnect()
+      preloadObserver.disconnect()
+      activityObserver.disconnect()
       document.removeEventListener("visibilitychange", handleVisibilityChange)
+      window.removeEventListener("resize", updateComposition)
       element.removeEventListener("webglcontextlost", handleContextLoss, true)
     }
   }, [])
 
+  const sceneActive = isInViewport && isPageVisible && !shouldReduceMotion && !motionPaused
+
   return (
     <div
       ref={container}
-      className="hero-scene relative z-0 mx-0 hidden min-w-0 overflow-hidden sm:mt-0 sm:block sm:h-64 lg:-ml-20 lg:mr-[-2rem] lg:h-[30rem] xl:-ml-44 xl:mr-[-5rem] xl:-mt-16 xl:h-[38rem] 2xl:-ml-56 2xl:mr-[-7rem] 2xl:-mt-20 2xl:h-[41rem]"
-      role="img"
-      aria-label="Abstract illustration of the Pascal.dev digital core"
+      className="hero-scene relative z-10 h-[20rem] min-w-0 overflow-hidden sm:h-[22rem] lg:h-[34rem] xl:h-[38rem]"
+      role="group"
+      aria-label="Pascal.dev framed cube in white and cyan light over a graphite platform"
+      data-scene-active={sceneActive ? "true" : "false"}
+      data-scene-loaded={shouldRender ? "true" : "false"}
+      data-scene-motion={shouldReduceMotion ? "reduced" : sceneActive ? "running" : "paused"}
+      data-scene-composition={composition}
+      data-scene-quality={useLowQuality ? "low" : "standard"}
+      onPointerEnter={() => setPointerActive(true)}
+      onPointerLeave={() => setPointerActive(false)}
     >
-      <div className="pointer-events-none absolute inset-[14%] rounded-full bg-sky-300/[0.07] blur-[90px]" />
+      <div className="pointer-events-none absolute inset-[10%] rounded-full bg-cyan-100/[0.055] blur-[84px]" />
+      {shouldRender && !sceneFailed && !shouldReduceMotion && (
+        <button
+          type="button"
+          onClick={() => setMotionPaused((paused) => !paused)}
+          aria-pressed={motionPaused}
+          className="absolute bottom-2 right-4 z-10 inline-flex min-h-11 items-center rounded-lg border border-white/15 bg-black/40 px-3 text-xs text-white/75 transition-colors hover:border-white/35 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-100"
+        >
+          {motionPaused ? "Resume motion" : "Pause motion"}
+        </button>
+      )}
       <div className="h-full w-full overflow-hidden">
         {sceneFailed ? (
           <SpatialSceneFallback />
@@ -135,8 +182,11 @@ export function SpatialSceneIsland() {
           shouldRender && (
             <SpatialSceneErrorBoundary onError={() => setSceneFailed(true)}>
               <SpatialScene
-                active={isInViewport && isPageVisible}
-                compact={useCompactQuality}
+                active={sceneActive}
+                composition={composition}
+                lowQuality={useLowQuality}
+                pointerActive={pointerActive}
+                reduceMotion={shouldReduceMotion}
               />
             </SpatialSceneErrorBoundary>
           )
